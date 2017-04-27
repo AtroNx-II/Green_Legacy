@@ -1,0 +1,1471 @@
+ACTOR PlasmaPistol : Weapon
+{
+  Inventory.Pickupmessage "You got the Plasma Pistol!"
+  Weapon.SlotNumber 2
+  Weapon.SlotPriority 1
+  +INVENTORY.UNDROPPABLE
+  +NOAUTOFIRE
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    Stop
+  Ready:
+  TNT1 A 0 A_JumpIfInventory("HaveRL",1,"Ready2")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"Ready2")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Ready2")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"Ready2")
+    TNT1 A 0 A_Giveinventory("PlasmaGauge",1)
+    TNT1 A 1 A_WeaponReady
+    Loop
+Ready2:
+    TNT1 A 1 A_WeaponReady
+    Loop
+  Select:
+    TNT1 A 1 A_Raise
+    Loop
+  Deselect:
+    TNT1 A 1 A_Lower
+    Loop
+  Fire:
+TNT1 A 0 A_JumpIfInventory("HaveRL",1,"RLFire")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"HeavyMachinegun")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Shotgun")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SubMachinegun")
+TNT1 A 0 A_JumpIfInventory("PlasmaGauge",200,"Plasma_Fire3")
+TNT1 A 0 A_JumpIfInventory("PlasmaGauge",100,"Plasma_Fire2")
+    TNT1 A 0
+    {
+	          A_TakeInventory("PlasmaGauge",1);
+    A_PlaySound("weapon/addplasma", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaWeakUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+        else { A_FireProjectile("GreenPlasmaWeakUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaWeak",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasmaWeak",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("GreenPlasmaWeak",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasmaWeak",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+      }
+    }
+    TNT1 A 1
+        TNT1 A 1 
+        TNT1 A 0 A_Refire//("FireNoTurn")
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+Plasma_Fire2:
+    TNT1 A 0
+    {
+		          A_TakeInventory("PlasmaGauge",2);
+    A_PlaySound("weapon/addplasma2", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+        else { A_FireProjectile("GreenPlasmaUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasma_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasma_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("GreenPlasma_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasma_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+      }
+    }
+    TNT1 A 1
+        TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+Plasma_Fire3:
+
+    TNT1 A 0
+    {
+		          A_TakeInventory("PlasmaGauge",400);
+    A_PlaySound("weapon/addplasma3", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaFCUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+        else { A_FireProjectile("GreenPlasmaFCUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaFC_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasmaFC_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("GreenPlasmaFC_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GreenPlasmaFC_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+      }
+    }
+    TNT1 A 40
+        TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+  HeavyMachinegun:
+    TNT1 A 0 A_TakeInventory("HaveHMG",1)
+    TNT1 A 0
+    {
+          A_PlaySound("M16_HMG", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("MGBulletUP",0,0,random(5,15),60,0,-90);A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
+        else { A_FireProjectile("MGBulletUP",0,0,random(-15,-5),60,0,-90);A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("MGBullet",-90,0,40,random(-5,5));A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("MGBullet",90,0,-40,random(-5,5));A_FireProjectile("SMGMuzzle_L",-90,0,-60); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("MGBullet",-90,0,40,random(-5,5));A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("MGBullet",90,0,-40,random(-5,5));A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+          }
+      }
+    }
+
+    
+    TNT1 A 2
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+		   if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+		}
+		ELSE
+		{
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+		}
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+  SubMachinegun:
+
+    TNT1 A 0 A_TakeInventory("HaveSMG",1)
+    TNT1 A 0
+    {
+          A_PlaySound("M16_SMG", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("SMGBulletUP",0,0,random(5,15),60,0,-90);
+		A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
+        else { 
+		A_FireProjectile("SMGBulletUP",0,0,random(-15,-5),60,0,-90);
+		A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));
+		A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("SMGBullet",90,0,-40,random(-5,5));
+		A_FireProjectile("SMGMuzzle_L",90,0,-60);}
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("SMGBullet",90,0,-40,random(-5,5));A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+          }
+      }
+    }
+
+    
+    TNT1 A 3
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+		   if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+		}
+		ELSE
+		{
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+		}
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+		 
+    Goto Ready
+  Shotgun:
+    TNT1 A 0 A_TakeInventory("HaveSG",1)
+    TNT1 A 0
+    {
+    A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
+    A_PlaySound("M16_SG", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
+        else {A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+        else {A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+          }
+      }
+	  }
+    TNT1 AAAAAAAAAA 0
+    {
+    A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
+    A_PlaySound("M16_SG", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBulletUP",0,0,10,60,0,random(-8,+8)-90); }
+        else { A_FireProjectile("SGBulletUP",0,0,-10,60,0,random(-8,+8)-90); }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBullet",-90,0,40,0,0,random(-8,+8));}
+        else { A_FireProjectile("SGBullet",90,0,-40,0,0,random(-8,+8));}
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBullet",-90,0,40,0,0,random(-8,+8));}
+        else { A_FireProjectile("SGBullet",90,0,-40,0,0,random(-8,+8));}
+          }
+      }
+
+    }
+
+    TNT1 A 14
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+		   if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+		}
+		ELSE
+		{
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+		}
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+RLFire:
+    TNT1 A 0 A_TakeInventory("HaveRL",1)
+    TNT1 A 0
+    {
+    A_PlaySound("M16_GL", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("RLShotUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+        else { A_FireProjectile("RLShotUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("RLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("RLShotL",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("RLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("RLShotL",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+      }
+    }
+    TNT1 A 8
+        TNT1 A 8 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+		   if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+		}
+		ELSE
+		{
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+		}
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+AltFire:
+TNT1 A 0 A_JumpIfInventory("HaveGL",1,"GLFire")
+TNT1 A 10
+    Goto Ready
+GLFire:
+    TNT1 A 0 A_TakeInventory("HaveGL",1)
+    TNT1 A 0
+    {
+    A_PlaySound("M16_GL", 7,1.0,0,ATTN_NONE);
+          A_GiveInventory("Fire_pressed",1);
+          if (CountInv("Aimup") == 1)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+        else { A_FireProjectile("GLShot",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+        else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+          }
+      }
+    }
+    TNT1 A 10
+        TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+		   if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+		}
+		ELSE
+		{
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+		}
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+		A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+		A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+
+  }
+}
+
+ACTOR GreenPlasma_R
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 12
+  Damage (random(20,40))
+  projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS A 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0  bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 A_Stop
+    Stop
+  }
+}
+ACTOR GreenPlasma_L :  GreenPlasma_R
+{
+SCALE -1.0
+}
+ACTOR GreenPlasmaWeak
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 5
+  Damage 2
+    Xscale 0.8
+  Yscale 0.3
+  projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS A 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0  bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 A_Stop
+    Stop
+  }
+}
+
+ACTOR GreenPlasmaFC_R
+{
+species playerside
+  DamageType PlayerSide
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 10
+  
+  Damage 50
+  projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+xscale 2.0
+yscale 4.5
+  States
+  {
+  Spawn:
+    APLS A 2 bright A_CountDown
+    loop
+  Death:
+  TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(200,256)
+      APLS A 0  bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 A_Stop
+    Stop
+  }
+}
+ACTOR GreenPlasmaFC_L : GreenPlasmaFC_R
+{
+xscale -2.0
+yscale 4.5
+
+}
+ACTOR ChargeFX
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+xscale 1.0
++NOCLIP
+yscale 3.5
+  Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    TNT1 A 1 bright   A_SpawnProjectile("Debris_PlasmaTrail",0,0, random(0,360), 2, random(-90,90))
+  Death:
+    TNT1 A 1 bright   A_SpawnProjectile("Debris_PlasmaTrail",0,0, random(0,360), 2, random(-90,90))
+    Stop
+  }
+}
+
+ACTOR GunSmoke_U
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle ADD
+  Speed 0
+  ReactionTime 5
+  Damage 0
+  +MISSILE
+  +NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SMK3 ABCDEFGHIJKLMNOP 1 bright A_FadeOut(0.05)
+    Stop
+  }
+}
+ACTOR GunSmoke_L
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle ADD
+  Speed 0
+  ReactionTime 5
+  Damage 0
+
+  +MISSILE
+  +NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SMK1 ABCDEFGHIJKLMNO 1 bright A_FadeOut(0.05)
+    Stop
+  }
+}
+ACTOR GunSmoke_R
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle ADD
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    +NOGRAVITY
+  +MISSILE
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOCLIP
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SMK2 ABCDEFGHIJKLMNO 1 bright A_FadeOut(0.05)
+    Stop
+  }
+}
+
+
+ACTOR GreenPlasmaUP 
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 10
+  Damage (random(20,40))
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  PROJECTILE
+  States
+  {
+  Spawn:
+    APLS C 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0 bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 bright A_Stop
+    Stop
+  }
+}
+
+ACTOR GreenPlasmaWeakUP 
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 10
+    Yscale 0.8
+  Xscale 0.3
+  Damage 2
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  PROJECTILE
+  States
+  {
+  Spawn:
+    APLS C 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0 bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 bright A_Stop
+    Stop
+  }
+}
+ACTOR GreenPlasmaFCUP 
+{
+species playerside
+  DamageType PlayerSide
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 10
+  Damage 50
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  PROJECTILE
+  yscale 2.0
+xscale 4.5
+  States
+  {
+  Spawn:
+    APLS C 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+  TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(200,256)
+      APLS A 0 bright A_SetScale(1.0,1.0)
+    APBX ABCDE 2 bright A_Stop
+    Stop
+  }
+}
+
+
+
+ACTOR GreenPlasmaMUZZLE_R
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.5
+  Yscale 0.5
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+    PLMZ AB 1 bright
+	stop
+Spawn2:
+    PLMZ CD 1 bright
+    Stop
+Spawn3:
+    PLMZ EF 1 bright
+    Stop
+Spawn4:
+    PLMZ GH 1 bright
+    Stop
+Spawn5:
+    PLMZ IJ 1 bright
+    Stop
+Spawn6:
+    PLMZ KL 1 bright
+    Stop
+Spawn7:
+    PLMZ MN 1 bright
+    Stop
+  }
+}
+ACTOR GreenPlasmaMUZZLE_L : GreenPlasmaMUZZLE_R
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale -0.5
+}
+ACTOR GreenPlasmaMUZZLEUP
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.5
+  Yscale 0.5
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+    PLMU AB 1 bright
+	stop
+Spawn2:
+    PLMU CD 1 bright
+    Stop
+Spawn3:
+    PLMU EF 1 bright
+    Stop
+Spawn4:
+    PLMU GH 1 bright
+    Stop
+Spawn5:
+    PLMU IJ 1 bright
+    Stop
+Spawn6:
+    PLMU KL 1 bright
+    Stop
+Spawn7:
+    PLMU MN 1 bright
+    Stop
+  }
+}
+
+ACTOR SMGMUZZLE_R
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.8
+  Yscale 0.8
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
+    MUZZ AB 1 bright
+	stop
+Spawn2:
+    MUZZ CD 1 bright
+    Stop
+Spawn3:
+    MUZZ EF 1 bright
+    Stop
+Spawn4:
+    MUZZ GH 1 bright
+    Stop
+Spawn5:
+    MUZZ IJ 1 bright
+    Stop
+Spawn6:
+    MUZZ KL 1 bright
+    Stop
+Spawn7:
+    MUZZ MN 1 bright
+    Stop
+Spawn8:
+    TNT1 AA 1 bright
+    Stop
+  }
+}
+ACTOR SMGMUZZLE_L : SMGMUZZLE_R
+{
+XSCALE -0.8
+}
+
+ACTOR SMGMUZZLEUP
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.8
+  Yscale 0.8
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+  TNT1 A 0
+  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
+    MUZU AB 1 bright
+	stop
+Spawn2:
+    MUZU CD 1 bright
+    Stop
+Spawn3:
+    MUZU EF 1 bright
+    Stop
+Spawn4:
+    MUZU GH 1 bright
+    Stop
+Spawn5:
+    MUZU IJ 1 bright
+    Stop
+Spawn6:
+    MUZU KL 1 bright
+    Stop
+Spawn7:
+    MUZU MN 1 bright
+    Stop
+Spawn8:
+    TNT1 AA 1 bright
+    Stop
+  }
+}
+ACTOR GLShot : PlasmaBall
+{
+species playerside
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 30
+  ReactionTime 5
+  DamageType PlayerSide
+  Damage 20
+  DEATHSOUND "BOOM1"
+  +FULLVOLDEATH
+  +BLOODLESSIMPACT
+  -NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    GLSH A 2 bright
+    GOTO SPAWN
+  Death:
+TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL3", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(200,256)
+      APLS A 0 bright A_SetScale(3.0,3.0)
+  EPRO AA 1 bright A_Stop
+      APLS A 0 bright A_SetScale(2.0,2.0)
+EXPL ABCDEFGHIJKLMN 1 bright A_STOP
+    Stop
+  }
+}
+
+
+ACTOR Debris_FireTrail_GL
+{
+HEIGHT 2
+SeeSound ""
+  RenderStyle Normal
+  Speed 20
+  ReactionTime 5
+  Damage 0
+  Projectile
+  BounceFactor 1.0
+  BounceType Grenade
+  BounceCount 5
+-NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  Scale 0.5
+  +BRIGHT
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAAAAAAAAAAAAAAAA 1 bright A_SpawnItemEx("Fire_To_SmokeTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  stop
+  Death:
+    TNT1 A 1 bright
+    Stop
+  }
+}
+
+ACTOR Debris_FireTrail_GL2 : FastProjectile
+{
+HEIGHT 2
+SeeSound ""
+  RenderStyle Normal
+  ReactionTime 5
+  Damage 0
+  Projectile
+  BounceFactor 1.0
+  BounceType Grenade
+  BounceCount 5
+  +BRIGHT
+  +BLOODLESSIMPACT
+  +THRUACTORS
+  +NOEXTREMEDEATH
+SPEED 20
+SCALE 0.1
+  MissileType "Fire_To_SmokeTrail2"
++NOGRAVITY
+  States
+  {
+  Spawn:
+    EMBL AAAAAAAAA 1 bright
+  stop
+  }
+
+}
+
+ACTOR Debris_FireTrail_GL3 : Debris_FireTrail_GL
+{
+SPEED 5
+SCALE 0.01
+Reactiontime 6
+  States
+  {
+  Spawn:
+  EPRO A 0 A_Jump(128,"Spawn2","Spawn3")
+    EPRO A 1 bright A_CountDown
+  Goto Spawn+1
+  Spawn2:
+    EPRO A 0 bright A_CountDown
+    EPRO A 1 bright A_CountDown
+  Goto Spawn2
+  Spawn3:
+    EPRO AA 0 bright A_CountDown
+    EPRO A 1 bright A_CountDown
+  Goto Spawn3
+  Death:
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,6,8.5)
+  EPRO A 0 A_Jump(128,"Death2","Death3")
+  EPRO A 0 A_SetScale(1.0,1.0)
+    EPRO A 1 A_STOP
+  STOP
+  Death2:
+  EPRO A 0 A_SetScale(1.5,1.5)
+    EPRO A 1 A_STOP
+  STOP
+  Death2:
+  EPRO A 0 A_SetScale(2.5,2.5)
+    EPRO A 1 A_STOP
+  STOP
+  }
+}
+ACTOR Debris_FireTrail_GL4 : Debris_FireTrail_GL
+{
+  States
+  {
+  Spawn:
+    TNT1 AAAAAAA 1 bright A_SpawnItemEx("Fire_To_SmokeTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  stop
+  }
+}
+ACTOR Debris_FireTrail_GL5 : Debris_FireTrail_GL
+{
+SPEED 5
+SCALE 0.01
+Reactiontime 6
+  States
+  {
+  Spawn:
+  EPRO A 0 A_Jump(128,"Spawn2","Spawn3")
+    EPRO A 1 bright A_CountDown
+  Goto Spawn+1
+  Spawn2:
+    EPRO A 0 bright A_CountDown
+    EPRO A 1 bright A_CountDown
+  Goto Spawn2
+  Spawn3:
+    EPRO AA 0 bright A_CountDown
+    EPRO A 1 bright A_CountDown
+  Goto Spawn3
+  Death:
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,6,8.5)
+  EPRO A 0 A_Jump(128,"Death2","Death3")
+  EPRO A 0 A_SetScale(1.0,1.0)
+    EPRO A 1 A_STOP
+  STOP
+  Death2:
+  EPRO A 0 A_SetScale(0.5,0.5)
+    EPRO A 1 A_STOP
+  STOP
+  Death2:
+  EPRO A 0 A_SetScale(1.5,1.5)
+    EPRO A 1 A_STOP
+  STOP
+  }
+}
+
+ACTOR Debris_FireTrail_GL6 : FastProjectile
+{
+HEIGHT 2
+SeeSound ""
+  RenderStyle Normal
+  ReactionTime 5
+  Damage 0
+  Projectile
+  BounceFactor 1.0
+  BounceType Grenade
+  BounceCount 5
+  +BRIGHT
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+SPEED 20
+SCALE 0.1
+  MissileType "Fire_To_SmokeTrail2"
++NOGRAVITY
+  States
+  {
+  Spawn:
+    EMBL AAAAA 1 bright
+  stop
+  }
+
+}
+ACTOR Fire_To_SmokeTrail
+{
+HEIGHT 2
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Health 5
+  Speed 0
+  ReactionTime 5
+  Damage 0
+  +BLOODLESSIMPACT
+  +INVULNERABLE
+  +NOEXTREMEDEATH
+  -SOLID
+  -SHOOTABLE
+  Scale 0.5
+  +BRIGHT
+  States
+  {
+  Spawn:
+EXPL ABCDEFGHIJKLMN 1 bright
+{A_FadeOut(0.1);
+A_STOP;}
+  STOP
+  Death:
+EXPL ABCDEFGHIJKLMN 1 bright
+{A_FadeOut(0.1);
+A_STOP;}
+    Stop
+  }
+}
+ACTOR Fire_To_SmokeTrail2 : Fire_To_SmokeTrail
+{
+SCALE 0.1
+}
+ACTOR Fire_To_SmokeTrail3 : Fire_To_SmokeTrail
+{
+SCALE 0.25
+}
+ACTOR Fire_To_SmokeTrail4 : Fire_To_SmokeTrail
+{
+SCALE 0.3
+}
+ACTOR RLShot : Fastprojectile
+{
+species playerside
+  DamageType PlayerSide
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 30
+  ReactionTime 10
+
+  Damage 20
+  DEATHSOUND "BOOM1"
+  PROJECTILE
+  MissileHeight 8
+  MissileType "Fire_To_SmokeTrail2"
+  +FULLVOLDEATH
+  +BLOODLESSIMPACT
+  +NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+  RLSH A 0 A_Weave(0,5,0.0,1.0)
+    RLSH A 0 A_CheckSightOrRange(350,"Remove",false)
+TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,0, 2, random(-10,10))
+    RLSH A 1 bright
+    GOTO SPAWN
+  Death:
+TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL4", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL6", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL5", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(100,192)
+      APLS A 0 bright A_SetScale(2.0,2.0)
+  EPRO AA 1 bright A_Stop
+      APLS A 0 bright A_SetScale(1.0,1.0)
+EXPL ABCDEFGHIJKLMN 1 bright A_STOP
+    Stop
+  Remove:
+    RLSH A 0
+  stop
+  }
+}
+ACTOR RLShotL : RLShot
+{
+  States
+  {
+  Spawn:
+  RLSH A 0 A_Weave(0,5,0.0,1.0)
+    RLSH A 0 A_CheckSightOrRange(350,"Remove",false)
+TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,180, 2, random(-10,10))
+    RLSH B 1 bright
+    GOTO SPAWN
+  }
+}
+ACTOR RLShotUP : RLShot
+{
+  States
+  {
+    Spawn:
+  RLSH A 0 A_Weave(5,0,1.0,0)
+    RLSH A 0 A_CheckSightOrRange(250,"Remove",false)
+TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, random(-10,10))
+    RLSH C 1 bright
+    GOTO SPAWN
+  }
+}
+ACTOR SMGBullet 
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 5
+  Damage 5
+  RADIUS 10
+  Yscale 1.0
+  Xscale 0.3
+  PROJECTILE
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS B 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0 bright A_SetScale(1.0,1.0)
+	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+
+ACTOR SMGBulletUP
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  RADIUS 6
+  ReactionTime 10
+  Damage 10
+  xscale 1.0
+  yscale 0.3
+  Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS D 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0 bright A_SetScale(1.0,1.0)
+	  	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+ACTOR MGBullet 
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 5
+  Damage 10
+  Yscale 0.3
+  Xscale 1.5
+    RADIUS 10
+    Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS B 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+      APLS A 0 bright A_SetScale(1.0,1.0)
+	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+
+ACTOR MGBulletUP
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 10
+  Damage 10
+  xscale 0.4
+  yscale 1.4
+    RADIUS 10
+    Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    APLS D 2 bright A_CountDown
+    GOTO SPAWN
+  Death:
+	APLS A 0 bright A_SetScale(1.0,1.0) 
+	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+
+ACTOR SGBullet
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 70
+  ReactionTime 4
+  Damage 5
+  Yscale 0.2
+  Xscale 0.2
+    RADIUS 10
+    Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+      APLS E 0 A_jump(128,"spawn2")
+    APLS E 0 bright A_Weave(40,0,RANDOM(0,6),0)
+    EMBL A 1 bright A_CountDown
+    GOTO SPAWN
+Spawn2:
+    APLS E 0 bright A_Weave(40,0,RANDOM(0,6),0)
+    EMBL A 1 bright A_CountDown
+    APLS E 0 bright A_CountDown
+    GOTO SPAWN2
+  Death:
+	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+      APLS A 0 bright
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+ACTOR SGBulletUP
+{
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 55
+  ReactionTime 2
+  Damage 5
+  Yscale 0.2
+  Xscale 0.2
+    RADIUS 10
+    Projectile
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+      APLS E 0 A_jump(128,"spawn2")
+    APLS E 0 bright A_Weave(40,0,RANDOM(-6,6),0)
+    APLS E 1 bright A_CountDown
+    GOTO SPAWN
+Spawn2:
+    APLS E 0 bright A_Weave(40,0,RANDOM(-6,6),0)
+    APLS E 1 bright A_CountDown
+    APLS E 0 bright A_CountDown
+    GOTO SPAWN2
+  Death:
+	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+      APLS A 0 bright
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}

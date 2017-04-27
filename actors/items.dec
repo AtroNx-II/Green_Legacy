@@ -1,0 +1,41 @@
+
+ACTOR Pickup_MedikitS : CustomInventory replaces StimPack
+{
+  Inventory.Pickupsound "Pick_Health"
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+  +NOGRAVITY
+  +FLOATBOB
+  +COUNTITEM
+  +BRIGHT
+  States
+  {
+  Spawn:
+    BATT A 1
+    Loop
+
+  Pickup:
+    BATT A 1 HealThing(20)
+	STOP
+  }
+}
+ACTOR Pickup_MedikitM : CustomInventory replaces Medikit
+{
+  Inventory.Pickupsound "Pick_Health"
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+  +NOGRAVITY
+  +FLOATBOB
+  +COUNTITEM
+  +BRIGHT
+  States
+  {
+  Spawn:
+    BATT A 1
+    Loop
+
+  Pickup:
+    BATT A 1 HealThing(40)
+	STOP
+  }
+}

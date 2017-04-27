@@ -1,0 +1,516 @@
+#library "hacker"
+#include "zcommon.acs"
+
+
+
+// check if player is on ground
+function int CheckPlayerOnGround(void)
+{
+	int onground;
+	if(GetActorZ (0) == GetActorFloorZ (0) ||
+       (GetActorVelZ(0) == 0 && !Spawn("Z_FloorCheck", GetActorX(0), GetActorY(0), GetActorZ(0) - (4 << 16), 0, GetActorAngle(0)))
+       )
+	{
+		onground = 1;
+		//SetFont("smallfont");
+		//Print(s: "on ground");
+	}
+	else
+	{
+		onground = 0;
+		//SetFont("smallfont");
+		//Print(s: "in air");
+	}
+	return onground;
+}
+
+script "BackwardsCheck" (INT TID)
+{
+	if(GetActorAngle(TID)<0.75 && GetActorAngle(TID)>0.25 )
+	{
+		GiveInventory("BackwardsCheck",1);
+	}
+	else
+	{
+		TakeInventory("BackwardsCheck",1);
+	}
+}
+script "BackwardsCheck2" (void)
+{
+SetActorVelocity(0,FixedMul(cos(GetActorAngle(0)),GetActorProperty(0, APROP_SPEED)), FixedMul(sin(GetActorAngle(0)), 14),GetActorVelZ(0), 0, 0);
+}
+script "Check_CoolTime_Emily" (void)
+{
+While(CheckInventory("EmilyCooltime")>0)
+{
+TakeInventory("EmilyCooltime",1);
+delay(35);
+}
+delay(1);
+terminate;
+}
+script "InvulTime" (int time)
+{
+While(time>0)
+{
+SetActorProperty(0, APROP_Invulnerable, true);
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_add);
+Delay(1);
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_none);
+Delay(1);
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+Delay(1);
+time--;
+}
+SetActorProperty(0, APROP_Invulnerable, false);
+delay(1);
+}
+script "FlashTime" (int time)
+{
+While(time>0)
+{
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_add);
+Delay(1);
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_none);
+Delay(1);
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+Delay(1);
+time--;
+}
+delay(1);
+}
+
+
+script "CheckSpeed" ENTER
+{
+        int buttons; int heldButtons; int newButtons; int oldButtons;
+ while (TRUE)
+ {
+ int pln = PlayerNumber(); // this is obligitory by now
+ int playerAngle;  int playerAngle2;
+ bool bInMidAir; int playerHeight; int playerJumpZ;
+ int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
+ heldButtons =  GetPlayerInput(-1, ModINPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, MODINPUT_BUTTONS);
+ newButtons = (buttons ^ heldButtons) & buttons;
+ oldButtons = (buttons ^ heldButtons) & heldButtons;
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+ if (GetActorProperty (0, APROP_HEALTH) > 0)
+ {
+    IF(newButtons == BT_Speed)
+   {
+     Giveinventory("Dashing",1);
+  Delay(1);
+     takeinventory("Dashing",1);
+  Delay(20);
+    }
+    ELSE
+    {
+
+    }
+
+
+   }
+
+      delay(1);
+}
+
+}
+
+script "CheckJumpDown" ENTER
+{
+        int buttons; int heldButtons; int newButtons; int oldButtons;
+ while (TRUE)
+ {
+ int pln = PlayerNumber(); // this is obligitory by now
+ int playerAngle;  int playerAngle2;
+ bool bInMidAir; int playerHeight; int playerJumpZ;
+ int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
+ heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
+ newButtons = (buttons ^ heldButtons) & buttons;
+ oldButtons = (buttons ^ heldButtons) & heldButtons;
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+ if (GetActorProperty (0, APROP_HEALTH) > 0)
+ {
+    IF(newButtons == BT_USER3)
+   {
+     Giveinventory("JumpToDown",1);
+  Delay(1);
+     takeinventory("JumpToDown",1);
+	}
+    ELSE
+    {
+	
+    }
+
+
+   }
+
+      delay(1);
+}
+
+}
+script "CheckSupporterSkill" ENTER
+{
+        int buttons; int heldButtons; int newButtons; int oldButtons;
+ while (TRUE)
+ {
+ int pln = PlayerNumber(); // this is obligitory by now
+ int playerAngle;  int playerAngle2;
+ bool bInMidAir; int playerHeight; int playerJumpZ;
+ int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
+ heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
+ newButtons = (buttons ^ heldButtons) & buttons;
+ oldButtons = (buttons ^ heldButtons) & heldButtons;
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+ if (GetActorProperty (0, APROP_HEALTH) > 0)
+ {
+    IF(newButtons == BT_USER1)
+   {
+    If(CheckInventory("HaveEmily"))
+   {
+     Giveinventory("Support_Emily",1);
+    }
+	Else If(CheckInventory("HaveCatty"))
+   {
+     Giveinventory("Support_Catty",1);
+    }
+	Else
+	{
+    }
+	}
+    ELSE
+    {
+
+    }
+
+
+   }
+
+      delay(1);
+}
+
+}
+// modified version of ScaleVelocity()
+// thanks to MeatyD for this piece of code
+function void ModifyPlayerFriction(int TID, int scale)
+{
+	SetActorVelocity(TID,	FixedMul(scale, GetActorVelX(TID)),
+							FixedMul(scale, GetActorVelY(TID)),
+							GetActorVelZ(TID),
+							false, true);
+}
+
+#define FRICTION_FACTOR 0.55
+// smaller numbers = faster deceleration
+// 0.0 = instantly stop after releasing movement keys
+// 1.0 = default Doom movement (slippery)
+
+
+
+//Returns 1 if the player pressed jump and 2 if the player released jump (in a given tic)
+//Returns 3 if the player is holding jump and 0 if they haven't pressed jump (in a given tic)
+Function int JumpStatus (int Buttons, int OldButtons)
+{
+	int JumpNow = Buttons & BT_JUMP;
+	int JumpOld = OldButtons & BT_JUMP;
+	//if (CheckInventory("JumptoDown")) { return 3; }
+	if (JumpNow > JumpOld) { return 1; }
+	if (JumpNow < JumpOld) { return 2; }
+	if (JumpNow > 0 &&  JumpOld > 0) { return 3; }
+	Return 0;
+}
+
+script "CheckCrouch" ENTER
+{
+
+ int buttons =     GetPlayerInput(-1, MODINPUT_BUTTONS);
+
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+if (buttons & BT_CROUCH  && GetActorVelZ(0)==0)
+{
+
+ SetPlayerProperty (0, 1, PROP_FROZEN);
+     Giveinventory("Crouching",1);
+}
+else
+{
+  SetPlayerProperty (0, 0, PROP_FROZEN);
+     takeinventory("Crouching",1);
+}
+   delay(1);
+   RESTART;
+}
+
+//1001-1032 - Players
+//2001-2032 - Corresponding cameras
+
+//script "ChangeRespawnPosition" (void)
+//{
+//SetactorPosition(1346,Getactorx(1001+PlayerNumber()),Getactory(1001+PlayerNumber()),Getactorfloorz(1001+PlayerNumber()),0);
+//}
+
+Script 100 RESPAWN
+{
+//SetactorPosition(0,Getactorx(1346),Getactory(1346),Getactorfloorz(1346),0);
+ACS_NamedExecute("InvulTime",0,15,0,0);
+ACS_Execute(101,0,0,0,0);
+	Thing_ChangeTID(0,1001+PlayerNumber());
+	ChangeCamera(ActivatorTID()+1000,0,0);
+	TakeInventory("BackwardsCheck",1);
+}
+//script "RespawnCount"  DEATH
+//{
+//SetactorPosition(0,Getactorx(1001+PlayerNumber()),Getactory(1001+PlayerNumber()),Getactorfloorz(1001+PlayerNumber()),0);
+	//giveInventory("Respawncount",1);
+//}
+
+int xmod;
+
+Script 101 ENTER
+{
+    int buttons, oldbuttons;
+    int buttonweight, buttonweightmove, buttondelay;
+    int jumpstate, grounded, jumped, airtime, savejump;
+    //int xmod;
+    Thing_ChangeTID(0,1001+PlayerNumber());
+    Spawn("SideCam",GetActorX(0),GetActorY(0),GetActorfloorZ(0),ActivatorTID()+1000,64);
+    ChangeCamera(ActivatorTID()+1000,0,0);
+    While (true)
+    {
+        // Status stuff
+        buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+        oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	    jumpstate = JumpStatus(buttons, oldbuttons);
+        SetAirControl(0.666); // SPOOKY
+        changeActorAngle(0,0.25,0);
+		SetActorPitch(0,0);
+
+        // Friction on the ground, slower jump in mid-air
+		if (CheckPlayerOnGround())
+        {
+            ModifyPlayerFriction(0, FRICTION_FACTOR);
+            TakeInventory("JumpSpeed",1);
+            jumped = 0;
+            airtime = 0;
+            savejump = 0;
+        }
+        else
+        {
+            GiveInventory("JumpSpeed",1);
+            airtime++;
+        }
+ 
+        // Here's a catch-all for if you fall off a ledge but need a couple extra tics to make your jump.
+        if (grounded == 0 && airtime > 0 && airtime < 4 && jumped == 0 && buttons & BT_JUMP && savejump == 0)
+        {
+           ThrustThingZ(0,57,0,0);
+           jumped = 1;
+           savejump = 1;
+        }
+
+		Switch(jumpstate)
+		{
+		Case 1: // You pressed Jump
+			grounded = 0;
+            jumped = 1;
+			break;
+
+		Case 2: // You Released Jump
+			if(CheckInventory("JumpStop") > 0)
+			{
+				TakeInventory("JumpStop",1);
+				ThrustThingZ(0,0,0,0);
+				grounded = 0;
+			}
+			break;
+
+		Default: //Holding Jump OR not holding Jump
+			if( (GetActorZ(0) - GetActorFloorZ(0) == 0.0) || grounded == 3)
+			{
+				GiveInventory("JumpStop",1);
+				//print(s:"You're grounded!");
+			}
+			if(GetActorVelZ(0) == 0.0 && grounded < 3 && GetActorCeilingZ(0) - GetActorZ(0) > 54.0) { grounded++; } // The height of the actor actually checks at 52, but just making sure.
+
+			if(GetActorVelZ(0) < 0.0)
+			{
+				TakeInventory("JumpStop",1);
+				//print(s:"You're falling!");
+				grounded = 0;
+			}
+			break;
+		}
+
+        // All right, time to fuck up the camera.
+
+        if (buttons & BT_FORWARD) // Checks for if the player is holding left.
+		{
+            GiveInventory("Aimup",1);
+			buttondelay = 0;
+		}
+        if (buttons & BT_MOVERIGHT) // Checks for if the player is holding right.
+        {
+            GiveInventory("Moving",1);
+  TakeInventory("BackwardsCheck",1);
+            if (buttonweightmove < 0) { buttonweightmove = 0.0; }
+            buttonweightmove = buttonweightmove + 1.0;
+			buttonweight = buttonweight + 1.0;
+			buttondelay = 0;
+		}
+        if (buttons & BT_MOVELEFT) // Checks for if the player is holding left.
+		{
+            GiveInventory("Moving",1);
+GiveInventory("BackwardsCheck",1);
+            buttonweightmove = buttonweightmove - 1.0;
+			buttonweight = buttonweight - 1.0;
+			buttondelay = 0;
+		}
+        if ( !(buttons & BT_FORWARD)) // If the player is not pushing right or left.
+        {
+            TakeInventory("aimup",1);
+        }
+        if ( !(buttons & BT_MOVELEFT) && !(buttons & BT_MOVERIGHT)) // If the player is not pushing right or left.
+        {
+            TakeInventory("Moving",1);
+            buttondelay = buttondelay + 1.0;
+            if (buttondelay > 45.0) { buttonweight = 0; }
+            buttonweightmove = 0;
+        }
+
+        //if (buttonweightmove < -3.0) { GiveInventory("BackwardsCheck",1); }
+        //if (buttonweightmove > 3.0) { TakeInventory("BackwardsCheck",1); }
+        if (buttonweight < -8.0) { xmod = xmod - 8.0; }
+        if (buttonweight > 8.0) { xmod = xmod + 8.0; }
+        if (buttonweight > 12.0) { buttonweight = 12.0; }
+        if (buttonweight < -12.0) { buttonweight = -12.0; }
+        if (xmod > 80.0) { xmod = 80.0; }
+        if (xmod < -80.0) { xmod = -80.0; }
+
+        // Last, set the camera
+		//SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
+				if (CheckInventory("CamOff") > 0) {}
+				else{        Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+				
+
+        // Debug info
+		if (GetCvar("plat_debug") == 1)
+		{
+			SetHudSize(640,400,1);
+        	HudMessage(s:"\cfStatus:\cj\n",
+	           s:"  - ", f:buttonweight,s:" buttonweight\n",
+	           s:"  - ", f:buttondelay,s:" buttondelay\n",
+	           s:"  - ", f:buttonweightmove,s:" buttonweightmove\n",
+	           s:"  - ", d:grounded,s:" grounded\n",
+	           s:"  - ", d:jumpstate,s:" jumpstate\n",
+	           s:"  - ", f:xmod,s:" xmod\n",
+               s:"  - ", f:GetActorCeilingZ(0) - GetActorZ(0),s:" ceilz\n",
+	           s:"  - ", d:airtime,s:" airtime\n",
+	           s:"  - ", d:jumped,s:" jumped\n",
+	           s:"  - ", d:savejump,s:" savejump";
+			   HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
+		}
+        if (CheckInventory("Health") <= 0) { terminate; }
+
+		Delay(1);
+	}
+}
+script "EmilyEmotion" (void)
+{
+giveinventory("EmilyWeaponPick",1);
+delay(70);
+takeinventory("EmilyWeaponPick",1);
+}
+
+
+#define DODGEWINDOW 8
+ 
+
+int dDuckC[32];
+int dead[32];
+
+function int max(int num1, int num2)
+{
+        int ret;
+        if (num1 > num2) {return num1;}
+        
+        return num2;
+}
+ 
+function int min(int num1, int num2)
+{
+        int ret;
+        if (num1 < num2) {return num1;}
+        
+        return num2;
+}
+
+script 469 (void) net
+{
+
+int x, y, z, speed;
+int pln = PlayerNumber(); // this is obligitory by now
+int buttons; int heldButtons; int newButtons; int oldButtons;
+bool bInMidAir; int playerHeight; int playerJumpZ;
+int playerSpeed; int dodgeSpeed;
+
+        while (!dead[pln])
+        {
+                heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
+                buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
+                newButtons = (buttons ^ heldButtons) & buttons;
+                oldButtons = (buttons ^ heldButtons) & heldButtons;
+                playerHeight = GetActorZ(0) - GetActorFloorZ(0);         
+                bInMidAir = (playerHeight > 0);
+
+
+                if (newButtons & BT_CROUCH)
+                {
+                        if (dDuckC[pln])
+                        {
+                                Delay(1);
+                                If(GetActorVelZ(0) == 0.0)
+                                {
+                                        giveinventory("JumptoDown",1);
+                                        Delay(1);
+                                        takeinventory("JumptoDown",1);
+                                }
+                                dDuckC[pln] = 0;
+                        }
+                        else
+                        {
+                                dDuckC[pln] = DODGEWINDOW;
+                        }
+                }
+                
+              
+                
+                dDuckC[pln] = max(dDuckC[pln]-1, 0);
+                        Delay(1);
+        }
+}
+ 
+
+script 467 ENTER net
+{
+        ACS_ExecuteAlways(469, 0, 0, 0, 0);
+}
+ 
+script 478 DEATH net
+{
+        dead[PlayerNumber()] = 1;
+}
+ 
+script 479 RESPAWN net
+{
+        dead[PlayerNumber()] = 0;
+        ACS_ExecuteAlways(469, 0, 0, 0, 0);
+}
+
+
