@@ -1,0 +1,14 @@
+
+bind F +user1
+
+bind E +use
+bind r +reload
+bind w +forward
+bind alt +zoom
+bind a +moveleft
+bind s +crouch
+bind d +moveright
+doublebind s +user3
+bind space +jump
+bind l +altattack
+bind k +attack

@@ -1,0 +1,3 @@
+- P1ayer27 (Making the level and inspiring me to do my own version. You did good with the tech you had, mate)
+- ZombieKiller (Helping out with the third-person camera)
+- CutmanMike (The jump cancel script)

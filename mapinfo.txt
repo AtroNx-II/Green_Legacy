@@ -1,0 +1,21 @@
+ClearEpisodes
+
+
+episode PLAT01
+{
+    noskillmenu
+    Name = "DUMP 3: Maps"
+}
+
+map PLAT01 "Stage1"
+{
+UsePlayerStartZ
+Sky1 = SKY1
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT02"
+NoIntermission
+   music = "STAGE1_1"
+}

@@ -1,0 +1,44 @@
+// hm
+charge charge
+EXPLODE1 EXPLODE1
+weapon/addplasma plasma
+weapon/addplasma2 plasma2
+weapon/addplasma3 plasma3
+weapon/addplasma_explode plasma
+$random whoosh { whoosh1 whoosh2 }
+whoosh1 whoosh1
+whoosh2 whoosh2
+Pick_weapon WP_PICK
+M16_GL M16_GL
+$random catt_ATK { catt_ATK1 catt_ATK2 }
+catt_ATK1 SLASH1
+catt_ATK2 SLASH2
+EMLY_PS EMLY_PS
+EMILY_RD EMILY_RD
+CATY_JU CATY_JU
+CAT_WALK CAT_WALK
+$random CAT_TIRD { CAT_TIRD1 CAT_TIRD2 }
+CAT_TIRD1 CAT_TIR1
+CAT_TIRD2 CAT_TIR2
+$playersound	player	male	*jump		M16_JUMP
+$playersound	player	male	*falling	M16_FALL
+$playersound	player	male	*grunt	M16_LANH
+$playersound	player	male	*land		M16_LAND
+$playersound	player	male	*death		M16_DEAD
+M16_DEAD M16_DEAD
+M16_DASH M16_DASH
+M16_SMG M16_SMG
+$random M16_HURT { M16_HURT1 M16_HURT2 }
+
+M16_WALK M16_WALK
+M16_HURT1 M16_HUR1
+M16_HURT2 M16_HUR2
+M16_SG M16_SG
+M16_HMG M16_HMG
+teleout teleout
+worm_sight worm_si
+worm_pain worm_pn
+worm_active worm_ac
+worm_death worm_dt
+BOOM1 BOOM1
+Pick_Health H_PICK
