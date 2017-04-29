@@ -593,7 +593,7 @@ yscale 4.5
   TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
       APLS A 0 bright A_Explode(200,256)
       APLS A 0  bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 A_Stop
+    PBFC ABCDEFGHIJ 1 bright A_Stop
     Stop
   }
 }
@@ -772,7 +772,7 @@ xscale 4.5
   TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
       APLS A 0 bright A_Explode(200,256)
       APLS A 0 bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 bright A_Stop
+    PBFC ABCDEFGHIJ 1 bright A_Stop
     Stop
   }
 }

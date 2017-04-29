@@ -15,6 +15,7 @@ Par  = 90
 NoCrouch
 NoInfighting
 Cluster = 1
+AllowRespawn
 Next = "PLAT02"
 NoIntermission
    music = "STAGE1_1"

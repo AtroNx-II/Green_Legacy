@@ -4,6 +4,7 @@ actor Boolean: Inventory
     +UNDROPPABLE
     -INVBAR
 }
+
 actor WeaponChanger : Inventory
 {
     Inventory.MaxAmount 1
@@ -206,6 +207,67 @@ SpawnFull:
     Stop
   }
 }
+ACTOR Respawn_Pointer
+{ 
+damageFactor "Flame", 0.0
+  +NORADIUSDMG 
+  +NOTAUTOAIMED
+  
+DamageFactor "EnemySide", 0.0
+  DAMAGEFACTOR "PlayerSide" , 0.0
+DamageFactor "NORMAL", 0.0
+  Health 200
+  height 2
+  SCALE 2.0
+  radius 2
+        ExplosionRadius 0
+  Speed  0
+species playerside
+        obituary "%o was headshot by %k."
+  RENDERSTYLE ADD
+
+    painchance 255
+    monster
+    -COUNTKILL
+    +THRUSPECIES 
+  +NOBLOOD
+    +FLOORCLIP
+        +DROPOFF
++MTHRUSPECIES
++NOTIMEFREEZE
++LOOKALLAROUND
++SEEINVISIBLE
+    -SHOOTABLE
+    +QUICKTORETALIATE
+    +FRIENDLY
+        +NOCLIP
+    -SOLID
+        +NORADIUSDMG
+  +NOGRAVITY
+  States
+  {
+
+    Spawn: 
+    FLAR A 0 A_PlaySound("charge", 7,0.0,0,ATTN_NONE)
+    TNT1 A 1
+	{
+	A_CopySpriteFrame(AAPTR_MASTER,AAPTR_DEFAULT);
+	}
+    Goto Spawn
+    SEE:
+    TNT1 A 1
+	{
+	A_CopySpriteFrame(AAPTR_MASTER,AAPTR_DEFAULT);
+	}
+    GOTO SEE
+    PAIN:
+                TNT1 AAA 0 A_Scream
+      GOTO SEE
+    Death:
+                TNT1 AAA 0 A_Scream
+    Stop
+  }
+}
 // HUD Boolean
 
 actor EmilyWeaponPick : Boolean {}
@@ -225,6 +287,7 @@ actor Transition01 : Boolean {}
 actor Transition02 : Boolean {}
 
 //Player Boolean
+actor RespawnFollowOff : Boolean {}
 actor CamOff : Boolean {}
 actor JumptoDown : Boolean {}
 actor Dashing : Boolean {}
@@ -520,10 +583,12 @@ UPSee:
       TNT1 A 0 A_PlaySound("M16_DASH")
         TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DashLeft")
     DashRight:
+	PDSH A 0 A_CustomMissile("Dashdust_L",0,0,270,2,0)
         PDSH ABCDEF 1 ThrustThing(angle*256/360+192, 200, 0, 0)
         TNT1 A 0 
         goto SpawnSkip
     DashLeft:
+	PDSH A 0 A_CustomMissile("Dashdust_L",0,0,90,2,0)
         PDSH HIJKLM 1 ThrustThing(angle*256/360+64, 200, 0, 0)
         TNT1 A 0
        goto SpawnSkip
@@ -1643,6 +1708,34 @@ ACTOR SideCam
     Stop
   }
 }
+ACTOR DashDust_L
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Translucent
+  Speed 0
+  ReactionTime 5
+  Damage 0
+  +MISSILE
+  +NOGRAVITY
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SMK4 ABCDEFGHIJKL 1 bright A_FadeOut(0.05)
+    Stop
+  }
+}
+ACTOR DashDust_R : DashDust_L
+{
+SCALE -1.0
+}
+
+
 
 #include "actors/decorations.dec"
 #include "actors/items.dec"

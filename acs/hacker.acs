@@ -258,18 +258,28 @@ else
 
 Script 100 RESPAWN
 {
+		FadeRange(255,255,255,1.0,255,255,255,0.0,0.5);
 //SetactorPosition(0,Getactorx(1346),Getactory(1346),Getactorfloorz(1346),0);
+
 ACS_NamedExecute("InvulTime",0,15,0,0);
 ACS_Execute(101,0,0,0,0);
 	Thing_ChangeTID(0,1001+PlayerNumber());
 	ChangeCamera(ActivatorTID()+1000,0,0);
 	TakeInventory("BackwardsCheck",1);
+	delay(1);
+	if(ThingCountName("Respawn_Pointer",2500)>0)
+	{
+		SetActorPosition(0,GetActorX(2500),GetActorY(2500),GetActorZ(2500),0);
+		Takeinventory("RespawnFollowOff",1);
+	}
+
+
+
 }
-//script "RespawnCount"  DEATH
-//{
-//SetactorPosition(0,Getactorx(1001+PlayerNumber()),Getactory(1001+PlayerNumber()),Getactorfloorz(1001+PlayerNumber()),0);
-	//giveInventory("Respawncount",1);
-//}
+script 102 death
+{
+		Giveinventory("RespawnFollowOff",1);
+}
 
 int xmod;
 
@@ -281,6 +291,10 @@ Script 101 ENTER
     //int xmod;
     Thing_ChangeTID(0,1001+PlayerNumber());
     Spawn("SideCam",GetActorX(0),GetActorY(0),GetActorfloorZ(0),ActivatorTID()+1000,64);
+	if(ThingCountName("Respawn_Pointer",2500)>0)
+	{}
+	else
+	{    Spawn("Respawn_Pointer",GetActorX(0),GetActorY(0),GetActorfloorZ(0),2500,64);}
     ChangeCamera(ActivatorTID()+1000,0,0);
     While (true)
     {
@@ -397,6 +411,9 @@ GiveInventory("BackwardsCheck",1);
 		//SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
 				if (CheckInventory("CamOff") > 0) {}
 				else{        Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+				
+				if (CheckInventory("RespawnFollowOff") > 0) {}
+				else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
 				
 
         // Debug info
