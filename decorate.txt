@@ -88,7 +88,7 @@ DamageFactor "EnemySide", 0.0
 DamageFactor "NORMAL", 0.0
   Health 200
   height 2
-  SCALE 1.0
+  SCALE 0.5
   radius 2
         ExplosionRadius 0
   Speed  0
@@ -254,6 +254,7 @@ Mass 9999999999
   Player.RunHealth 99999
     Gravity 1.1
   Speed 1.0
+  scale 1.0
   Player.ForwardMove 0.0,0.0
   Player.SideMove 5.0,5.0
   +NOBLOOD

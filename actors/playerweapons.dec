@@ -284,20 +284,20 @@ Plasma_Fire3:
           A_GiveInventory("Fire_pressed",1);
           if (CountInv("Aimup") == 1)
           {
-        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
-        else {A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
+        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SGMuzzleUP",0,0,10,60,0,-90); }
+        else {A_FireProjectile("SGMuzzleUP",0,0,-10,60,0,-90); }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SMGMuzzle_R",-90,0,60); }
-        else { A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGMuzzle_R",-90,0,60); }
+        else { A_FireProjectile("SGMuzzle_L",90,0,-60); }
           }
           else
           {
-        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SMGMuzzle_R",-90,0,60); }
-        else {A_FireProjectile("SMGMuzzle_L",90,0,-60); }
+        if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SGMuzzle_R",-90,0,60); }
+        else {A_FireProjectile("SGMuzzle_L",90,0,-60); }
           }
       }
 	  }
@@ -976,6 +976,60 @@ Spawn7:
     Stop
 Spawn8:
     TNT1 AA 1 bright
+    Stop
+  }
+}
+
+ACTOR SGMUZZLE_R
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.8
+  Yscale 0.8
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SGMF ABCDEFGH 1 bright
+    Stop
+  }
+}
+ACTOR SGMUZZLE_L : SGMUZZLE_R
+{
+XSCALE -0.8
+}
+
+ACTOR SGMUZZLEUP
+{
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+    Projectile
+  Xscale 0.8
+  Yscale 0.8
+    Projectile
+  +BLOODLESSIMPACT
+  +NOCLIP
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SGMU ABCDEFGH 1 bright
     Stop
   }
 }
