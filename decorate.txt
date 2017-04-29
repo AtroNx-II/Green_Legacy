@@ -88,7 +88,7 @@ DamageFactor "EnemySide", 0.0
 DamageFactor "NORMAL", 0.0
   Health 200
   height 2
-  SCALE 0.5
+  SCALE 1.0
   radius 2
         ExplosionRadius 0
   Speed  0
