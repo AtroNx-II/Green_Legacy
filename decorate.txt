@@ -10,6 +10,10 @@ actor WeaponChanger : Inventory
     Inventory.MaxAmount 1
     -INVBAR
 }
+
+
+
+
 actor PlasmaGauge: Inventory
 {
     Inventory.MaxAmount 200
@@ -285,6 +289,10 @@ actor PrintText : Boolean {}
 actor PrintText2 : Boolean {}
 actor Transition01 : Boolean {}
 actor Transition02 : Boolean {}
+actor CATTY_EMOTION_ALERT : Boolean {}
+actor CATTY_EMOTION_PROTECT : Boolean {}
+actor CATTY_EMOTION_TIRED : Boolean {}
+actor CATTY_EMOTION_ATTACK : Boolean {}
 
 //Player Boolean
 actor RespawnFollowOff : Boolean {}

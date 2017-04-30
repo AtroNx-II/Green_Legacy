@@ -1173,7 +1173,6 @@ MaxTargetRange 350
   States
   {
   Spawn:
-
           TNT1 A 0 A_FaceMaster
         TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
     SpawnRight:
@@ -1240,6 +1239,7 @@ MaxTargetRange 350
         TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,250,300,360.0,"Alert")
        Goto Spawn2
   Alert:
+    CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,1,70,0)
 TNT1 A 0 A_PlaySound("CATY_JU", 7,1.0,0,ATTN_NONE)
     TNT1 A 0 A_TakeInventory("NotargetCount",3)
   TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
@@ -1258,6 +1258,7 @@ CheckJump:
   TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
   Goto SeeRight
   See:
+      CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,0,1,0)
     TNT1 A 0 A_JumpIfCloser(300,"CheckJump",false)
   TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
   TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
@@ -1294,6 +1295,7 @@ CheckJump:
     TNT1 A 0 A_GiveInventory("NotargetCount",1)
   GOTO SEE
 See2:
+    CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,2,70,0)
   TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
   TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"See2Left")
   See2Right:
@@ -1380,6 +1382,7 @@ DeathLandLeft:
     WRDT X 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
 STOP
   Melee:
+      CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,4,35,0)
       TNT1 A 0 A_PlaySound("whoosh", 7,1.0,0,ATTN_NONE)
   TNT1 A 0 A_JumpIfinventory("Catty_Tired",20,"Catty_Tired")
     TNT1 A 0 A_GiveInventory("Catty_Tired",1)
@@ -1446,6 +1449,7 @@ STOP
     CSL2 FF 1 
   GOTO SEE
  Attack:
+     CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,4,35,0)
        TNT1 A 0 A_PlaySound("whoosh", 7,1.0,0,ATTN_NONE)
      TNT1 A 0 A_FaceTarget
     TNT1 A 0 A_TakeInventory("NotargetCount",3)
@@ -1467,6 +1471,7 @@ STOP
   CAAA MMNN 1 
   GOTO SEE
    Catty_Tired:
+    CAAA A 0 ACS_NamedExecutealways("Catty_Emotion2",0,3,70,0)
     TNT1 A 0 A_PlaySound("CAT_TIRD", 7,1.0,0,ATTN_NONE)
      TNT1 A 0 A_FaceTarget
     TNT1 A 0 A_TakeInventory("NotargetCount",3)
@@ -1529,6 +1534,7 @@ TNT1 A 0 A_FaceTarget
     }
     goto JumpLeft
 JumpAttack:
+    CAAA A 0 ACS_NamedExecute("Catty_Emotion",0,4,70,0)
      TNT1 A 0 A_FaceTarget
     TNT1 A 0 A_PlaySound("whoosh", 7,1.0,0,ATTN_NONE)
     TNT1 A 0 A_TakeInventory("NotargetCount",3)

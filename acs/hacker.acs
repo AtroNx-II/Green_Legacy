@@ -49,6 +49,89 @@ delay(35);
 delay(1);
 terminate;
 }
+
+script "Catty_Emotion" (int type,int duration) 
+{
+// 0: COMMON
+// 1: ALERT
+// 2: PROTECTING
+// 3 : tired
+// 4: attack
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+
+if(type==4)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+else if(type==3)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
+}
+else if(type==2)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+}
+else if(type==1)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+}
+else
+{
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+delay(duration);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+
+script "Catty_Emotion2" (int type,int duration) 
+{
+// 0: COMMON
+// 1: ALERT
+// 2: PROTECTING
+// 3 : tired
+// 4: attack
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+
+if(type==4)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+else if(type==3)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
+}
+else if(type==2)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+}
+else if(type==1)
+{
+GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+}
+else
+{
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+delay(duration);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
+TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
+}
+
+
 script "InvulTime" (int time)
 {
 While(time>0)
@@ -260,11 +343,9 @@ Script 100 RESPAWN
 {
 		FadeRange(255,255,255,1.0,255,255,255,0.0,0.5);
 //SetactorPosition(0,Getactorx(1346),Getactory(1346),Getactorfloorz(1346),0);
-
+ACS_ExecuteAlways(101,0,0,0,0);
 ACS_NamedExecute("InvulTime",0,15,0,0);
-ACS_Execute(101,0,0,0,0);
 	Thing_ChangeTID(0,1001+PlayerNumber());
-	ChangeCamera(ActivatorTID()+1000,0,0);
 	TakeInventory("BackwardsCheck",1);
 	delay(1);
 	if(ThingCountName("Respawn_Pointer",2500)>0)
