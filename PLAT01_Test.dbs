@@ -1,0 +1,141 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_DoomUDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	PLAT01
+	{
+		scriptcompiler = "zdoom_acs.cfg";
+		defaultfloortexture = "FLOOR7_1";
+		overrideceilheight = false;
+		
+		resources
+		{
+			
+			resource0
+			{
+				type = 2;
+				location = "C:\\Users\\HANSUNG\\Downloads\\Sidescrollproject\\SIDESCROLL.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+			}
+			
+			resource1
+			{
+				type = 0;
+				location = "C:\\Users\\HANSUNG\\Downloads\\Sidescrollproject\\DOOM2.WAD";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+			}
+		}
+		defaulttoptexture = "BRICK12";
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 2898;
+				firstvisibleline = 105;
+				activetab = true;
+			}
+		}
+		overridemiddletexture = false;
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				lightcolor = 0;
+				yscaleceiling = 1;
+				xscalefloor = 1;
+				rotationceiling = 17;
+				lightceiling = 0;
+				xscaleceiling = 1;
+				ypanningceiling = 1;
+				yscalefloor = 1;
+				floorglowheight = 1;
+				xpanningfloor = 1;
+				xpanningceiling = 1;
+				lightfloor = 0;
+				fogdensity = 0;
+				floor_reflect = 1;
+				rotationfloor = 17;
+				floorglowcolor = 0;
+				ypanningfloor = 1;
+			}
+			
+			linedef
+			{
+				renderstyle = 2;
+				alpha = 1;
+			}
+			
+			sidedef
+			{
+				scalex_top = 1;
+				scaley_top = 1;
+				lightabsolute = 3;
+				offsetx_bottom = 1;
+				offsety_mid = 1;
+				light = 0;
+				offsety_top = 1;
+				offsetx_mid = 1;
+				scalex_mid = 1;
+				scaley_mid = 1;
+			}
+			
+			thing
+			{
+				fillcolor = 0;
+			}
+		}
+		viewpositionx = 548.8565f;
+		viewpositiony = -4044.659f;
+		viewscale = 0.09810992f;
+		overridefloortexture = false;
+		customceilheight = 128;
+		customfloorheight = 0;
+		
+		grid
+		{
+			backoffsety = 0;
+			backoffsetx = 0;
+			backscalex = 100;
+			gridsize = 256f;
+			background = "";
+			backsource = 0;
+			backscaley = 100;
+		}
+		defaultceiltexture = "CEIL5_1";
+		overridebrightness = false;
+		uselongtexturenames = false;
+		useresourcesinreadonlymode = false;
+		overridebottomtexture = false;
+		overridefloorheight = false;
+		overridetoptexture = false;
+		custombrightness = 196;
+		overrideceiltexture = false;
+		defaultwalltexture = "BRICK12";
+		defaultbottomtexture = "BRICK12";
+	}
+}
