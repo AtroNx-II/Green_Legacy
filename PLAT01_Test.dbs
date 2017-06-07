@@ -25,9 +25,9 @@ maps
 		}
 		defaulttoptexture = "BRICK12";
 		overridemiddletexture = false;
-		viewpositionx = 7229.322f;
-		viewpositiony = -1181.13f;
-		viewscale = 1.352537f;
+		viewpositionx = -729.1843f;
+		viewpositiony = 584.2335f;
+		viewscale = 0.6156282f;
 		overridefloortexture = false;
 		customceilheight = 128;
 		customfloorheight = 0;
@@ -37,7 +37,7 @@ maps
 			backoffsety = 0;
 			backoffsetx = 0;
 			backscalex = 100;
-			gridsize = 0.5f;
+			gridsize = 8f;
 			background = "";
 			backsource = 0;
 			backscaley = 100;
@@ -124,7 +124,15 @@ maps
 				tabtype = 0;
 				scripttype = 1;
 				caretposition = 2898;
-				firstvisibleline = 105;
+			}
+			
+			document2
+			{
+				filename = "C:\\Users\\AtroNx\\Documents\\GitHub\\Sidescroll\\decorate.txt";
+				hash = 2492454602;
+				resource = "C:\\Users\\AtroNx\\Documents\\GitHub\\Sidescroll";
+				tabtype = 1;
+				scripttype = 3;
 				activetab = true;
 			}
 		}
