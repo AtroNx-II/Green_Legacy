@@ -4,70 +4,76 @@ StatusBar Normal, ForceScaled
 {
 InInventory NOT CutSceneBlock, 1 
  {
- DrawImage "HUDWL",-4,30;
- 
-   DrawImage "HUDNAMEL",-132,30;
-  DrawImage "HUDWBOX",-95,5;
-DrawBar "HBAR", "HBARE",Health, horizontal, interpolate(11),3, 38;
-drawmugshot "STF", 1, -100, 10;
 
-DrawString SMALLFONT, White, "M16", -106, 40;
+ 
+   DrawImage "HUDNAMEL",-187,31;
+  DrawImage "HUDWNBOX",-92,10;
+
+drawmugshot "STF", 1, -98, 10;
+DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
+DrawNumber 3,FONT2, WHITE, Health, 72, 50;
+DrawString FONT3, White, "M16", -127, 40;
 }
-InInventory PlasmaGauge, 1
-{
-DrawBar "HBAR", "HBARE",PlasmaGauge, horizontal, interpolate(1), 3, 74;
-}
+
 
 InInventory HaveGL, 1 
  {
-DrawBar "AMMO_G1", "AMMO_G2",HaveGL, horizontal, interpolate(11), 3, 52;
+   DrawImage "HUDGL",-22,54;
+ DrawNumber 2,FONT3, WHITE,"HaveGL", 30, 98;
 
  }
 InInventory HaveSG, 1 
  {
-DrawBar "AMMO_S1", "AMMO_S2",HaveSG, horizontal, interpolate(11), 3, 74;
+   DrawImage "HUDSG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveSG",6, 120;
  }
 InInventory HaveSMG, 1 
  {
-DrawBar "AMMO_B1", "AMMO_B2",HaveSMG, horizontal, interpolate(3), 3, 74;
+    DrawImage "HUDSMG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveSMG",6, 120;
  }
  InInventory HaveHMG, 1 
  {
-DrawBar "AMMO_B1", "AMMO_B2",HaveHMG, horizontal, interpolate(1), 3, 74;
+     DrawImage "HUDHMG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveHMG",6, 120;
  }
   InInventory HaveRL, 1 
  {
-DrawBar "AMMO_R1", "AMMO_R2",HaveRL, horizontal, interpolate(1), 3, 74;
+     DrawImage "HUDRL",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveRL",6, 120;
  }
  InInventory NOT CutSceneBlock, 1 
  {
  InInventory HaveEmily, 1 
  {
-  DrawImage "HUDWL2",-4,99;
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+
   InInventory Emily_Weapon_AR, 1 
  {
-  DrawImage "EMILYAR",4,106;
+  DrawImage "EMILYAR",-64,140;
   }
   InInventory Emily_Weapon_SMG, 1 
  {
-  DrawImage "EMILYSMG",4,106;
+  DrawImage "EMILYSMG",-64,140;
   }
   
- DrawImage "HUDNAME2",-99,127;
- DrawImage "HUDWBOX",-147,58;
- DrawImage "EMILYHED",-140,80;
+
+
+
+ DrawImage "EMILYHED",-140,75;
  
   InInventory EmilyWeaponPick, 1 
  {
- DrawImage "EMILYHE4",-140,80;
+ DrawImage "EMILYHE4",-140,75;
  }
  
- DrawString SMALLFONT, White, "EMILY", -50, 135;
+ DrawString FONT3, White, "EMILY", -112, 60;
 
  InInventory EmilyCooltime, 1 
  {
- DrawBar "HBARSHRE", "HBARSHRT",EmilyCooltime, horizontal, interpolate(11),-76, 100;
- DrawImage "EMILYHE2",-140,80;
+ DrawImage "EMILYHE2",-140,75;
   DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-90,100;
  }
  }
@@ -78,10 +84,12 @@ DrawBar "AMMO_R1", "AMMO_R2",HaveRL, horizontal, interpolate(1), 3, 74;
  
 InInventory HaveCatty, 1 
  {
- DrawImage "HUDNAME2",-99,127;
- DrawImage "HUDWBOX",-147,58;
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+
  
- DrawImage "CATTHEAD",-140,75;
+ DrawImage "CATTHEAD",-130,70;
  
  // 0: COMMON
 // 1: ALERT
@@ -91,24 +99,24 @@ InInventory HaveCatty, 1
 
 InInventory CATTY_EMOTION_ALERT, 1 
 {
- DrawImage "CATTHEA2",-140,75;
+ DrawImage "CATTHEA2",-130,70;
 }
  InInventory CATTY_EMOTION_PROTECT, 1 
 {
- DrawImage "CATTHEA3",-140,75;
+ DrawImage "CATTHEA3",-130,70;
 }
 
 InInventory CATTY_EMOTION_ATTACK, 1
 {
- DrawImage "CATTHEA5",-140,75;
+ DrawImage "CATTHEA5",-130,70;
 }
  
  InInventory CATTY_EMOTION_TIRED, 1 
 {
- DrawImage "CATTHEA4",-140,75;
+ DrawImage "CATTHEA4",-130,70;
 }
 
- DrawString SMALLFONT, White, "CATTY", -50, 135;
+ DrawString FONT3, White, "CATTY",-112, 60;
  }
  }
  
@@ -143,54 +151,148 @@ DrawBar "STAGE8S", "STAGE1E",PrintSTAGE8, vertical, interpolate(200)|reverse,800
 
 StatusBar FullScreen, ForceScaled, .5
 {
-DrawBar "HBAR", "HBARE",Health, horizontal, interpolate(11),4, 60;
-drawmugshot "STF", 1, -100, 10;
+InInventory NOT CutSceneBlock, 1 
+ {
+
+ 
+   DrawImage "HUDNAMEL",-187,31;
+  DrawImage "HUDWNBOX",-92,10;
+
+drawmugshot "STF", 1, -98, 10;
+DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
+DrawNumber 3,FONT2, WHITE, Health, 72, 50;
+DrawString FONT3, White, "M16", -127, 40;
+}
+
 
 InInventory HaveGL, 1 
  {
-DrawBar "AMMO_G1", "AMMO_G2",HaveGL, horizontal, interpolate(11), 3, 40;
+   DrawImage "HUDGL",-22,54;
+ DrawNumber 2,FONT3, WHITE,"HaveGL", 30, 98;
+
  }
 InInventory HaveSG, 1 
  {
-DrawBar "AMMO_S1", "AMMO_S2",HaveSG, horizontal, interpolate(11), 3, 72;
+   DrawImage "HUDSG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveSG",6, 120;
  }
 InInventory HaveSMG, 1 
  {
-DrawBar "AMMO_B1", "AMMO_B2",HaveSMG, horizontal, interpolate(3), 3, 72;
+    DrawImage "HUDSMG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveSMG",6, 120;
  }
  InInventory HaveHMG, 1 
  {
-DrawBar "AMMO_B1", "AMMO_B2",HaveHMG, horizontal, interpolate(1), 3, 72;
+     DrawImage "HUDHMG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveHMG",6, 120;
  }
+  InInventory HaveRL, 1 
+ {
+     DrawImage "HUDRL",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveRL",6, 120;
+ }
+ InInventory NOT CutSceneBlock, 1 
+ {
  InInventory HaveEmily, 1 
  {
- DrawImage "EMILYHED",-140,80;
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+
+  InInventory Emily_Weapon_AR, 1 
+ {
+  DrawImage "EMILYAR",-64,140;
+  }
+  InInventory Emily_Weapon_SMG, 1 
+ {
+  DrawImage "EMILYSMG",-64,140;
+  }
+  
+
+
+
+ DrawImage "EMILYHED",-140,75;
+ 
+  InInventory EmilyWeaponPick, 1 
+ {
+ DrawImage "EMILYHE4",-140,75;
+ }
+ 
+ DrawString FONT3, White, "EMILY", -112, 60;
 
  InInventory EmilyCooltime, 1 
  {
- DrawBar "HBARSHRE", "HBARSHRT",EmilyCooltime, horizontal, interpolate(11),-76, 100;
- DrawImage "EMILYHE2",-140,80;
+ DrawImage "EMILYHE2",-140,75;
   DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-90,100;
  }
  }
+ }
+ 
+ InInventory NOT CutSceneBlock, 1 
+ {
  
 InInventory HaveCatty, 1 
  {
-DrawBar "AMMO_B1", "AMMO_B2",HaveSMG, horizontal, interpolate(3), 3, 72;
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+
+ 
+ DrawImage "CATTHEAD",-130,70;
+ 
+ // 0: COMMON
+// 1: ALERT
+// 2: PROTECTING
+// 3: Tired
+// 4: attack
+
+InInventory CATTY_EMOTION_ALERT, 1 
+{
+ DrawImage "CATTHEA2",-130,70;
+}
+ InInventory CATTY_EMOTION_PROTECT, 1 
+{
+ DrawImage "CATTHEA3",-130,70;
+}
+
+InInventory CATTY_EMOTION_ATTACK, 1
+{
+ DrawImage "CATTHEA5",-130,70;
+}
+ 
+ InInventory CATTY_EMOTION_TIRED, 1 
+{
+ DrawImage "CATTHEA4",-130,70;
+}
+
+ DrawString FONT3, White, "CATTY",-112, 60;
+ }
  }
  
+
+DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
+DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
+DrawBar "TALKPIC2", "TALKPICE",PrintTEXT, vertical, interpolate(50), -160, 0;
+DrawBar "TALKPIC1", "TALKPICE",PrintTEXT, vertical, interpolate(50)|reverse, -160, 96;
+DrawBar "TALKPIC4", "TALKPICE",PrintTEXT2, vertical, interpolate(50), -160, 0;
+DrawBar "TALKPIC3", "TALKPICE",PrintTEXT2, vertical, interpolate(50)|reverse, -160, 96;
+DrawBar "TRANSI01", "TRANSIBS",Transition01, horizontal, interpolate(50), -160, 0;
+DrawBar "TRANSI01", "TRANSIBS",Transition02, horizontal, interpolate(50)|reverse, -160, 0;
+DrawBar "MISSIONS", "MISSIONE",MissionStart, horizontal, interpolate(50), 0, 128;
+DrawBar "STAGE1S", "STAGE1E",PrintSTAGE, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE2S", "STAGE1E",PrintSTAGE2, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE3S", "STAGE1E",PrintSTAGE3, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE4S", "STAGE1E",PrintSTAGE4, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE5S", "STAGE1E",PrintSTAGE5, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE6S", "STAGE1E",PrintSTAGE6, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE7S", "STAGE1E",PrintSTAGE7, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE8S", "STAGE1E",PrintSTAGE8, vertical, interpolate(200)|reverse,800, 0;
  
-InInventory PrintText, 1 
- {
- DrawImage "TALKPIC",140,460;
- }
-DrawBar "AMMO_G1", "AMMO_G2",HaveGL, horizontal, interpolate(11), 3, 40;
- }
 
-
-
+}
 
 
 StatusBar Automap
 {
 }
+

@@ -1,0 +1,28 @@
+
+gameinfo
+{
+    titlepage = "TITLEPIC"
+    creditpage = "CREDIT"
+    titlemusic = "$MUSIC_DM2TTL"
+    titletime = 8
+    advisorytime = 0
+    pagetime = 255
+    chatsound = "misc/chat"
+    drawreadthis = FALSE
+    infopage = "HELP", "CREDIT","IPRIN"
+    intermissionmusic = "$MUSIC_DM2INT"
+    intermissioncounter = false
+    quitmessages = ""
+	dimcolor = "black"
+	dimamount = 0.5
+    menufontcolor_title = "UNTRANSLATED"
+    menufontcolor_label = "UNTRANSLATED"
+    menufontcolor_value = "White"
+    menufontcolor_action = "White"
+    menufontcolor_header = "White"
+    menufontcolor_highlight = "White"
+    menufontcolor_selection = "White"
+    menubackbutton = "M_BACK_D"
+    playerclasses = "YOU"
+    pausesign = "M_PAUSE"
+}

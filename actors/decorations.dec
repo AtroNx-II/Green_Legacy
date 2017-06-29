@@ -4,7 +4,8 @@ ACTOR ExplosiveBarrel_Normal replaces ExplosiveBarrel
   Radius 20
   Height 42
 DamageFactor "EnemySide", 0.0
-  species playerside
+  species deco
+  DamageType "PlayerOnly"
   +SOLID
   +SHOOTABLE
   +NOBLOOD

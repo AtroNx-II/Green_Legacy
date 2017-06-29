@@ -1,0 +1,206 @@
+//-------------------------------------------------------------------------------------------
+//
+// Note:
+// Much of the menu structure defined here is accessed internally by CCMDs
+// and menu generation code. If you want to design your own menus make sure
+// that they are named identically and that links to all important submenus
+// are present.
+//
+//-------------------------------------------------------------------------------------------
+
+DEFAULTLISTMENU
+{
+     Font "BigFont","Green","Green"
+    Selector "M_SKULL1", -8, 0
+    Linespacing 16
+	Font "BigFont", "Untranslated"
+
+
+}
+
+//-------------------------------------------------------------------------------------------
+//
+// The main menu. There's a lot of differences here between the games
+//
+//-------------------------------------------------------------------------------------------
+
+LISTMENU "MainMenu"
+{
+	Font "BigFont", "Untranslated"
+    Position 0, 140
+    
+    //Position 20, 188
+    
+
+    PatchItem "OP1", "n", "EpisodeMenu"
+    //Position 60, 188
+    PatchItem "OP2", "l", "LoadGameMenu"
+    //Position 100, 188
+    PatchItem "OP3","o", "OptionsMenu"
+        //Position 180, 188
+    PatchItem "OP4", "q", "QuitMenu"
+}
+
+//-------------------------------------------------------------------------------------------
+//
+// Important note about the following template menus:
+// Don't even think about replacing them with something that's not an empty menu
+// with some static elements only. Proper function is not guaranteed then.
+//
+//-------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------
+//
+// The player class menu
+// The init code will set the first item to 'autoselect' if it's the only one.
+//
+//-------------------------------------------------------------------------------------------
+
+ListMenu "PlayerclassMenu"
+{
+    Position 16, 140
+    
+    
+    MouseWindow 0, 220
+  // The rest of this menu will be set up based on the actual player definitions.
+}
+
+//-------------------------------------------------------------------------------------------
+//
+// The episode menu
+// The init code will set the first item to 'autoselect' if it's the only one.
+//
+//-------------------------------------------------------------------------------------------
+
+ListMenu "EpisodeMenu"
+{
+    Position 16, 140
+    
+
+}
+
+//-------------------------------------------------------------------------------------------
+//
+// The skill menu
+// Most of this will be filled in at runtime
+//
+//-------------------------------------------------------------------------------------------
+
+
+ListMenu "SkillMenu"
+{
+    Position 16, 148
+}
+
+
+
+//-------------------------------------------------------------------------------------------
+//
+// Base definition for load game menu. Only the configurable part is done here
+//
+//-------------------------------------------------------------------------------------------
+
+ListMenu "LoadGameMenu"
+{
+
+    StaticPatchCentered 160, -20, "OP2"
+
+  Position 80,54
+  Class "LoadMenu"  // uses its own implementation
+}
+
+
+//-------------------------------------------------------------------------------------------
+//
+// The option menu
+//
+//-------------------------------------------------------------------------------------------
+
+
+OptionMenuSettings
+{
+
+  // These can be overridden if a different menu fonts requires it.
+  Linespacing 8
+}
+
+DefaultOptionMenu
+{
+  Position -15
+
+}
+
+OptionMenu "OptionsMenu"
+{
+  Title "OPTIONS"
+  Submenu "Customize Controls",   "CustomizeControls"
+  Submenu "Mouse options",      "MouseOptions"
+  Submenu "Joystick options",     "JoystickOptions"
+  StaticText " "
+  Submenu "Sound Options",      "SoundOptions"
+  Submenu "Display Options",      "VideoOptions"
+  Submenu "Set video mode",     "VideoModeMenu"
+  StaticText " "
+  SafeCommand "Reset to defaults",  "reset2defaults"
+  Command "Go to console",      "menuconsole"
+}
+
+
+//-------------------------------------------------------------------------------------------
+//
+// Controls Menu
+//
+//-------------------------------------------------------------------------------------------
+
+OptionMenu "CustomizeControls"
+{
+  Title "CUSTOMIZE CONTROLS"
+  ScrollTop 2
+  StaticTextSwitchable  "ENTER to change, BACKSPACE to clear", "Press new key for control, ESC to cancel", "ControlMessage"
+  StaticText  ""
+  StaticText  "Controls", 1
+  Control   "Attack",         "+attack"
+  Control   "GrenadeLauncher",    "+altattack"
+  Control   "Use / Open",     "+use"
+  Control   "Move forward",     "+moveleft"
+  Control   "Move backward",      "+moveright"
+  Control   "Aim Upper",      "+forward"
+  Control   "Crouch",   "+Crouch"
+  Control   "Jump",         "+jump"
+  Control   "Dash",         "+speed"
+
+  StaticText  ""
+  StaticText  "Other", 1
+  Control   "Screenshot",     "screenshot"
+  StaticText  ""
+}
+
+//-------------------------------------------------------------------------------------------
+//
+// Mouse Menu
+//
+//-------------------------------------------------------------------------------------------
+
+
+OptionValue "MenuMouse"
+{
+  0, "No"
+  1, "Yes"
+  2, "Touchscreen-like"
+}
+
+OptionString "Cursors"
+{
+  "cursor", "Simple arrow"
+}
+
+OptionMenu "MouseOptions"
+{
+  Title "MOUSE OPTIONS"
+  Option "Enable mouse",        "use_mouse", "YesNo"
+  Option "Enable mouse in menus", "m_use_mouse", "MenuMouse", "use_mouse"
+  Option "Cursor",        "vid_cursor", "Cursors"
+  StaticText  ""
+  Option "Always Mouselook",      "freelook", "OnOff"
+  Option "Invert Mouse",        "invertmouse", "OnOff"
+}

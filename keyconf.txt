@@ -6,7 +6,4 @@ addkeysection "SideScrollProject" SP_Keysection
 addmenukey "Use Supporter" +user1
 defaultbind F +user1
 defaultbind S +user1
-binddefaults S +crouch
-bind S +crouch
-doublebind S +user3
-
+defaultbind S +crouch

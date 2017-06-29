@@ -208,6 +208,7 @@ ACTOR Worm2 Replaces Doomimp
   Height 40
   Mass 40000
   Monster
+    scale 0.8
 PainChance "EnemySide", 0
 DamageFactor "EnemySide", 0.0
   MaxTargetRange 400
@@ -416,6 +417,7 @@ DamageFactor "EnemySide", 0.0
   SeeSound "worm_sight"
   AttackSound "worm_sight"
   PainSound "worm_pain"
+  scale 0.8
   DeathSound "worm_death"
   ActiveSound "worm_active"
   Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
@@ -449,18 +451,20 @@ MissileLeftEnd:
 ACTOR GreenBall_Worm
 {
 Species "enemy"
-HEIGHT 2
+HEIGHT 6
+Radius 6
 SeeSound ""
   RenderStyle Normal
   Speed 18
   ReactionTime 5
-  Damage 4
+  Damage 2
+  scale 0.3
   Projectile
+  
 -NOGRAVITY
 +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
-  Scale 1.0
   +BRIGHT
   States
   {
@@ -477,6 +481,8 @@ ACTOR GreenBall_Worm2
 {
 Species "enemy"
 HEIGHT 2
+HEIGHT 6
+Radius 6
 SeeSound ""
   RenderStyle Normal
   Speed 13
@@ -487,7 +493,7 @@ SeeSound ""
 +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
-  Scale 1.0
+  Scale 0.3
   +BRIGHT
   States
   {
@@ -552,7 +558,7 @@ SCALE 0.1
   States
   {
   Spawn:
-    TNT1 AAAAAAAAA 1 bright
+    TNT1 AAAAAA 1 bright
   stop
   }
 }
@@ -572,7 +578,7 @@ SeeSound ""
   +NOEXTREMEDEATH
   -SOLID
   -SHOOTABLE
-  Scale 0.5
+  Scale 0.4
   +BRIGHT
   States
   {
@@ -587,4 +593,301 @@ GRXP ABCDEF 1 bright A_STOP
 ACTOR GreenBloodTrail_Worm2 : GreenBloodTrail_Worm
 {
 SCALE 0.1
+}
+
+ACTOR Fly Replaces lostsoul
+{
+  Health 250
+  PainChance 255
+  Speed 4
+  Radius 20
+  Height 40
+  Mass 40000
+  Monster
+  MeleeDamage 3
+PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+  MeleeRange 80
+  MaxTargetRange 300
+  +ACTLIKEBRIDGE
+  +FLOORCLIP
+  +THRUSPECIES
+  +NOGRAVITY
+  +FLOAT
+  +FLOATBOB
+  +FLOORCLIP
+  species enemy
+  SeeSound "worm_sight"
+  AttackSound "worm_sight"
+  PainSound "worm_pain"
+  DeathSound "worm_death"
+  ActiveSound "worm_active"
+  Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
+  States
+  {
+  Spawn:
+        TNT1 A 0 A_SpawnItemEx("WingTracker",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION )
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
+    SpawnRight:
+        FLYM ABCD 4
+		{
+		ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+		if (CountInv("BackwardsCheck") > 0) { return state("SpawnLeft");}
+		ELSE
+		{
+		}
+		return state("");
+		}
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,350,350,80.0,"See")
+        loop
+    SpawnLeft:
+        FLYM EFGH 4
+		{			
+		ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+		if (CountInv("BackwardsCheck") ==0) { return state("SpawnRight");}
+		ELSE
+		{
+		}
+		return state("");
+		}
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,350,350,80.0,"See")
+        loop
+	See:
+	TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+	TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
+  SeeRight:
+        FLYM ABCD 4
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Chase;
+	A_FaceTarget;
+	if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+	return state("");
+	}
+	GOTO SEE
+	
+  SeeLeft:
+        FLYM EFGH 4
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Chase;
+	A_FaceTarget;
+	if (CountInv("BackwardsCheck") ==0) { return state("SeeRight");}
+	return state("");
+	}
+	GOTO SEE
+
+  Pain:
+	TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+	TNT1 A 0 A_Pain
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,0,0)
+	GOTO SEE
+
+  Death:
+	 TNT1 A 0 ThrustThingz(0,50,0,1)
+        TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
+	 TNT1 A 0	A_Die
+	 TNT1 A 0	A_scream
+	TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+	TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+    WRDT ABCDEFGHGHGHIJKL 2 A_JumpIf(momz == 0, "DeathLandRight")
+	Goto DeathRight+16
+DeathLandRight:
+	WRDT L 20
+	WRDT GHGHGHGHIJK 2
+	WRDT L 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
+	STOP
+  DeathLeft:
+    WRDT MNOPQRSTSTSTUVX 2 	A_JumpIf(momz == 0, "DeathLandLeft")
+	Goto DeathLeft+16
+DeathLandLeft:
+    WRDT X 20
+	WRDT STSTSTSTUVW  2
+    WRDT X 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
+STOP
+  Melee:
+	TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"MeleeLeft")
+  MeleeRight:
+
+    WRML AABBCCDDEEFF 1 
+    CAAT A 0 A_MeleeAttack
+    WRML GGHH 1 
+  GOTO See
+  
+  MeleeLeft:
+
+    WRML IIJJKKLLMMNN 1
+    CAAT A 0 A_MeleeAttack
+    WRML OOPP 1
+  GOTO See
+  Raise:
+    SARG N 5
+    SARG MLKJI 5
+    Goto See
+  Missile:
+	TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"MissileLeft")
+  MissileRight:
+        FLYM AAABBBCCCDDD 1 A_Skullattack
+        FLYM AAABBBCCCDDD 1 A_Skullattack
+  GOTO See
+  
+  MissileLeft:
+        FLYM EEEFFFGGGHHH 1 A_Skullattack
+        FLYM EEEFFFGGGHHH 1 A_Skullattack
+  GOTO See
+  Roll:
+	TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"RollLeft")
+  RollRight:
+    WROL LMNOLMNOLMNOLMNO 1 
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Explode(10, 80,XF_NOTMISSILE,0,0,0,0,"BulletPuff","EnemySide");
+	A_FaceTarget;
+	A_Chase("","");
+	A_Chase("","");
+	A_Chase("","");
+	A_Chase("","");
+	return state("");
+	}
+    WROL PPQQRRSSTTUUVV 1
+  GOTO SEE
+  
+  RollLeft:
+    WRO2 LMNOLMNOLMNOLMNO 1 
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Explode(10, 80,XF_NOTMISSILE,0,0,0,0,"BulletPuff","EnemySide");
+	A_FaceTarget;
+	A_Chase("","");
+	A_Chase("","");
+	A_Chase("","");
+	A_Chase("","");
+	return state("");
+	}
+    WRO2 PPQQRRSSTTUUVV 1
+  GOTO SEE
+Spawn2:
+        TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+	TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"Spawn2Left")
+  Spawn2Right:
+    WMOV ABCDEFGFEDCBA 1 
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Chase("","");
+	if (CountInv("BackwardsCheck")> 0) { return state("Spawn2Left");}
+	return state("");
+	}
+	GOTO SEE
+	
+  Spawn2Left:
+    WMOV HIJKLMNMLKJIH 1
+	{
+	ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+	A_Chase("","");
+	if (CountInv("BackwardsCheck") ==0) { return state("Spawn2Right");}
+	return state("");
+	}
+	GOTO SEE
+}
+}
+
+ACTOR wingSpawn : CustomInventory
+{
+  Inventory.PickupMessage "Picked up a skull point."
+  +NOGRAVITY
+  +FLOATBOB
+  -COUNTITEM
+  +BRIGHT
+  States
+  {
+  Spawn:
+    YSKU A 1
+    Loop
+  Pickup:
+    TNT1 A 0 A_SpawnItem("WingTracker")
+    Stop
+  }
+}
+
+ACTOR WingTracker
+{ 
+damageFactor "Flame", 0.0
+  +NORADIUSDMG 
+  +NOTAUTOAIMED
+  
+DamageFactor "EnemySide", 1.0
+  DAMAGEFACTOR "PlayerSide" , 0.0
+DamageFactor "NORMAL",1.0
+  Health 900000000
+  height 64
+  SCALE 1.0
+  radius 64
+        ExplosionRadius 0
+  Speed  0
+species playerside
+  RENDERSTYLE ADD
+
+    painchance 255
+    monster
+    -COUNTKILL
+    +THRUSPECIES 
+  +NOBLOOD
+  +AIMREFLECT
+    +FLOORCLIP
+        +DROPOFF
++MTHRUSPECIES
++NOTIMEFREEZE
++LOOKALLAROUND
++SEEINVISIBLE
++BRIGHT
+    +SHOOTABLE
+    +QUICKTORETALIATE
+    +FRIENDLY
+        +NOCLIP
+    +SOLID
+        +NORADIUSDMG
+  +NOGRAVITY
+  States
+  {
+
+    Spawn: 
+    SHLD ABCDE 1
+  {
+if (CountInv("ShieldFinished",AAPTR_MASTER) > 0) { return state("Death");}
+  A_Warp(AAPTR_MASTER, 0, 0,1, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+           return state("");
+  }
+    Goto Spawn2
+Spawn2:
+    SHLP A 0 A_PlaySound("charge", 7,0.05,1,ATTN_NONE)
+    SHLP ABCDEFGHIJKLMNOPQRSTUVWXY 1
+  {
+            if (CountInv("ShieldFinished",AAPTR_MASTER) > 0) { return state("Death");}
+  A_Warp(AAPTR_MASTER, 0, 0,1, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+           return state("");
+  }
+    SHLP XWVUTSRQPONMLKJIHGFEDCB 1
+  {
+            if (CountInv("ShieldFinished",AAPTR_MASTER) > 0) { return state("Death");}
+  A_Warp(AAPTR_MASTER, 0, 0,1, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+           return state("");
+  }
+    Goto Spawn2
+    PAIN:
+      TNT1 A 0 A_SpawnItemEx("MagneticShieldfx",0,0,0,0,0,0,angle,SXF_TRANSFERPOINTERS |SXF_NOCHECKPOSITION)
+      GOTO Spawn2
+    Death:
+                SHDT A 0 A_Scream
+                SHDT ABCDEF 1 
+    Stop
+  }
 }

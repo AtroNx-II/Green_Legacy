@@ -47,6 +47,54 @@ SMALLFONT
    : WR044         
    }
    
+FONT3
+{
+  0 WR300
+  1 WR301
+  2 WR302
+  3 WR303
+  4 WR304
+  5 WR305
+  6 WR306
+  7 WR307
+  8 WR308
+  9 WR309
+  A WR310
+  B WR311
+  C WR312
+  D WR313
+  E WR314
+  F WR315
+  G WR316
+  H WR317
+  I WR318
+  J WR319
+  K WR320
+  L WR321
+  M WR322
+  N WR323
+  O WR324
+  P WR325
+  Q WR326
+  R WR327
+  S WR328
+  T WR329
+  U WR330
+  V WR331
+  W WR332
+  X WR333
+  Y WR334
+  Z WR335
+     / WR336
+   - WR337
+   * WR338
+   ' WR339
+   ! WR340
+   ? WR341
+   . WR342
+   % WR343
+   : WR344         
+   }
 confont
 {
   0 WR000
@@ -94,6 +142,54 @@ confont
    . WR042
    % WR043
    : WR044         
+   }
+font2
+{
+  0 WR200
+  1 WR201
+  2 WR202
+  3 WR203
+  4 WR204
+  5 WR205
+  6 WR206
+  7 WR207
+  8 WR208
+  9 WR209
+  A WR210
+  B WR211
+  C WR212
+  D WR213
+  E WR214
+  F WR215
+  G WR216
+  H WR217
+  I WR218
+  J WR219
+  K WR220
+  L WR221
+  M WR222
+  N WR223
+  O WR224
+  P WR225
+  Q WR226
+  R WR227
+  S WR228
+  T WR229
+  U WR230
+  V WR231
+  W WR232
+  X WR233
+  Y WR234
+  Z WR235
+     / WR236
+   - WR237
+   * WR238
+   ' WR239
+   ! WR240
+   ? WR241
+   . WR242
+   % WR243
+   : WR244         
    }
    
     BIGFONT

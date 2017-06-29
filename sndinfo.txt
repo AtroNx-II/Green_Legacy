@@ -1,4 +1,8 @@
 // hm
+TIN TIN
+shrk1 shrk1
+shrk2 shrk2
+SHLD SHLD
 charge charge
 EXPLODE1 EXPLODE1
 weapon/addplasma plasma
@@ -29,6 +33,7 @@ M16_DEAD M16_DEAD
 M16_DASH M16_DASH
 M16_SMG M16_SMG
 $random M16_HURT { M16_HURT1 M16_HURT2 }
+M16_BOOST BOOST
 
 M16_WALK M16_WALK
 M16_HURT1 M16_HUR1
@@ -42,3 +47,14 @@ worm_active worm_ac
 worm_death worm_dt
 BOOM1 BOOM1
 Pick_Health H_PICK
+
+
+menu/activate			menuon	 // Activate a new menu
+menu/backup			menucl	 // Backup to previous menu
+menu/prompt			menuon	// Activate a prompt "menu"
+menu/cursor			menumove		// Move cursor up/down
+menu/change			menumov	// Select new value for option
+menu/invalid			menuoff		// Menu not available
+menu/dismiss			menuoff	// Dismiss a prompt message
+menu/choose			menusele	// Choose a menu item
+menu/clear			menuoff	// Close top menu

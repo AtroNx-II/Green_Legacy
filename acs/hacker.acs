@@ -6,34 +6,34 @@
 // check if player is on ground
 function int CheckPlayerOnGround(void)
 {
-	int onground;
-	if(GetActorZ (0) == GetActorFloorZ (0) ||
+  int onground;
+  if(GetActorZ (0) == GetActorFloorZ (0) ||
        (GetActorVelZ(0) == 0 && !Spawn("Z_FloorCheck", GetActorX(0), GetActorY(0), GetActorZ(0) - (4 << 16), 0, GetActorAngle(0)))
        )
-	{
-		onground = 1;
-		//SetFont("smallfont");
-		//Print(s: "on ground");
-	}
-	else
-	{
-		onground = 0;
-		//SetFont("smallfont");
-		//Print(s: "in air");
-	}
-	return onground;
+  {
+    onground = 1;
+    //SetFont("smallfont");
+    //Print(s: "on ground");
+  }
+  else
+  {
+    onground = 0;
+    //SetFont("smallfont");
+    //Print(s: "in air");
+  }
+  return onground;
 }
 
 script "BackwardsCheck" (INT TID)
 {
-	if(GetActorAngle(TID)<0.75 && GetActorAngle(TID)>0.25 )
-	{
-		GiveInventory("BackwardsCheck",1);
-	}
-	else
-	{
-		TakeInventory("BackwardsCheck",1);
-	}
+  if(GetActorAngle(TID)<0.75 && GetActorAngle(TID)>0.25 )
+  {
+    GiveInventory("BackwardsCheck",1);
+  }
+  else
+  {
+    TakeInventory("BackwardsCheck",1);
+  }
 }
 script "BackwardsCheck2" (void)
 {
@@ -223,12 +223,11 @@ script "CheckJumpDown" ENTER
      Giveinventory("JumpToDown",1);
   Delay(1);
      takeinventory("JumpToDown",1);
-	}
+  }
     ELSE
     {
-	
+  
     }
-
 
    }
 
@@ -236,6 +235,7 @@ script "CheckJumpDown" ENTER
 }
 
 }
+
 script "CheckSupporterSkill" ENTER
 {
         int buttons; int heldButtons; int newButtons; int oldButtons;
@@ -259,14 +259,14 @@ script "CheckSupporterSkill" ENTER
    {
      Giveinventory("Support_Emily",1);
     }
-	Else If(CheckInventory("HaveCatty"))
+  Else If(CheckInventory("HaveCatty"))
    {
      Giveinventory("Support_Catty",1);
     }
-	Else
-	{
+  Else
+  {
     }
-	}
+  }
     ELSE
     {
 
@@ -283,10 +283,10 @@ script "CheckSupporterSkill" ENTER
 // thanks to MeatyD for this piece of code
 function void ModifyPlayerFriction(int TID, int scale)
 {
-	SetActorVelocity(TID,	FixedMul(scale, GetActorVelX(TID)),
-							FixedMul(scale, GetActorVelY(TID)),
-							GetActorVelZ(TID),
-							false, true);
+  SetActorVelocity(TID, FixedMul(scale, GetActorVelX(TID)),
+              FixedMul(scale, GetActorVelY(TID)),
+              GetActorVelZ(TID),
+              false, true);
 }
 
 #define FRICTION_FACTOR 0.55
@@ -300,13 +300,13 @@ function void ModifyPlayerFriction(int TID, int scale)
 //Returns 3 if the player is holding jump and 0 if they haven't pressed jump (in a given tic)
 Function int JumpStatus (int Buttons, int OldButtons)
 {
-	int JumpNow = Buttons & BT_JUMP;
-	int JumpOld = OldButtons & BT_JUMP;
-	//if (CheckInventory("JumptoDown")) { return 3; }
-	if (JumpNow > JumpOld) { return 1; }
-	if (JumpNow < JumpOld) { return 2; }
-	if (JumpNow > 0 &&  JumpOld > 0) { return 3; }
-	Return 0;
+  int JumpNow = Buttons & BT_JUMP;
+  int JumpOld = OldButtons & BT_JUMP;
+  //if (CheckInventory("JumptoDown")) { return 3; }
+  if (JumpNow > JumpOld) { return 1; }
+  if (JumpNow < JumpOld) { return 2; }
+  if (JumpNow > 0 &&  JumpOld > 0) { return 3; }
+  Return 0;
 }
 
 script "CheckCrouch" ENTER
@@ -341,25 +341,25 @@ else
 
 Script 100 RESPAWN
 {
-		FadeRange(255,255,255,1.0,255,255,255,0.0,0.5);
+    FadeRange(255,255,255,1.0,255,255,255,0.0,0.5);
 //SetactorPosition(0,Getactorx(1346),Getactory(1346),Getactorfloorz(1346),0);
 ACS_ExecuteAlways(101,0,0,0,0);
 ACS_NamedExecute("InvulTime",0,15,0,0);
-	Thing_ChangeTID(0,1001+PlayerNumber());
-	TakeInventory("BackwardsCheck",1);
-	delay(1);
-	if(ThingCountName("Respawn_Pointer",2500)>0)
-	{
-		SetActorPosition(0,GetActorX(2500),GetActorY(2500),GetActorZ(2500),0);
-		Takeinventory("RespawnFollowOff",1);
-	}
+  Thing_ChangeTID(0,1001+PlayerNumber());
+  TakeInventory("BackwardsCheck",1);
+  delay(1);
+  if(ThingCountName("Respawn_Pointer",2500)>0)
+  {
+    SetActorPosition(0,GetActorX(2500),GetActorY(2500),GetActorZ(2500),0);
+    Takeinventory("RespawnFollowOff",1);
+  }
 
 
 
 }
 script 102 death
 {
-		Giveinventory("RespawnFollowOff",1);
+    Giveinventory("RespawnFollowOff",1);
 }
 
 int xmod;
@@ -371,24 +371,24 @@ Script 101 ENTER
     int jumpstate, grounded, jumped, airtime, savejump;
     //int xmod;
     Thing_ChangeTID(0,1001+PlayerNumber());
-    Spawn("SideCam",GetActorX(0),GetActorY(0),GetActorfloorZ(0),ActivatorTID()+1000,64);
-	if(ThingCountName("Respawn_Pointer",2500)>0)
-	{}
-	else
-	{    Spawn("Respawn_Pointer",GetActorX(0),GetActorY(0),GetActorfloorZ(0),2500,64);}
+    Spawnforced("SideCam",GetActorX(0),GetActorY(0),GetActorfloorZ(0),ActivatorTID()+1000,64);
+  if(ThingCountName("Respawn_Pointer",2500)>0)
+  {}
+  else
+  {    Spawnforced("Respawn_Pointer",GetActorX(0),GetActorY(0),GetActorfloorZ(0),2500,64);}
     ChangeCamera(ActivatorTID()+1000,0,0);
     While (true)
     {
         // Status stuff
         buttons = GetPlayerInput(-1, INPUT_BUTTONS);
         oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
-	    jumpstate = JumpStatus(buttons, oldbuttons);
+      jumpstate = JumpStatus(buttons, oldbuttons);
         SetAirControl(0.666); // SPOOKY
         changeActorAngle(0,0.25,0);
-		SetActorPitch(0,0);
+    SetActorPitch(0,0);
 
         // Friction on the ground, slower jump in mid-air
-		if (CheckPlayerOnGround())
+    if (CheckPlayerOnGround())
         {
             ModifyPlayerFriction(0, FRICTION_FACTOR);
             TakeInventory("JumpSpeed",1);
@@ -410,63 +410,63 @@ Script 101 ENTER
            savejump = 1;
         }
 
-		Switch(jumpstate)
-		{
-		Case 1: // You pressed Jump
-			grounded = 0;
+    Switch(jumpstate)
+    {
+    Case 1: // You pressed Jump
+      grounded = 0;
             jumped = 1;
-			break;
+      break;
 
-		Case 2: // You Released Jump
-			if(CheckInventory("JumpStop") > 0)
-			{
-				TakeInventory("JumpStop",1);
-				ThrustThingZ(0,0,0,0);
-				grounded = 0;
-			}
-			break;
+    Case 2: // You Released Jump
+      if(CheckInventory("JumpStop") > 0)
+      {
+        TakeInventory("JumpStop",1);
+        ThrustThingZ(0,0,0,0);
+        grounded = 0;
+      }
+      break;
 
-		Default: //Holding Jump OR not holding Jump
-			if( (GetActorZ(0) - GetActorFloorZ(0) == 0.0) || grounded == 3)
-			{
-				GiveInventory("JumpStop",1);
-				//print(s:"You're grounded!");
-			}
-			if(GetActorVelZ(0) == 0.0 && grounded < 3 && GetActorCeilingZ(0) - GetActorZ(0) > 54.0) { grounded++; } // The height of the actor actually checks at 52, but just making sure.
+    Default: //Holding Jump OR not holding Jump
+      if( (GetActorZ(0) - GetActorFloorZ(0) == 0.0) || grounded == 3)
+      {
+        GiveInventory("JumpStop",1);
+        //print(s:"You're grounded!");
+      }
+      if(GetActorVelZ(0) == 0.0 && grounded < 3 && GetActorCeilingZ(0) - GetActorZ(0) > 54.0) { grounded++; } // The height of the actor actually checks at 52, but just making sure.
 
-			if(GetActorVelZ(0) < 0.0)
-			{
-				TakeInventory("JumpStop",1);
-				//print(s:"You're falling!");
-				grounded = 0;
-			}
-			break;
-		}
+      if(GetActorVelZ(0) < 0.0)
+      {
+        TakeInventory("JumpStop",1);
+        //print(s:"You're falling!");
+        grounded = 0;
+      }
+      break;
+    }
 
         // All right, time to fuck up the camera.
 
         if (buttons & BT_FORWARD) // Checks for if the player is holding left.
-		{
+    {
             GiveInventory("Aimup",1);
-			buttondelay = 0;
-		}
+      buttondelay = 0;
+    }
         if (buttons & BT_MOVERIGHT) // Checks for if the player is holding right.
         {
             GiveInventory("Moving",1);
   TakeInventory("BackwardsCheck",1);
             if (buttonweightmove < 0) { buttonweightmove = 0.0; }
             buttonweightmove = buttonweightmove + 1.0;
-			buttonweight = buttonweight + 1.0;
-			buttondelay = 0;
-		}
+      buttonweight = buttonweight + 1.0;
+      buttondelay = 0;
+    }
         if (buttons & BT_MOVELEFT) // Checks for if the player is holding left.
-		{
+    {
             GiveInventory("Moving",1);
 GiveInventory("BackwardsCheck",1);
             buttonweightmove = buttonweightmove - 1.0;
-			buttonweight = buttonweight - 1.0;
-			buttondelay = 0;
-		}
+      buttonweight = buttonweight - 1.0;
+      buttondelay = 0;
+    }
         if ( !(buttons & BT_FORWARD)) // If the player is not pushing right or left.
         {
             TakeInventory("aimup",1);
@@ -489,35 +489,36 @@ GiveInventory("BackwardsCheck",1);
         if (xmod < -80.0) { xmod = -80.0; }
 
         // Last, set the camera
-		//SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
-				if (CheckInventory("CamOff") > 0) {}
-				else{        Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
-				
-				if (CheckInventory("RespawnFollowOff") > 0) {}
-				else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
-				
+    //SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
+        if (CheckInventory("CamOff") > 0) 
+		{}
+        else{        Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+        
+        if (CheckInventory("RespawnFollowOff") > 0) {}
+        else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+        
 
         // Debug info
-		if (GetCvar("plat_debug") == 1)
-		{
-			SetHudSize(640,400,1);
-        	HudMessage(s:"\cfStatus:\cj\n",
-	           s:"  - ", f:buttonweight,s:" buttonweight\n",
-	           s:"  - ", f:buttondelay,s:" buttondelay\n",
-	           s:"  - ", f:buttonweightmove,s:" buttonweightmove\n",
-	           s:"  - ", d:grounded,s:" grounded\n",
-	           s:"  - ", d:jumpstate,s:" jumpstate\n",
-	           s:"  - ", f:xmod,s:" xmod\n",
+    if (GetCvar("plat_debug") == 1)
+    {
+      SetHudSize(640,400,1);
+          HudMessage(s:"\cfStatus:\cj\n",
+             s:"  - ", f:buttonweight,s:" buttonweight\n",
+             s:"  - ", f:buttondelay,s:" buttondelay\n",
+             s:"  - ", f:buttonweightmove,s:" buttonweightmove\n",
+             s:"  - ", d:grounded,s:" grounded\n",
+             s:"  - ", d:jumpstate,s:" jumpstate\n",
+             s:"  - ", f:xmod,s:" xmod\n",
                s:"  - ", f:GetActorCeilingZ(0) - GetActorZ(0),s:" ceilz\n",
-	           s:"  - ", d:airtime,s:" airtime\n",
-	           s:"  - ", d:jumped,s:" jumped\n",
-	           s:"  - ", d:savejump,s:" savejump";
-			   HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
-		}
+             s:"  - ", d:airtime,s:" airtime\n",
+             s:"  - ", d:jumped,s:" jumped\n",
+             s:"  - ", d:savejump,s:" savejump";
+         HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
+    }
         if (CheckInventory("Health") <= 0) { terminate; }
 
-		Delay(1);
-	}
+    Delay(1);
+  }
 }
 script "EmilyEmotion" (void)
 {
@@ -528,8 +529,9 @@ takeinventory("EmilyWeaponPick",1);
 
 
 #define DODGEWINDOW 8
- 
-
+int BoostUP[32];
+int BoostRight[32];
+int BoostLeft[32];
 int dDuckC[32];
 int dead[32];
 
@@ -586,9 +588,77 @@ int playerSpeed; int dodgeSpeed;
                                 dDuckC[pln] = DODGEWINDOW;
                         }
                 }
-                
-              
-                
+               //// else if (newButtons & BT_FORWARD)/////
+//               {
+//				If(CheckInventory("CutSceneBlock")==0)
+//				 {
+ //                       if (BoostUP[pln])
+  //                      {
+   //                             Delay(1);
+    //                            If(CheckInventory("Booster_Enable") >0)
+     //                           {
+      //                                  giveinventory("BOOST",1);
+	//									giveinventory("Aimup",1);
+     //                                   Delay(20);
+      //                                  //takeinventory("BOOST",1);
+       //                         }
+        //                        BoostUP[pln] = 0;
+         //               }
+          //              else
+           //             {
+            //                    BoostUP[pln] = DODGEWINDOW;
+             //           }
+              //   }
+				////}/////
+                else if (newButtons & BT_MOVELEFT)
+                {
+				If(CheckInventory("CutSceneBlock")== 0)
+				   {
+                        if (BoostLeft[pln])
+                        {
+                                Delay(1);
+                                If(CheckInventory("Booster_Enable") >0 && CheckInventory("PlasmaGauge")>69)
+                                {
+										takeinventory("PlasmaGauge",70);
+                                        giveinventory("BOOST",1);
+                                        Delay(20);
+                                        //takeinventory("BOOST",1);
+                                }
+                                BoostLeft[pln] = 0;
+                        }
+                        else
+                        {
+                                BoostLeft[pln] = DODGEWINDOW;
+                        }
+					}
+                }
+                else if (newButtons & BT_MOVERIGHT)
+                {
+				If(CheckInventory("CutSceneBlock")==0  && CheckInventory("PlasmaGauge")>69)
+				 {
+                        if (BoostRight[pln])
+                        {
+                                Delay(1);
+                                If(CheckInventory("Booster_Enable") >0)
+                                {
+										takeinventory("PlasmaGauge",70);
+                                        giveinventory("BOOST",1);
+                                        Delay(20);
+                                        //takeinventory("BOOST",1);
+                                }
+                                BoostRight[pln] = 0;
+                        }
+                        else
+                        {
+                                BoostRight[pln] = DODGEWINDOW;
+                        }
+                 }
+				}
+                else
+                {}
+                BoostUP[pln] = max(BoostUP[pln]-1, 0);
+                BoostRight[pln] = max(BoostRight[pln]-1, 0);
+                BoostLeft[pln] = max(BoostLeft[pln]-1, 0);
                 dDuckC[pln] = max(dDuckC[pln]-1, 0);
                         Delay(1);
         }
@@ -611,4 +681,17 @@ script 479 RESPAWN net
         ACS_ExecuteAlways(469, 0, 0, 0, 0);
 }
 
+script "Shield_Timer" (void)
+{
+Delay(35*20);
+GiveInventory("ShieldFinished",1);
+Delay(1);
+TakeInventory("ShieldFinished",999);
+}
 
+script "Catty_point" (void)
+{
+Giveinventory("Warned",1);
+delay(35*5);
+Takeinventory("Warned",1);
+}

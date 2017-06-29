@@ -1,0 +1,273 @@
+pointlight Plasmashot1
+{
+    color 0.8 0.8 1.0
+    size 40
+    offset 0 0 0
+}
+pointlight Plasmashot2
+{
+    color 0.8 0.8 1.0
+    size 128
+    offset 0 0 0
+}
+
+pointlight Plasmashot3
+{
+    color 0.8 0.8 1.0
+    size 256
+    offset 0 0 0
+}
+pointlight YellowMuzzleBig5
+{
+    color 0.8 0.8 0.6
+    size 192
+    offset 0 0 0
+}
+pointlight YellowMuzzleBig4
+{
+    color 0.8 0.8 0.6
+    size 160
+    offset 0 0 0
+}
+pointlight YellowMuzzleBig3
+{
+    color 0.8 0.8 0.6
+    size 128
+    offset 0 0 0
+}
+pointlight YellowMuzzleBig2
+{
+    color 0.8 0.8 0.6
+    size 96
+    offset 0 0 0
+}
+pointlight YellowMuzzleBig
+{
+    color 0.8 0.8 0.6
+    size 64
+    offset 0 0 0
+}
+object SMGMUZZLE_L
+{
+    frame MUZZA  { light YellowMuzzleBig5 }
+	frame MUZZB  { light YellowMuzzleBig4 }
+	frame MUZZC  { light YellowMuzzleBig3 }
+	frame MUZZD  { light YellowMuzzleBig2 }
+	frame MUZZE  { light YellowMuzzleBig }
+	frame MUZZF  { light YellowMuzzleBig }
+	frame MUZZG  { light YellowMuzzleBig }
+	frame MUZZH  { light YellowMuzzleBig }
+	frame MUZZI  { light YellowMuzzleBig }
+	frame MUZZJ  { light YellowMuzzleBig }
+	frame MUZZL  { light YellowMuzzleBig }
+	frame MUZZM  { light YellowMuzzleBig }
+	frame MUZZN  { light YellowMuzzleBig }
+}
+object SMGMUZZLE_R
+{
+    frame MUZZA  { light YellowMuzzleBig5 }
+	frame MUZZB  { light YellowMuzzleBig4 }
+	frame MUZZC  { light YellowMuzzleBig3 }
+	frame MUZZD  { light YellowMuzzleBig2 }
+	frame MUZZE  { light YellowMuzzleBig }
+	frame MUZZF  { light YellowMuzzleBig }
+	frame MUZZG  { light YellowMuzzleBig }
+	frame MUZZH  { light YellowMuzzleBig }
+	frame MUZZI  { light YellowMuzzleBig }
+	frame MUZZJ  { light YellowMuzzleBig }
+	frame MUZZL  { light YellowMuzzleBig }
+	frame MUZZM  { light YellowMuzzleBig }
+	frame MUZZN  { light YellowMuzzleBig }
+}
+object SMGMUZZLEUP
+{
+    frame MUZUA  { light YellowMuzzleBig5 }
+	frame MUZUB  { light YellowMuzzleBig4 }
+	frame MUZUC  { light YellowMuzzleBig3 }
+	frame MUZUD  { light YellowMuzzleBig2 }
+	frame MUZUE  { light YellowMuzzleBig }
+	frame MUZUF  { light YellowMuzzleBig }
+	frame MUZUG  { light YellowMuzzleBig }
+	frame MUZUH  { light YellowMuzzleBig }
+	frame MUZUI  { light YellowMuzzleBig }
+	frame MUZUJ  { light YellowMuzzleBig }
+	frame MUZUL  { light YellowMuzzleBig }
+	frame MUZUM  { light YellowMuzzleBig }
+	frame MUZUN  { light YellowMuzzleBig }
+}
+object SGMUZZLE_L
+{
+    frame SGMFA  { light YellowMuzzleBig5 }
+	frame SGMFB  { light YellowMuzzleBig4 }
+	frame SGMFC  { light YellowMuzzleBig3 }
+	frame SGMFD  { light YellowMuzzleBig2 }
+	frame SGMFE  { light YellowMuzzleBig }
+	frame SGMFF  { light YellowMuzzleBig }
+	frame SGMFG  { light YellowMuzzleBig }
+	frame SGMFH  { light YellowMuzzleBig }
+}
+object SGMUZZLE_R
+{
+    frame SGMFA  { light YellowMuzzleBig5 }
+	frame SGMFB  { light YellowMuzzleBig4 }
+	frame SGMFC  { light YellowMuzzleBig3 }
+	frame SGMFD  { light YellowMuzzleBig2 }
+	frame SGMFE  { light YellowMuzzleBig }
+	frame SGMFF  { light YellowMuzzleBig }
+	frame SGMFG  { light YellowMuzzleBig }
+	frame SGMFH  { light YellowMuzzleBig }
+}
+object SGMUZZLEUP
+{
+    frame SGMUA  { light YellowMuzzleBig5 }
+    frame SGMUB  { light YellowMuzzleBig4 }
+	frame SGMUC  { light YellowMuzzleBig3 }
+	frame SGMUD  { light YellowMuzzleBig2 }
+	frame SGMUE  { light YellowMuzzleBig }
+	frame SGMUF  { light YellowMuzzleBig }
+	frame SGMUG  { light YellowMuzzleBig }
+	frame SGMUH  { light YellowMuzzleBig }
+}
+object GreenPlasmaWeak
+{
+    frame APLSA  { light Plasmashot1 }
+}
+object GreenPlasma_L
+{
+    frame APLSA  { light Plasmashot1 }
+}
+object GreenPlasma_R
+{
+    frame APLSA  { light Plasmashot1 }
+}
+object GreenPlasmaFC_L
+{
+    frame APLSA  { light Plasmashot2 }
+}
+object GreenPlasmaFC_R
+{
+    frame APLSA  { light Plasmashot2 }
+}
+object GreenPlasmaWeakUP
+{
+    frame APLSC  { light Plasmashot1 }
+}
+object GreenPlasmaUP
+{
+    frame APLSC  { light Plasmashot1 }
+}
+
+object GreenPlasmaFCUP
+{
+    frame APLSC  { light Plasmashot2 }
+}
+
+object GreenPlasmaMUZZLE3_L
+{
+    frame PBMZA  { light Plasmashot3 }
+    frame PBMZB  { light Plasmashot3 }
+    frame PBMZC  { light Plasmashot3 }
+    frame PBMZD  { light Plasmashot3 }
+    frame PBMZE  { light Plasmashot3 }
+    frame PBMZF  { light Plasmashot3 }
+    frame PBMZG  { light Plasmashot3 }
+    frame PBMZH  { light Plasmashot3 }
+}
+object GreenPlasmaMUZZLE3_R
+{
+    frame PBMZA  { light Plasmashot3 }
+    frame PBMZB  { light Plasmashot3 }
+    frame PBMZC  { light Plasmashot3 }
+    frame PBMZD  { light Plasmashot3 }
+    frame PBMZE  { light Plasmashot3 }
+    frame PBMZF  { light Plasmashot3 }
+    frame PBMZG  { light Plasmashot3 }
+    frame PBMZH  { light Plasmashot3 }
+}
+
+object GreenPlasmaMUZZLE3UP
+{
+    frame PBMUA  { light Plasmashot3 }
+    frame PBMUB  { light Plasmashot3 }
+    frame PBMUC  { light Plasmashot3 }
+    frame PBMUD  { light Plasmashot3 }
+    frame PBMUE  { light Plasmashot3 }
+    frame PBMUF  { light Plasmashot3 }
+    frame PBMUG  { light Plasmashot3 }
+    frame PBMUH  { light Plasmashot3 }
+}
+
+object GreenPlasmaMUZZLE2_L
+{
+    frame PMMZA  { light Plasmashot2 }
+    frame PMMZB  { light Plasmashot2 }
+    frame PMMZC  { light Plasmashot2 }
+    frame PMMZD  { light Plasmashot2 }
+}
+object GreenPlasmaMUZZLE2_R
+{
+    frame PMMZA  { light Plasmashot2 }
+    frame PMMZB  { light Plasmashot2 }
+    frame PMMZC  { light Plasmashot2 }
+    frame PMMZD  { light Plasmashot2 }
+}
+object GreenPlasmaMUZZLE2UP
+{
+    frame PMMUA  { light Plasmashot2 }
+    frame PMMUB  { light Plasmashot2 }
+    frame PMMUC  { light Plasmashot2 }
+    frame PMMUD  { light Plasmashot2 }
+}
+
+object GreenPlasmaMUZZLE_L
+{
+    frame PLMZA  { light Plasmashot2 }
+    frame PLMZB  { light Plasmashot2 }
+    frame PLMZC  { light Plasmashot2 }
+    frame PLMZD  { light Plasmashot2 }
+    frame PLMZE  { light Plasmashot2 }
+    frame PLMZF  { light Plasmashot2 }
+    frame PLMZG  { light Plasmashot2 }
+    frame PLMZH  { light Plasmashot2 }
+    frame PLMZI  { light Plasmashot2 }
+    frame PLMZJ  { light Plasmashot2 }
+    frame PLMZK  { light Plasmashot2 }
+    frame PLMZL  { light Plasmashot2 }
+    frame PLMZM  { light Plasmashot2 }
+    frame PLMZN { light Plasmashot2 }
+}
+object GreenPlasmaMUZZLE_R
+{
+    frame PLMZA  { light Plasmashot2 }
+    frame PLMZB  { light Plasmashot2 }
+    frame PLMZC  { light Plasmashot2 }
+    frame PLMZD  { light Plasmashot2 }
+    frame PLMZE  { light Plasmashot2 }
+    frame PLMZF  { light Plasmashot2 }
+    frame PLMZG  { light Plasmashot2 }
+    frame PLMZH  { light Plasmashot2 }
+    frame PLMZI  { light Plasmashot2 }
+    frame PLMZJ  { light Plasmashot2 }
+    frame PLMZK  { light Plasmashot2 }
+    frame PLMZL  { light Plasmashot2 }
+    frame PLMZM  { light Plasmashot2 }
+    frame PLMZN { light Plasmashot2 }
+}
+object GreenPlasmaMUZZLEUP
+{
+    frame PLMUA  { light Plasmashot2 }
+    frame PLMUB  { light Plasmashot2 }
+    frame PLMUC  { light Plasmashot2 }
+    frame PLMUD  { light Plasmashot2 }
+    frame PLMUE  { light Plasmashot2 }
+    frame PLMUF  { light Plasmashot2 }
+    frame PLMUG  { light Plasmashot2 }
+    frame PLMUH  { light Plasmashot2 }
+    frame PLMUI  { light Plasmashot2 }
+    frame PLMUJ  { light Plasmashot2 }
+    frame PLMUK  { light Plasmashot2 }
+    frame PLMUL  { light Plasmashot2 }
+    frame PLMUM  { light Plasmashot2 }
+    frame PLMUN { light Plasmashot2 }
+}
+

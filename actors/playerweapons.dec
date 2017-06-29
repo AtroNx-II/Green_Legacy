@@ -11,10 +11,10 @@ ACTOR PlasmaPistol : Weapon
     TNT1 A 0
     Stop
   Ready:
-  TNT1 A 0 A_JumpIfInventory("HaveRL",1,"Ready2")
-        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"Ready2")
-        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Ready2")
-        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"Ready2")
+  //TNT1 A 0 A_JumpIfInventory("HaveRL",1,"Ready2")
+      //  TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"Ready2")
+        //TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Ready2")
+       // TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"Ready2")
     TNT1 A 0 A_Giveinventory("PlasmaGauge",1)
     TNT1 A 1 A_WeaponReady
     Loop
@@ -36,7 +36,7 @@ TNT1 A 0 A_JumpIfInventory("PlasmaGauge",200,"Plasma_Fire3")
 TNT1 A 0 A_JumpIfInventory("PlasmaGauge",100,"Plasma_Fire2")
     TNT1 A 0
     {
-	          A_TakeInventory("PlasmaGauge",1);
+            A_TakeInventory("PlasmaGauge",1);
     A_PlaySound("weapon/addplasma", 7,1.0,0,ATTN_NONE);
           A_GiveInventory("Fire_pressed",1);
           if (CountInv("Aimup") == 1)
@@ -68,7 +68,7 @@ TNT1 A 0 A_JumpIfInventory("PlasmaGauge",100,"Plasma_Fire2")
 Plasma_Fire2:
     TNT1 A 0
     {
-		          A_TakeInventory("PlasmaGauge",2);
+              A_TakeInventory("PlasmaGauge",2);
     A_PlaySound("weapon/addplasma2", 7,1.0,0,ATTN_NONE);
           A_GiveInventory("Fire_pressed",1);
           if (CountInv("Aimup") == 1)
@@ -101,7 +101,7 @@ Plasma_Fire3:
 
     TNT1 A 0
     {
-		          A_TakeInventory("PlasmaGauge",400);
+              A_TakeInventory("PlasmaGauge",400);
     A_PlaySound("weapon/addplasma3", 7,1.0,0,ATTN_NONE);
           A_GiveInventory("Fire_pressed",1);
           if (CountInv("Aimup") == 1)
@@ -163,36 +163,36 @@ Plasma_Fire3:
     {
           if (CountInv("Aimup") == 1)
           {
-		   if (CountInv("Moving") == 0)
+       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-		}
-		ELSE
-		{
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-		}
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_L",-90,0,30); }
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_R",90,0,-30); }
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
           }
           else
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",-90,0,30); }
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_L",90,0,-30); }
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
           }
       }
     }
@@ -208,21 +208,21 @@ Plasma_Fire3:
           if (CountInv("Aimup") == 1)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("SMGBulletUP",0,0,random(5,15),60,0,-90);
-		A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
+    A_FireProjectile("SMGBulletUP",0,0,random(5,15),60,0,-90);
+    A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); }
         else { 
-		A_FireProjectile("SMGBulletUP",0,0,random(-15,-5),60,0,-90);
-		A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
+    A_FireProjectile("SMGBulletUP",0,0,random(-15,-5),60,0,-90);
+    A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));
-		A_FireProjectile("SMGMuzzle_R",-90,0,60); }
+    A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));
+    A_FireProjectile("SMGMuzzle_R",-90,0,60); }
         else { A_FireProjectile("SMGBullet",90,0,-40,random(-5,5));
-		A_FireProjectile("SMGMuzzle_L",90,0,-60);}
+    A_FireProjectile("SMGMuzzle_L",90,0,-60);}
           }
           else
           {
@@ -239,41 +239,41 @@ Plasma_Fire3:
     {
           if (CountInv("Aimup") == 1)
           {
-		   if (CountInv("Moving") == 0)
+       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-		}
-		ELSE
-		{
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-		}
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_L",-90,0,30); }
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_R",90,0,-30); }
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
           }
           else
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",-90,0,30); }
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_L",90,0,-30); }
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
           }
       }
     }
          TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-		 
+     
     Goto Ready
   Shotgun:
     TNT1 A 0 A_TakeInventory("HaveSG",1)
@@ -300,7 +300,7 @@ Plasma_Fire3:
         else {A_FireProjectile("SGMuzzle_L",90,0,-60); }
           }
       }
-	  }
+    }
     TNT1 AAAAAAAAAA 0
     {
     A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
@@ -333,36 +333,36 @@ Plasma_Fire3:
     {
           if (CountInv("Aimup") == 1)
           {
-		   if (CountInv("Moving") == 0)
+       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-		}
-		ELSE
-		{
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-		}
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_L",-90,0,30); }
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_R",90,0,-30); }
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
           }
           else
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",-90,0,30); }
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_L",90,0,-30); }
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
           }
       }
     }
@@ -402,36 +402,36 @@ RLFire:
     {
           if (CountInv("Aimup") == 1)
           {
-		   if (CountInv("Moving") == 0)
+       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-		}
-		ELSE
-		{
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-		}
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_L",-90,0,30); }
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_R",90,0,-30); }
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
           }
           else
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",-90,0,30); }
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_L",90,0,-30); }
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
           }
       }
     }
@@ -475,36 +475,36 @@ GLFire:
     {
           if (CountInv("Aimup") == 1)
           {
-		   if (CountInv("Moving") == 0)
+       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-		}
-		ELSE
-		{
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
         else {
-		A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-		}
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
       }
       else
       {
       if (CountInv("Moving") == 0)
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_L",-90,0,30); }
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_R",90,0,-30); }
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
           }
           else
           {
         if (CountInv("BackwardsCheck") == 0) { 
-		A_FireProjectile("GunSmoke_R",-90,0,30); }
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
         else {
-		A_FireProjectile("GunSmoke_L",90,0,-30); }
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
           }
       }
     }
@@ -523,6 +523,7 @@ SeeSound ""
   ReactionTime 12
   Damage (random(20,40))
   projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -531,9 +532,17 @@ SeeSound ""
   Spawn:
     APLS A 2 bright A_CountDown
     GOTO SPAWN
-  Death:
-      APLS A 0  bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 A_Stop
+    Death:
+  APLS A 0 bright 
+    APLS A 0 bright A_SetScale(0.4,0.4)
+  APLS A 0 bright A_Jump(64,"Death2","Death3")
+    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death2:
+    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death3:
+    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
     Stop
   }
 }
@@ -548,10 +557,11 @@ SeeSound ""
   RenderStyle Normal
   Speed 55
   ReactionTime 5
-  Damage 2
+  Damage 3
     Xscale 0.8
   Yscale 0.3
   projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -560,9 +570,17 @@ SeeSound ""
   Spawn:
     APLS A 2 bright A_CountDown
     GOTO SPAWN
-  Death:
-      APLS A 0  bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 A_Stop
+    Death:
+  APLS A 0 bright 
+    APLS A 0 bright A_SetScale(0.4,0.4)
+  APLS A 0 bright A_Jump(64,"Death2","Death3")
+    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death2:
+    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death3:
+    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
     Stop
   }
 }
@@ -579,6 +597,7 @@ SeeSound ""
   
   Damage 50
   projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -616,6 +635,7 @@ xscale 1.0
 +NOCLIP
 yscale 3.5
   Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -639,6 +659,7 @@ SeeSound ""
   ReactionTime 5
   Damage 0
   +MISSILE
+    +MTHRUSPECIES
   +NOGRAVITY
   +BLOODLESSIMPACT
   +NOCLIP
@@ -662,6 +683,7 @@ SeeSound ""
   Damage 0
 
   +MISSILE
+    +MTHRUSPECIES
   +NOGRAVITY
   +BLOODLESSIMPACT
   +NOCLIP
@@ -685,6 +707,7 @@ SeeSound ""
   Damage 0
     +NOGRAVITY
   +MISSILE
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +NOCLIP
@@ -708,6 +731,7 @@ SeeSound ""
   Damage (random(20,40))
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
+    +MTHRUSPECIES
   +BRIGHT
   PROJECTILE
   States
@@ -716,8 +740,16 @@ SeeSound ""
     APLS C 2 bright A_CountDown
     GOTO SPAWN
   Death:
-      APLS A 0 bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 bright A_Stop
+  APLS A 0 bright 
+    APLS A 0 bright A_SetScale(0.4,0.4)
+  APLS A 0 bright A_Jump(64,"Death2","Death3")
+    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death2:
+    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death3:
+    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
     Stop
   }
 }
@@ -731,8 +763,9 @@ SeeSound ""
   ReactionTime 10
     Yscale 0.8
   Xscale 0.3
-  Damage 2
+  Damage 3
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOEXTREMEDEATH
   +BRIGHT
   PROJECTILE
@@ -742,8 +775,16 @@ SeeSound ""
     APLS C 2 bright A_CountDown
     GOTO SPAWN
   Death:
-      APLS A 0 bright A_SetScale(1.0,1.0)
-    APBX ABCDE 2 bright A_Stop
+  APLS A 0 bright 
+    APLS A 0 bright A_SetScale(0.4,0.4)
+  APLS A 0 bright A_Jump(64,"Death2","Death3")
+    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death2:
+    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
+    Stop
+  Death3:
+    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
     Stop
   }
 }
@@ -758,6 +799,7 @@ SeeSound ""
   ReactionTime 10
   Damage 50
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOEXTREMEDEATH
   +BRIGHT
   PROJECTILE
@@ -792,6 +834,7 @@ SeeSound ""
   Yscale 0.5
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -801,7 +844,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
     PLMZ AB 1 bright
-	stop
+  stop
 Spawn2:
     PLMZ CD 1 bright
     Stop
@@ -848,6 +891,7 @@ SeeSound ""
   Yscale 0.5
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -857,7 +901,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
     PLMU AB 1 bright
-	stop
+  stop
 Spawn2:
     PLMU CD 1 bright
     Stop
@@ -894,6 +938,7 @@ SeeSound ""
   Yscale 1.0
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -903,7 +948,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
     PMMZ A 1 bright
-	stop
+  stop
 Spawn2:
     PMMZ B 1 bright
     Stop
@@ -941,6 +986,7 @@ SeeSound ""
   Yscale 1.0
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -950,7 +996,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
     PMMU A 1 bright
-	stop
+  stop
 Spawn2:
     PMMU B 1 bright
     Stop
@@ -960,7 +1006,7 @@ Spawn3:
 Spawn4:
     PMMU D 1 bright
     Stop
-	}
+  }
 }
 
 ACTOR GreenPlasmaMUZZLE3_R
@@ -977,6 +1023,7 @@ SeeSound ""
   Yscale 1.0
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1013,6 +1060,7 @@ SeeSound ""
   Yscale 1.0
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1037,6 +1085,7 @@ SeeSound ""
   Yscale 0.8
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1046,7 +1095,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
     MUZZ AB 1 bright
-	stop
+  stop
 Spawn2:
     MUZZ CD 1 bright
     Stop
@@ -1089,6 +1138,7 @@ SeeSound ""
   Yscale 0.8
     Projectile
   +BLOODLESSIMPACT
+    +MTHRUSPECIES
   +NOCLIP
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1098,7 +1148,7 @@ SeeSound ""
   TNT1 A 0
   TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
     MUZU AB 1 bright
-	stop
+  stop
 Spawn2:
     MUZU CD 1 bright
     Stop
@@ -1136,6 +1186,7 @@ SeeSound ""
   Xscale 0.8
   Yscale 0.8
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOCLIP
   +NOEXTREMEDEATH
@@ -1165,6 +1216,7 @@ SeeSound ""
   Xscale 0.8
   Yscale 0.8
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOCLIP
   +NOEXTREMEDEATH
@@ -1187,6 +1239,7 @@ SeeSound ""
   DamageType PlayerSide
   Damage 20
   DEATHSOUND "BOOM1"
+    +MTHRUSPECIES
   +FULLVOLDEATH
   +BLOODLESSIMPACT
   -NOGRAVITY
@@ -1225,6 +1278,7 @@ SeeSound ""
   BounceFactor 1.0
   BounceType Grenade
   BounceCount 5
+    +MTHRUSPECIES
 -NOGRAVITY
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
@@ -1253,6 +1307,7 @@ SeeSound ""
   BounceType Grenade
   BounceCount 5
   +BRIGHT
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +THRUACTORS
   +NOEXTREMEDEATH
@@ -1361,6 +1416,7 @@ SeeSound ""
   BounceType Grenade
   BounceCount 5
   +BRIGHT
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
 SPEED 20
@@ -1385,6 +1441,7 @@ SeeSound ""
   Speed 0
   ReactionTime 5
   Damage 0
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +INVULNERABLE
   +NOEXTREMEDEATH
@@ -1433,6 +1490,7 @@ SeeSound ""
   PROJECTILE
   MissileHeight 8
   MissileType "Fire_To_SmokeTrail2"
+    +MTHRUSPECIES
   +FULLVOLDEATH
   +BLOODLESSIMPACT
   +NOGRAVITY
@@ -1499,6 +1557,7 @@ SeeSound ""
   Yscale 1.0
   Xscale 0.3
   PROJECTILE
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1509,7 +1568,7 @@ SeeSound ""
     GOTO SPAWN
   Death:
       APLS A 0 bright A_SetScale(1.0,1.0)
-	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
     TNT1 A 2 bright A_Stop
     Stop
   }
@@ -1527,6 +1586,7 @@ SeeSound ""
   xscale 1.0
   yscale 0.3
   Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1537,7 +1597,7 @@ SeeSound ""
     GOTO SPAWN
   Death:
       APLS A 0 bright A_SetScale(1.0,1.0)
-	  	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+      APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
     TNT1 A 2 bright A_Stop
     Stop
   }
@@ -1554,6 +1614,7 @@ SeeSound ""
   Xscale 1.5
     RADIUS 10
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1564,7 +1625,7 @@ SeeSound ""
     GOTO SPAWN
   Death:
       APLS A 0 bright A_SetScale(1.0,1.0)
-	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
     TNT1 A 2 bright A_Stop
     Stop
   }
@@ -1582,6 +1643,7 @@ SeeSound ""
   yscale 1.4
     RADIUS 10
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1591,8 +1653,8 @@ SeeSound ""
     APLS D 2 bright A_CountDown
     GOTO SPAWN
   Death:
-	APLS A 0 bright A_SetScale(1.0,1.0) 
-	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  APLS A 0 bright A_SetScale(1.0,1.0) 
+  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
     TNT1 A 2 bright A_Stop
     Stop
   }
@@ -1610,6 +1672,7 @@ SeeSound ""
   Xscale 0.2
     RADIUS 10
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1626,7 +1689,7 @@ Spawn2:
     APLS E 0 bright A_CountDown
     GOTO SPAWN2
   Death:
-	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
       APLS A 0 bright
     TNT1 A 2 bright A_Stop
     Stop
@@ -1644,6 +1707,7 @@ SeeSound ""
   Xscale 0.2
     RADIUS 10
     Projectile
+    +MTHRUSPECIES
   +BLOODLESSIMPACT
   +NOEXTREMEDEATH
   +BRIGHT
@@ -1660,7 +1724,7 @@ Spawn2:
     APLS E 0 bright A_CountDown
     GOTO SPAWN2
   Death:
-	APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
       APLS A 0 bright
     TNT1 A 2 bright A_Stop
     Stop
