@@ -1,4 +1,9 @@
 // hm
+acids acids
+acidx acidx
+Fly_AC Fly_AC
+Fly_die Fly_die
+SND/TEXT menumov
 TIN TIN
 shrk1 shrk1
 shrk2 shrk2
@@ -14,6 +19,8 @@ whoosh1 whoosh1
 whoosh2 whoosh2
 Pick_weapon WP_PICK
 M16_GL M16_GL
+MISL MISL
+MISLEX MISLEX
 $random catt_ATK { catt_ATK1 catt_ATK2 }
 catt_ATK1 SLASH1
 catt_ATK2 SLASH2
@@ -34,12 +41,13 @@ M16_DASH M16_DASH
 M16_SMG M16_SMG
 $random M16_HURT { M16_HURT1 M16_HURT2 }
 M16_BOOST BOOST
-
+Fly_Pain Fly_Pain
 M16_WALK M16_WALK
 M16_HURT1 M16_HUR1
 M16_HURT2 M16_HUR2
 M16_SG M16_SG
 M16_HMG M16_HMG
+M16_RL M16_RL
 teleout teleout
 worm_sight worm_si
 worm_pain worm_pn
@@ -47,7 +55,7 @@ worm_active worm_ac
 worm_death worm_dt
 BOOM1 BOOM1
 Pick_Health H_PICK
-
+Pick_Health2 H_PICK2
 
 menu/activate			menuon	 // Activate a new menu
 menu/backup			menucl	 // Backup to previous menu

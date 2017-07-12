@@ -5,5 +5,4 @@ AddPlayerClass SidescrollPlayer
 addkeysection "SideScrollProject" SP_Keysection
 addmenukey "Use Supporter" +user1
 defaultbind F +user1
-defaultbind S +user1
 defaultbind S +crouch

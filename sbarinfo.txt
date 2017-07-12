@@ -74,7 +74,7 @@ InInventory HaveSMG, 1
  InInventory EmilyCooltime, 1 
  {
  DrawImage "EMILYHE2",-140,75;
-  DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-90,100;
+  DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-64,140;
  }
  }
  }
@@ -84,9 +84,12 @@ InInventory HaveSMG, 1
  
 InInventory HaveCatty, 1 
  {
+ 
    DrawImage "HUDNAME2",-162,56;
   DrawImage "HUDWBOX",-141,52;
    DrawImage "HUDWBOX",-94,100;
+DrawBar "CTSWE", "CTSW",CattyCooltime, vertical, interpolate(50)|REVERSE, -94, 100;
+   
 
  
  DrawImage "CATTHEAD",-130,70;
@@ -119,8 +122,8 @@ InInventory CATTY_EMOTION_ATTACK, 1
  DrawString FONT3, White, "CATTY",-112, 60;
  }
  }
- 
-
+DrawBar "PILSAL", "PILSALE",CattyActivated, vertical, interpolate(50), -160, 128;
+DrawBar "PILSAL2", "PILSALE",CattyActivated, vertical, interpolate(50)|reverse, -160, 320;
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
 DrawBar "TALKPIC2", "TALKPICE",PrintTEXT, vertical, interpolate(50), -160, 0;

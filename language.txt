@@ -1,0 +1,1770 @@
+[enu default]
+
+////////////////////
+// Scenario 6 //////
+////////////////////
+// Introduction
+SCEN6LINE1= "M16: BLAH BLAH BLAH";
+SCEN6LINE2= "Her room is quite theâ";
+SCEN6LINE3= "oh god, what the hell are those things in those bottlesâ¦? Okay, seems like she definitely is MORE THAN MEETS THE EYE.";
+SCEN6LINE4= "Let's see what HURTIN FORASQUIRTIN's actual name is.\n\nNAMETAG, please?";
+SCEN6LINE5= "SEIGA KAKU";
+SCEN6LINE6= "> Be Seiga.";
+SCEN6LINE7= "Your name is SEIGA. You've got a strange love for THANATOLOGY and GENETICS because you believe it holds secrets to LONGEVITY. It's no surprise that you are an aspiring PSYCHAGOGUE.";
+SCEN6LINE8= "You crave nothing more than a GOOD HUNT in which you eventually pretend to play the role of THE CREATIVE UNDERTAKER, deciding whether to BURY or TAXIDERMIZE the body.";
+SCEN6LINE9= "You often try your hand at ways to either PRESERVE or DESTROY life by experimenting on DISCARDED FETUSES the BREEDING LABS nearby often throw out. You wish to work in one of them one day to learn their SECRETS.";
+SCEN6LINE10= "You use the preachhandle \c[Seiga]vivaciousHollows\c-.";
+SCEN6LINE11= "As always, you \c[Seiga]are unnervingly flirtatious when talking to others for some strange reason~!";
+SCEN6LINE12= "You just finished up deploying your client's things, just to get it out of the way so you can do your own business with no interruptions.";
+SCEN6LINE13= "Seiga: Allocate strife specibus.";
+SCEN6LINE14= "Unlike the others, you already have your STRIFE SPECIBUS on deck since you're oh-so-very responsible.";
+SCEN6LINE15= "This is your KIND ABSTRATA, \c[Strife]spadekind\c-, which you keep on hand with you at all times.";
+SCEN6LINE16= "Or rather, you keep it in your hair, but whatever.";
+SCEN6LINE17= "> Seiga: Send last package.";
+SCEN6LINE18= "Before connecting with that HORRID server player, you've got one last package to send in to a VERY LUCKY person! Personal, but urgent, matters.";
+SCEN6LINE19= "You're sure they'll be elated to get these seeing as how the packages are from you, of all people. There's nothing more intoxicating than receiving gifts from pretty girls. Especially super cool light shows of a gift.";
+SCEN6LINE20= "> Seiga: Grab your phone.";
+SCEN6LINE21= "Time to stop messing around, though, just so nobody gets too suspicious.";
+
+
+// Found Sprite
+SCEN6LINE22= "Good, you found your sprite.";
+SCEN6LINE23= "> Seiga: Prototype sprite.";
+SCEN6LINE24= "You heard they were attracted to dead things so it's no surprise that they came in here. However, the last thing you'd want is to have it go for the bottles as that would probably render it useless to you.";
+SCEN6LINE25= "So...";
+SCEN6LINE25a= "you decide to try this instead.";
+SCEN6LINE26= "! ! ! !";
+//Wu
+SCEN6LINE27= "WUDANGSPRITE: A G H H H H . . . .\nW H H H H A A A A T . . . .\nN N N N G G G G H H H H . . . .\nA A A A H H H H . . . . ";
+SCEN6LINE28= "WUDANGSPRITE: A A A A ! ! ! !\nN N N N O O O O. . .\nG G G G H H H H. . .";
+//Seiga_6
+SCEN6LINE29= "VH: Okay, this definitely wasn't what I was expecting!!";
+SCEN6LINE30= "> Seiga: Complain to idiot server player.";
+//Seiga_5
+SCEN6LINE31= "VH: Hey, idiot server player, why don't you actually try and help?";
+//Mamz_2
+SCEN6LINE32= "BH: lmao";
+//Seiga_5
+SCEN6LINE33= "VH: Don't \"lmao\" at me! What is it even saying? It just keeps rattling on about I don't even know what!";
+//Mamz_1
+SCEN6LINE34= "BH: pft i think its mad at yalls for beatin it up all these years";
+//Seiga_6
+SCEN6LINE35= "VH: It's a training mannequin! That's what it's FOR.";
+//Mamz_1
+SCEN6LINE36= "BH: oh well you want me to tone it down for you or somethin?";
+//Seiga_6
+SCEN6LINE37= "VH: What are you planning to doâ¦?";
+//Mamz_1
+SCEN6LINE38= "BH: wait right here";
+//Seiga_5
+SCEN6LINE39= "VH: Oh, no! No, no no! I know what you're trying to do!";
+SCEN6LINE40= "> Seiga: Brace self.";
+//Seiga_5
+SCEN6LINE41= "SEIGA: Seriously!?";
+//Embryo
+SCEN6LINE42= "EMBRYOSPRITE: Waaaaaaaaaaaaaah!!\nNooooooooooooo!!";
+//Seiga_6
+SCEN6LINE43= "SEIGA: Are you kidding me!?";
+//Embryo
+SCEN6LINE44= "EMBRYOSPRITE: I don't wanna do thiiiiiiiiiiiiiis!!";
+//Seiga_5
+SCEN6LINE45= "SEIGA: Aaaarghhhh!";
+SCEN6LINE46= "> Seiga: Complain some more.";
+//Seiga_6
+SCEN6LINE47= "VH: Youâ¦ ass.";
+//Mamz_2
+SCEN6LINE48= "BH: ahahahahahaha wow i reckon that woulda shut it up but i guess i was wrong";
+//Seiga_6
+SCEN6LINE49= "VH: You'll pay for this.";
+//Mamz_3
+SCEN6LINE50= "BH: ye ye youre mighty used to bein paid huh if you get my drift\n\n[*wink]";
+//Seiga_4
+SCEN6LINE51= "VH: Unbelievable. Fine, you know what? I'm just gonna replace this with something else later!";
+SCEN6LINE52= "> Seiga: Be stuck with this crybaby noob.";
+SCEN6LINE53= "Looks like you're stuck with this crybaby noob.";
+
+
+// Examine Computer, after Blue Seed
+//Mamz_6
+SCEN6LINE54= "BH: yo hurry up and do some lifey thing on that seed or whatever, i dont wanna be in trouble if you end up dead";
+
+
+// Examine Computer, before Alchemiter
+//Mamz_1
+SCEN6LINE55= "BH: you know that cylinder thing you got a lil while ago? you might wanna do something with that... maybe on those machine things i put down or somethin";
+
+
+// Examine Computer, start Reckoning
+//Mamz_1
+SCEN6LINE56= "BH: ey go deal with that stuff the machine thing ejected yea?";
+
+
+// Examine Computer, pre-Reckoning
+//Mamz_6
+SCEN6LINE57= "BH: uh i guess i could help you with this one... you got anythin heavy in this here house i could use on that lid?";
+
+
+// Examine Computer, First time
+SCEN6LINE58= "\c[Mamz]ballsyHellraiser [BH]\n\nstarted badgering\n\n\c[Seiga]vivaciousHollows [VH]";
+SCEN6LINE58a= "ballsyHellraiser [BH] started badgering vivaciousHollows [VH]";
+//Mamz_1
+SCEN6LINE59= "BH: top of the mornin";
+//Seiga_1
+SCEN6LINE60= "VH: It's Kaku, by the way. Seiga Kaku.";
+//Mamz_6
+SCEN6LINE61= "BH: wha";
+//Seiga_6
+SCEN6LINE62= "VH: My name.";
+//Mamz_2
+SCEN6LINE63= "BH: oh";
+SCEN6LINE63a= "alritey then";
+//Seiga_4
+SCEN6LINE64= "VH: Sorry about earlier. That was the pressure talking, I can assure you that.";
+//Mamz_1
+SCEN6LINE65= "BH: i figured as much, so yea thats alright i guess since everyones kinda bein all weird tonight and i reckon its cuz everyone just nervous for this whole thing";
+//Mamz_6
+SCEN6LINE66= "BH: i mean it is a pretty big responsibility from what ive been told";
+//Seiga_4
+SCEN6LINE67= "VH: It really is~\nThat's why I don't want to mess up here. I'm going first, after all, so I have to set a good example for everyone else following!";
+//Seiga_6
+SCEN6LINE68= "VH: And I was paired with a newcomer at a time like this...";
+//Mamz_6
+SCEN6LINE69= "BH: yea i kinda get you im sorry ill try not to be too much of a nuisance";
+//Mamz_1
+SCEN6LINE70= "BH: so yea im gonna get this thing goin, alritey kaku?";
+SCEN6LINE71= "BH: im gonna try and establish some connection thing or whatever to you right now";
+//Seiga_6
+SCEN6LINE72= "VH: Tch.";
+SCEN6LINE72a= "I'm sorry, I just can't stand your simple vernacular. This just isn't very exciting.";
+//Mamz_6
+SCEN6LINE73= "BH: uh";
+SCEN6LINE73a= "well just bear with me okay?";
+//Seiga_6
+SCEN6LINE74= "VH: You know, if it weren't for you, I'd have someone much more alluring as my server player.";
+//Mamz_6
+SCEN6LINE75= "BH: thats just too bad cuz you got me, im not that bad am i?";
+//Seiga_2
+SCEN6LINE76= "VH: I mean, you may not be as gallant as our goldenrod emcee but I'm willing to bet you're extremely rugged and super macho, aren't you? You certainly talk like a brute.";
+//Mamz_6
+SCEN6LINE77= "BH: wha";
+SCEN6LINE78= "BH: are you seriously hittin on me";
+SCEN6LINE79= "BH: and insultin me at the same time";
+//Mamz_5
+SCEN6LINE80= "BH: wow";
+//Mamz_6
+SCEN6LINE81= "BH: youre kinda like uhh whats that word\n\nlike a coquette or somethin right";
+//Seiga_1
+SCEN6LINE82= "VH: What about \"vixen\"? Sounds more enticing, in my opinion.";
+//Mamz_6
+SCEN6LINE83= "BH: that sounds kinda bad";
+//Seiga_4
+SCEN6LINE84= "VH: Geez, I'm just joking around to keep myself awake. I'm trying to make the best out of our situation.";
+//Mamz_3
+SCEN6LINE85= "BH: oh";
+SCEN6LINE86= "\n\nuh so you wanna play around a bit to wake you up huh? yknow just some laughs to perk you up";
+//Seiga_4
+SCEN6LINE87= "VH: I guess? I don't know.";
+//Mamz_5 (As Murasa)
+SCEN6LINE88= "BH: Y'arr, how about this? Don't I sound extremely rugged 'n macho? Does this nah get yer rocks off or wha'? I be all about this macho life. Look how macho 'this is!";
+//Seiga_6
+SCEN6LINE89= "VH: ...";
+SCEN6LINE89a= "Don't ever do that again.";
+//Mamz_6
+SCEN6LINE90= "BH: oh";
+SCEN6LINE90a= "i guess that wasnt very funny huh?";
+//Mamz_3
+SCEN6LINE91= "BH: weird my friend always found that funny i thought youd get a kick outta that too";
+//Seiga_2
+SCEN6LINE92= "VH: No, it wasn't. I think I'd prefer just you and not this weird pretend thing you've got going on here.";
+//Mamz_6
+SCEN6LINE93= "BH: uh";
+SCEN6LINE93a= "\ni dont know if youre still hittin on me";
+SCEN6LINE93b= "\n\ndid that count?";
+//Seiga_2
+SCEN6LINE94= "VH: It could have.";
+//Mamz_6
+SCEN6LINE95= "BH: look, matters of the heart arent that easy for me to be talkin\n\nits weird";
+//Seiga_3
+SCEN6LINE96= "VH: Oh? Did you not like that? I countered your awkward statement with my own awkward statement~";
+//Mamz_6
+SCEN6LINE97= "BH: my joke was awkward?";
+//Seiga_2
+SCEN6LINE98= "VH: Way off the charts~";
+//Mamz_6
+SCEN6LINE99= "BH: look, i'll put all your things down in a bit so just ask if you need anythin from me";
+//Seiga_2
+SCEN6LINE100= "VH: Thank you~ <3";
+//Mamz_5
+SCEN6LINE101= "BH: hey no stop that";
+SCEN6LINE102= "\c[Mamz]ballsyHellraiser [BH]\n\nceased badgering\n\n\c[Seiga]vivaciousHollows [VH]";
+SCEN6LINE102a= "ballsyHellraiser [BH] ceased badgering vivaciousHollows [VH]";
+
+
+// Examine Computer, While Placing Objects
+//Mamz_1
+SCEN6LINE103= "BH: says here on the manual that you switch with S key and place with A key... im supposed to also personally hand you the pre-punched card thing or whatever";
+//Mamz_3
+SCEN6LINE104= "BH: kinda neat that i can go around your house if i just click the weird red arrow things too heh heh heh";
+
+
+// Talk to Sprite, First Time
+SCEN6LINE105= "EMBRYOSPRITE: Uuughhhh...";
+
+
+//Talk to Sprite, Second Time
+SCEN6LINE106= "EMBRYOSPRITE: *hic* *hic*";
+
+
+//Talk to Sprite, Third Time
+SCEN6LINE107= "EMBRYOSPRITE: I don't want to talk...";
+
+
+// Examine Embryo Jar 1
+SCEN6LINE108= "This one's a fresh batch straight from the lab across the street. A few of them are displaying signs of mutation, though, which is no surprise as to why they were rejected.";
+
+
+// Examine IP Man Poster
+SCEN6LINE109= "One day you, too, will master the Wing Chun style and kick everybody to next week.\n\nYes.";
+
+
+// Getting Blackberry off the Desk
+SCEN6LINE110= "> Seiga: Examine BLACKBERRY.";
+SCEN6LINE111= "You already downloaded the CD files onto your blackberry. You have to use it to contact other players.";
+SCEN6LINE112= "> Seiga: Captchalogue it.";
+SCEN6LINE113= "You can access your phone using the E key, by default.";
+SCEN6LINE114= "> Seiga: Answer server player.";
+SCEN6LINE115= "Looks like your SERVER PLAYER is messaging you...";
+
+
+// Examine Stuffed Rabbit
+SCEN6LINE116= "It's rare to see any actual WILDLIFE around these days. You were pretty proud to have captured this one a while back. It's hard to believe that these were the ancestors of one of the most prominent FRONTLINERS of today.";
+
+
+// Examine Talismans
+SCEN6LINE117= "You've been saving these for a while. You can use these TALISMANS to control the dead. Unfortunately, they haven't worked on any of the ones in your house. You still keep them though as they might come in handy someday.";
+
+
+// Examine Equipment
+SCEN6LINE118= "Scattered pens and picks fall from the table.\n\nYou really need to tidy this up sometime, maybe.";
+
+
+// Examine Prototyping Embryo
+SCEN6LINE119= "It's one of the newer samples you got as of late. This one seems to have come from an actual human... which is rare since they usually don't throw out human embryos. It must've had some sort of defect.";
+
+
+// Examine Stuffed Wolf
+SCEN6LINE120= "It's rare to see any actual WILDLIFE around these days. You were pretty proud to have captured this one a while back. It's hard to believe that these were the ancestors of one of the most prominent FRONTLINERS of today.";
+
+
+// Examine Clock
+SCEN6LINE121= "Your disc finished downloading around 1:18 AM, as you remember. You have no idea why THAT WITCH wanted to do this so early. You had no choice since it was her birthday, after all...";
+
+
+// Examine Embryo Jar 2
+SCEN6LINE122= "That one up there was REJECTED late into development, which is a little sad, but makes for good research material.";
+
+
+// Examine Embryo Jar 3
+SCEN6LINE123= "These are older batches. You like looking at them though. Reminds you how great it is to be alive, at least... for the ones deserving of life. These ones were cryptid hybrids, which is pretty gross, you think.";
+
+
+// Examine Closet
+SCEN6LINE124= "Underneath various piles of clothes are old, unopened gifts of unknown origin. You really don't feel like opening any of them up... ever.";
+
+
+// Examine Hangover Poster
+SCEN6LINE125= "WE'RE THE THREE BEST FRIENDS THAT ANYBODY COULD HAVE, WE'RE THE THREE BEST FRIENDS THAT ANYBODY COULD HAVE, WE'RE THE THREE BEST FRIENDS THAT ANYBODY COULD HAVE, AND WE NEVER EVER EVER EVER EVER LEAVE EACH OTHER.";
+
+
+// Examine Trainging Maniquian
+SCEN6LINE126= "When you're not messing with dead specimens, you're practicing martial arts, and this thing and its many chips and dents can vouch for that.";
+
+
+// Examine Living Room Plant
+SCEN6LINE127= "But then the ceiling fell and they were trapped and not able to kill.\n\"NO! I MUST KILL THE DEMONS!\" he shouted.\nThe radio said, \"No, John. You are the demons.\"\nAnd then John was a zombie.";
+SCEN6LINE128= "Everything needs to be described, ok!";
+
+
+// Examine Thermostat
+SCEN6LINE129= "You always make sure to keep the thermostat at a relatively low temperature in your dwelling, so your WORK doesn't get ruined.";
+
+
+// Examine Kung Fu Panda Poster
+SCEN6LINE130= "One of your friends sent this to you as a joke a while back. Jack Black panda is just extremely painful to watch. You think he should stick to singing songs about PROCREATION.";
+
+
+// Examine Trash Can
+SCEN6LINE131= "The remains of an old, shattered jar is still in there. You were considering getting rid of it knowing that broken glass isn't really something you'd want around but, you don't trust anybody outside. It's barbaric out there.";
+
+
+// Examine Microwave
+SCEN6LINE132= "During extremely lonely nights, you sometimes wonder, \"What would happen if I stuck one of the jars in there?\"\n\nThat's a stupid idea, obviously.";
+
+
+// Examine Fridge
+SCEN6LINE133= "Sometimes you keep your tiny specimens in here. Helps preserve them when you're running low on formaldehyde. There are two jars in here. Nothing too spectacular.";
+
+
+// Examine Stuffed Elk
+SCEN6LINE134= "This was your father's handiwork. You can't begin to imagine yourself landing one of these. This looks way too HEAVY for you to even handle yourself. You'll just stick to SMALLER VERMIN.";
+
+
+// Examine Dresser
+SCEN6LINE135= "Nothing here but untouched clothes.\n\nIt's mothbait.";
+
+
+// Examine Washing Machine
+SCEN6LINE136= "Why they wanted these to run on nuclear power you'll never know.";
+
+
+// Examine Bong Embryo
+SCEN6LINE137= "You didn't know where else to stick this one in... It's not like you use it for its intended purpose.";
+
+
+// Examine DVD
+SCEN6LINE138= "Did you know Bruce Lee was trained by Ip Man? That makes him a hero by association. Maybe...You're not gonna lie, the DVD itself is interesting, you guess. You'd recommend it to other avid marial arts enthusiasts.";
+
+
+// Examine TV
+SCEN6LINE139= "You had to install your \c[DarkGrey]SKI\c[Grey]MA\c- CDs via your DVD player. You didn't think it would work, but it did.";
+SCEN6LINE139a= "You had to install your SKIMA CDs via your DVD player. You didn't think it would work, but it did.";
+
+
+// Examine CD Pile
+SCEN6LINE140= "It's your father's old audiobooks. You've never listened to them as you'd find that disrespectful to mess with his things. What if he comes back and scolds you if you do? See, you've got responsibilities to think about...";
+
+
+// Examine Front Door
+SCEN6LINE141= "There are ants under your feet. You might accidentally step on them, so please don't continue in that direction.";
+
+
+// Examine Life Seed
+SCEN6LINE142= "You got the RARE MIXTURE for this one from... some friend, it doesn't matter. What does matter is that the mixture is a POTENT growth nectar. It's extremely FERTILE and anything placed in it will grow quicker than usual.";
+SCEN6LINE143= "You didn't really know what to put in there, so you just stuck another specimen in. It grew bigger for a while but stopped eventually. You can't make dead things grow. That's just common sense.";
+
+// Life Seed Choice
+//Seiga_4
+SCEN6LINE146= "VH: What a shame~ I was saving this for something important...";
+//Mamz_5
+SCEN6LINE147= "BH: just get it over with, GOD damn";
+
+SCEN6LINE144= "> Seiga: Plant seed inside jar.";
+SCEN6LINE144a= "Seiga: Plant seed inside jar.";
+SCEN6LINE145= "> Seiga: No way, that's a waste!";
+SCEN6LINE145a= "Seiga: No way, that's a waste!";
+
+//Seiga_6
+SCEN6LINE148= "VH: I'm never going to get another mixture like this in a lifetime, you know.";
+//Mamz_6
+SCEN6LINE149= "BH: your life should be more important than that shitty jar, kaku";
+//Seiga_4
+SCEN6LINE150= "VH: I guess, but still, I think I need time to think about this.";
+
+//Seiga_4
+SCEN6LINE151= "VH: Ugh.";
+
+
+// Examine Bathroom Plant 1
+SCEN6LINE152= "Then cooperate and give me that yummy\nLick you from your tater, to your tot, to your tummy\nGirl don't love me, use me and abuse me\nTreat me like a pirate and give me that booty";
+SCEN6LINE153= "Everything needs to be described, ok!";
+
+// Examine Bathroom Plant 2
+SCEN6LINE154= "Imma Ma'Fuckin Star (Star)\nLook At The Paint On The Car (Car)\nToo Much Rim Make The Ride Too Hard\nTell That Bitch Hop Out, Walk The Boulevard";
+SCEN6LINE155= "Everything needs to be described, ok!";
+
+// Examine Mirror
+SCEN6LINE156= "Lookin' good.\n\nThe perfect visage, designed to lure in needy, annoying suitors that end up being total sociopaths.";
+
+// Examine Mirror 2
+SCEN6LINE157= "There's still some writing in here from the last owner...\n\c[DarkGray]\"[2/8/2013 3:37:28 AM] dk: helloooooooooooooooooooo\n\c[DarkGray][2/8/2013 3:38:06 AM] SpaceGhostPurpp: shut up\n\c[DarkGray][2/8/2013 3:54:01 AM] dk: echoooooooooooo\"";
+SCEN6LINE157a= "There's still some writing in here from the last owner... "[2/8/2013 3:37:28 AM] dk: helloooooooooooooooooooo [2/8/2013 3:38:06 AM] SpaceGhostPurpp: shut up [2/8/2013 3:54:01 AM] dk: echoooooooooooo"";
+
+// Examine Bathtub
+SCEN6LINE158= "You like to do your work while bathing sometimes. It'sprobably why the bathroom smells like formaldehyde most of the time. You wonder if you also smell like formaldehyde, but that's probably not true, you think.";
+
+// Examine Shitty Candles
+SCEN6LINE159= "It's a plate of incredibly SHITTY CANDLES. They're scented and all but even that can't fight the stench of formaldehyde and broken dreams.";
+
+// Examine Grooming Items
+SCEN6LINE160= "It takes a lot of effort to tame your almost indomitable hair. This stuff kind of just helps a little with that. You don't mind giving up whatever it may be just to look your best. You're still talking about your hair, by the way.";
+
+// Examine Sink
+SCEN6LINE161= "This sink has drained gallons of various types of chemicals. It's surprising that thing hasn't clogged EVER.";
+
+// Examine Toilet
+SCEN6LINE162= "... No, despite speculation, you've never flushed any of your specimens down there before. Though, sometimes, you think about it, but you have a feeling you'd get in trouble if you did.";
+
+// Examine Medicine Cabinet
+SCEN6LINE163= "It's mostly full of different types of preservative chemicals. After all, the bathroom is the best place to experiment with these things, for hygiene's sake.";
+
+// Examine Dressing Table
+SCEN6LINE164= "Oh, THEIR photograph is still on there. You want to get rid of it but you just never found the time to. Maybe when you're less busy or something, who knows? Seriously, what a douche bag. They don't belong to be on this dresser.";
+
+
+// Examine Alchemiter
+SCEN6LINE165= "> Seiga: Use totem on alchemiter.";
+SCEN6LINE166= "> Seiga: Complain, again, to server.";
+//Seiga_5
+SCEN6LINE167= "VH: What do I do with this!?";
+//Mamz_6
+SCEN6LINE168= "BH: what is that like an ant or somethin";
+//Seiga_6
+SCEN6LINE169= "VH: It's a seed, you moronic hick. Now, what do I do with it? Plant it or something?";
+//Seiga_5
+SCEN6LINE170= "VH: Wait, wait, do you hear that? Look out your window and tell me if you see anything unusual!";
+//Mamz_6
+SCEN6LINE171= "BH: huh looks kinda like a meteor or somethin, like some red speck in the sky";
+//Seiga_5
+SCEN6LINE172= "VH: You've got to be kidding me!";
+//Mamz_1
+SCEN6LINE173= "BH: yea i think i read about this";
+SCEN6LINE174= "BH: its the reckonin so you better hurry up and do somethin with that seed thing";
+//Seiga_6
+SCEN6LINE175= "VH: Like what? Toss it!? Plant it!? This game is being too vague about everything!";
+//Mamz_2
+SCEN6LINE176= "BH: wow haha, man youre one funny broad you know that? go look for somethin to plant it in, you got all these jars and stuff after all";
+//Mamz_6
+SCEN6LINE177= "BH: speakin of which... you got anythin fertile around your house? i mean i probably shouldnt be askin that considerin you got all these aborted babies";
+//Seiga_4
+SCEN6LINE178= "VH: Hm... fertile, huh?";
+SCEN6LINE179= "> Seiga: Search for fertile object.";
+
+// Examine Dowel
+SCEN6LINE180= "> Seiga: Captchalogue cruxite dowel.";
+SCEN6LINE181= "> Seiga: Take cruxite to totem lathe.";
+
+// Mamz Takes Sink
+//Seiga_5
+SCEN6LINE182= "VH: Hey, what do you think you're doing!?";
+//Mamz_2
+SCEN6LINE183= "BH: ah ha ha ha ha";
+
+// Mamz Takes Toilet
+//Seiga_5
+SCEN6LINE184= "VH: You cretin, put down my toilet! Hey, stop that!";
+//Mamz_2
+SCEN6LINE185= "BH: pfft ha ha ha ha, time to sacrifice you to the toilet gods";
+
+// Machinary Lines
+MACH1LINE1= "A totem lathe should go here.";
+MACH1LINE2= "You can't access it from this angle.";
+MACH1LINE3= "An alchemiter should go here.";
+MACH1LINE4= "This requires CARVED CRUXITE DOWELS to work.";
+MACH1LINE5= "There are things in the way!\n\nPlease remove them first!";
+MACH1LINE6= "A cruxtruder should go here.";
+MACH1LINE7= "You're going to need help from your server to get that lid off.";
+MACH1LINE8= "Time is ticking...";
+
+
+////////////////////
+// Scenario 5 //////
+////////////////////
+SCEN5LINE1= "> Byakuren: Captchalogue urn.";
+SCEN5LINE2= "Creepy.";
+SCEN5LINE2a= "\n\nWell, looks like you have an urn now.";
+SCEN5LINE3= "> Byakuren: Contemplate about game.";
+SCEN5LINE4= "You decide that now would be a good time to converse to\nthe leader of the other team about the game. Tonight,\nafter all, is the night you all decided to settle this strange\nrivalry. You gave up your birthday just for this.";
+SCEN5LINE5= "You still can't believe you two used to be friends.";
+SCEN5LINE6= "> Byakuren: Return to room.";
+SCEN5LINE7= "> Byakuren: Contact VV.";
+SCEN5LINE8= "\c[Hijiri]virtuousBlossom [VB]\n\nstarted preaching to\n\n\c[Miko]victoriousVigilante [VV]";
+SCEN5LINE8a= "virtuousBlossom [VB] started preaching to victoriousVigilante [VV]";
+// Byak_4
+SCEN5LINE9= "VB: I'm sorry for most likely bothering\nyou but this is urgent, I expect you to\nrespond A.S.A.P.";
+// Miko_1
+SCEN5LINE10= "VV: yes, I'm aware that this is about the\nextra player.";
+// Miko_2
+SCEN5LINE11= "VV: honestly, I thought my other\nteammate was just numerically-\nchallenged when she kept referring to\nthe number of players as 13 rather\nthan 12.";
+// Byak_6
+SCEN5LINE12= "VB: So you knew? Or were you the one\nwho had coaxed Nue into letting their\nfriend enter in? Or were you using her\nto let someone else get on your side\nfor a better chance of winning?";
+// Miko_1
+SCEN5LINE13= "VV: ha, I'm really sorry, Hijiri, I'm not\nthat petty of a person. it certainly\nwasn't me who let them in. I'm not the\ntype to use someone for my own gains.";
+// Miko_2
+SCEN5LINE14= "VV: I would be winking as hard as I can\nright now, but you'd see that and you'd\nprobably get all hostile and suspicious.";
+// Byak_1
+SCEN5LINE15= "VB: ... Apologies but was that directed\nat me?";
+// Byak_6
+SCEN5LINE16= "VB: Nevermind, that's not important.";
+// Byak_5
+SCEN5LINE17= "VB: Moving on, since you knew about the\nsituation, why didn't you tell me?";
+// Miko_6
+SCEN5LINE18= "VV: I just found out. Miyako had told me\njust 5 minutes ago. it seems like there's\nanother copy that went to someone\nunlisted.";
+// Byak_5
+SCEN5LINE19= "VB: So, how do you expect for us to\nremedy this situation? It's extremely\nunwise to play the game with an uneven\namount of players. You should have\nknown that from Miyako as well.";
+// Byak_6
+SCEN5LINE20= "VB: She's the one leading everyone\naround, and she just happens to be\nunder your company, so I have the right\nto assume that you all should be quite\nknowledgeable about these things.";
+// Miko_6
+SCEN5LINE21= "VV: Hijiri, please, we can choose to work\ntogether. I honestly do not mind that\nso long as you don't harm anyone on my\nteam.";
+// Byak_6
+SCEN5LINE22= "VB: I figured. I volunteer the newest\naddition to serve first.";
+// Miko_2
+SCEN5LINE23= "VV: whoa there, soldier, since when did\nyou speak for the entire group?";
+// Byak_5
+SCEN5LINE24= "VB: When we were appointing leaders\n(i.e. you and I).";
+// Miko_4
+SCEN5LINE25= "VV: oh right, good point.";
+// Miko_6
+SCEN5LINE26= "VV: I'm just going to guess that you\nalready asked them, I trust that you\ndon't do anything to screw them over,\ncapiche?";
+SCEN5LINE27= "VV: because if one person gets the bad\nend of things, it will create a domino\neffect. we are only as strong as our\nweakest soldier, please, remember\nthat, for the sake of everyone else.";
+// Miko_1
+SCEN5LINE28= "VV: anyway, I'm going to try and set up\na small graph to clear things up and\nwhile I'm at this, it would be great if you\nset up a memo for everyone. I hope I'm\nnot being too demanding here.";
+// Byak_1
+SCEN5LINE29= "VB: Understood.";
+// Miko_1
+SCEN5LINE30= "VV: we can tell them about the situation\nthere. let's keep it organized if we want\nto do this in the most efficient way\npossible!";
+// Byak_6
+SCEN5LINE31= "VB: Okay, General. I got you the first\ntime.";
+// Miko_1
+SCEN5LINE32= "VV: I'm sure it won't be that bad.";
+// Byak_1
+SCEN5LINE33= "VB: Whatever you say.";
+SCEN5LINE34= "\c[Hijiri]virtuousBlossom [VB]\n\nceased preaching to\n\n\c[Miko]victoriousVigilante [VV]";
+SCEN5LINE34a= "virtuousBlossom [VB] ceased preaching to victoriousVigilante [VV]";
+SCEN5LINE35= "> Byakuren: Start that memo.";
+SCEN5LINE36= "Looks like you're in charge of setting up that memo.\n\nWow.";
+SCEN5LINE37= "Just interact with your computer whenever you're ready.";
+
+// Group Chat
+SCEN5LINE38= "> Byakuren: Create MEMO.";
+SCEN5LINE39= "\c[Hijiri]virtuousBlossom [VB]\c- opened public bulletin board #TEST";
+SCEN5LINE39a= "virtuousBlossom [VB] opened public bulletin board #TEST";
+SCEN5LINE40= "\c[Hijiri]CURRENT virtuousBlossom [CVB]\c- AT 1:23AM opened memo on\nboard #TEST.";
+SCEN5LINE40a= "CURRENT virtuousBlossom [CVB] AT 1:23AM opened memo on board #TEST.";
+SCEN5LINE41= "\c[Kyouko]CURRENT bombasticVisionary [CBV]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE41a= "CURRENT bombasticVisionary [CBV] RIGHT NOW responded to memo.";
+// Kyouko_3 x 2
+SCEN5LINE42= "CBV: HAHA FIRST PASTE!! !!";
+// Kyouko_1
+SCEN5LINE43= "CBV: post*";
+// Kyouko_2
+SCEN5LINE44= "CBV: sorry for the repeats i thought my\nmessage didnt get thru";
+// Kyouko_1
+SCEN5LINE45= "CBV: my mic kinda sucks";
+// Byak_1
+SCEN5LINE46= "CVB: That was quick...?";
+// Kyouko_1
+SCEN5LINE47= "CBV: that name though";
+// Kyouko_3
+SCEN5LINE48= "CBV: hold on\n\ni'm gonna fix it";
+SCEN5LINE49= "\c[Kyouko]CURRENT bombasticVisionary [CBV]\c- permanently renamed\npublic bulletin board to TOAST AND BANANAS.";
+SCEN5LINE49a= "CURRENT bombasticVisionary [CBV] permanently renamed public bulletin board to TOAST AND BANANAS.";
+// Byak_5
+SCEN5LINE50= "CVB: W H A T";
+// Kyouko_2
+SCEN5LINE51= "CBV: now were cooking with petrol!! !!";
+// Byak_5
+SCEN5LINE52= "CVB: W H A T  I S  T H A T  E V E N";
+// Kyouko_3
+SCEN5LINE53= "CBV: dont worry byakak i will get the\nOTHERS!! !!";
+// Byak_4
+SCEN5LINE54= "CVB: Um, okay.";
+SCEN5LINE55= "\c[Miko]CURRENT victoriousVigilante [CVV]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE55a= "CURRENT victoriousVigilante [CVV] RIGHT NOW responded to memo.";
+// Miko_2
+SCEN5LINE56= "CVV: wow that is an A+ name choice. a\ngold star to whoever came up with that.\ni'm guessing the theme is breakfast.";
+// Kyouko_2
+SCEN5LINE57= "CBV: thanks but no its not breakfast i\njust thought itd be cool";
+// Miko_1
+SCEN5LINE58= "CVV: no big deal. give me a second to get\nthe others on board.";
+SCEN5LINE59= "\c[Futo]? vanguardDemolitionist [?VD]\c- ? HOURS AGO responded to\nmemo.";
+SCEN5LINE59a= "? vanguardDemolitionist [?VD] ? HOURS AGO responded to memo.";
+// Miko_6
+SCEN5LINE60= "CVV: oh... uh. whoa.";
+// Futo_6
+SCEN5LINE61= "?VD: I am still not sure how to work this\nproperly, in all honesty! But I see this\nhere. Some sort of food fanatics board.";
+// Futo_1
+SCEN5LINE62= "?VD: Pray tell, why invite me here, bro?\nAre you in the mood to discuss breakfast\nwith the enemy?";
+// Miko_1
+SCEN5LINE63= "CVV: this is the memo Hijiri made. we're\nteaming up with them now since we have\n13 people.";
+// Futo_2
+SCEN5LINE64= "?VD: Oh, I am aware! I always found it\nstrange that you all referred to it as 12\nbut I knew it was 13. Furthermore, I\nwould like to mention that teaming up is\nquite odd to agree on at this point.";
+// Futo_3
+SCEN5LINE65= "?VD: Though, it is more than terrific that\nyou all have come to your senses and\nfinally listened to the Taomeister.";
+// Futo_2
+SCEN5LINE66= "?VD: I am referring to myself.";
+// Kyouko_2
+SCEN5LINE67= "CBV: oh huh!! !! so formal!! !!\n\n:D <-- for you";
+// Futo_6
+SCEN5LINE68= "?VD: Pardon, Miss Green-text, I am still\nnot too well-versed on modern coding\nlanguage. I cannot make sense of that list\nbit there.";
+// Futo_3
+SCEN5LINE69= "?VD: Although, I will definitely greet you\nwith a good tut-tut HELLO! Such as that,\nas you see right there.";
+// Kyouko_2
+SCEN5LINE70= "CBV: it was a little happy face for you!! !!\nyknow for being so rad.............";
+// Byak_6
+SCEN5LINE71= "CVB: She's not that rad.";
+// Futo_2
+SCEN5LINE72= "?VD: I digress, anyway, I have to make\nsure the golem I am building for HV does\nnot have some kind of self-destruction\nbug in the works.";
+// Futo_3
+SCEN5LINE73= "?VD: But I shall definitely keep this board\nsaved for future reference! Just\nanother addition to the many I am in with\nothers.";
+// Miko_1
+SCEN5LINE74= "CVV: hey, the bot'll look really great\nwhen it's done, by the way. you're really\ngetting much better at it, you know?";
+// Futo_1
+SCEN5LINE75= "?VD: Ahh, then I am excited to get it\nfinished! Thank you.";
+// Miko_2
+SCEN5LINE76= "CVV: nice. I'm still making the chart, so\ninvite more people, if you will, Hijiri.\nthank you.";
+// Miko_4
+SCEN5LINE77= "CVV: speaking of which, I'm not sure\nwhat's taking VH and DV so long.";
+// Futo_2
+SCEN5LINE78= "?VD: The latter is being scrote-gripped\nby the former, as usual. They shall come\naround, do not worry.";
+SCEN5LINE79= "?VD: Maybe they are playing Go\ntogether? VH is quite excellent at the\ngame, and I oft find myself wasting hours\nplaying with her. Perhaps the same is\nhappening to DV?";
+SCEN5LINE79a= "?VD: Nonetheless, 'til then, I bid thee\nadieu.";
+SCEN5LINE80= "\c[Futo]? vanguardDemolitionist [?VD]\c- ceased responding to memo.";
+SCEN5LINE80a= "? vanguardDemolitionist [?VD] ceased responding to memo.";
+// Byak_1
+SCEN5LINE81= "CVB: I thought you invited the others.";
+// Kyouko_4
+SCEN5LINE82= "CBV: i did!! !! most of them are busy!! !!";
+// Kyouko_2
+SCEN5LINE83= "CBV: one of them took a nap that much i\nknow because nazrin told me";
+// Kyouko_6
+SCEN5LINE84= "CBV: so i guess we shouldnt hope to be\nseeing them anytime here soon";
+// Kyouko_2
+SCEN5LINE85= "CBV: the others should be here tho!! !!";
+SCEN5LINE86= "\c[Murasa]current bootyDestroyer [CBD]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE86a= "current bootyDestroyer [CBD] RIGHT NOW responded to memo.";
+// Murasa_6B
+SCEN5LINE87= "CBD: Ahoy!";
+// Byak_1
+SCEN5LINE88= "CVB: Oh, hey.";
+// Byak_5
+SCEN5LINE89= "CVB: Did you mess with your surveillance\nsettings again? We told you not to do\nthat, remember? And you're still at it\nwith that fake mariner speak?";
+// Murasa_1B
+SCEN5LINE90= "CBD: Saury, I didn' come here to speak\nabout that. 'Tis my business if I wants\nto commune a certain way, savvy?";
+// Byak_6
+SCEN5LINE91= "CVB: You really should have gotten over\nthings a while ago, Captain. You do know\nyou're digging your own grave every\ntime you do this, right?";
+// Murasa_6B
+SCEN5LINE92= "CBD: Unimportant matters aside, be she\nin here?";
+// Byak_4
+SCEN5LINE93= "CVB: Wait, who?";
+// Murasa_5B
+SCEN5LINE94= "CBD: I'll take that as a no then.";
+SCEN5LINE95= "\c[Murasa]current bootyDestroyer [CBD]\c- ceased responding to memo.";
+SCEN5LINE95a= "current bootyDestroyer [CBD] ceased responding to memo.";
+// Byak_5
+SCEN5LINE96= "CVB: GOD, this is just incredibly\nU N O R G A N I Z E D.";
+// Byak_1
+SCEN5LINE97= "CVB: You know what? I'm just gonna\nleave this open here for a while.\nThere's way too many things going on\nand I really need to get my stuff ready.";
+// Kyouko_4
+SCEN5LINE98= "CBV: im sorry byakak i swear i invited\nthem............. but they all seem to be\nbusy with something.";
+// Kyouko_6
+SCEN5LINE99= "CBV: or napping";
+// Byak_5
+SCEN5LINE100= "CVB: I know, I know. It's not your fault,\nso don't worry too much about it.";
+// Kyoko_3
+SCEN5LINE101= "CBV: dont worry ill drag the capn back in\nhere even if its the last thing i do!! !!";
+// Kyouko_4
+SCEN5LINE102= "CBV: actually no theyre kinda weird to\nbe honest sooooooooooooo ill not get\ninto that mess";
+SCEN5LINE103= "\c[Nazrin]current hungryHoarder [CHH]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE103a= "current hungryHoarder [CHH] RIGHT NOW responded to memo.";
+// Naz_3
+SCEN5LINE104= "CHH: I heard there were some toast and\nbananas up in here.";
+// Kyouko_1
+SCEN5LINE105= "CBV: hi naz!! !! and no, sorry!! !!";
+// Naz_4
+SCEN5LINE106= "CHH: Oh no! This is the worst breakfast\nclub ever!\n\n|n";
+// Kyouko_2
+SCEN5LINE107= "CBV: heheheh!! !!";
+// Naz_1
+SCEN5LINE108= "CHH: Hijiri, I heard about what had\nhappened and to be quite honest with\nyou I think it's the better thing to do.";
+// Naz_2
+SCEN5LINE109= "CHH: I mean, we had 7 people on our team\nwhile they had 5.";
+// Naz_3
+SCEN5LINE110= "CHH: We weren't even to begin with\nanyway! ZING!\n\nEven then, I kind of wanted to go on my\nown, heh.";
+// Byak_5
+SCEN5LINE111= "CVB: I was planning on playing for both\nteams.";
+// Kyouko_1
+SCEN5LINE112= "CBV: whoa kinky!! !! btw this is a joke\n\nyes";
+// Byak_6
+SCEN5LINE113= "CVB: I mean, I'm sure I could've handled\nbeing on two teams... I would have been\nable to deal with them, no problem.";
+// Naz_2
+SCEN5LINE114= "CHH: Heh, yeah, for sure.";
+// Naz_1
+SCEN5LINE115= "CHH: There's not that many people in\nhere yet. You sure you invited\neveryone?";
+// Kyouko_4
+SCEN5LINE116= "CBV: capn was in here but they left. idk\nwhy tho. maybe they wanted to talk to\nthat VD person?? ??";
+// Naz_3
+SCEN5LINE117= "CHH: Yes, because she wants to talk to\nsomeone she hates. Perfect logic, you\nget the gold prize! Except, I took it,\nsorry.";
+// Kyouko_3
+SCEN5LINE118= "CBV: oh nooooooooooooo!! !!";
+// Naz_2
+SCEN5LINE120= "CHH: Hee hee hee.";
+SCEN5LINE121= "\c[Ichirin]CURRENT blissfulBillows [CBB]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE121a= "CURRENT blissfulBillows [CBB] RIGHT NOW responded to memo.";
+// Ichi_1
+SCEN5LINE122= "CBB: Oh no am I interrupting your food\nparty?";
+// Kyouko_3
+SCEN5LINE123= "CBV: yesssssssssssss!! !!";
+// Kyouko_1
+SCEN5LINE124= "CBV: i mean no but i was just pumped so i\nsaid yes!! !!";
+// Kyouko_2
+SCEN5LINE125= "CBV: anyway hello!! !! glad you answered\nthe message i left!! !!";
+// Ichirin_1
+SCEN5LINE126= "CBB: Hi & yeah i saw it so chill & dont\nworry";
+// Byak_1
+SCEN5LINE127= "CVB: Where's the Captain, by the way?\nShe came in here and she sounded\nextremely upset.";
+// Ichirin_6
+SCEN5LINE128= "CBB: She heard about the team changes\nor the changes in general whatever &\nkind of got a bit pissy?????? & then she\ntold me someone yanked her mail??????";
+// Ichirin_7
+SCEN5LINE130= "CBB: Happened just now too...... so im not\nsure whats going on there";
+// Byak_6
+SCEN5LINE131= "CVB: Oh, huh, she was just in here...";
+// Byak_1
+SCEN5LINE132= "CVB: So, you heard about the extra\nplayer and how we're disbanding teams\nnow, yes? This is important so we know\nwho to assign everyone to.";
+// Ichirin_1
+SCEN5LINE133= "CBB: Uh huh yeah i did & im guessing\nthats what this memo is for right?";
+// Ichirin_2
+SCEN5LINE134= "CBB: Its not that big of a problem so\nlong as we all have fun in the end i think";
+// Naz_3
+SCEN5LINE135= "CHH: As long as I win, duh. I'm going to get\nthe best prize.";
+// Kyouko_2
+SCEN5LINE136= "CBV: heh right right!! !! except im pretty\nsure everyone is supposed to get it\ntogether";
+// Naz_1
+SCEN5LINE137= "CHH: Yeah.";
+SCEN5LINE138= "\c[Nue]CURRENT heianBurden [CHB]\c- RIGHT NOW responded to memo.";
+SCEN5LINE138a= "CURRENT heianBurden [CHB] RIGHT NOW responded to memo.";
+SCEN5LINE139= "\c[Mamz]CURRENT ballsyHellraiser [CBH]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE140= "CURRENT ballsyHellraiser [CBH] RIGHT NOW responded to memo.";
+// Byak_2
+SCEN5LINE141= "CVB: Oh, speak of the devil.";
+// Mamz_3
+SCEN5LINE142= "CBH: oh hey sup";
+// Mamz_2
+SCEN5LINE143= "CBH: sorry for messin with yalls\nschedules and whatnot i didnt really\nmean to";
+// Byak_1
+SCEN5LINE144= "CVB: Yeah... that was rather\nunexpected. Just be glad everyone\nseems to be okay with it.";
+// Nue_6
+SCEN5LINE145= "CHB: hijiri! again, im really sorry about\nall this stuff.";
+// Miko_1
+SCEN5LINE146= "CVV: ah, perfect timing. BH, im guessing\nis the newest addition to our session?\nyour last name was Futatsuiwa, wasn't\nit? ";
+SCEN5LINE147= "CVV: I mean I certainly have not seen you\nprior to today.";
+// Mamz_1
+SCEN5LINE148= "CBH: yea sorry about all this";
+// Miko_6
+SCEN5LINE149= "CVV: you're going to be paired with VH.\nshe isn't here yet, but you'll know when\nshe is.";
+// Miko_1
+SCEN5LINE150= "CVV: she wanted to go first, and\ncoincidentally, you're going last, so...\nyeah.";
+// Miko_6
+SCEN5LINE151= "CVV: protip: just don't provoke her or\nanything like that, alright?";
+// Mamz_2
+SCEN5LINE152= "CBH: ey its quite alright\n\ni know my way around the uneasies";
+// Mamz_1
+SCEN5LINE153= "CBH: yknow yknow";
+// Nue_2
+SCEN5LINE154= "CHB: she's trying to tell you that VH is a\nbitch.";
+// Mamz_1
+SCEN5LINE155= "CBH: no biggie smalls";
+// Miko_3
+SCEN5LINE156= "CVV: well, either way, I shall wish you\nthe best of luck. I'll send all of you your\ndesignated clients and servers in\nprivate messages since not everyone is\nin here.";
+SCEN5LINE157= "\c[Soga]? halvedVoltage [?HV]\c- ? HOURS FROM NOW responded to\nmemo.";
+SCEN5LINE157a= "? halvedVoltage [?HV] ? HOURS FROM NOW responded to memo.";
+SCEN5LINE158= "\c[Seiga]CURRENT vivaciousHollows [CVH]\c- RIGHT NOW responded to\nmemo.";
+SCEN5LINE158a= "CURRENT vivaciousHollows [CVH] RIGHT NOW responded to memo.";
+// Soga_5
+SCEN5LINE159= "?HV: Oh my GOD, you ass monkeys really\ndid name it Toast and Bananas.";
+SCEN5LINE160= "\c[Seiga]CVH\c- banned \c[Soga]?HV\c- from responding to the memo.";
+SCEN5LINE160a= "CVH banned ?HV from responding to the memo.";
+// Kyouko_6
+SCEN5LINE161= "CBV: wtf you can do that?? ?? since\nwhen?? ??";
+// Seiga_3
+SCEN5LINE162= "CVH: I know my way around things~";
+// Seiga_2
+SCEN5LINE163= "CVH: And sorry for being late, I was\nhelping a certain someone out with her\ninstallation and such. I've already got\nher things nice and ready.";
+// Seiga_1
+SCEN5LINE164= "CVH: That aside, it's not good to\nclutter up the board with strange\nmessages, especially ones that sound\nas profane as HV's, all the time. Don't\nmind her.";
+// Seiga_2
+SCEN5LINE165= "CVH: She's busy at the moment anyway.\nNow, where is my darliiiing server\nplayer~?";
+// Mamz_1
+SCEN5LINE166= "CBH: oh you mean me";
+SCEN5LINE167= "CBH: cuz thats me";
+// Seiga_6
+SCEN5LINE168= "CVH: Hm. You certainly aren't very\neloquent, are you?";
+// Mamz_6
+SCEN5LINE169= "CBH: uh i dont see how thats important";
+// Seiga_2
+SCEN5LINE170= "CVH: True, we don't have to talk much\nwhen you're serving for me anyway,\nwhich will be a good thing, for both of\nus, I take it.";
+// Seiga_6
+SCEN5LINE171= "CVH: Honestly, they should have\nassigned someone better. I can't believe\nyou're the reason this memo was even\ncreated for.";
+// Mamz_6
+SCEN5LINE172= "CBH: whoa turn down the rude\n\nno need to be so agonistic";
+// Seiga_2
+SCEN5LINE173= "CVH: Maybe you should shape up first.\nMy problem is that you might not have\nthe proper reading comprehension\nskills necessary to even read the guide\nfor this game.";
+// Seiga_6
+SCEN5LINE174= "CVH: And, in turn, you would probably\nend up ruining my chances with this\ngame.";
+// Mamz_3 (Yoshika)
+SCEN5LINE175= "CBH: \"No, I understand completely, you\nwish for me to talk like this, in a super\npretentious and psuedo-dignified\nmanner, so we may exchange boring\nretorts at one another!\"";
+// Mamz_2 (Futo)
+SCEN5LINE176= "CBH: \"Or perchance even in a tone such\nas this, broham. I can talk like a total\ndweebmaster for you, if that is what\nyou consider to be fulfilling for an\nanchorite such as yourself!\"";
+// Mamz_5 (Murass)
+SCEN5LINE177= "CBH: \"Wha' about this? Ain't this\nappealin'? I've got me wee accent goin'\non t' pair up wito me super lame\nchivalrous douche bag natter. Yeah,\nye'd love this every message.\"";
+// Nue_2
+SCEN5LINE178= "CHB: heh, that was actually pretty\ngood.";
+// Ichirin_7
+SCEN5LINE179= "CBB: Deadass though it was but i dont\nthink you guys should  be fighting here\nin the memo";
+// Seiga_2
+SCEN5LINE180= "CVH: I just don't like dealing with\nlow-lives. It's not a very good image to\nput yourself up to. I'm still wondering\nwhether or not they can even read.";
+// Seiga_3
+SCEN5LINE181= "CVH: Oh yeah, pink text is atrocious, by\nthe way.";
+// Ichirin_6
+SCEN5LINE182= "CBB: Yes because light blue text is\ninfinitely better?? wow??";
+// Seiga_2
+SCEN5LINE183= "CVH: Oh no, that was such a sick burn~\nGosh, look at all these winners I'm going\nto be teamed up with!";
+// Nue_6
+SCEN5LINE184= "CHB: yeah you guys are kind of just... i\ndon't even know... i'm not even gonna\npry.";
+// Seiga_2
+SCEN5LINE185= "CVH: Now, that I've seen the barbarian\nthat is to be my server player, I'm going\nto take my leave so I can do a few\nthings.";
+SCEN5LINE186= "CVH: You're free to just talk as\nyourself. I'd rather have a calm hick\nserve me rather than a crazy,\nsarcastic one.";
+// Seiga_1
+SCEN5LINE187= "CVH: With that said, goodbye for now~";
+// Mamz_6
+SCEN5LINE188= "CBH: yeah whatever dude";
+SCEN5LINE189= "\c[Seiga]CURRENT vivaciousHollows [CVH]\c- ceased responding to\nmemo.";
+SCEN5LINE189a= "CURRENT vivaciousHollows [CVH] ceased responding to memo.";
+// Nue_3
+SCEN5LINE190= "CHB: wow. she was certainly someone.\nall high and mighty.";
+// Nue_2
+SCEN5LINE191= "CHB: you've got your hands full.";
+// Mamz_4
+SCEN5LINE192= "CBH: i guess this is what i get for comin\nin late huh?";
+// Nue_6
+SCEN5LINE193= "CHB: i guess you should just bite the\nbullet for now. it's temporary anyway!";
+// Naz_1
+SCEN5LINE194= "CHH: Actually, she'll be sticking around\nnearby for as long as we play this game.";
+// Naz_2
+SCEN5LINE195= "CHH: Unless she dies.";
+// Byak_6
+SCEN5LINE196= "CVB: Nazrin, can I ask you not to say\nsuch things, please?";
+// Mamz_2
+SCEN5LINE197= "CBH: awh man whatever its all just sass\nanyway, so its not that big of a problem";
+// Naz_1
+SCEN5LINE198= "CHH: I don't know about that, but you're\nfree to be optimistic all you want. She's\nnot my client.";
+// Miko_4
+SCEN5LINE199= "CVV: none of you totally listened to me\nwhen I said not to cross her. you all\nreally should learn to listen. we're all\nhuman here, right? we should know\nbetter.";
+// Mamz_5
+SCEN5LINE200= "CBH: naw it was just all bark no bite, i\nhonestly think it aint somethin to be all\nriled up over";
+// Kyouko_6
+SCEN5LINE201= "CBV: you gotta admit she was being\nsnooty. she even said she already put\ndown her clients stuff before we even\ngot started like... i dunno that just\nseems super shady to me!! !!";
+// Mamz_6
+SCEN5LINE202= "CBH: ill just set my thing up for her now\nso she wont be all up yellin in my face\nlater";
+// Miko_6
+SCEN5LINE203= "CVV: GOD. alright, just don't do anything\nstupid like that again, please. especially\nnot with her.";
+// Mamz_6
+SCEN5LINE204= "CBH: to be honest i was kind of hopin to\nhave made her laugh but i guess that\nbackfired";
+// Ichirin_4
+SCEN5LINE205= "CBB: Maybe you should apologize to her\nlater??? i mean maybe thatll ease her\nup????";
+// Kyouko_6
+SCEN5LINE206= "CBV: still shady!! !!";
+// Miko_6
+SCEN5LINE207= "CVV: just be patient with them.";
+SCEN5LINE208= "> Byakuren: Let them deal with things themselves.";
+SCEN5LINE209= "Looks like the memo is dying down a bit. There really is\nnothing left for you to do but wait for your turn to serve.";
+SCEN5LINE210a= "You should also check your private messages, since the\nserver/client order was sent to you.";
+SCEN5LINE210b= "Haha. Very funny. A barrel of laughs.\n\nShe must feel pretty good about herself drawing you like\nthat.";
+SCEN5LINE210c= "Either way, she did make the list and the order is fine.\nHopefully everything goes according to plan, the last thing\nyou need is some sort of hiccup this late in the process.";
+SCEN5LINE211= "Now would be a good time to grab something for your STRIFE\nSPECIBUS,  but there's no need to rush.\n\nYou're never in a rush to do things anyway.";
+SCEN5LINE212= ".";
+SCEN5LINE212a= "..";
+SCEN5LINE212b= "...";
+SCEN5LINE213= "> Byakuren: Check on memo again.";
+SCEN5LINE214= "Whoa, wait!\n\nLooks like the memo hasn't died down completely!";
+// Miko_5
+SCEN5LINE215= "?VV: TWO MEMBERS ON OUR TEAM JUST\nDIED";
+// Miko_4
+SCEN5LINE216d= "?VV: I MEAN WE DON'T HAVE TEAMS\nANYMORE BUT";
+// Miko_6
+SCEN5LINE217= "?VV: OH GOD WHAT";
+// Byak_6
+SCEN5LINE218= "CVB: Calm down, what are you even\ntalking about? I leave for two seconds\nand suddenly things go awry? Maybe\nyou should explain your little prank,\nToyosatomimi.";
+// Miko_5
+SCEN5LINE219= "?VV: WHAT THE HECK IS THERE TO\nEXPLAIN? THEY DIED";
+SCEN5LINE220= "?VV: ARHGH";
+// Miko_6
+SCEN5LINE221= "?VV: excuse me.";
+SCEN5LINE222= "\c[Miko]? victoriousVigilante [?VV]\c- ceased responding to memo.";
+SCEN5LINE222a= "? victoriousVigilante [?VV] ceased responding to memo.";
+// Byak_6
+SCEN5LINE223= "CVB: Does anybody else want to join in on\nwhatever this is? No? Okay, then. As I\nam, you should all just forget about\nwhatever that was and go about\npreparing.";
+SCEN5LINE224= "\c[Hijiri]CURRENT virtuousBlossom [CVB]\c- ceased responding to\nmemo.";
+SCEN5LINE224a= "CURRENT virtuousBlossom [CVB] ceased responding to memo.";
+SCEN5LINE225= "> Byakuren: Be the other girl.";
+SCEN5LINE216= ".";
+SCEN5LINE216a= "..";
+SCEN5LINE216b= "...";
+SCEN5LINE227= "Getting ready to install \c[DarkGrey]SKI\c[Grey]MA\c-. Please wait.";
+SCEN5LINE227a= "Getting ready to install SKIMA. Please wait.";
+
+////////////////////
+// Scenario 4 //////
+////////////////////
+SCEN4LINE1= "A girl sits alone in her bedroom, planning to talk to someone.\nHer dead-looking eyes suggest she hasn't slept in a long\ntime as she had been fretting over the game for the past\nfew weeks.";
+SCEN4LINE2= "She appears to have been the one who had asked for others\nto procure the code as she knew exactly where to obtain it.\nShe knew a lot of things and had no trouble expressing them\nat all.";
+SCEN4LINE3= "Let's see what ROTWIENER McDUNKLES' actual name is.\n\nPull out that NAMETAG, if you please?";
+SCEN4LINE4= "YOSHIKA MIYAKO";
+SCEN4LINE5= "> Be Yoshika.";
+SCEN4LINE6= "Your name is YOSHIKA and you've got an INSATIABLE HUNGER\nfor LITERATURE. You love nothing more than GETTING DOWN\nAND DIRTY with CREATIVE WRITING, specifically of the POETRY\ncategory.";
+SCEN4LINE7= "Your topics often involve DYSOTOPIAS and other rather\nDARK, DEPRESSING TOPICS. You often base your writing on the\nmany DISTRESSING VISIONS you witness in your wake.";
+SCEN4LINE8= "Other times, you write FOOD REVIEWS. When you're not\nwriting, you're obviously EATING as if it were your LAST\nMEAL. You are quite COENACULOUS.";
+SCEN4LINE9= "You go by the preachhandle \c[Yoshika]deadlyVerse\c-.";
+SCEN4LINE9a= "You go by the preachhandle deadlyVerse.";
+SCEN4LINE10= "You tend to \c[Yoshika]speak as a river flows, with no pauses as if\n\c[Yoshika]writing prose.";
+SCEN4LINE10a= "You tend to speak as a river flows, with no pauses as if writing prose.";
+SCEN4LINE11= "Anyway, you should go about your business.";
+SCEN4LINE12= "> Yoshika: Converse with leader.";
+SCEN4LINE13= "\c[Yoshika]deadlyVerse [DV]\n\nstarted preaching to\n\n\c[Miko]victoriousVigilante [VV]";
+SCEN4LINE13a= "deadlyVerse [DV] started preaching to victoriousVigilante [VV]";
+// Yoshika_1
+SCEN4LINE14= "DV: Good morrow, Prince, I'm aware it's\nrather late but I have to tell you of this\nas it's rather urgent.";
+// Miko_1
+SCEN4LINE15= "VV: at ease, Miyako. you can tell me.\n\nwhat is it?";
+// Yoshika_4
+SCEN4LINE16= "DV: Well, it appears, I had a slight\nmiscalculation... about our fate with\nthis game?";
+// Miko_2
+SCEN4LINE17= "VV: oh, how so? either way, I'm sure we'll\ndo just fine no matter what it is! we're\ndestined to beat Hijiri.";
+// Yoshika_1
+SCEN4LINE18= "DV: No, it's not that, it's more that\nthere will be thirteen players rather\nthan twelve as I'd previously stated.";
+// Miko_6
+SCEN4LINE19= "VV: huh, 13? are you sure about that? I\nhonestly thought that the game only\nallowed even numbers of players.";
+// Yoshika_6
+SCEN4LINE20= "DV: Something just so unexpected as if\none were venturing across the span of\nan entire highway only to realize you've\nbeen following the wrong road signs,\nunderstand?";
+// Miko_4
+SCEN4LINE21= "VV: yes, I think so. though, i have to say,\nthis is a rather confusing ordeal.";
+// Yoshika_6
+SCEN4LINE22= "DV: Yes, it's true that it's quite the\npredicament, as it's not an even\nnumber, but either way, we'll be\ngreatly imbalanced if we continue on\nwith teams.";
+// Yoshika_1
+SCEN4LINE23= "DV: Perhaps there could be a reason as\nto us being uneven, as it would be unfair\nto rule out a player, especially if\nsomehow, they got their copy to work,\nright?";
+// Miko_1
+SCEN4LINE24= "VV: yeah, i see truth in that. we don't\nhave to do teams then. i'm fine with\ndaisy chaining with those guys.";
+// Miko_6
+SCEN4LINE25= "VV: I honestly just hope Hijiri will be okay\nwith that too. she's kind of uptight and\nall.";
+// Yoshika_1
+SCEN4LINE26= "DV: I already told the hermit about it, in\nfact, I have a feeling that she will be\npestering me about it right now, so I will\nhave to ask for you to excuse me, if\nthat's alright.";
+// Miko_1
+SCEN4LINE27= "VV: it's fine.";
+SCEN4LINE28= "VV: but, before I let you go, do tell me\nthis: does your modified copy work? I\nmean, we're using your old one as a base,\nand I'd like to know if it's functional.";
+// Yoshika_1
+SCEN4LINE29= "DV: Yes, it works. I just had to have HH\nchange a few things, but they got the\njob done quite well.";
+// Miko_3
+SCEN4LINE30= "VV: that's good. looks like we're all\nwell-prepared and ready to go.";
+// Yoshika_1
+SCEN4LINE31= "DV: Right.";
+SCEN4LINE32= "\c[Yoshika]deadlyVerse [DV]\n\nceased preaching to\n\n\c[Miko]victoriousVigilante [VV]";
+SCEN4LINE32a= "deadlyVerse [DV] ceased preaching to victoriousVigilante [VV]";
+SCEN4LINE33= "> Yoshika: Answer... that one.";
+SCEN4LINE34= "\c[Seiga]vivaciousHollows [VH]\n\nstarted preaching to\n\n\c[Yoshika]deadlyVerse [DV]";
+SCEN4LINE34a= "vivaciousHollows [VH] started preaching to deadlyVerse [DV]";
+// Seiga_2
+SCEN4LINE35= "VH: Yoshika~";
+// Yoshika_1
+SCEN4LINE36= "DV: Hello.";
+// Seiga_1
+SCEN4LINE37= "VH: Did you tell the prince about it? Your\nvision, I mean. Or dreams, whatever you\nwant to call them.";
+// Yoshika_1
+SCEN4LINE38= "DV: Yes, I have informed her of the\nsituation, and she took it quite well.";
+// Seiga_3
+SCEN4LINE39= "VH: That's wonderful~ But, it's truly a\nbother, is it not? Knowing that this new\naddition is not on our side?";
+// Seiga_2
+SCEN4LINE40= "VH: If they were, I would've heard wind of\nthem.";
+// Yoshika_1
+SCEN4LINE41= "DV: I agree, it's a little concerning.";
+// Seiga_2
+SCEN4LINE42= "VH: Yes, I knew you'd say something like\nthat! That's why I prepared something\nbeforehand. Just for you, Yoshika. I'm\nsure you'll like it.";
+// Yoshika_1
+SCEN4LINE43= "DV: Oh, you knew about the 13th player?";
+// Seiga_3
+SCEN4LINE44= "VH: Well, no, I'm referring to something\nelse. I've been meaning to even out the\nplaying field.\n\nIf you get what I mean.";
+// Yoshika_1
+SCEN4LINE45= "DV: Are you referring to people on Hijiri's\nside, despite my constant reminders of\nhow you shouldn't meddle with them?";
+// Seiga_1
+SCEN4LINE46= "VH: Yes. Two of them.";
+// Yoshika_5
+SCEN4LINE47= "DV: I've warned you before not to start\nquarrels with them, for our sakes too...\nThink, what if they end up turning\nhostile on us? That's something I'd\nwant us to avoid...";
+// Seiga_2
+SCEN4LINE48= "VH: If there's less of them, then we'll\neventually gain the upper hand.\nEspecially towards the end, don't you\nthink so? Like hell I'll share a prize with\nHijiri and her cohorts.";
+// Yoshika_6
+SCEN4LINE49= "DV: You are aware that the reason we\nrequire their assistance is to make our\nentry easier, as well as their grounded\ncombat experience... we really need\ntheir trust.";
+// Yoshika_5
+SCEN4LINE50= "DV: Most of them are going to make the\ngame a cakewalk for all of us, or\nperhaps you're doing this as some sort\nof conquest for revenge? Revenge only\nbegets more revenge!";
+// Seiga_4
+SCEN4LINE51= "VH: Fine, I won't do anything weird. I was\njust kidding anyway. Geez, Yoshika,\nyou're such a buzz-kill, you know that?";
+// Seiga_2
+SCEN4LINE52= "VH: But, that's okay, I guesssss~ I mean,\nyou shouldn't be scolding me when\nyou're also a pretty good liar.";
+// Yoshika_1
+SCEN4LINE53= "DV: ...";
+SCEN4LINE53a= "Well.";
+// Yoshika_4
+SCEN4LINE54= "DV: I'd love to keep chatting with you,\nbut I have to go, something came up.";
+// Seiga_2
+SCEN4LINE55= "VH: You're so full of shit sometimes. But,\nthat's to be expected since we were all\nborn and raised by hypocrites. We'll be\nlike this from the cradle to the grave.";
+SCEN4LINE56= "VH: Spawns of war and peace, like a\nconfused rap-country mashup. We're\njust stories and disciples in the end. Like\nhistory, which is what we will be if we\ndon't get rid of them.";
+// Yoshika_1
+SCEN4LINE57= "DV: That was the most strangely\npoetic, albeit rather cryptic, message\nI've ever gotten from you.";
+// Seiga_3
+SCEN4LINE58= "VH: I think it's adorable that you're trying\nto dodge the point here~";
+// Yoshika_6
+SCEN4LINE59= "DV: You genuinely perceive me to be a\nliar?";
+// Seiga_2
+SCEN4LINE60= "VH: You know your way around wordplay,\nso of course I do. I'm not saying it's a bad\nthing, since it's a useful skill. It\ncertainly worked for you.";
+// Seiga_3
+SCEN4LINE61= "VH: We all have a place to go when we die,\nbut you seemed to have avoided it. Aren't\nyou quite the bastard~";
+// Seiga_2
+SCEN4LINE62= "VH: You should teach me.";
+// Yoshika_1
+SCEN4LINE63= "DV: That's rather ironic.";
+// Seiga_1
+SCEN4LINE64= "VH: What was that?";
+// Yoshika_1
+SCEN4LINE65= "DV: It's nothing, it's unimportant.";
+// Yoshika_3
+SCEN4LINE66= "DV: You are just overthinking things.";
+// Seiga_4
+SCEN4LINE67= "VH: I know you're just saying that\nbecause you hate talking to me, don't\nyou? Is it because I called you a liar? :(";
+SCEN4LINE68= "VH: See? That's a sad face!";
+// Seiga_6
+SCEN4LINE69= "VH: Ugh, fine!\n\nI guess it'd be nice if we had an easy\nstart, I suppose.";
+// Seiga_4
+SCEN4LINE70= "VH: You always mention that you were\ngoing to die later, though, I highly doubt\nit considering that you saw a \"vision\"\nabout it, so you should know how to\navoid it, no?";
+// Seiga_5
+SCEN4LINE71= "VH: Come on, Yoshika, you're smart. And\nquit avoiding me so much!";
+// Yoshika_1
+SCEN4LINE72= "DV: I am aware but visions always go as\npredicted, I cannot stop them. That's\nout of my control.";
+// Yoshika_6
+SCEN4LINE73= "DV: One of the reasons I want to play\nthis game is to be rid of this...\nhindrance... once and for all, as being an\nexempt the last time is perhaps the\nreason I am here now.";
+// Seiga_2
+SCEN4LINE74= "VH: Last time? What are you talking\nabout? When we were dividing into\nteams or... does it run deeper than\nthat? I can never really read you too\nwell, so please enlighten me.";
+// Yoshika_4
+SCEN4LINE75= "DV: Apologies, I do not have time to\ncontinue responses, so excuse me, I\nreally have to retrieve my mail, for I\nhave many reasons to believe it could\nbe urgent.";
+// Seiga_4
+SCEN4LINE76= "VH: Oh.";
+SCEN4LINE76a= "\n\nFine.";
+SCEN4LINE77= "VH: Yoshika, I'm sorry. Let me make it up\nto you, alright? I'll set up your things\nwhile you go check your mail.";
+// Yoshika_1
+SCEN4LINE78= "DV: I suppose that's fine.\n\nThank you for understanding.";
+SCEN4LINE79= "\c[Yoshika]deadlyVerse [DV]\n\nceased preaching to\n\n\c[Seiga]vivaciousHollows [VH]";
+SCEN4LINE79a= "deadlyVerse [DV] ceased preaching to vivaciousHollows [VH]";
+SCEN4LINE80= "> Yoshika: Retrieve mail.";
+SCEN4LINE81= "> Yoshika: Be someone else.";
+SCEN4LINE82= "You must choose another player.";
+SCEN4LINE83= "> Be Byakuren once more.";
+
+
+////////////////////
+// Scenario 3 //////
+////////////////////
+SCEN3LINE1= "> Be Byakuren again.";
+SCEN3LINE2= "You are BYAKUREN again.";
+SCEN3LINE3= "> Byakuren: Observe neighborhood.";
+SCEN3LINE4= "Ah! You can see the package being delivered from your\nbalcony.\n\n\nHonestly, other than the mail carriers...";
+SCEN3LINE5= "The roads are empty.";
+SCEN3LINE6= "Blood skims the voids in your veins, pumping in uniform\nprecision, as if grazing the hollows of a cut lotus, or say, a\ndespoiled temple.";
+SCEN3LINE7= "A primordial note is produced.";
+SCEN3LINE8= "It's the one Hesitancy plays to keep its followers at bay.";
+SCEN3LINE9= "It is your sixteenth birthday, and as with all fifteen\npreceding it, something feels missing from your life.";
+SCEN3LINE10= "The game presently eluding you is only the latest test of\nfaith in the tomes of an unseen anchorite, one to engender\na sense not of fidelity, but of skepticism. Her stark chants\nare those less of a priest than a common tramp.";
+SCEN3LINE11= "Her gospel is Validation itself. It is a mystery dispersing\naltogether, like the moon's feigned facade, with even one\nstone of absolution cast into its oceans. It is the most\nprofane gospel of all.";
+SCEN3LINE12= "\"It is easy to hate and it is difficult to love. This is how the\nwhole scheme of things works.\"\n\n-Hotei";
+SCEN3LINE13= "Yes, you are positive Hotei said that.";
+SCEN3LINE14= "One hundred percent positive.";
+SCEN3LINE15= "You have a feeling it's going to be a long day.";
+SCEN3LINE16= "Hopefully, this mail carrier has delivered the RIGHT PACKAGE,\nthe one you've been waiting for ALL DAY.\n\nYou have no idea why they have separate people for this.";
+SCEN3LINE17= "> Byakuren: Retrieve package. Again!";
+//Examine TIGER DOLL
+SCEN3LINE18= "It smells like beer. Being celibate, you totally abhor any\nsort of drinking and this type of stuff would usually bother\nyou, but you make a special exception for this...";
+//Get the Second Package
+SCEN3LINE19= "It looks like your package has finally arrived. This time, it's\nfrom THE RIGHT SENDER.\n\nYou're so excited, you're 'bout to blow your shit right here.";
+SCEN3LINE20= "> Byakuren: Captchalogue package.";
+SCEN3LINE21= "> Byakuren: Return to room.";
+SCEN3LINE22= "Go to your room so you can open it!\n\nHopefully, it's not another TIGER DOLL.";
+//Try the door
+SCEN3LINE23= "This leads outdoors. No reason to go out there yet.";
+//Open that PACKAGE, you little shit!
+SCEN3LINE24= "> Byakuren: Open package.";
+SCEN3LINE25= "You are ready to open this package since you know for sure\nthat this is the right one and will not contain any other\ntiger dolls.";
+SCEN3LINE26= "You finally got it, your \c[DarkGrey]SKI\c[Grey]MA\c- CDs, or whatever it says on\nthe covers. The package contains your SERVER and CLIENT\nCOPIES. You've been waiting weeks for this.";
+SCEN3LINE26a= "You finally got it, your SKIMA CDs, or whatever it says on the covers. The package contains your SERVER and CLIENT COPIES. You've been waiting weeks for this.";
+SCEN3LINE27= "> Byakuren: Read attached note.";
+SCEN3LINE28= "The note on the box just says:\n\"\c[Nazrin]Thanks for the payment last week. From Nazrin.\c-\"\n\nSo poetic, it almost makes you want to cry.";
+SCEN3LINE28a= "The note on the box just says: \"Thanks for the payment last week. From Nazrin.\" So poetic, it almost makes you want to cry.";
+SCEN3LINE29= "> Byakuren: Captchalogue CDs.";
+SCEN3LINE30= "> Byakuren: Test the game out.";
+SCEN3LINE31= "Now that it's here, you figure it's time to test it out to see\nif it even works.";
+SCEN3LINE32= "> Byakuren: Take note of beeping.";
+SCEN3LINE33= "Welp, you were busy but you guess you have to answer\nwhoever that is, out of politeness. Besides, the game can\nwait. You didn't plan on launching first anyway.";
+//Consult Computer
+SCEN3LINE34a= "You should probably pick up that package before preaching\nto your friends.";
+SCEN3LINE34= "> Byakuren: Answer the nuisance.";
+SCEN3LINE35= "\c[Nue]heianBurden [HB]\c-\n\nstarted preaching to\n\n\c[Hijiri]virtuousBlossom [VB]\c-";
+SCEN3LINE35a= "heianBurden [HB] started preaching to virtuousBlossom [VB]";
+//Nue_1
+SCEN3LINE36= "HB: hey uh... hijiri.";
+//Byak_1
+SCEN3LINE37= "VB: What is it? Is something wrong with\nyour copies? Or did you not receive\nthem yet?";
+//Nue_4
+SCEN3LINE38= "HB: i was kind offf wonderiiing if my\nfriend could join in?";
+//Byak_1
+SCEN3LINE39= "VB: Join in what? The game?";
+//Nue_6
+SCEN3LINE40= "HB: yeah. i mean, like, she already has\nher own copy and stuff.";
+//Byak_6
+SCEN3LINE41= "VB: How? Did Nazrin give it to her? And\nhow in the world did you do that so\nearly?";
+//Nue_4
+SCEN3LINE42= "HB: i kind of sent her a rip of my files.";
+//Nue_6
+SCEN3LINE43= "HB: and i don't know, mail just gets sent\nhere pretty fast. i don't have regular\nmail carriers around here, mind you.";
+//Byak_6
+SCEN3LINE44= "VB: Why are you asking now? Oh, no, I\nunderstand. I guess it's a little too late\nfor me to tell you that we already had\nteams set up, right?";
+//Byak_5
+SCEN3LINE45= "VB: We have to let her play now since\nshe's already gotten a hold of the files\nand has knowledge of the things we're\ngoing to do.";
+//Nue_4
+SCEN3LINE46= "HB: i'm sorry...?";
+//Byak_5
+SCEN3LINE47= "VB: Actually, you know, what? It's fine,\nHoujuu, it really is. Just tell her she has\nto serve first as compensation.";
+//Nue_6
+SCEN3LINE48= "HB: so she can join in?";
+//Byak_5
+SCEN3LINE49= "VB: Well, yes, you already gave it to her\nand everything. I have to consult the\nother team about it though. It's going\nto be a hassle but I don't mind, really.";
+//Byak_1
+SCEN3LINE50= "VB: Just don't send anymore copies to\nothers, okay? You're already taking up\nenough space as it is, sad to say.";
+//Nue_1
+SCEN3LINE51= "HB: i promise i wont.";
+//Nue_4
+SCEN3LINE52= "HB: thanks, though.";
+SCEN3LINE53= "HB: and uh, im sorry, i guess.";
+SCEN3LINE54= "\c[Hijiri]virtuousBlossom [VB]\c-\n\nceased preaching to\n\n\c[Nue]heianBurden [HB]\c-";
+SCEN3LINE54a= "virtuousBlossom [VB] ceased preaching to heianBurden [HB]";
+
+//Back to Nue's Ugly Face
+SCEN3LINE55= "> Nue: Realize how scary that was.";
+SCEN3LINE56= "You are Nue and you have always been aware of how\nintimidating Byakuren can be. It seems to be a trait of hers,\nthough you know she's rather easy to forgive, so you try\nnot to dwell on the subject too much.";
+SCEN3LINE57= "You have some celebrating to do, after all. You got her to\napprove your request. In hindsight, you should have done\nthis earlier, but you were too busy being nagged by\neveryone else, so you didn't have the time to.";
+SCEN3LINE58= "> Nue: Answer not-a-stoner friend.";
+SCEN3LINE59= "\c[Mamz]ballsyHellraiser [BH]\c-\n\nstarted badgering\n\n\c[Nue]heianBurden [HB]\c-";
+SCEN3LINE59a= "ballsyHellraiser [BH] started badgering heianBurden [HB]";
+//Mamz_1
+SCEN3LINE60= "BH: howdy nue howd it go";
+//Mamz_1
+SCEN3LINE61= "BH: i mean like this whole game thing\nthat youre makin me play";
+//Mamz_2
+SCEN3LINE62= "BH: im honestly ok if they said no, ill just\ncheer you on from the sides if thatd be\nthe case haha";
+//Nue_1
+SCEN3LINE63= "HB: no no, she said yes, like she's okay\nwith letting you play.";
+//Mamz_3
+SCEN3LINE64= "BH: oh for real";
+//Nue_6
+SCEN3LINE65= "HB: yeah, but, you have to serve first!\nthat's what she said.";
+//Mamz_1
+SCEN3LINE66= "BH: its okay im fine with that";
+//Nue_3
+SCEN3LINE67= "HB: well, at least i won't be alone with a\nbunch of dweebs!!";
+//Mamz_2
+SCEN3LINE68= "BH: haha for sure im kinda just glad i\ndont have to cancel the torrent then\ncuz i kinda waited a while for it";
+//Mamz_1
+SCEN3LINE69= "BH: i mean it finished and its right here\nand im starin at it";
+//Mamz_2
+SCEN3LINE70= "BH: this is a huge file like bonkers huge\nand whatever";
+//Nue_4
+SCEN3LINE71= "HB: does it work? i mean, nazrin said it\nshouldn't work but... oh crap, if it\ndoesn't then i'm gonna have to tell hijiri\nto not tell the other team... i'm stupid\nsorry.";
+//Mamz_1
+SCEN3LINE72= "BH: its fine, i mean it works just fine";
+//Nue_1
+SCEN3LINE73= "HB: what really?";
+//Mamz_2
+SCEN3LINE74= "BH: yeah thats why i told you not to\nworry so much hahaha";
+//Nue_2
+SCEN3LINE75= "HB: wait hold on i want to rub this in\nnazrin's stupid face.";
+//Mamz_6
+SCEN3LINE76= "BH: who's this nazrin you keep mentionin?\nare they giving you trouble or anythin like\nthat?";
+//Nue_6
+SCEN3LINE77= "HB: sortaaa, she goes by HH and always\nkinda ego-trips whenever she opens her\nmouth. and she gets mad easily too... so\nit's kinda hard talking to her sometimes.";
+//Mamz_3
+SCEN3LINE78= "BH: ohh ahaha good luck with them then\nyea, they sound like someone who needs\nto be taken down a peg or two";
+//Nue_3
+SCEN3LINE79= "HB: haha, thank you...";
+SCEN3LINE80= "\c[Nue]heianBurden [HB]\c-\n\nceased preaching to\n\n\c[Mamz]ballsyHellraiser [BH]\c-";
+SCEN3LINE80a= "heianBurden [HB] ceased preaching to ballsyHellraiser [BH]";
+SCEN3LINE81= "> Nue: Brag to Nazrin.";
+SCEN3LINE82= "\c[Nue]heianBurden [HB]\c-\n\nstarted preaching to\n\n\c[Nazrin]hungryHoarder [HH]\c-";
+SCEN3LINE82a= "heianBurden [HB] started preaching to hungryHoarder [HH]";
+//Nue_3
+SCEN3LINE83= "HB: hey, naz.";
+//Naz_1
+SCEN3LINE84= "HH: What do you want from me?";
+//Nue_2
+SCEN3LINE85= "HB: it worked, by the way. the torrent?\nthe pirating? it worked.";
+//Naz_2
+SCEN3LINE86= "HH: Ha, yeah right. I put anti-piracy\nblockade on that thing. Like hell anyone\ncould break through that. I don't\nbelieve you.";
+//Nue_2
+SCEN3LINE87= "HB: well you must have messed up\nsomewhere because it's working for\nher. i guess you're not as smart as you\nthink you are.";
+//Naz_1
+SCEN3LINE88= "HH: Bull. You're lying.";
+SCEN3LINE89= "HH: Wait.";
+//Naz_7
+SCEN3LINE90= "HH: Damn it, I knew it did something! It\nmust've been the stupid crow thing!";
+//Nue_1
+SCEN3LINE91= "HB: the crow?";
+//Naz_3
+SCEN3LINE92= "HH: No no, you know, you're right, Nue! I\nguess I just forgot to put the\nanti-piracy thing on your copy, that's\nall! Heh heh heh! It's no big deal!";
+SCEN3LINE93= "HH: Just, crows, man, I was just looking\noutside my window, that's all. Yeah,\nthere's a lot of them tonight.";
+//Nue_5
+SCEN3LINE94= "HB: oh SHIT the CROW.";
+//Naz_1
+SCEN3LINE95= "HH: Geez, no need to be so sarcastic.\nNow you're making fun of me by\nrepeating what I just said? It's only\ncool when BV does it, so don't swag\nsteal, Houjuu.";
+//Nue_5
+SCEN3LINE96= "HB: ok i gotta go seriously.";
+SCEN3LINE97= "\c[Nue]heianBurden [HB]\c-\n\nceased preaching to\n\n\c[Nazrin]hungryHoarder [HH]\c-";
+SCEN3LINE97a= "heianBurden [HB] ceased preaching to hungryHoarder [HH]";
+SCEN3LINE98= "> Nue: Fetch laptop.";
+SCEN3LINE99= "> Be the shady newcomer.";
+
+//Time to smoke some dubies with Mamz
+SCEN3LINE100= "You are now the 13th player.\n\nThe new kid on the block.";
+SCEN3LINE101= "Don't be rude, put down that computer and introduce\nyourself properly. You don't want to be called something\nlike DOGBREATH DEVILBEAST, do you? Take out your NAMETAG,\ndude.";
+SCEN3LINE102= "MAMIZOU FUTATSUIWA";
+SCEN3LINE103= "> Be Mamizou.";
+SCEN3LINE104= "Your name is MAMIZOU. You GREATLY OPPOSE what is\nconsidered SOCIETAL NORMS these days. Your hobbies\ninvolve STEALING FROM THE RICH and GIVING AWAY THE SPOILS\nto the less fortunate.";
+SCEN3LINE105= "Nothing gets your rocks harder than HELPING OTHERS as an\ninsult to said SOCIETAL NORMS. You're the go-to-guy for the\nneedy. You like to partake in any sort of GANG ACTIVITY so\nlong as its done with GOOD INTENT.";
+SCEN3LINE106= "From time to time, you indulge in ROLEPLAYING with your\nfriend as a means to teach yourself to TAKE ON IDENTITIES\nfor whenever you go out PRANKING. You keep WILD 'COON DOGS\nin your home out of the GOODNESS OF YOUR HEART.";
+SCEN3LINE107= "You go by the badgerhandle \c[Mamz]ballsyHellraiser\c-.\n\nYou're on a different messenger, since it's easier to use\nand has the ability to disguise itself as other chat\nprograms.";
+SCEN3LINE107a= "You go by the badgerhandle ballsyHellraiser. You're on a different messenger, since it's easier to use and has the ability to disguise itself as other chat programs.";
+SCEN3LINE108= "All the while, you prefer \c[Mamz]talkin all laid back and stuff dawgg\c-";
+SCEN3LINE108a= "All the while, you prefer talkin all laid back and stuff dawgg";
+SCEN3LINE109= "Right now, you've just finished talking to your friend about\nsome stupid stuff you'd rather not get into right now\nbecause it's not important, okay? What is important is\nthat you got yourself a seat in on this game.";
+SCEN3LINE110= "You think you can handle anyone as a client, or whatever\nthey referred to it as. You're one of the TOP 3 IN THE WORLD\nwhen it comes to MOST THINGS. Just gotta tell people to\ntrust you on that.";
+SCEN3LINE111= "> Mamizou: Check computer.";
+SCEN3LINE112= "Your files are unpacked and you're ready to put in a client's\nID at any time. Man, this is going to be mad sweet. You can't\nwait to do... the thing with the game... Your friend is\nimpressed that you got it to work and you're proud of that.";
+SCEN3LINE113= "Maybe then you can convince them to boost that\nself-confidence a bit higher, and cheer up. Wait, you're\nrambling again. Counseling appointments run from 3 to 5 PM.\nIt's way too late for that. You decide to zip it for now.";
+SCEN3LINE114= "> Mamizou: Answer stranger.";
+SCEN3LINE115= "Oh, who's this? \"hungryHoarder\"? Oh, right.\n\nYou better answer them. Nue told you about this one.\nThey've got quite the temper.";
+SCEN3LINE116= "\c[Nazrin]hungryHoarder [HH]\c-\n\nstarted preaching to\n\n\c[Mamz]ballsyHellraiser [BH]\c-";
+SCEN3LINE116a= "hungryHoarder [HH] started preaching to ballsyHellraiser [BH]";
+//Naz_1
+SCEN3LINE117= "HH: Hey, you. Found you through Nue's\nlogs.";
+//Mamz_1
+SCEN3LINE118= "BH: oh sup";
+//Mamz_6
+SCEN3LINE119= "BH: and whyre you spyin on nue";
+//Naz_1
+SCEN3LINE120= "HH: Not your business and don't \"sup\"\nme. You're Nue's friend, right? The\nasshole that torrented my work?";
+//Mamz_3
+SCEN3LINE121= "BH: oh man you coded this, dude youve\ngot mad talent you know that";
+//Naz_2
+SCEN3LINE122= "HH: Well, yeah. I mean, I'm pretty great,\nyou know. I wish I got more thanks for\nwhat I do. I'm literally everyone's GOD\ndamned babysitter.";
+//Naz_7
+SCEN3LINE123= "HH: BUT ENOUGH OF THAT, you still stole my\nwork without paying for it!";
+//Mamz_6
+SCEN3LINE124= "BH: what? you were sellin these? my\nbad little dude i didnt know that, nue\njust sent them over";
+//Naz_6
+SCEN3LINE125= "HH: Well, I wasn't selling them but I still\nhad to pay a fee to send them over and\neveryone paid me for the guide that it\ncame with.";
+//Mamz_2
+SCEN3LINE126= "BH: awh man i cant let myself get away\nfor ruinin a fellow entrepreneurs own\nlil business, how about i pay you\nin-game?";
+//Mamz_3
+SCEN3LINE127= "BH: like a cut or somethin, i gotta admit\nyoure pretty darn smart for that\nmethod, makin them pay for the guide\nand all";
+//Naz_1
+SCEN3LINE128= "HH: ... Man, what the hell, why are you\nso nice and weird at the same time?\nExplains why you're friends with Houjuu.\nYou guys are both super weird. But, at\nleast you're agreeable with things.";
+//Naz_3
+SCEN3LINE129= "HH: But as I was saying, if you pay me my\n\"cut,\" I'll forget about this whole tirade\nand even mess with Hijiri for you, how's\nthat sound?";
+//Mamz_2
+SCEN3LINE130= "BH: alritey lil dude, so what do you\nwant, like 50-50 split? i honestly dont\ncare about monies or anything like that";
+//Naz_1
+SCEN3LINE131= "HH: I want 90-10, the 90 being for me.\nI did code the game, and you did initially\nsteal it. Consequences, \"dude.\"";
+//Mamz_6
+SCEN3LINE132= "BH: 90-10 what the heck?";
+//Naz_1
+SCEN3LINE133= "HH: I threw in the bonus with the\nHijiri-Hassling. That's gotta count for\nsomething.";
+//Mamz_6
+SCEN3LINE134= "BH: and this hijiri is who again?\n\nyou mean nues friend right?";
+//Naz_1
+SCEN3LINE135= "HH: Yes. The one who will probably not\ncare about your well-being or anybody\nelse's, for that matter. I'm letting you\nuse my services to annoy the shit out\nof her.";
+//Mamz_2
+SCEN3LINE136= "BH: ohhh haha like youre gonna prank\nher or somethin right? i can get behind\nthat";
+//Naz_1
+SCEN3LINE137= "HH: ... Yeah, okay.";
+//Mamz_1
+SCEN3LINE138= "BH: okay lil dude you got yourself a cut,\nsorry about the game stealin and all,\ni just didnt know prior to this that it\nwas your work and stuff";
+//Naz_2
+SCEN3LINE139= "HH: It's fine. If Hijiri starts bothering\nyou about this, just holler. I'll bug her\na bit and it'll be funny.";
+//Mamz_2
+SCEN3LINE140= "BH: haha alritey then";
+//Naz_2
+SCEN3LINE141= "HH: Good luck with the installation. It\nworks, right?";
+//Mamz_1
+SCEN3LINE142= "BH: yeah for sure i already told nue\nthat it worked and i reckon she told you";
+//Naz_1
+SCEN3LINE143= "HH: She did and then she bailed.\n\nAnyway, I've got another idiot friend to\ndeal with. I'll see you on the frontlines.";
+//Mamz_1
+SCEN3LINE144= "BH: hey i like your hat by the way";
+//Naz_1
+SCEN3LINE145= "HH: ...";
+SCEN3LINE145a= "You're sharp.";
+SCEN3LINE146= "\c[Nazrin]hungryHoarder [HH]\c-\n\nceased preaching to\n\n\c[Mamz]ballsyHellraiser [BH]\c-";
+SCEN3LINE146a= "hungryHoarder [HH] ceased preaching to ballsyHellraiser [BH]";
+SCEN3LINE147= "> Mamizou: Celebrate successful conversation.";
+SCEN3LINE148= "Nice, you gained the trust of one more person!\n\n+1 CHARISMA.";
+SCEN3LINE149= "> Mamizou: Let in whoever is outside.";
+SCEN3LINE150= "Seems like you've got company.\n\nShow yourself, fiend!";
+SCEN3LINE151= "Oh, it's just one of your many housemates. Seems like they\nneed you to do something for them. That's fine, you're\nalways willing to lend out a helping hand, even if this little\nmunchkin's just hungry or something.";
+SCEN3LINE152= "Not like you speak their language or anything like that! But\nif you did, that would be pretty awesome, but we don't\nknow that either. It's not important. You didn't say\nanything. Who said anything about anything? Not you.";
+SCEN3LINE153= "It's not anybody's business but yours. Unless they want to\nget in on this but then they'd have to make sure to sign a\nfew contracts concerning this pact. You'd totally pull out\npens and papers for this but you've got other things to do.";
+SCEN3LINE154= "> Mamizou: Disallow player commands temporarily.";
+SCEN3LINE155= "You can't be Mamizou because Mamizou doesn't want\nanybody else being Mamizou at the moment.";
+SCEN3LINE156= "This one just ollie outied right outta your hands on their\nown accord. They totally ignored whatever you wanted to\ndo.\n\nSorry, friend. Go look for some other chump to be, yeah? ";
+SCEN3LINE157= "So, while Nue gets her junk sorted out again, and Mamizou is\nmomentarily busy, try another player. Preferably someone\nwho's more COMPOSED and doesn't have a CREEPY ALBINO\nCROW THING following them around.";
+
+////////////////////
+// Scenario 2 //////
+////////////////////
+// Introduction
+SCEN2LINE1= "Who's this douche bag?\n\nHey, PEEFART SMANGSTANK, show us your NAMETAG!";
+SCEN2LINE2= "NUE HOUJUU";
+SCEN2LINE3= "> Be Nue.";
+SCEN2LINE4= "Your name is NUE. You are currently in the middle of a\nSHITTY TEMPLE due to PEER PRESSURE. You have a variety of\nstrange INTERESTS. You love dabbling in CRYPTID LORE and\nexploring GENETIC MUTATIONS.";
+SCEN2LINE5= "You also enjoy ROLEPLAYING with your friend but you try to\nplay it off as BEING IRONIC due to your LOW SELF-ESTEEM. You\nare not too fond of SOCIAL NORMS and RULES. That stuff just\nisn't your style.";
+SCEN2LINE6= "This is is why you've chosen to live in a very OBSCURE\nLOCATION. You have a penchant for PRANKS though it's\nrather hard to prank anyone when you live so far away\nfrom CIVILIZATION.";
+SCEN2LINE7= "You go by the preachhandle: \c[Nue]heianBurden\c-.";
+SCEN2LINE7a= "You go by the preachhandle: heianBurden.";
+SCEN2LINE8= "You \c[Nue]kinda talk non-chalantly for the most part but can sort\n\c[Nue]OF be INSECURE sometimes YOU guess???!!!";
+SCEN2LINE9= "You kinda talk non-chalantly for the most part but can sort OF be INSECURE sometimes YOU guess???!!!";
+SCEN2LINE10= "At the moment, you've been instructed to visit the FROG\nTEMPLE near your home after hearing about its SECRETS\nfrom some of your so-called \"friends.\"";
+SCEN2LINE11= "> Nue: Answer HH.";
+SCEN2LINE12= "Alright, that's enough talk, someone's messaging you!";
+SCEN2LINE13= "\c[Nazrin]hungryHoarder [HH]\cl\n\nstarted preaching to\n\n\c[Nue]heianBurden [HB]\cl";
+SCEN2LINE13a= "hungryHoarder [HH] started preaching to heianBurden [HB]";
+// Naz_5
+SCEN2LINE14= "HH: Hey, Nue, what's taking you so long?\nI told you to check this place out hours\nago! You're testing my patience here!";
+// Nue_5
+SCEN2LINE15= "HB: aaaggghhh, seriously, i can't find the\nroom you're looking for, okay??? don't\ntry and pick a fight here of all places!!!";
+// Naz_1
+SCEN2LINE16= "HH: You're close, don't worry. I mean,\nlike, in terms of temperature, you're\nflaming hot. Or whatever the term is.\nSuper warm, like my hand is getting\nthird degree burns on the grill.";
+// Wait 120
+// Naz_6
+SCEN2LINE17= "HH: I'm just saying you're seriously near\nthe room, Houjuu.";
+// Wait 120
+// Naz_5
+SCEN2LINE18= "HH: NUE, YOU LITTLE TURDLET!";
+SCEN2LINE19= "HH: ARE YOU PAYING ATTENTION? QUIT\nSPACING OUT!";
+// Nue_4
+SCEN2LINE20= "HB: oh, wow. okay, sorry.";
+// Nue_6
+SCEN2LINE21= "HB: i thought for a second there you\nwere hitting on me or something\nbecause that would be weird and i doubt\nyou'd really do that anyway so\nwhatever nevermind. still weird though.";
+// Nue_2
+SCEN2LINE22= "HB: like that'll ever happen.";
+// Naz_5
+SCEN2LINE23= "HH: WAIT WHAT?";
+// Naz_7
+SCEN2LINE24= "HH: SERIOUSLY? WHY WOULD YOU EVEN BE\nTHINKING OF THAT NOW? NUE, YOU KNOW STUFF\nLIKE THAT IS SUCH A PANDERY WASTE OF TIME.";
+// Naz_6
+SCEN2LINE25= "HH: GOD, just... please, rambling later,\nbusiness now! Priorities! I want you to\nwrite down the stuff on the walls.\nRemember, BB told us about it? Go get\nthem so we can decipher it later. ";
+// Nue_6
+SCEN2LINE26= "HB: uh so i just kinda jot it down or take\npictures of that stuff, right?";
+// Naz_7
+SCEN2LINE27= "HH: YES. FOR THE LAST TIME YES. HOLY SHIT\nARE YOU STUPID OR WHAT?";
+// Naz_5
+SCEN2LINE28= "HH: I mean, I know you've been living with\nnobody but dustmites and crows and\nwhatever but GOD DAMN, Nue! Common\nsense! I've been following you around for\n2 hours and I'm getting tired!";
+// Nue_4
+SCEN2LINE29= "HB: okay OKAY okay just quit being so\nFUCKIN IMPATIENT i just really don't like\nthis place, okay? i mean i can handle\nscary but this is just unnerving. it's\nalways different each time i'm here.";
+// Naz_1
+SCEN2LINE30= "HH: Says the scrub that can't stop\nsending everyone BMEzine shit. Pft,\ndon't even test me.";
+// Naz_6
+SCEN2LINE31= "HH: Just whatever, okay? Quit being such\na moron and just get this stuff done. I\nwould have gladly asked someone else but\nnobody lives close to this place but you.";
+// Naz_1
+SCEN2LINE32= "HH: Understand? This is a simple job.\nSorry for being so harsh, this is just\nsort of a big deal.";
+// Nue_6
+SCEN2LINE33= "HB: yeahhh okay...?";
+// Naz_1
+SCEN2LINE34= "HH: Good. Send me the code when you're\ndone. I'll credit you, I promise, okay?\nAnd BB, I guess, but I'm the one doing\nthe code conversion so I automatically\nget most of the cred.";
+// Nue_6
+SCEN2LINE35= "HB: whatever, i don't care.";
+// Naz_1
+SCEN2LINE36= "HH: Get to it. Watch out, though. She\ntold me this place would be full of traps.";
+// Naz_2
+SCEN2LINE37= "HH: Try not to die.";
+// Naz_1
+SCEN2LINE38= "HH: Seriously.";
+SCEN2LINE39= "> Nue: Retrieve runes.";
+
+// Tries to Leave 0
+SCEN2LINE40a= "Where the hell are you going?\n\nYou haven't even started this arduous process yet!";
+
+// Secret Skype Chat
+SCEN2LINE40b= "There's a little bit of writing on this wall...\n\n\c[DarkGray][8:15:26 PM] stoneshipMapper: Mole-Ral gains the Secularity\n\c[DarkGray]Stone, and grants himself the knowledge of the\n\c[DarkGray]Renaissance!";
+SCEN2LINE40c= "There's a little bit of writing on this wall... [8:15:26 PM] stoneshipMapper: Mole-Ral gains the Secularity Stone, and grants himself the knowledge of the Renaissance!";
+
+// Tries to Leave 1
+SCEN2LINE40= "Whoa, no wimping out now!\n\nYou gotta collect the CODE!";
+
+// Tries to Leave Code Room
+SCEN2LINE40d= "The codes are literally in this room. Why would you want to\ngo back where the traps are?";
+
+// "Died" Many Times
+// Naz_5
+SCEN2LINE41= "HH: Why the hell are you just standing\nthere?! You've got shit to do!";
+// Nue_6
+SCEN2LINE42= "HB: i keep getting this creepy deja vu.";
+SCEN2LINE43= "HB: like, i get creamed by one of the\ntraps and i'm just a bloody smear on the\nground, but then i wake up and i'm right\nhere, only to have it happen again.";
+// Nue_4
+SCEN2LINE44= "HB: what would you do if i actually got\nkilled here?";
+// Naz_1
+SCEN2LINE45= "HH: I'd bawl my fucking eyes out and put\na grave for you in my backyard.";
+// Nue_6
+SCEN2LINE46= "HB: what would it say?";
+// Naz_6
+SCEN2LINE47= "HH: \"Rest in Fucking Pieces, Nue.\" Now\nhurry up and get those codes.";
+// Nue_4
+SCEN2LINE48= "HB: okay, okay...";
+// Naz_1
+SCEN2LINE49= "HH: And don't die, Houjuu.";
+
+// First Time with Codes
+SCEN2LINE50a= "> Nue: Answer HH.";
+// Nue_1
+SCEN2LINE51a= "HB: alright, so i just write this down...?";
+// Naz_3
+SCEN2LINE52a= "HH: Congratulations! We're one step\ncloser to collecting the entire\ntreasure!";
+// Naz_1
+SCEN2LINE53a= "HH: By the way, if you had trouble with\nthe traps, I mean, if you haven't\nalready, you do realize you can SPRINT,\nright? I think you hold the SHIFT key for\nthat.";
+// Naz_2
+SCEN2LINE54a= "HH: But that's just if you suck that bad.";
+// Nue_3
+SCEN2LINE55a= "HB: heh.";
+SCEN2LINE56a= "> Nue: Continue on.";
+
+// Tries to Leave 2
+SCEN2LINE57a= "You're still not done with collecting the CODE!\n\nKeep going. You can do it. I believe in you.";
+
+// Second Time with Codes
+SCEN2LINE50= "> Nue: Answer HH.";
+// Nue_6
+SCEN2LINE51= "HB: man, this is such a pain seriously.\nare we done yet??? you know how\nannoying it is grazing all those\ntraps???";
+// Naz_2
+SCEN2LINE52= "HH: Almost there. I can feel it. I'm\nsurprised that you haven't croaked\nyet.";
+// Wait 120
+// Nue_1
+SCEN2LINE53= "HB: ...what???";
+// Naz_1
+SCEN2LINE54= "HH: It was a frog joke. Because we're at\nthe...\n\nNevermind, just keep going.";
+SCEN2LINE55= "> Nue: Keep going.";
+
+// Tries to Leave 3
+SCEN2LINE56= "CODE collecting's still not done! Keep going!\n\nYou're almost there!";
+
+// Frog Checkpoint
+SCEN2LINE57= "> Nue: Check out frog.";
+SCEN2LINE58= "Oh wow, you don't think you've seen a frog in ages! If you\ncould, you'd pry open this baby and poke around all up in\nthere, but now's not really the time to develop\nbatrachomania, huh?";
+SCEN2LINE59= "Though, it looks like its is offering itself as a CHECKPOINT.\nGee, this would have been useful in the last few rooms. Or\nnot, you're not that much of a wimp that you need\nCHECKPOINTS all the time... you think.";
+
+// Third Time with Codes
+SCEN2LINE60= "> Nue: Answer HH. Again.";
+// Nue_1
+SCEN2LINE61= "HB: so umm, yeah, we're almost done\nhere, right? i'm sorry, this is just really\ntedious and annoying.";
+// Naz_7
+SCEN2LINE62= "HH: YES. MY GOD, QUIT COMPLAINING.";
+// Nue_6
+SCEN2LINE63= "HB: hey, chill, i was just asking...";
+// Nue_7
+SCEN2LINE64= "HB: control your temper, why don't\nyou?";
+// Naz_7
+SCEN2LINE65= "HH: MAN, IF ONLY I COULD HAVE DONE THIS WITH\nSOMEONE WHO DIDN'T ASK SO MANY QUESTIONS\nAND COMPLAIN ALL THE TIME.";
+// Nue_5
+SCEN2LINE66= "HB: i'm the one risking my ass and not\nyou, so quit being so pissy already! i'm\nDOING this AS fast AS i CAN!";
+// Naz_2
+SCEN2LINE67= "HH: Whoa, calm down, Houjuu! I'll chill.\n\nHeh heh heh.";
+// Nue_1
+SCEN2LINE68= "HB: what??? what's so funny???";
+// Naz_3
+SCEN2LINE69= "HH: Just thinking about how you'll do\nanything if I just yell at you a little,\nthat's kind of why I'm doing it. \"NUE GO\nJUMP THAT FENCE, YOU LITTLE NERD,\" and\nyou'll do it.";
+// Naz_2
+SCEN2LINE70= "HH: So funny. What a funny individual,\nthis Nue Houjuu is.";
+// Nue_5
+SCEN2LINE71= "HB: whatever!!! i would have done it if\nyou weren't being rude, you know!!!";
+// Naz_3
+SCEN2LINE72= "HH: Nah, I don't think so! You'd probably\nthink I was hitting on you just because\nI was being nice for two seconds! \"WOW\nTHEY SAID HI, THEY MUST LIKE ME!\"";
+SCEN2LINE73= "HH: I mean, the thirst is almost\nunbearable here. I know I'm good-looking\nand all but I'm just here for the\ntreasure, dude. Sorry for being so\ndistracting!";
+// Nue_5
+SCEN2LINE74= "HB: what are you even going on about???\nyou really think i like you!!!??? i only did\nthis because hijiri told me to listen to\nyou!!!";
+// Naz_3
+SCEN2LINE75= "HH: Yeah, I mean, who doesn't like me?\nI've got everyone mackin' on me from\nleft to right. I'm like Treasure numero\nuno. Come on! Unfortunately, there isn't\nenough me to go around!";
+// Nue_6
+SCEN2LINE76= "HB: okay, now, you're just messing with\nme.";
+// Naz_1
+SCEN2LINE77= "HH: Yeah, I was, that was all bullshit.";
+SCEN2LINE78= "HH: I'm pretty sure we'd get things\ndone faster if I just yelled at you\nconstantly instead of praising you for\nevery little thing you did. This isn't an\nasspat party.";
+SCEN2LINE79= "HH: Grow up.";
+// Nue_3
+SCEN2LINE80= "HB: grow up, yeah, sure, says the\nmidget.";
+// Naz_1
+SCEN2LINE81= "HH: Wow. I am so offended right now.\nLook at that magnificent diss that\nwasted me three seconds. Wow, so\nworth my time.";
+// Nue_6
+SCEN2LINE82= "HB: i meant your temper, you didn't have\nto go asswild egobaiting and berating\nme all over the place.";
+// Naz_1
+SCEN2LINE83= "HH: Joking aside, seriously, you're\npretty much there already. No need to\nkeep running off your mouth anymore.\nThis isn't a marathon. I was just kidding\naround.";
+// Nue_4
+SCEN2LINE84= "HB: man, why couldn't BB walk me\nthrough this instead? she's the one\nwho knows how to read this stuff raw,\nright???";
+// Nue_6
+SCEN2LINE85= "HB: and she's way nicer than you by a\nlong-shot.";
+// Naz_6
+SCEN2LINE86= "HH: Because, if her guardian found out she\nwas in on this, she'd probably be in big\ntrouble and then we'd lose the only\nperson who knew what the runes actually\nmean.";
+// Naz_7
+SCEN2LINE87= "HH: AND THEN, I WOULDN'T BE ABLE TO WRITE\nTHE CODE AND I'D BE DEPRIVED OF ANY\nPOSSIBLE VALUABLES!";
+// Nue_2
+SCEN2LINE88= "HB: you just want to impress everyone,\nhuh?";
+// Naz_1
+SCEN2LINE89= "HH: I don't want to hear that from you\nof all people. Just get going.";
+SCEN2LINE90= "> Nue: Just get going.";
+
+// Tries to Leave 4
+SCEN2LINE90a= "You have your goal in sight and yet you want to leave?\n\nGet back in there and finish it!";
+
+// In the Core Room
+SCEN2LINE91= "> Nue: Contact HH.";
+// Nue_1
+SCEN2LINE92= "HB: um... there's a part missing.";
+// Naz_4
+SCEN2LINE93= "HH: Aw, what?";
+// Naz_6
+SCEN2LINE94= "HH: Whatever, just get what you can. I'll\nfind out myself.";
+SCEN2LINE95= "> Nue: Behold rambunctious, radioactive crow.";
+// Naz_1
+SCEN2LINE96= "HH: Uhh... what's that?";
+// Nue_5
+SCEN2LINE97= "HB: oh, dammit.";
+SCEN2LINE98= "> Be the egoist.";
+
+// Nazrin Introduction
+SCEN2LINE99= "You are now viewing this douche bag while Nue is being\npestered by that ALBINO DEEPCROW-LOOKING THING.\n\nShow us the NAMETAG already, DICKLE!";
+SCEN2LINE100= "NAZRIN";
+SCEN2LINE101= "> Be Nazrin.";
+SCEN2LINE102= "Your name is NAZRIN because last names are for CHUMPS. You\nhave a variety of INTERESTS. In your spare time, you like to\ngo TREASURE HUNTING or SPELUNKING in general. ";
+SCEN2LINE103= "Being the winner that you are, you love rewarding yourself\nwith HEAPS OF FOOD due to your FAMELICOSE nature. You have\nquite a knack for FINDING CLUES and PIECING THEM TOGETHER,\nwhich is why you've taken the responsibility of being the\nCODELORD.";
+SCEN2LINE104= "Despite the title, you find coding extremely AGGRAVATING as\nyou are not too fond of TRIAL AND ERROR but are doing it\nanyway for the RECOGNITION and possible REWARDS.";
+SCEN2LINE105= "You've been going by the preachhandle: \c[Nazrin]hungryHoarder\c-.";
+SCEN2LINE105a= "You've been going by the preachhandle: hungryHoarder.";
+SCEN2LINE106= "You \c[Nazrin]talk fast and straight to the point so any idiot can\n\c[Nazrin]understand.";
+SCEN2LINE106a= "You talk fast and straight to the point so any idiot can understand.";
+SCEN2LINE107= "At the moment, you've been supervising \"OPERATION:\nCOLLECT THE CODE SO I CAN GET ALL THE REWARDS. ALL OF\nTHEM\" via your own room.";
+SCEN2LINE108= "Oh! Looks like your DUMBASS FRIEND finally got around to\nuploading the CODES! Looks like the freaky crow left too.\n\nYou are so ready... to do the thing with the codes...";
+SCEN2LINE109= "Fun Fact: you can type TWICE AS FAST as SCRUBLORD Nue.\nThis is something you learned on your own because you're";
+SCEN2LINE109a= "SO COOL, WOW!!";
+SCEN2LINE109b= "Fun Fact: you can type TWICE AS FAST as SCRUBLORD Nue.\nThis is something you learned on your own because you're SO COOL, WOW!!";
+SCEN2LINE110= "> Nazrin: Retrieve translation.";
+SCEN2LINE111= "It also looks like BB finally sent you the TRANSLATION of the\nRUNE THINGIES. Time to turn this into ACTUAL CODE.\n\nIt'll work. You know it will.";
+SCEN2LINE112= "Aaaaand... it's done burning!\n\nYeah, you're just that fast because you're just that good.";
+SCEN2LINE113= "> Nazrin: Captchalogue first copy.";
+SCEN2LINE114= "WHAT THE HECK!?";
+SCEN2LINE115= "> Nazrin: Express disbelief!";
+// Naz_5
+SCEN2LINE116= "NAZRIN:";
+SCEN2LINE116a= "WHAT THE\nHECK!?";
+SCEN2LINE117= "Looks like that CREEPY ASS BIRD just stole your CD. You're\nunbelievably PISSED AS SHIT right now, but you'd prefer not\nto talk about it...";
+SCEN2LINE118= "Well, at least you got your CD back. It looks a little\nscratched up, and it's caked with prints all over it, but you\ntry not to think about it too much. You'll dust it off later.";
+SCEN2LINE119= "> Nazrin: Slowly try to captchalogue the CD...";
+SCEN2LINE120= "That's one disc down! But, there's still plenty left to burn.\n\nIt's going to be a long night...";
+SCEN2LINE121= "> Nazrin: Stop being Nazrin.";
+SCEN2LINE122= "Weeks into the future, but not much... Back at the present.";
+
+// Tries to Leave Without Codes
+SCEN2LINE123= "You can't go on without the codes! Go back and get them!";
+
+////////////////////
+// Scenario 1 //////
+////////////////////
+//Hijiri Introduction
+SCEN1LINE1= "A young lady stands in her bedroom. It just so happens that\ntoday, the 13th day of Shiwasu, is this young lady's\nbirthday. Though it was several years ago she was given\nlife, it is only today she will be given a name!";
+SCEN1LINE2= "What will the name of this young lady be?";
+SCEN1LINE3= "Oh, wait, just like everyone else, she came with a\nDESIGNATED NAMETAG shortly after her birth. What does\nthat NAMETAG say on it?";
+SCEN1LINE4= "BYAKUREN HIJIRI";
+SCEN1LINE5= "> Be Byakuren.";
+SCEN1LINE6= "Your name is BYAKUREN. As was previously mentioned, and is\nas written in thousands of other adventures like this, it is\nyour BIRTHDAY. Or at least, what you assume it to be.";
+SCEN1LINE7= "Your INTERESTS don't include much, really, as having\nINTERESTS leads to one being too materialistic, which you\nperceive as an incredibly BAD THING. Your room is almost\nempty save for hints of your LOVE FOR SCRIBING and studying\nPSYCHURGY.";
+SCEN1LINE8= "Just like your late BROTHER, you are an aspiring MAGICIAN.\nFrom time to time, you also like to partake in COMPETITIVE\nACTIVITIES against people. Additionally, as a health nut,\nyou're actually incredibly fit and STRONG for your age.";
+SCEN1LINE9= "You go by the preachhandle: \c[HIJIRI]virtuousBlossom\c-.\n\nThis is the name you use when talking to people online.";
+SCEN1LINE9a= "You go by the preachhandle: virtuousBlossom. This is the name you use when talking to people online.";
+SCEN1LINE10= "You \c[Hijiri]converse in a way that's coated with subtle vilification.\c-";
+SCEN1LINE10a= "You converse in a way that's coated with subtle vilification.";
+SCEN1LINE11= "It just so happens that today was also the day that you and\na few friends decided to initiate in a friendly competition\nvia playing a game another friend had just recently coded\nfor the occasion. Competition is fun.";
+SCEN1LINE12= "However, there's no need to rush. You are free to explore\naround your house before getting down into business.  Right\nnow, you're just waiting for the mail to arrive.";
+SCEN1LINE13= "Speak of the devil, looks like someone's at the door. That\nshould probably be the aforementioned package.";
+//Switch to Player
+SCEN1LINE14= "> Byakuren: Retrieve package.";
+//Hijiri Gets What's Coming to her
+SCEN1LINE87= "It looks like your package has finally arrived.";
+SCEN1LINE89= "> Byakuren: Captchalogue package.";
+SCEN1LINE90= "> Byakuren: Exposit on whatever that was all about.";
+SCEN1LINE91= "Oh, that's right. You had recently switched out your fetch\nmodus for INVENTORRENT like everyone else when you all\ndecided to play this game. It's what you use as sort of like\nan inventory. Like in the video games.";
+SCEN1LINE92= "Everything you captchalogue can be seeded and leeched by\neveryone you have in your file sharing group to erase the\nhassles of captcha codes in order to ensure a successful\ngroup effort.";
+SCEN1LINE93= "This is also to make sure that nobody captchalogues\nanything harmful while working with others as all items\nare visible to everyone in the group.";
+SCEN1LINE94= "Thankfully, it has a system that allows you to either set\ncaptchalogued items to public or private. Yours has been\nset to public by default as you totally have nothing to hide. ";
+SCEN1LINE95= "However, the file sharing was rigged to not activate until\nboth team leaders approve. You and this other person have\nagreed not to activate it until everyone is playing the game.\nFor now, it works like a regular fetch modus. It's a pretty\nhandy fetch modus.";
+SCEN1LINE95a= "> Byakuren: Return to your room.";
+SCEN1LINE96= "You should open that package now and see what you got.\n\nSo exciting.";
+// Trying to leave
+SCEN1LINE97= "You have more important things to do than leave the house.\nThere's nothing out there for you anyways.";
+//Hijiri Opens Shou's Package
+SCEN1LINE15= "Oh, it's the OTHER PACKAGE. This one is from your DRUNKARD\nOF A FRIEND.\n\nThere's a little note attached to it.";
+SCEN1LINE16= "hey hijiri happy birthday!! don't forget to take the tiger\nback to mike tyson's house without dying!!!";
+SCEN1LINE17= "you're a cool friend so i thought you'd want this thing... i've\nhad it since i was little and its kinda important to me and\nyou're a cool friend like i said so i'm giving it to you so take\ncare of it ok -from DB";
+SCEN1LINE18= "Well, that was nice of them. You're surprised they actually\nremembered your birthday, though. It seems like they're\nthe only one who sent you anything resembling a present.\nYou're not into material things, but it's a bit heartwarming.";
+SCEN1LINE19= "You've never seen a real live tiger before in your life.\nThey've probably died off due to human cruelty or just\noverhunting in general. That's a shame, really.";
+SCEN1LINE20= "Or... perhaps, they just never existed in the first place and\nare just a myth. A made-up creature for bedtime stories.\n\nWho knows? ";
+SCEN1LINE21= "> Byakuren: Captchalogue tiger doll.";
+SCEN1LINE22= "> Byakuren: Consider a complaint.";
+SCEN1LINE23= "This wasn't the right package. You should go confront the\nexpected sender about the whereabouts of the package\nyou've been waiting for.";
+// Examines Computer
+SCEN1LINE24= "Byakuren: Examine COMPUTER.";
+SCEN1LINE25= "Byakuren: Save progress.";
+SCEN1LINE26= "This is your computer. There's a little camera attached to\nit, as with most computers made this day are. It always\nsort of creeped you out before, but you got used to it.";
+SCEN1LINE27= "With that said, you should probably pick up that package\nbefore preaching to your friends.";
+// Examines Computer (Nazrin conversation)
+SCEN1LINE28= "You've been spending a lot of your time here, handling\nbusiness with your faithful followers. There's not much on\nyour desktop aside from zipped up files of unknown\ncontents. Your PREACHBUM application is really the only\nthing you use on here.";
+SCEN1LINE29= "> Byakuren: Open Preachbum.";
+SCEN1LINE30= "There's one person you really want to preach to right\nnow...";
+SCEN1LINE31= "> Byakuren: Converse.";
+SCEN1LINE32= "\c[Hijiri]virtuousBlossom [VB]\c-\n\nstarted preaching to\n\n\c[Nazrin]hungryHoarder [HH]";
+SCEN1LINE32a= "virtuousBlossom [VB] started preaching to hungryHoarder [HH]";
+//Byak_1
+SCEN1LINE33= "VB: Hey, I'm here to inquire about how\nlate the package you were planning on\nsending is. You stated so yourself that\nyou expected it to have arrived at my\nplace on the 13th, didn't you?";
+//Naz_1
+SCEN1LINE34= "HH: Well, yeah, it should be there. Don't\ndoubt me.";
+//Byak_1
+SCEN1LINE35= "VB: I'm not, I'm just asking, in case you\nforgot.";
+//Naz_1
+SCEN1LINE36= "HH: Like I said, don't doubt me. I went\nthrough a lot of crazy bananas\nshenanigans to get that thing set up. I\ncan assure you that it will work just\nfine and it WILL arrive on time.";
+//Naz_6
+SCEN1LINE37= "HH: So don't get on my jock so hard for it,\nyou don't know who you're even talking to.";
+//Byak_6
+SCEN1LINE38= "VB: Yes, yes, I'm aware of the wannabe\narmy commander I'm conversing with at\nthe moment.";
+//Naz_1
+SCEN1LINE39= "HH: You should really watch what\nyou're saying, Hijiri."; //Pause
+SCEN1LINE40= "HH: Nevermind, it doesn't matter, just\nbe patient, it should arrive soon.";
+//Byak_6
+SCEN1LINE41= "VB: Did you send it after you sent\neveryone else's?";
+//Naz_6
+SCEN1LINE42= "HH: No, your highness, I sent it to you\nfirst. Like you asked.";
+//Naz_2
+SCEN1LINE43= "HH: I've got it sorted out, so don't flip\nout so much.";
+//Byak_3
+SCEN1LINE44= "VB: No need to be so condescending,\ncommander.";
+//Naz_1
+SCEN1LINE45= "HH: Yeah, okay, all I can tell you is to be\npatient. Chat over, I have other shit to\ndeal with at the moment. Good luck\nwith the package.";
+//End
+SCEN1LINE46= "\c[Nazrin]hungryHoarder [HH]\c-\n\nceased preaching to\n\n\c[Hijiri]virtuousBlossom [VB]";
+SCEN1LINE46a= "hungryHoarder [HH] ceased preaching to virtuousBlossom [VB]";
+//After Naz Conversation
+SCEN1LINE47= "> Byakuren: Be someone else.";
+SCEN1LINE47a= "Byakuren: Be someone else.";
+SCEN1LINE48= "> Byakuren: Continue exploring.";
+SCEN1LINE48a= "Byakuren: Continue exploring.";
+SCEN1LINE49= "Weeks in the past, but not many, in a rather secluded part\nof the planet...";
+// Table Scroll 1
+SCEN1LINE50= "This is a VERY IMPORTANT HISTORICAL DOCUMENT which you\nhave been studying for some time now. You believe it may\nhold secrets to UNLOCKING THE MYSTERIES OF THE UNIVERSE.";
+SCEN1LINE51= "...To be honest, it just seems like a bunch of CRYPTIC\nMESSAGES that probably don't pertain to anything. It's\nentertaining to read anyway.";
+// Table Scroll 2
+SCEN1LINE52= "You've been writing quite a lot lately. Your latest work has\na lot to do with ATTAINING NIRVANA. Such a shame that it's\nTOO LATE FOR YOU.";
+// Dresser
+SCEN1LINE53= "Nothing of interest in here. You don't wear much as there's\nno need to have an over-abundance of clothing. Material\nthings are poisonous to the soul.";
+// Wall Scroll
+SCEN1LINE54= "You're particularly proud of this scroll which is why you've\nleft it hanging up here right above your bed. It used to be\nyour brother's, back when he was still around.";
+// Plant 1
+SCEN1LINE55= "This plant isn't very flashy-looking, and you appreciate it\nfor that. It's one of the few things you tolerate having\naround in your room.";
+// Shelf
+SCEN1LINE56= "You haven't gone outside for quite a while now. Even then,\nthis looks empty either way. It's half as empty since your\nbrother's passing. ";
+// Plant 2
+SCEN1LINE57= "It's another PLANT. However, it's not as neat as the plant\nin your room so you gave it to your brother instead.\nHopefully, he appreciates the gesture.";
+// Candles
+SCEN1LINE58= "It's a plate of incredibly SHITTY CANDLES. You didn't want to\nwaste them so you've been leaving them unlit. Like a lot of\nthings, candles are hard to get these days.";
+// Urn
+SCEN1LINE59= "This is where your BROTHER'S ASHES are. He died quite\nsometime ago and ever since then you've been wary about\ndeath yourself. Especially in the same nature as his death.";
+SCEN1LINE60= "You don't remember much about his death, though.\n\nOr rather, you choose not to.";
+// Flowers
+SCEN1LINE60a= "It's only respectful to leave OFFERINGS for the dead. If they\ncame back from the grave and notice that you've been\nneglectful of them, they'd be pretty sore. Or something.\nLike those zombie movies.";
+// Storage Room
+SCEN1LINE61= "This is the storage room. There's no reason for you to go in\nhere at the moment.";
+// Bath Tub
+SCEN1LINE62= "There was once this famous guy who wrote while in his\nbathtub. You wonder how hard it was for him to keep the\npaper dry. Nevertheless, you contemplate of doing the\nsame thing someday...";
+SCEN1LINE63= "No, that would mean you'd be indulging yourself, so you\ndecide against it.";
+// Bathroom Window
+SCEN1LINE64= "There's nothing outside. You're situated somewhat near\nthe mountains. So unless you want to look at squirrels, or\nan empty road, there's really nothing of interest to see\nhere.";
+// Bathroom Sink
+SCEN1LINE65= "You've got your MODEST GARBS on and your hair is the usual\nGRADIENT as always.\n\nNothing to see here.";
+// Toilet
+SCEN1LINE66= "This piece of plumbing has been with you for years. It's\nolder than you, definitely. It has not, even once, broken on\nyou. Good toilet, best friend.";
+// Kitchen Plant
+SCEN1LINE67= "No matter how you look at it, it's just a normal houseplant.";
+// Stove
+SCEN1LINE68= "Clean as usual. You will never allow animal blood to be\nspilled on anything you eat. You have kept to a healthy\nvegan diet so you haven't really touched the stove as\nmuch.";
+// Microwave
+SCEN1LINE69= "You're not sure if it's safe to even keep one around. These\ndays, microwaves run on nuclear power and you have no\nidea why but you're definitely sure it's unhealthy to most\nof the population.";
+SCEN1LINE70= "If anything, it shortens life spans which is something you'd\nwant to avoid. A useless device, indeed. Such a shame to the\nrest of the lazy populace out there that don't realize this.";
+SCEN1LINE71= "So shameful!";
+// Chair Graffiti
+SCEN1LINE72= "There's some writing underneath this chair...\n\n\c[DarkGray][2:49:26 PM] SpaceGhostPurpp: O'DOYLE RULEZ";
+SCEN1LINE72a= "There's some writing underneath this chair... [2:49:26 PM] SpaceGhostPurpp: O'DOYLE RULEZ";
+// Dishwasher
+SCEN1LINE73= "There's nothing in there but a few bowls. Your brother\nused to be quite good at magic tricks involving bowls. But,\nnowadays, you just eat  from them. Their circus act days\nare over.";
+// Laundry Bin
+SCEN1LINE74= "There's not much in here. Everything else is in the cabinet\nin your room. ";
+// Dustpan and Broom
+SCEN1LINE75= "You make sure that the house is kept clean at all times.\nThough, sometimes, you wish that you could just hire a\nperson to do this.";
+// Washing Machine and Dryer
+SCEN1LINE76= "You don't use them much. You absolutely refuse to use\nmost electric appliances since you're quite wary of bills.\nThe only appliance you really use is your computer. Come\non, you're not really made of money here.";
+// Laundry Hamper
+SCEN1LINE78= "The clothes look so forlorn, just sitting there, but it's\nnone of your business. At least not now. You've got a game\nto play.";
+// Wall Scroll
+SCEN1LINE79= "It looks like the wall scroll in your room but it's just a\nconvincing replica.\n\nYour brother was quite renowned.";
+SCEN1LINE80= "It almost bothers you.";
+// Plant 3
+SCEN1LINE81= "It's another plant. It adds some zen in the hallway, in\naddition to the all the zen that Buddha statue is already\npassin' around. White, hot, zenpocalypse.";
+// Buddha Statue
+SCEN1LINE82= "You're pretty sure that keeping one around your house will\nensure prosperity and all that other good stuff, yeah. It\nalso looks good here in the hallway, you have to admit.";
+// Scroll Cabinet
+SCEN1LINE83= "This is your scroll cabinet. Everything you've scribed goes\nhere. It's pretty much your hobby to write IMPORTANT\nTHINGS down for future generations to follow. Maybe.\nSomeday. You hope.";
+// Game Guide
+SCEN1LINE84= "A game guide you \"ordered\" a while ago. You've studied it so\nmany times that the pages have been looking worn as of\nlate. There is nothing wrong with wanting to be prepared.";
+// Balcony Windows
+SCEN1LINE85= "This window looks out onto your balcony. You can see little\nflakes of snow fall onto its deck. You've always found\nbeauty in nature's simplicities.";
+// Windows on Balcony
+SCEN1LINE86= "Now that you're actually out in the freezing cold, the inside\nof your house looks very cozy and warm. It really doesn't\nhelp that you're not in warm clothes either.";
+
+////////////////////
+// Menu ////////////
+////////////////////
+// New Game
+MENU1LINE2= "T#!5 dIs( !s +o0 b@d/Y d@m4g3d.\n\nY0u (4n n0 /on6&r p1@y D3s1redr!v&n.";
+MENU1LINE3= "R39ue5t!n9 5(ra7c# r3p4ir.";
+MENU1LINE4= "P13a$e w4i7 0n3 m0m3n+.";
+MENU1LINE5= "R&p@1rin9 s<r4t(h.";
+MENU1LINE6= "Repair complete.";
+MENU1LINE7= "Re-inserted Disc 2.\n\nYou may resume playing Desiredriven.";
+MENU1LINE8= "Please select \"Continue\" in the menu to resume your\nsession.";
+//Save CVAR found
+MENU1LINE1= "Inserted Disc 2.";
+MENU2LINE1= "Save data has been found.\n\nPlease select \"Continue\" in the menu.";
+//Crashed Game
+MENU3LINE1= "Desiredriven has crashed.";
+MENU3LINE2= "Please wait one moment.";
+MENU3LINE3= "Desiredriven has successfully rebooted.";
+//Load Screen
+MENU4LINE1= "Now resuming your Desiredriven session...";
+MENU4LINE1a= "Would you like to resume your session?";
+MENU4LINE1b= "> Yes";
+MENU4LINE1c= "Yes";
+MENU4LINE1d= "> No";
+MENU4LINE1e= "No";
+MENU4LINE1f= "If you decline, the game will be forced to throw you back to a more stable section in the session.\n\n...Proceed anyway?";
+MENU4LINE2= "L O A D";
+MENU4LINE3= "Session:\n\nScene 1";
+//Global 
+ITEMCANCEL= "Cancel.";
+ITEMSAVE1= "Saving your progress.";
+ITEMSAVE2= "Saving your progress..";
+ITEMSAVE3= "Saving your progress...";
+ITEMSAVED= "Your progress has been saved.";
+GGSAVED = "";
+LOADNET = "";
+QLOADNET = "";
+QSAVESPOT = "";
+SAVEDEAD = "";
+QSPROMPT = "";
+QLPROMPT = "";
+NEWGAME = "";
+DOSY = "";
+STSTR_NCON = "Ghost Mode ON";
+STSTR_NCOFF = "Ghost Mode OFF";
+STSTR_NC2ON = "Super Ghost Mode ON";

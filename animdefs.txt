@@ -1,0 +1,8 @@
+////////////////////
+// Characters //////
+////////////////////
+
+// Hijiri
+Texture hijla1
+pic hijla1 tics 5
+pic hijla2 tics 5

@@ -372,7 +372,7 @@ RLFire:
     TNT1 A 0 A_TakeInventory("HaveRL",1)
     TNT1 A 0
     {
-    A_PlaySound("M16_GL", 7,1.0,0,ATTN_NONE);
+    A_PlaySound("M16_RL", 7,1.0,0,ATTN_NONE);
           A_GiveInventory("Fire_pressed",1);
           if (CountInv("Aimup") == 1)
           {
@@ -1486,7 +1486,8 @@ SeeSound ""
   ReactionTime 10
 
   Damage 20
-  DEATHSOUND "BOOM1"
+  SEESOUND "MISL"
+  DEATHSOUND "MISLEX"
   PROJECTILE
   MissileHeight 8
   MissileType "Fire_To_SmokeTrail2"

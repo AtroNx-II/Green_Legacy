@@ -148,14 +148,22 @@ time--;
 SetActorProperty(0, APROP_Invulnerable, false);
 delay(1);
 }
-script "FlashTime" (int time)
+script "FlashTime" (int time,int appear)
 {
 While(time>0)
 {
 SetActorProperty(0, APROP_RENDERSTYLE, STYLE_add);
 Delay(1);
+If(appear==1)
+{
+SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+}
+Else
+{
 SetActorProperty(0, APROP_RENDERSTYLE, STYLE_none);
 Delay(1);
+}
+
 SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
 Delay(1);
 time--;
@@ -261,7 +269,16 @@ script "CheckSupporterSkill" ENTER
     }
   Else If(CheckInventory("HaveCatty"))
    {
-     Giveinventory("Support_Catty",1);
+   if(CheckInventory("CattyCooltime")==0)
+   {
+   ACS_NamedExecute("Check_CoolTime_Catty",0,0,0,0);
+   GiveInventory("CattyCooltime",300);
+      Giveinventory("CattySpecialAttack",1);
+	        Giveinventory("TimeisStopnow",1);
+				        Giveinventory("TimeisStopnow",1);
+	 Acs_NamedExecute("CattySpecial",0,0,0,0);
+	 delay(105);
+	 }
     }
   Else
   {
@@ -343,6 +360,7 @@ Script 100 RESPAWN
 {
     FadeRange(255,255,255,1.0,255,255,255,0.0,0.5);
 //SetactorPosition(0,Getactorx(1346),Getactory(1346),Getactorfloorz(1346),0);
+
 ACS_ExecuteAlways(101,0,0,0,0);
 ACS_NamedExecute("InvulTime",0,15,0,0);
   Thing_ChangeTID(0,1001+PlayerNumber());
@@ -350,6 +368,7 @@ ACS_NamedExecute("InvulTime",0,15,0,0);
   delay(1);
   if(ThingCountName("Respawn_Pointer",2500)>0)
   {
+
     SetActorPosition(0,GetActorX(2500),GetActorY(2500),GetActorZ(2500),0);
     Takeinventory("RespawnFollowOff",1);
   }
@@ -455,7 +474,7 @@ Script 101 ENTER
             GiveInventory("Moving",1);
   TakeInventory("BackwardsCheck",1);
             if (buttonweightmove < 0) { buttonweightmove = 0.0; }
-            buttonweightmove = buttonweightmove + 1.0;
+            buttonweightmove = buttonweightmove + 4.0;
       buttonweight = buttonweight + 1.0;
       buttondelay = 0;
     }
@@ -463,7 +482,7 @@ Script 101 ENTER
     {
             GiveInventory("Moving",1);
 GiveInventory("BackwardsCheck",1);
-            buttonweightmove = buttonweightmove - 1.0;
+            buttonweightmove = buttonweightmove - 4.0;
       buttonweight = buttonweight - 1.0;
       buttondelay = 0;
     }
@@ -515,7 +534,10 @@ GiveInventory("BackwardsCheck",1);
              s:"  - ", d:savejump,s:" savejump";
          HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
     }
-        if (CheckInventory("Health") <= 0) { terminate; }
+        if (CheckInventory("Health") <= 0) 
+		{ 
+
+			terminate; }
 
     Delay(1);
   }
@@ -694,4 +716,20 @@ script "Catty_point" (void)
 Giveinventory("Warned",1);
 delay(35*5);
 Takeinventory("Warned",1);
+}
+Script "CattySpecial" (void)
+{
+GiveInventory("CattyActivated",1);
+delay(70);
+TakeInventory("CattyActivated",1);
+}
+script "Check_CoolTime_Catty" (void)
+{
+While(CheckInventory("CattyCooltime")>0)
+{
+TakeInventory("CattyCooltime",1);
+delay(35);
+}
+delay(1);
+terminate;
 }

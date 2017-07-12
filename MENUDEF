@@ -36,7 +36,7 @@ LISTMENU "MainMenu"
     //Position 60, 188
     PatchItem "OP2", "l", "LoadGameMenu"
     //Position 100, 188
-    PatchItem "OP3","o", "OptionsMenu"
+    PatchItem "OP3","o", "OptionsMenu2"
         //Position 180, 188
     PatchItem "OP4", "q", "QuitMenu"
 }
@@ -130,15 +130,15 @@ DefaultOptionMenu
 
 }
 
-OptionMenu "OptionsMenu"
+OptionMenu "OptionsMenu2"
 {
   Title "OPTIONS"
-  Submenu "Customize Controls",   "CustomizeControls"
-  Submenu "Mouse options",      "MouseOptions"
+  Submenu "Customize Controls",   "CustomizeControls2"
   Submenu "Joystick options",     "JoystickOptions"
   StaticText " "
   Submenu "Sound Options",      "SoundOptions"
   Submenu "Display Options",      "VideoOptions"
+
   Submenu "Set video mode",     "VideoModeMenu"
   StaticText " "
   SafeCommand "Reset to defaults",  "reset2defaults"
@@ -152,7 +152,7 @@ OptionMenu "OptionsMenu"
 //
 //-------------------------------------------------------------------------------------------
 
-OptionMenu "CustomizeControls"
+OptionMenu "CustomizeControls2"
 {
   Title "CUSTOMIZE CONTROLS"
   ScrollTop 2
@@ -168,7 +168,6 @@ OptionMenu "CustomizeControls"
   Control   "Crouch",   "+Crouch"
   Control   "Jump",         "+jump"
   Control   "Dash",         "+speed"
-
   StaticText  ""
   StaticText  "Other", 1
   Control   "Screenshot",     "screenshot"
@@ -184,23 +183,44 @@ OptionMenu "CustomizeControls"
 
 OptionValue "MenuMouse"
 {
-  0, "No"
-  1, "Yes"
-  2, "Touchscreen-like"
+  0, "Disable"
+  1, "Enable"
 }
 
-OptionString "Cursors"
-{
-  "cursor", "Simple arrow"
-}
 
-OptionMenu "MouseOptions"
+OptionMenu "MouseOptions2"
 {
   Title "MOUSE OPTIONS"
   Option "Enable mouse",        "use_mouse", "YesNo"
   Option "Enable mouse in menus", "m_use_mouse", "MenuMouse", "use_mouse"
-  Option "Cursor",        "vid_cursor", "Cursors"
   StaticText  ""
   Option "Always Mouselook",      "freelook", "OnOff"
   Option "Invert Mouse",        "invertmouse", "OnOff"
+}
+
+OptionMenu VideoModeMenu
+{
+	Title "$VIDMNU_TITLE"
+	
+	Option "$VIDMNU_FULLSCREEN",		"fullscreen", "YesNo"
+	IfOption(Mac)
+	{
+		Option "$VIDMNU_HIDPI",			"vid_hidpi", "YesNo"
+	}
+	Option "$VIDMNU_ASPECTRATIO",		"menu_screenratios", "Ratios"
+	StaticText " "
+
+	ScreenResolution "res_1"
+	ScreenResolution "res_2"
+	ScreenResolution "res_3"
+	ScreenResolution "res_4"
+	ScreenResolution "res_5"
+	ScreenResolution "res_6"
+	ScreenResolution "res_7"
+	ScreenResolution "res_8"
+	ScreenResolution "res_9"
+	StaticTextSwitchable "$VIDMNU_ENTERTEXT", "", "VMEnterText"
+	StaticText " "
+	StaticTextSwitchable "$VIDMNU_TESTTEXT1", "$VIDMNU_TESTTEXT2", "VMTestText"
+	class VideoModeMenu
 }
