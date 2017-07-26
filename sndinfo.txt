@@ -1,10 +1,18 @@
 // hm
+title_vulcan vulcan
+$limit title_vulcan 0
+$limit LASER1 0
+LASER1 LASER1
 acids acids
 acidx acidx
 Fly_AC Fly_AC
 Fly_die Fly_die
 SND/TEXT menumov
 TIN TIN
+TIN2 TIN2
+TIN2 TIN2
+$limit TIN2 0
+$limit TIN3 0
 shrk1 shrk1
 shrk2 shrk2
 SHLD SHLD

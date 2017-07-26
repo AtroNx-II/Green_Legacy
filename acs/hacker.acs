@@ -259,7 +259,7 @@ script "CheckSupporterSkill" ENTER
  oldButtons = (buttons ^ heldButtons) & heldButtons;
  INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
 
- if (GetActorProperty (0, APROP_HEALTH) > 0)
+ if (GetActorProperty (0, APROP_HEALTH) > 0 && GameType () != GAME_TITLE_MAP )
  {
     IF(newButtons == BT_USER1)
    {
@@ -510,8 +510,13 @@ GiveInventory("BackwardsCheck",1);
         // Last, set the camera
     //SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
         if (CheckInventory("CamOff") > 0) 
-		{}
-        else{        Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+		{
+
+		Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+		}
+        else{        
+		Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+		}
         
         if (CheckInventory("RespawnFollowOff") > 0) {}
         else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}

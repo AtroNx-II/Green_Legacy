@@ -1,2 +1,4 @@
 server int plat_debug       = 0;
 user float textspeed = 0.03;
+server int TitleMapSkipped = 0;
+user int loadingscreenSaw = 0;
