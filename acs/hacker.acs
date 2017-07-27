@@ -1,8 +1,84 @@
 #library "hacker"
 #include "zcommon.acs"
 
+str UPPERimage[72] = {"CATSH00","CATSH01","CATSH02","CATSH03",
+"CATSH04","CATSH06","CATSH07","CATSH08","CATSH09","CATSH010","CATSH011","CATSH012",
+"CATSH013","CATSH014","CATSH015","CATSH016","CATSH017","CATSH018","CATSH019","CATSH020",
+"CATSH021","CATSH022","CATSH023","CATSH024","CATSH025","CATSH026","CATSH027"
+,"CATSH028","CATSH029","CATSH030","CATSH031","CATSH032","CATSH033","CATSH034"
+,"CATSH035","CATSH036","CATSH037","CATSH038","CATSH039","CATSH040","CATSH041","CATSH042"
+,"CATSH043","CATSH044","CATSH045","CATSH046","CATSH047","CATSH048","CATSH049","CATSH050"
+,"CATSH051","CATSH052","CATSH053","CATSH054","CATSH055","CATSH056","CATSH057","CATSH058"
+,"CATSH059","CATSH060","CATSH061","CATSH062","CATSH064","CATSH065","CATSH066","CATSH067"
+,"CATSH068","CATSH069","CATSH070","CATSH071"};
 
 
+script "CheckSupporterSkill" ENTER
+{
+        int buttons; int heldButtons; int newButtons; int oldButtons;
+ while (TRUE)
+ {
+ int pln = PlayerNumber(); // this is obligitory by now
+ int playerAngle;  int playerAngle2;
+ bool bInMidAir; int playerHeight; int playerJumpZ;
+ int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
+ heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
+ newButtons = (buttons ^ heldButtons) & buttons;
+ oldButtons = (buttons ^ heldButtons) & heldButtons;
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+ if (GetActorProperty (0, APROP_HEALTH) > 0 && GameType () != GAME_TITLE_MAP )
+ {
+    IF(newButtons == BT_USER1)
+   {
+    If(CheckInventory("HaveEmily"))
+   {
+     Giveinventory("Support_Emily",1);
+    }
+  Else If(CheckInventory("HaveCatty"))
+   {
+   if(CheckInventory("CattyCooltime")==0)
+   {
+Giveinventory("Baldo",1);
+   ACS_NamedExecute("Check_CoolTime_Catty",0,0,0,0);
+   GiveInventory("CattyCooltime",300);
+       SetHUDSize(880, 640, TRUE);
+	 delay(10);
+    int Imagenum;
+		        Giveinventory("TimeisStopnow",1);
+    For(Imagenum = 0; Imagenum <= 60; Imagenum += 1)
+    {
+			Setfont(UPPERimage[Imagenum]);
+            HudMessage(s:"A"; 0, 1004,CR_UNTRANSLATED, 440.0, 320.0, 1.0);
+       SetHUDSize(880, 640, TRUE);
+            Delay(1);
+        }
+            HudMessage(s:""; 0, 1004,CR_UNTRANSLATED, 640.0, 384.0, 1.0);
+
+      Giveinventory("CattySpecialAttack",1);
+
+				        Giveinventory("TimeisStopnow",1);
+	 Acs_NamedExecute("CattySpecial",0,0,0,0);
+	 delay(35*3);
+	 }
+    }
+  Else
+  {
+    }
+  }
+    ELSE
+    {
+
+    }
+
+
+   }
+
+      delay(1);
+}
+
+}
 // check if player is on ground
 function int CheckPlayerOnGround(void)
 {
@@ -244,58 +320,7 @@ script "CheckJumpDown" ENTER
 
 }
 
-script "CheckSupporterSkill" ENTER
-{
-        int buttons; int heldButtons; int newButtons; int oldButtons;
- while (TRUE)
- {
- int pln = PlayerNumber(); // this is obligitory by now
- int playerAngle;  int playerAngle2;
- bool bInMidAir; int playerHeight; int playerJumpZ;
- int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
- heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
- buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
- newButtons = (buttons ^ heldButtons) & buttons;
- oldButtons = (buttons ^ heldButtons) & heldButtons;
- INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
 
- if (GetActorProperty (0, APROP_HEALTH) > 0 && GameType () != GAME_TITLE_MAP )
- {
-    IF(newButtons == BT_USER1)
-   {
-    If(CheckInventory("HaveEmily"))
-   {
-     Giveinventory("Support_Emily",1);
-    }
-  Else If(CheckInventory("HaveCatty"))
-   {
-   if(CheckInventory("CattyCooltime")==0)
-   {
-   ACS_NamedExecute("Check_CoolTime_Catty",0,0,0,0);
-   GiveInventory("CattyCooltime",300);
-      Giveinventory("CattySpecialAttack",1);
-	        Giveinventory("TimeisStopnow",1);
-				        Giveinventory("TimeisStopnow",1);
-	 Acs_NamedExecute("CattySpecial",0,0,0,0);
-	 delay(105);
-	 }
-    }
-  Else
-  {
-    }
-  }
-    ELSE
-    {
-
-    }
-
-
-   }
-
-      delay(1);
-}
-
-}
 // modified version of ScaleVelocity()
 // thanks to MeatyD for this piece of code
 function void ModifyPlayerFriction(int TID, int scale)

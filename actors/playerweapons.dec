@@ -1546,7 +1546,7 @@ TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, rand
     GOTO SPAWN
   }
 }
-ACTOR SMGBullet 
+ACTOR SMGBullet : FastProjectile
 {
 SeeSound ""
   Obituary "%o was burned by %k's Plasma Pistol."
@@ -1575,7 +1575,7 @@ SeeSound ""
   }
 }
 
-ACTOR SMGBulletUP
+ACTOR SMGBulletUP : FastProjectile
 {
 SeeSound ""
   Obituary "%o was burned by %k's Plasma Pistol."
@@ -1603,7 +1603,7 @@ SeeSound ""
     Stop
   }
 }
-ACTOR MGBullet 
+ACTOR MGBullet : FastProjectile
 {
 SeeSound ""
   Obituary "%o was burned by %k's Plasma Pistol."
@@ -1613,6 +1613,7 @@ SeeSound ""
   Damage 10
   Yscale 0.3
   Xscale 1.5
+  Height 10
     RADIUS 10
     Projectile
     +MTHRUSPECIES
@@ -1632,7 +1633,7 @@ SeeSound ""
   }
 }
 
-ACTOR MGBulletUP
+ACTOR MGBulletUP : FastProjectile
 {
 SeeSound ""
   Obituary "%o was burned by %k's Plasma Pistol."
@@ -1642,6 +1643,7 @@ SeeSound ""
   Damage 10
   xscale 0.4
   yscale 1.4
+  Height 10
     RADIUS 10
     Projectile
     +MTHRUSPECIES

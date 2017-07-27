@@ -124,8 +124,7 @@ InInventory CATTY_EMOTION_ATTACK, 1
  DrawString FONT3, White, "CATTY",-112, 60;
  }
  }
-DrawBar "PILSAL", "PILSALE",CattyActivated, vertical, interpolate(50), -160, 128;
-DrawBar "PILSAL2", "PILSALE",CattyActivated, vertical, interpolate(50)|reverse, -160, 320;
+
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
 DrawBar "TALKPIC2", "TALKPICE",PrintTEXT, vertical, interpolate(50), -160, 0;
