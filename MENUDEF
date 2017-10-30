@@ -160,6 +160,8 @@ OptionMenu "CustomizeControls2"
   StaticText  ""
   StaticText  "Controls", 1
   Control   "Attack",         "+attack"
+  Control   "Shield",         "+user2"
+  Control   "Use supporter/Special attack",         "+user1"
   Control   "GrenadeLauncher",    "+altattack"
   Control   "Use / Open",     "+use"
   Control   "Move forward",     "+moveleft"

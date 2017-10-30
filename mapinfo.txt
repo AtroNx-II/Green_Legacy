@@ -22,6 +22,6 @@ gameinfo
     menufontcolor_highlight = "White"
     menufontcolor_selection = "White"
     menubackbutton = "M_BACK_D"
-    playerclasses = "SidescrollPlayer"
+    playerclasses = "M16"
     pausesign = "M_PAUSE"
 }

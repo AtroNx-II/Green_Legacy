@@ -1,70 +1,60 @@
-// hm
-title_vulcan vulcan
-$limit title_vulcan 0
-$limit LASER1 0
-LASER1 LASER1
-acids acids
-acidx acidx
+EMILY_SG EMILY_SG
+hookshot hookshot
+hookhit hookhit
+hookcanc hookcanc
+//AUTO SAVING
+MEOW MEOW
+//CUTSCENE
+//SPECIALATTAK_CATTY
+SPEC000 SPEC000
+SPEC001 SPEC001
+SPEC002 SPEC002
+SPEC003 SPEC003
+SPEC004 SPEC004
+SPEC005 SPEC005
+
+// MONSTERS
+
+// PillBug
+$limit tmenusnd 0
+$limit tmenumv 0
+$limit nope 0
+nope nope
+tmenumv tmenumv
+tmenusnd tmenusnd
+$limit Pillbug_move 0
+$random Pillbug_move { Pillbug_move1 Pillbug_move2 Pillbug_move3 Pillbug_move4 }
+Pillbug_move1 pmv1
+Pillbug_move2 pmv2
+Pillbug_move3 pmv3
+Pillbug_move4 pmv4
+// Fly
+Fly_Pain Fly_Pain
 Fly_AC Fly_AC
 Fly_die Fly_die
-SND/TEXT menumov
-TIN TIN
-TIN2 TIN2
-TIN2 TIN2
-$limit TIN2 0
-$limit TIN3 0
-shrk1 shrk1
-shrk2 shrk2
-SHLD SHLD
-charge charge
-EXPLODE1 EXPLODE1
-weapon/addplasma plasma
-weapon/addplasma2 plasma2
-weapon/addplasma3 plasma3
-weapon/addplasma_explode plasma
-$random whoosh { whoosh1 whoosh2 }
-whoosh1 whoosh1
-whoosh2 whoosh2
-Pick_weapon WP_PICK
-M16_GL M16_GL
-MISL MISL
-MISLEX MISLEX
-$random catt_ATK { catt_ATK1 catt_ATK2 }
-catt_ATK1 SLASH1
-catt_ATK2 SLASH2
-EMLY_PS EMLY_PS
-EMILY_RD EMILY_RD
-CATY_JU CATY_JU
-CAT_WALK CAT_WALK
-$random CAT_TIRD { CAT_TIRD1 CAT_TIRD2 }
-CAT_TIRD1 CAT_TIR1
-CAT_TIRD2 CAT_TIR2
-$playersound	player	male	*jump		M16_JUMP
-$playersound	player	male	*falling	M16_FALL
-$playersound	player	male	*grunt	M16_LANH
-$playersound	player	male	*land		M16_LAND
-$playersound	player	male	*death		M16_DEAD
-M16_DEAD M16_DEAD
-M16_DASH M16_DASH
-M16_SMG M16_SMG
-$random M16_HURT { M16_HURT1 M16_HURT2 }
-M16_BOOST BOOST
-Fly_Pain Fly_Pain
-M16_WALK M16_WALK
-M16_HURT1 M16_HUR1
-M16_HURT2 M16_HUR2
-M16_SG M16_SG
-M16_HMG M16_HMG
-M16_RL M16_RL
-teleout teleout
+// Armor_Fly
+AFSEE AFSEE
+AFATK1 AFATK1
+AFATK2 AFATK2
+AFHIT AFHIT
+AFDTH AFDTH
+AFPAIN AFPAIN
+AFMOVE AFMOVE
+//WORM
 worm_sight worm_si
 worm_pain worm_pn
 worm_active worm_ac
 worm_death worm_dt
-BOOM1 BOOM1
-Pick_Health H_PICK
-Pick_Health2 H_PICK2
 
+// StageIntro music
+
+ST1INT ST1INT
+ST2INT ST2INT
+ST3INT ST3INT
+ST4INT ST4INT
+ST5INT ST5INT
+ST6INT ST6INT
+// Menu Sound
 menu/activate			menuon	 // Activate a new menu
 menu/backup			menucl	 // Backup to previous menu
 menu/prompt			menuon	// Activate a prompt "menu"
@@ -74,3 +64,255 @@ menu/invalid			menuoff		// Menu not available
 menu/dismiss			menuoff	// Dismiss a prompt message
 menu/choose			menusele	// Choose a menu item
 menu/clear			menuoff	// Close top menu
+SND/TEXT menumov
+
+//PROJECTILE
+acids acids
+TIN TIN
+TIN2 TIN2
+TIN2 TIN2
+$limit TIN2 0
+$limit TIN3 0
+shrk1 shrk1
+shrk2 shrk2
+SHLD SHLD
+
+//EXPLOSION
+BOOM1 BOOM1
+MISLEX MISLEX
+$limit EXPLODE1 0
+EXPLODE1 EXPLODE1
+acidx acidx
+
+//WeaponSound
+title_vulcan vulcan
+$limit title_vulcan 0
+$limit LASER1 0
+LASER1 LASER1
+// M16'S WEAPONS
+M16_GL M16_GL
+M16_SG M16_SG
+M16_SMG M16_SMG
+M16_HMG M16_HMG
+M16_RL M16_RL
+MISL MISL
+$limit sldoff 0
+$limit Sreflec 0
+
+sldoff sldoff
+Srefle Sreflec
+charge charge
+weapon/addplasma plasma
+weapon/addplasma plasma
+weapon/addplasma2 plasma2
+weapon/addplasma3 plasma3
+weapon/addplasma_explode plasma
+
+
+//PICKUP SOUND
+Pick_weapon WP_PICK
+Pick_Health H_PICK
+Pick_Health2 H_PICK2
+
+// Ricochet
+$limit Ricochet 0
+$random Ricochet { Ricochet1 Ricochet2 Ricochet3 Ricochet4 }
+Ricochet1 rico1
+Ricochet2 rico2
+Ricochet3 rico3
+Ricochet4 rico4
+
+// Casing
+$random Casing/Tin { Casing9mm_1 Casing9mm_2 Casing9mm_3 }
+Casing9mm_1 casing1
+Casing9mm_2 casing2
+Casing9mm_3 casing3
+$random Casing/Shell { CasingSG_1 CasingSG_2 CasingSG_3 }
+CasingSG_1 Scasing1
+CasingSG_2 Scasing2
+CasingSG_3 Scasing3
+
+// SUPPORTERS
+//Catty
+$random catt_ATK { catt_ATK1 catt_ATK2 }
+catt_ATK1 SLASH1
+catt_ATK2 SLASH2
+CATY_JU CATY_JU
+CAT_WALK CAT_WALK
+$random CAT_TIRD { CAT_TIRD1 CAT_TIRD2 }
+CAT_TIRD1 CAT_TIR1
+CAT_TIRD2 CAT_TIR2
+//Emily
+EMLY_PS EMLY_PS
+EMILY_RD EMILY_RD
+
+//PLAYER
+$playersound	player	male	*jump		M16_JUMP
+$playersound	player	male	*falling	M16_FALL
+$playersound	player	male	*grunt	M16_LANH
+$playersound	player	male	*land		M16_LAND
+$playersound	player	male	*death		M16_DEAD
+M16_DEAD M16_DEAD
+M16_DASH M16_DASH
+$random M16_HURT { M16_HURT1 M16_HURT2 }
+M16_BOOST BOOST
+M16_WALK M16_WALK
+M16_HURT1 M16_HUR1
+M16_HURT2 M16_HUR2
+
+//Misc
+teleout teleout
+$random whoosh { whoosh1 whoosh2 }
+whoosh1 whoosh1
+whoosh2 whoosh2
+$random world/watersplash { world/watersplash1 world/watersplash2 world/watersplash3 }
+world/watersplash1    dssplash
+world/watersplash2    dswat2
+world/watersplash3    dswat3
+world/watersplashsmall    dssplsml
+world/sludgegloop   dsploosh
+world/sludgegloopsmall    dsplosml
+world/lavasizzle    dslvsiz
+world/lavsiz2     dslvsiz2
+world/lavasizzlesmall   dslavsml
+$limit world/drip 0
+$limit world/watersplash 0
+$limit world/watersplashsmall 0
+$limit world/sludgegloop 0
+$limit world/sludgegloopsmall 0
+$limit world/lavasizzle 0
+$limit world/lavsiz2 0
+$limit world/lavasizzlesmall 0
+water/splash dssplash
+
+//Aspects Floor Sounds
+
+//Carpet - soft ground
+$random floor/carpet    { floor/carpet01  floor/carpet02 floor/carpet03 }
+floor/carpet01  dscarp1
+floor/carpet02  dscarp2
+floor/carpet03  dscarp3
+
+$limit floor/carpet 0
+
+//Dirt
+$random floor/dirt    { floor/dirt01  floor/dirt02 floor/dirt03 floor/dirt04  floor/dirt05 floor/dirt06 }
+floor/dirt01  dsdirt1
+floor/dirt02  dsdirt2
+floor/dirt03  dsdirt3
+floor/dirt04  dsdirt4
+floor/dirt05  dsdirt5
+floor/dirt06  dsdirt6
+
+$limit floor/dirt 0
+
+//Gravel - loose crunchy surface
+$random floor/gravel    { floor/grav01  floor/grav02 floor/grav03 floor/grav04 }
+floor/grav01  dsgrav1
+floor/grav02  dsgrav2
+floor/grav03  dsgrav3
+floor/grav04  dsgrav4
+
+$limit floor/gravel 0
+
+//Metal - hard metal
+$random floor/metal   { floor/metl01  floor/metl02 floor/metl03 floor/metl04  floor/metl05 floor/metl06 }
+floor/metl01  dsmet01
+floor/metl02  dsmet02
+floor/metl03  dsmet03
+floor/metl04  dsmet04
+floor/metl05  dsmet05
+floor/metl06  dsmet06
+
+$limit floor/metal 0
+
+//Metal2 - clanky metal
+$random floor/met2    { floor/met201  floor/met202 floor/met203 floor/met204 }
+floor/met201  dsmet201
+floor/met202  dsmet202
+floor/met203  dsmet203
+floor/met204  dsmet204
+
+$limit floor/met2 0
+
+//Rock - Hard outdoor type floor
+$random floor/rock    { floor/rock01  floor/rock02 floor/rock03 floor/rock04  floor/rock05 floor/rock06 floor/rock07 floor/rock08 }
+floor/rock01  dsrock1
+floor/rock02  dsrock2
+floor/rock03  dsrock3
+floor/rock04  dsrock4
+floor/rock05  dsrock5
+floor/rock06  dsrock6
+floor/rock07  dsrock7
+floor/rock08  dsrock8
+
+$limit floor/rock 0
+
+//Snow
+$random floor/snow    { floor/snow01  floor/snow02 floor/snow03 floor/snow04  floor/snow05 floor/snow06 }
+floor/snow01  dssnow1
+floor/snow02  dssnow2
+floor/snow03  dssnow3
+floor/snow04  dssnow4
+floor/snow05  dssnow5
+floor/snow06  dssnow6
+
+$limit floor/snow 0
+
+//Hard - generic hard floor
+$random floor/hard    { floor/hard01  floor/hard02 floor/hard03 floor/hard04  floor/hard05 floor/hard06 }
+floor/hard01  dshard1
+floor/hard02  dshard2
+floor/hard03  dshard3
+floor/hard04  dshard4
+floor/hard05  dshard5
+floor/hard06  dshard6
+
+$limit floor/hard 0
+
+//Tile - Hard indoor floor
+$random floor/tile    { floor/tile01  floor/tile02 floor/tile03 floor/tile04  floor/tile05 floor/tile06 }
+floor/tile01  dstile01
+floor/tile02  dstile02
+floor/tile03  dstile03
+floor/tile04  dstile04
+floor/tile05  dstile05
+floor/tile06  dstile06
+
+$limit floor/tile 0
+
+//Tile2 - More echoey traditional tile
+$random floor/tile2   { floor/tile201  floor/tile202 floor/tile203 floor/tile204  floor/tile205 floor/tile206 floor/tile207 floor/tile208 }
+floor/tile201 dstile21
+floor/tile202 dstile22
+floor/tile203 dstile23
+floor/tile204 dstile24
+floor/tile205 dstile25
+floor/tile206 dstile26
+floor/tile207 dstile27
+floor/tile208 dstile28
+
+$limit floor/tile2 0
+
+//Wood
+$random floor/wood    { floor/wood01  floor/wood02 floor/wood03 floor/wood04 }
+floor/wood01  dswood1
+floor/wood02  dswood2
+floor/wood03  dswood3
+floor/wood04  dswood4
+
+$limit floor/wood 0
+
+//Slimy - for the Doom snake floors
+$random floor/slimy   { floor/slimy01  floor/slimy02 floor/slimy03 floor/slimy04 }
+floor/slimy01 dsslimy1
+floor/slimy02 dsslimy2
+floor/slimy03 dsslimy3
+floor/slimy04 dsslimy4
+
+$limit floor/slimy 0
+
+//Fans and electrical stuff
+floor/elec1 dselec1
+
+$limit floor/elec1 0

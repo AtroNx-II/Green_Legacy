@@ -9,9 +9,13 @@ InInventory NOT CutSceneBlock, 1
    DrawImage "HUDNAMEL",-187,31;
   DrawImage "HUDWNBOX",-92,10;
 
+    DrawImage "HUDWLHF",480,50,Center;
+	  DrawString FONT2, White, "Score", 480, 10,0,alignment(center);
+DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 480, 30;
+
 drawmugshot "STF", 1, -86, 10;
 DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
-DrawNumber 3,FONT2, WHITE, Health, 72, 50;
+DrawNumber 3,FONT2, WHITE, Health,whennotzero,alignment(Right)|interpolate(1), 72, 50;
 DrawString FONT3, White, "M16", -127, 40;
 }
 
@@ -20,29 +24,29 @@ DrawString FONT3, White, "M16", -127, 40;
 InInventory HaveGL, 1 
  {
    DrawImage "HUDGL",-22,54;
- DrawNumber 2,FONT3, WHITE,"HaveGL", 30, 98;
-
+ DrawNumber 2,FONT3, WHITE,"HaveGL",whennotzero,alignment(center), 22, 98;
  }
 InInventory HaveSG, 1 
  {
    DrawImage "HUDSG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveSG",6, 120;
+ DrawNumber 2,FONT3, WHITE,"HaveSG",whennotzero,alignment(center), -1, 120;
  }
 InInventory HaveSMG, 1 
  {
     DrawImage "HUDSMG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveSMG",6, 120;
+ DrawNumber 3,FONT3, WHITE,"HaveSMG",whennotzero,alignment(center), -1, 120;
  }
  InInventory HaveHMG, 1 
  {
      DrawImage "HUDHMG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveHMG",6, 120;
+ DrawNumber 3,FONT3, WHITE,"HaveHMG",whennotzero,alignment(center), -1, 120;
  }
   InInventory HaveRL, 1 
  {
      DrawImage "HUDRL",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveRL",6, 120;
+ DrawNumber 2,FONT3, WHITE,"HaveRL",whennotzero,alignment(center), -1, 120;
  }
+ 
  }
  InInventory NOT CutSceneBlock, 1 
  {
@@ -60,8 +64,14 @@ InInventory HaveSMG, 1
  {
   DrawImage "EMILYSMG",-64,140;
   }
-  
-
+  InInventory Emily_Weapon_RL, 1 
+ {
+  DrawImage "EMILYRL",-64,140;
+  }
+  InInventory Emily_Weapon_SG, 1 
+ {
+  DrawImage "EMILYSG",-64,140;
+  }
 
 
  DrawImage "EMILYHED",-140,75;
@@ -75,8 +85,9 @@ InInventory HaveSMG, 1
 
  InInventory EmilyCooltime, 1 
  {
- DrawImage "EMILYHE2",-140,75;
-  DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-64,140;
+
+   DrawImage "EMILYHE2",-140,75;
+    DrawNumber 2,FONT2, WHITE, EmilyCooltime,whennotzero,alignment(center)|interpolate(20), -94, 100;
  }
  }
  }
@@ -162,38 +173,44 @@ InInventory NOT CutSceneBlock, 1
    DrawImage "HUDNAMEL",-187,31;
   DrawImage "HUDWNBOX",-92,10;
 
-drawmugshot "STF", 1, -98, 10;
+    DrawImage "HUDWLHF",480,50,Center;
+	  DrawString FONT2, White, "Score", 480, 10,0,alignment(center);
+DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 480, 30;
+
+drawmugshot "STF", 1, -86, 10;
 DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
-DrawNumber 3,FONT2, WHITE, Health, 72, 50;
+DrawNumber 3,FONT2, WHITE, Health,whennotzero,alignment(Right)|interpolate(1), 72, 50;
 DrawString FONT3, White, "M16", -127, 40;
 }
 
-
+ InInventory NOT CutSceneBlock, 1 
+ {
 InInventory HaveGL, 1 
  {
    DrawImage "HUDGL",-22,54;
- DrawNumber 2,FONT3, WHITE,"HaveGL", 30, 98;
-
+ DrawNumber 2,FONT3, WHITE,"HaveGL",whennotzero,alignment(center), 22, 98;
  }
 InInventory HaveSG, 1 
  {
    DrawImage "HUDSG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveSG",6, 120;
+ DrawNumber 2,FONT3, WHITE,"HaveSG",whennotzero,alignment(center), -1, 120;
  }
 InInventory HaveSMG, 1 
  {
     DrawImage "HUDSMG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveSMG",6, 120;
+ DrawNumber 3,FONT3, WHITE,"HaveSMG",whennotzero,alignment(center), -1, 120;
  }
  InInventory HaveHMG, 1 
  {
      DrawImage "HUDHMG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveHMG",6, 120;
+ DrawNumber 3,FONT3, WHITE,"HaveHMG",whennotzero,alignment(center), -1, 120;
  }
   InInventory HaveRL, 1 
  {
      DrawImage "HUDRL",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveRL",6, 120;
+ DrawNumber 2,FONT3, WHITE,"HaveRL",whennotzero,alignment(center), -1, 120;
+ }
+ 
  }
  InInventory NOT CutSceneBlock, 1 
  {
@@ -211,7 +228,10 @@ InInventory HaveSMG, 1
  {
   DrawImage "EMILYSMG",-64,140;
   }
-  
+  InInventory Emily_Weapon_RL, 1 
+ {
+  DrawImage "EMILYRL",-64,140;
+  }
 
 
 
@@ -226,8 +246,9 @@ InInventory HaveSMG, 1
 
  InInventory EmilyCooltime, 1 
  {
- DrawImage "EMILYHE2",-140,75;
-  DrawNumber 2,confont,white,EmilyCooltime,whennotzero,-90,100;
+
+   DrawImage "EMILYHE2",-140,75;
+    DrawNumber 2,FONT2, WHITE, EmilyCooltime,whennotzero,alignment(center)|interpolate(20), -94, 100;
  }
  }
  }
@@ -237,9 +258,12 @@ InInventory HaveSMG, 1
  
 InInventory HaveCatty, 1 
  {
+ 
    DrawImage "HUDNAME2",-162,56;
   DrawImage "HUDWBOX",-141,52;
    DrawImage "HUDWBOX",-94,100;
+DrawBar "CTSWE", "CTSW",CattyCooltime, vertical, interpolate(50)|REVERSE, -94, 100;
+   
 
  
  DrawImage "CATTHEAD",-130,70;
@@ -272,7 +296,6 @@ InInventory CATTY_EMOTION_ATTACK, 1
  DrawString FONT3, White, "CATTY",-112, 60;
  }
  }
- 
 
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
 DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
@@ -291,9 +314,9 @@ DrawBar "STAGE5S", "STAGE1E",PrintSTAGE5, vertical, interpolate(200)|reverse,800
 DrawBar "STAGE6S", "STAGE1E",PrintSTAGE6, vertical, interpolate(200)|reverse,800, 0;
 DrawBar "STAGE7S", "STAGE1E",PrintSTAGE7, vertical, interpolate(200)|reverse,800, 0;
 DrawBar "STAGE8S", "STAGE1E",PrintSTAGE8, vertical, interpolate(200)|reverse,800, 0;
+ }
  
-
-}
+ 
 
 
 StatusBar Automap

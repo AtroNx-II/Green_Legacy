@@ -1,4 +1,24 @@
-
+Actor ShieldGauge : BasicArmorBonus
+{
+Radius 20
+Height 16
+Inventory.Pickupmessage ""
+Inventory.Icon "ARM1A0"
+Armor.Savepercent 100
+Armor.Saveamount 5
+Armor.Maxsaveamount 100
+Armor.MaxBonus 0
+Armor.MaxBonusmax 0
+damageFactor "EnemySide",1.0
++COUNTITEM
++INVENTORY.ALWAYSPICKUP
+States
+{
+Spawn:
+BON2 ABCDCB 6
+loop
+}
+}
 ACTOR Pickup_MedikitS : CustomInventory replaces StimPack
 {
   Inventory.Pickupsound "Pick_Health"
@@ -15,8 +35,12 @@ ACTOR Pickup_MedikitS : CustomInventory replaces StimPack
     Loop
 
   Pickup:
-        APBX D 0 A_SpawnItemEx("NAMETAG_HP",0,0,0,0,0,2,0,SXF_NOCHECKPOSITION )
+	BATT A 0 A_JumpIf(health ==100,"ToScore")
+        APBX D 0 A_SpawnItemEx("NAMETAG_HP",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION )
     BATT A 1 HealThing(20)
+	STOP
+	ToScore:
+	TNT1 A 0 A_Giveinventory("Score_count",100)
 	STOP
   }
 }
@@ -36,8 +60,46 @@ ACTOR Pickup_MedikitM : CustomInventory replaces Medikit
     Loop
 
   Pickup:
-        APBX D 0 A_SpawnItemEx("NAMETAG_HP2",0,0,0,0,0,2,0,SXF_NOCHECKPOSITION )
-    BATT A 1 HealThing(40)
+	BATT A 0 A_JumpIf(health ==100,"ToScore")
+	APBX D 0 A_SpawnItemEx("NAMETAG_HP2",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION )
+	BATT A 1 HealThing(40)
+	STOP
+	ToScore:
+	TNT1 A 0 A_Giveinventory("Score_count",200)
 	STOP
   }
+}
+ACTOR CheckPointer_BlackCat : CustomInventory replaces MegaSphere
+{
+  Inventory.Pickupsound ""
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+	Scale 0.8
+	+FLOORCLIP
+  +NOGRAVITY
+  +BRIGHT
+  States
+  {
+  Spawn:
+    BLCT A 1
+    Loop
+
+  Pickup:
+	BATT A 0 A_JumpIfInventory("AutoSaveCount",1,"Nothing")
+	BLCT A 0 A_GiveInventory("AutoSaveCount",1)
+	BLCT A 1 Acs_NamedExecute("AutoSaving",0,0,0,0)
+	TNT1 A 0 A_PlaySound("MEOW", 7,1.0,0,ATTN_NONE)
+	Fail
+	Nothing:
+	BLCT A 1
+	Fail
+  }
+}
+Actor  AutoSaveCount : Inventory
+{
+    Inventory.MaxAmount 1
+}
+Actor  Score_count : Inventory
+{
+    Inventory.MaxAmount 0x7fffffff
 }

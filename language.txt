@@ -1,31 +1,14 @@
 [enu default]
 
 ////////////////////
-// Scenario 6 //////
+// MIDDLEBOSS1SCENE //////
 ////////////////////
 // Introduction
+MIDBOS1LINE1= "M16: WHAT THE HELL?";
+MIDBOS1LINE2= "M16: WHAT THE HELL IS THIS PLACE?";
+MIDBOS1LINE3= "M16: HELLO?";
+MIDBOS1LINE4= "M16: OHSHIT";
 SCEN6LINE1= "M16: BLAH BLAH BLAH";
-SCEN6LINE2= "Her room is quite theâ";
-SCEN6LINE3= "oh god, what the hell are those things in those bottlesâ¦? Okay, seems like she definitely is MORE THAN MEETS THE EYE.";
-SCEN6LINE4= "Let's see what HURTIN FORASQUIRTIN's actual name is.\n\nNAMETAG, please?";
-SCEN6LINE5= "SEIGA KAKU";
-SCEN6LINE6= "> Be Seiga.";
-SCEN6LINE7= "Your name is SEIGA. You've got a strange love for THANATOLOGY and GENETICS because you believe it holds secrets to LONGEVITY. It's no surprise that you are an aspiring PSYCHAGOGUE.";
-SCEN6LINE8= "You crave nothing more than a GOOD HUNT in which you eventually pretend to play the role of THE CREATIVE UNDERTAKER, deciding whether to BURY or TAXIDERMIZE the body.";
-SCEN6LINE9= "You often try your hand at ways to either PRESERVE or DESTROY life by experimenting on DISCARDED FETUSES the BREEDING LABS nearby often throw out. You wish to work in one of them one day to learn their SECRETS.";
-SCEN6LINE10= "You use the preachhandle \c[Seiga]vivaciousHollows\c-.";
-SCEN6LINE11= "As always, you \c[Seiga]are unnervingly flirtatious when talking to others for some strange reason~!";
-SCEN6LINE12= "You just finished up deploying your client's things, just to get it out of the way so you can do your own business with no interruptions.";
-SCEN6LINE13= "Seiga: Allocate strife specibus.";
-SCEN6LINE14= "Unlike the others, you already have your STRIFE SPECIBUS on deck since you're oh-so-very responsible.";
-SCEN6LINE15= "This is your KIND ABSTRATA, \c[Strife]spadekind\c-, which you keep on hand with you at all times.";
-SCEN6LINE16= "Or rather, you keep it in your hair, but whatever.";
-SCEN6LINE17= "> Seiga: Send last package.";
-SCEN6LINE18= "Before connecting with that HORRID server player, you've got one last package to send in to a VERY LUCKY person! Personal, but urgent, matters.";
-SCEN6LINE19= "You're sure they'll be elated to get these seeing as how the packages are from you, of all people. There's nothing more intoxicating than receiving gifts from pretty girls. Especially super cool light shows of a gift.";
-SCEN6LINE20= "> Seiga: Grab your phone.";
-SCEN6LINE21= "Time to stop messing around, though, just so nobody gets too suspicious.";
-
 
 // Found Sprite
 SCEN6LINE22= "Good, you found your sprite.";

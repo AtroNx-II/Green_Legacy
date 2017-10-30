@@ -2,8 +2,27 @@
 // Characters //////
 ////////////////////
 
-// Hijiri
-Texture hijla1
-pic hijla1 tics 5
-pic hijla2 tics 5
+// M16
+Texture smile2
+pic smile2 tics 5
+pic smile1 tics 5
 
+Texture norm2
+pic norm2 tics 5
+pic norm1 tics 5
+
+Texture nice2
+pic nice2 tics 5
+pic nice1 tics 5
+
+Texture anger2
+pic anger2 tics 5
+pic anger1 tics 5
+
+Texture warning2
+pic warning2 tics 5
+pic warning1 tics 5
+
+Texture wonder2
+pic wonder2 tics 5
+pic wonder1 tics 5

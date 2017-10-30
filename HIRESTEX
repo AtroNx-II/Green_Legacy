@@ -102,6 +102,8 @@ define "WR041" 5 6
 define "WR042" 5 6
 define "WR043" 5 6
 define "WR044" 5 6
+define "WR045" 5 6
+define "WR046" 5 6
 define "WR200" 12 14
 define "WR201" 12 14
 define "WR202" 12 14
@@ -147,6 +149,8 @@ define "WR241" 12 14
 define "WR242" 12 14
 define "WR243" 12 14
 define "WR244" 12 14
+define "WR245" 12 14
+define "WR246" 12 14
 define "WR300" 8 9
 define "WR301" 8 9
 define "WR302" 8 9
@@ -192,4 +196,6 @@ define "WR341" 8 9
 define "WR342" 8 9
 define "WR343" 8 9
 define "WR344" 8 9
+define "WR345" 8 9
+define "WR346" 8 9
 // End of texture definitions

@@ -44,7 +44,9 @@ SMALLFONT
    ? WR041
    . WR042
    % WR043
-   : WR044         
+   : WR044       
+   < WR045
+   > WR046
    }
    
 FONT3
@@ -93,56 +95,11 @@ FONT3
    ? WR341
    . WR342
    % WR343
-   : WR344         
+   : WR344 
+   < WR345
+   > WR346
    }
-confont
-{
-  0 WR000
-  1 WR001
-  2 WR002
-  3 WR003
-  4 WR004
-  5 WR005
-  6 WR006
-  7 WR007
-  8 WR008
-  9 WR009
-  A WR010
-  B WR011
-  C WR012
-  D WR013
-  E WR014
-  F WR015
-  G WR016
-  H WR017
-  I WR018
-  J WR019
-  K WR020
-  L WR021
-  M WR022
-  N WR023
-  O WR024
-  P WR025
-  Q WR026
-  R WR027
-  S WR028
-  T WR029
-  U WR030
-  V WR031
-  W WR032
-  X WR033
-  Y WR034
-  Z WR035
-     / WR036
-   - WR037
-   * WR038
-   ' WR039
-   ! WR040
-   ? WR041
-   . WR042
-   % WR043
-   : WR044         
-   }
+
 font2
 {
   0 WR200
@@ -189,7 +146,9 @@ font2
    ? WR241
    . WR242
    % WR243
-   : WR244         
+   : WR244  
+   < WR245
+   > WR246
    }
    
     BIGFONT

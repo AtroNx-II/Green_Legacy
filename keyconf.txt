@@ -1,8 +1,7 @@
 ClearPlayerClasses
-AddPlayerClass SidescrollPlayer
+AddPlayerClass M16
 
 
-addkeysection "SideScrollProject" SP_Keysection
-addmenukey "Use Supporter" +user1
 defaultbind F +user1
+defaultbind K +user2
 defaultbind S +crouch

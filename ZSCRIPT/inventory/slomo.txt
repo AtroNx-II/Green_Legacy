@@ -22,7 +22,7 @@ class PowerTimeFreezer2 : Powerup
 			return;
 
 		// When this powerup is in effect, pause the music.
-		S_PauseSound(true,false);
+		S_PauseSound(true, true);
 
 		// Give the player and his teammates the power to move when time is frozen.
 		freezemask = 1 << Owner.PlayerNumber();
@@ -78,8 +78,8 @@ class PowerTimeFreezer2 : Powerup
 		// never happen, because InitEffect ensures that EffectTics will always
 		// be odd when level.time is even.
 		level.frozen = ( EffectTics > 4*32 
-			|| (( EffectTics > 3*32 && EffectTics <= 4*32 ) && ((EffectTics + 1) & 15) != 0 )
-			|| (( EffectTics > 2*32 && EffectTics <= 3*32 ) && ((EffectTics + 1) & 7) != 0 )
+			|| (( EffectTics > 3*32 && EffectTics <= 4*32 ) && ((EffectTics + 1) & 3) != 0 )
+			|| (( EffectTics > 2*32 && EffectTics <= 3*32 ) && ((EffectTics + 1) & 3) != 0 )
 			|| (( EffectTics >   32 && EffectTics <= 2*32 ) && ((EffectTics + 1) & 3) != 0 )
 			|| (( EffectTics >    0 && EffectTics <= 1*32 ) && ((EffectTics + 1) & 1) != 0 ));
 	}

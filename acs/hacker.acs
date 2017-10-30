@@ -2,16 +2,89 @@
 #include "zcommon.acs"
 
 str UPPERimage[72] = {"CATSH00","CATSH01","CATSH02","CATSH03",
-"CATSH04","CATSH06","CATSH07","CATSH08","CATSH09","CATSH010","CATSH011","CATSH012",
-"CATSH013","CATSH014","CATSH015","CATSH016","CATSH017","CATSH018","CATSH019","CATSH020",
-"CATSH021","CATSH022","CATSH023","CATSH024","CATSH025","CATSH026","CATSH027"
-,"CATSH028","CATSH029","CATSH030","CATSH031","CATSH032","CATSH033","CATSH034"
-,"CATSH035","CATSH036","CATSH037","CATSH038","CATSH039","CATSH040","CATSH041","CATSH042"
-,"CATSH043","CATSH044","CATSH045","CATSH046","CATSH047","CATSH048","CATSH049","CATSH050"
-,"CATSH051","CATSH052","CATSH053","CATSH054","CATSH055","CATSH056","CATSH057","CATSH058"
-,"CATSH059","CATSH060","CATSH061","CATSH062","CATSH064","CATSH065","CATSH066","CATSH067"
-,"CATSH068","CATSH069","CATSH070","CATSH071"};
+"CATSH04","CATSH05","CATSH06","CATSH07","CATSH08","CATSH09","CATSH10","CATSH11","CATSH12",
+"CATSH13","CATSH14","CATSH15","CATSH16","CATSH17","CATSH18","CATSH19","CATSH20",
+"CATSH21","CATSH22","CATSH23","CATSH24","CATSH25","CATSH26","CATSH27"
+,"CATSH28","CATSH29","CATSH30","CATSH31","CATSH32","CATSH33","CATSH34"
+,"CATSH35","CATSH36","CATSH37","CATSH38","CATSH39","CATSH40","CATSH41","CATSH42"
+,"CATSH43","CATSH44","CATSH45","CATSH46","CATSH47","CATSH48","CATSH49","CATSH50"
+,"CATSH51","CATSH52","CATSH53","CATSH54","CATSH55","CATSH56","CATSH57","CATSH58"
+,"CATSH59","CATSH60","CATSH61","CATSH62","CATSH63","CATSH64","CATSH65","CATSH66","CATSH67"
+,"CATSH68","CATSH69","CATSH70","CATSH71"};
 
+script "TidCaller" (int Tid)
+{
+SetResultValue(Tid);
+}
+
+script "AutoSaving" (void)
+{
+Autosave();
+}
+script "PlatFormMover" (int Distance,int Speed,int StayDelay) 
+{
+
+    int RESTARTANIMATION,MoveDistance,FirstX,SecondX,FirstY,SecondY,FirstZ,SecondZ,Xdiff,Ydiff,Zdiff,platform_Height,platform_Radius,player_radius,platform_Radius2,player_height,FDiffDist;
+    IF(RESTARTANIMATION==0) //PREVENT CHANGE TID CONTINUOSLY 
+    {
+        int MissileID = UniqueTid();//Acs_NamedExecuteWithResult("TidCaller",0,2000,0,0);
+        Thing_ChangeTID(0, MissileID);
+        SetActivator(1001+PlayerNumber(), AAPTR_PLAYER1);
+        platform_Height = GetActorProperty(MissileID, APROP_Height);
+        platform_Radius = GetActorProperty(MissileID, APROP_Radius)+player_radius;
+        player_radius = GetActorProperty(APROP_TargetTID, APROP_Radius)/2;
+		player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
+    }
+    
+        For(MoveDistance = Distance*1.0; MoveDistance >= 0.0; MoveDistance -= 1.0) // MOVE DISTANCE
+        { 
+    FirstX=GetActorX(MissileID);
+    FirstY=GetActorY(ActivatorTid());
+    FirstZ=GetActorZ(ActivatorTid())-GetActorFLOORZ(ActivatorTid());
+    SetActorVelocity(MissileID,Speed*1.0,0,0,False,False);
+		ModifyPlayerFriction(MissileID, 0.55);
+            Delay(1);
+    SecondX=GetActorX(ActivatorTid());
+    SecondY=GetActorY(ActivatorTid());
+    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
+    Xdiff = FirstX-SecondX;
+    Ydiff = FirstY-SecondY;
+    Zdiff = FirstZ-SecondZ;
+if(GetActorX(MissileID)-GetActorX(ActivatorTid())< platform_Radius && GetActorZ(MissileID)+platform_Height==GetActorZ(ActivatorTid()))
+        {
+        SetActorPosition(ActivatorTid(),GetActorX(MissileID)-Xdiff,GetActorY(MissileID),GetActorZ(ActivatorTid()),False);
+				ModifyPlayerFriction(ActivatorTid(), 0.55);
+        }
+        }
+    Thing_Stop(MissileID);
+                    Delay(StayDelay);
+        For(MoveDistance = Distance*1.0; MoveDistance >= 0.0; MoveDistance -= 1.0)
+        { 
+    FirstX=GetActorX(MissileID);
+    FirstY=GetActorY(ActivatorTid());
+    FirstZ=GetActorZ(ActivatorTid())-GetActorFLOORZ(ActivatorTid());
+        SetActorVelocity(MissileID,-Speed*1.0,0,0,False,False);
+		ModifyPlayerFriction(MissileID, 0.55);
+        Delay(1);
+    SecondX=GetActorX(ActivatorTid());
+    SecondY=GetActorY(ActivatorTid());
+    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
+    Xdiff = FirstX-SecondX;
+    Ydiff = FirstY-SecondY;
+    Zdiff = FirstZ-SecondZ;
+	if(GetActorX(MissileID)-GetActorX(ActivatorTid())< platform_Radius && GetActorZ(MissileID)+platform_Height==GetActorZ(ActivatorTid()))
+        {
+        SetActorPosition(ActivatorTid(),GetActorX(MissileID)-Xdiff,GetActorY(MissileID),GetActorZ(ActivatorTid()),False);
+		ModifyPlayerFriction(ActivatorTid(), 0.55);
+        }
+
+		
+        }
+        Thing_Stop(MissileID);
+                    Delay(StayDelay);
+RESTARTANIMATION=1;
+          restart;
+}
 
 script "CheckSupporterSkill" ENTER
 {
@@ -22,8 +95,8 @@ script "CheckSupporterSkill" ENTER
  int playerAngle;  int playerAngle2;
  bool bInMidAir; int playerHeight; int playerJumpZ;
  int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
- heldButtons =  GetPlayerInput(-1, INPUT_OLDBUTTONS);
- buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
+ heldButtons =  GetPlayerInput(-1, MODINPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, MODINPUT_BUTTONS);
  newButtons = (buttons ^ heldButtons) & buttons;
  oldButtons = (buttons ^ heldButtons) & heldButtons;
  INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
@@ -34,34 +107,91 @@ script "CheckSupporterSkill" ENTER
    {
     If(CheckInventory("HaveEmily"))
    {
+	
+    If(CheckInventory("LoadingEmily"))
+   {
+    If(CheckInventory("PlayingEmily")==0)
+   {
+  SetPlayerProperty(TRUE, ON, PROP_TOTALLYFROZEN);
+ Delay(1);
+            Takeinventory("ShieldOnline",1);
+       Takeinventory("ShieldFinished",1);
+	     Takeinventory("ShieldPowerGiver",1);
+		 Takeinventory("ShieldPower",1);
+
+ Delay(1);
+ 	     Takeinventory("ShieldPowerGiver",1);
+		 Takeinventory("ShieldPower",1);
+   MorphActor(0,"EmilyPlayer","",0x7fffffff,MRF_FULLHEALTH ,"NoFlash","NoFlash");
+          Thing_ChangeTID(0,1001+PlayerNumber());
+   Giveinventory("PlayingEmily",1);
+
+	SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+   INT OLDPOSX = GetActorX(0);
+   INT OLDPOSY = GetActorY(0);
+   INT OLDPOSZ = GetActorZ(0);
+        Giveinventory("Spawn_Emily",1);
+
+   					 Giveinventory("HideMaster",1);
+
+      Delay(20);
+SetPlayerProperty(TRUE, OFF, PROP_TOTALLYFROZEN);
+	 
+	}
+	Else
+	{
+	SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+	 Delay(1);
+
+	SetActorPosition(0,OLDPOSX,OLDPOSy,OLDPOSz,False);
+	UnMorphActor(0,True);
+		Thing_ChangeTID(0,1001+PlayerNumber());
+					 Giveinventory("HookCancel",1);
+					 Giveinventory("ShowMaster",1);
+			 Takeinventory("PlayingEmily",1);
+	 Delay(20);
+	}
+   }
+   else
+   {
      Giveinventory("Support_Emily",1);
+   }
+
     }
   Else If(CheckInventory("HaveCatty"))
    {
    if(CheckInventory("CattyCooltime")==0)
    {
+   SetActorProperty(0, APROP_Invulnerable, true);
 Giveinventory("Baldo",1);
+
    ACS_NamedExecute("Check_CoolTime_Catty",0,0,0,0);
    GiveInventory("CattyCooltime",300);
        SetHUDSize(880, 640, TRUE);
-	 delay(10);
+     delay(10);
+        ACS_NamedExecuteAlways("SpecialattackSound",0,0,0,0);
     int Imagenum;
-		        Giveinventory("TimeisStopnow",1);
-    For(Imagenum = 0; Imagenum <= 60; Imagenum += 1)
+                Giveinventory("TimeisStopnow",1);
+    For(Imagenum = 0; Imagenum <= 71; Imagenum += 1)
     {
-			Setfont(UPPERimage[Imagenum]);
-            HudMessage(s:"A"; 0, 1004,CR_UNTRANSLATED, 440.0, 320.0, 1.0);
+            Setfont(UPPERimage[Imagenum]);
+            HudMessage(s:"A"; HUDMSG_ADDBLEND, 1004,CR_UNTRANSLATED, 440.0, 320.0, 1.0);
        SetHUDSize(880, 640, TRUE);
-            Delay(1);
+            Delay(2);
         }
-            HudMessage(s:""; 0, 1004,CR_UNTRANSLATED, 640.0, 384.0, 1.0);
+            Setfont("CATSH71");
+            HudMessage(s:"A"; HUDMSG_ADDBLEND|HUDMSG_FADEOUT, 1004,CR_UNTRANSLATED, 440.0, 320.0, 0.0,0.5);
+            SetHUDSize(880, 640, TRUE);
 
+            Delay(2);
       Giveinventory("CattySpecialAttack",1);
 
-				        Giveinventory("TimeisStopnow",1);
-	 Acs_NamedExecute("CattySpecial",0,0,0,0);
-	 delay(35*3);
-	 }
+     Acs_NamedExecute("CattySpecial",0,0,0,0);
+         delay(35*1);
+            SetActorProperty(0, APROP_Invulnerable, false);
+     delay(35*2);
+
+     }
     }
   Else
   {
@@ -78,6 +208,23 @@ Giveinventory("Baldo",1);
       delay(1);
 }
 
+}
+Script "SpecialattackSound" (void)
+{
+SetMusicVolume(0.25);
+        FadeRange(0,0,0,0.0,0,0,0,0.9,1.5);
+PlaySound (0,"SPEC000", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+PlaySound (0,"SPEC003", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+delay(70);
+PlaySound (0,"SPEC002", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+PlaySound (0,"SPEC001", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+
+delay(35);
+        FadeRange(0,0,0,1.0,0,0,0,0.0,0.5);
+PlaySound (0,"SPEC004", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+PlaySound (0,"SPEC005", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+delay(15);
+SetMusicVolume(1.0);
 }
 // check if player is on ground
 function int CheckPlayerOnGround(void)
@@ -272,6 +419,12 @@ script "CheckSpeed" ENTER
      takeinventory("Dashing",1);
   Delay(20);
     }
+    Else IF(newButtons == BT_JUMP)
+   {
+     Giveinventory("HookCancel",1);
+  Delay(1);
+takeinventory("HookCancel",1);
+    }
     ELSE
     {
 
@@ -279,6 +432,65 @@ script "CheckSpeed" ENTER
 
 
    }
+
+      delay(1);
+}
+
+}
+script "ShieldSpawn" ENTER
+{
+        int buttons; int heldButtons; int newButtons; int oldButtons;
+ while (TRUE)
+ {
+ int playerSpeed; int dodgeSpeed;  int dodgeSpeed2;
+ heldButtons =  GetPlayerInput(-1, ModINPUT_OLDBUTTONS);
+ buttons =     GetPlayerInput(-1, MODINPUT_BUTTONS);
+ newButtons = (buttons ^ heldButtons) & buttons;
+ oldButtons = (buttons ^ heldButtons) & heldButtons;
+ INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+
+ if (GetActorProperty (0, APROP_HEALTH) > 0)
+ {
+    IF(newButtons == BT_USER2)
+   {
+if(CheckInventory("PlayingEmily")==1)
+{
+
+    if(CheckInventory("HOOKEND")>0)
+    {
+    Giveinventory("HookCancel",1);
+         delay(5);
+         takeinventory("HookCancel",1);
+   Giveinventory("HOOKACTIVATOR",1);
+         delay(10);
+         takeinventory("HookActivator",1);
+
+    }
+    else
+    {
+         takeinventory("HookCancel",1);
+   Giveinventory("HOOKACTIVATOR",1);
+         delay(5);
+         takeinventory("HookActivator",1);
+         delay(10);
+    }
+
+    }
+    ELSE
+    {
+    if(CheckInventory("ShieldOnline")==1)
+    {
+    Takeinventory("ShieldOnline",1);
+    Takeinventory("ShieldFinished",1);
+    }
+    else
+    {
+    Giveinventory("ShieldActivator",1);
+    }
+    }
+    }
+}
+
 
       delay(1);
 }
@@ -350,24 +562,46 @@ Function int JumpStatus (int Buttons, int OldButtons)
   if (JumpNow > 0 &&  JumpOld > 0) { return 3; }
   Return 0;
 }
-
+//&& CheckInventory("CutSceneblock")==0
 script "CheckCrouch" ENTER
 {
 
- int buttons =     GetPlayerInput(-1, MODINPUT_BUTTONS);
-
+ int buttons =     GetPlayerInput(-1, INPUT_BUTTONS);
  INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
 
-if (buttons & BT_CROUCH  && GetActorVelZ(0)==0)
+if (buttons & BT_CROUCH )
 {
+    if(GetActorVelZ(0)==0)
+    {
 
- SetPlayerProperty (0, 1, PROP_FROZEN);
-     Giveinventory("Crouching",1);
+     SetPlayerProperty (0, 1, PROP_FROZEN);
+         Giveinventory("Crouching",1);
+    }
+    ELSE
+    {
+    if(buttons & BT_Jump )
+    {
+         SetPlayerProperty (0, 0, PROP_FROZEN);
+             Giveinventory("AimDown",1);
+             }
+         SetPlayerProperty (0, 0, PROP_FROZEN);
+             Giveinventory("AimDown",1);
+    }
+    if(GetActorVelZ(0)==0)
+    {
+
+     SetPlayerProperty (0, 1, PROP_FROZEN);
+          takeinventory("AimDown",1);
+         Giveinventory("Crouching",1);
+    }
 }
+
+
 else
 {
   SetPlayerProperty (0, 0, PROP_FROZEN);
      takeinventory("Crouching",1);
+     takeinventory("AimDown",1);
 }
    delay(1);
    RESTART;
@@ -427,31 +661,49 @@ Script 101 ENTER
         buttons = GetPlayerInput(-1, INPUT_BUTTONS);
         oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
       jumpstate = JumpStatus(buttons, oldbuttons);
-        SetAirControl(0.666); // SPOOKY
+        SetAirControl(0.600); // SPOOKY
         changeActorAngle(0,0.25,0);
     SetActorPitch(0,0);
 
         // Friction on the ground, slower jump in mid-air
     if (CheckPlayerOnGround())
         {
-            ModifyPlayerFriction(0, FRICTION_FACTOR);
+            ModifyPlayerFriction(1001+PlayerNumber(), 0.55);
+
+		  if(CheckInventory("PlayingEmily") > 0)
+		  {
+ SetActorProperty(0, APROP_SPEED,1.0);
+			}
+			Else
+			{
             TakeInventory("JumpSpeed",1);
+			}
             jumped = 0;
             airtime = 0;
             savejump = 0;
         }
         else
         {
-            GiveInventory("JumpSpeed",1);
+		  if(CheckInventory("PlayingEmily") > 0)
+		  {
+ SetActorProperty(0, APROP_SPEED,0.25);
+			}
+			Else
+			{
+ SetActorProperty(0, APROP_SPEED,1.0);
+			GiveInventory("JumpSpeed",1);
+			}
+            
             airtime++;
         }
  
         // Here's a catch-all for if you fall off a ledge but need a couple extra tics to make your jump.
         if (grounded == 0 && airtime > 0 && airtime < 4 && jumped == 0 && buttons & BT_JUMP && savejump == 0)
         {
-           ThrustThingZ(0,57,0,0);
+           //ThrustThingZ(0,57,0,0);
            jumped = 1;
            savejump = 1;
+		   
         }
 
     Switch(jumpstate)
@@ -481,6 +733,7 @@ Script 101 ENTER
       if(GetActorVelZ(0) < 0.0)
       {
         TakeInventory("JumpStop",1);
+		
         //print(s:"You're falling!");
         grounded = 0;
       }
@@ -496,8 +749,9 @@ Script 101 ENTER
     }
         if (buttons & BT_MOVERIGHT) // Checks for if the player is holding right.
         {
-            GiveInventory("Moving",1);
+
   TakeInventory("BackwardsCheck",1);
+  GiveInventory("Moving",1);
             if (buttonweightmove < 0) { buttonweightmove = 0.0; }
             buttonweightmove = buttonweightmove + 4.0;
       buttonweight = buttonweight + 1.0;
@@ -505,15 +759,17 @@ Script 101 ENTER
     }
         if (buttons & BT_MOVELEFT) // Checks for if the player is holding left.
     {
+    GiveInventory("BackwardsCheck",1);
             GiveInventory("Moving",1);
-GiveInventory("BackwardsCheck",1);
+
             buttonweightmove = buttonweightmove - 4.0;
       buttonweight = buttonweight - 1.0;
       buttondelay = 0;
     }
-        if ( !(buttons & BT_FORWARD)) // If the player is not pushing right or left.
+        if ( !(buttons & BT_FORWARD)) // If the player is not pushing up
         {
             TakeInventory("aimup",1);
+            buttondelay = buttondelay + 1.0;
         }
         if ( !(buttons & BT_MOVELEFT) && !(buttons & BT_MOVERIGHT)) // If the player is not pushing right or left.
         {
@@ -525,8 +781,8 @@ GiveInventory("BackwardsCheck",1);
 
         //if (buttonweightmove < -3.0) { GiveInventory("BackwardsCheck",1); }
         //if (buttonweightmove > 3.0) { TakeInventory("BackwardsCheck",1); }
-        if (buttonweight < -8.0) { xmod = xmod - 8.0; }
-        if (buttonweight > 8.0) { xmod = xmod + 8.0; }
+        if (buttonweight < -12.0) { xmod = xmod - 8; }
+        if (buttonweight > 12.0) { xmod = xmod + 8; }
         if (buttonweight > 12.0) { buttonweight = 12.0; }
         if (buttonweight < -12.0) { buttonweight = -12.0; }
         if (xmod > 80.0) { xmod = 80.0; }
@@ -535,16 +791,16 @@ GiveInventory("BackwardsCheck",1);
         // Last, set the camera
     //SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
         if (CheckInventory("CamOff") > 0) 
-		{
+        {
 
-		Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
-		}
+        Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        }
         else{        
-		Warp(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
-		}
+        Warp(ActivatorTID()+1000,GetActorX(0),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        }
         
-        if (CheckInventory("RespawnFollowOff") > 0) {}
-        else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
+        //if (CheckInventory("RespawnFollowOff") > 0) {}
+        //else{        Warp(2500,GetActorX(0),GetActorY(0),GetActorZ(0)+26.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);}
         
 
         // Debug info
@@ -559,15 +815,17 @@ GiveInventory("BackwardsCheck",1);
              s:"  - ", d:jumpstate,s:" jumpstate\n",
              s:"  - ", f:xmod,s:" xmod\n",
                s:"  - ", f:GetActorCeilingZ(0) - GetActorZ(0),s:" ceilz\n",
+                              s:"  - ", f:GetActorZ(0) -GetActorfloorZ(0) ,s:" floorz\n",
+                                          s:"  - ", f:GetActorZ(0),s:" z\n",
              s:"  - ", d:airtime,s:" airtime\n",
              s:"  - ", d:jumped,s:" jumped\n",
              s:"  - ", d:savejump,s:" savejump";
          HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
     }
         if (CheckInventory("Health") <= 0) 
-		{ 
+        { 
 
-			terminate; }
+            terminate; }
 
     Delay(1);
   }
@@ -642,15 +900,15 @@ int playerSpeed; int dodgeSpeed;
                 }
                //// else if (newButtons & BT_FORWARD)/////
 //               {
-//				If(CheckInventory("CutSceneBlock")==0)
-//				 {
+//              If(CheckInventory("CutSceneBlock")==0)
+//               {
  //                       if (BoostUP[pln])
   //                      {
    //                             Delay(1);
     //                            If(CheckInventory("Booster_Enable") >0)
      //                           {
       //                                  giveinventory("BOOST",1);
-	//									giveinventory("Aimup",1);
+    //                                  giveinventory("Aimup",1);
      //                                   Delay(20);
       //                                  //takeinventory("BOOST",1);
        //                         }
@@ -661,17 +919,17 @@ int playerSpeed; int dodgeSpeed;
             //                    BoostUP[pln] = DODGEWINDOW;
              //           }
               //   }
-				////}/////
+                ////}/////
                 else if (newButtons & BT_MOVELEFT)
                 {
-				If(CheckInventory("CutSceneBlock")== 0)
-				   {
+                If(CheckInventory("CutSceneBlock")== 0)
+                   {
                         if (BoostLeft[pln])
                         {
                                 Delay(1);
                                 If(CheckInventory("Booster_Enable") >0 && CheckInventory("PlasmaGauge")>69)
                                 {
-										takeinventory("PlasmaGauge",70);
+                                        takeinventory("PlasmaGauge",70);
                                         giveinventory("BOOST",1);
                                         Delay(20);
                                         //takeinventory("BOOST",1);
@@ -682,18 +940,18 @@ int playerSpeed; int dodgeSpeed;
                         {
                                 BoostLeft[pln] = DODGEWINDOW;
                         }
-					}
+                    }
                 }
                 else if (newButtons & BT_MOVERIGHT)
                 {
-				If(CheckInventory("CutSceneBlock")==0  && CheckInventory("PlasmaGauge")>69)
-				 {
+                If(CheckInventory("CutSceneBlock")==0  && CheckInventory("PlasmaGauge")>69)
+                 {
                         if (BoostRight[pln])
                         {
                                 Delay(1);
                                 If(CheckInventory("Booster_Enable") >0)
                                 {
-										takeinventory("PlasmaGauge",70);
+                                        takeinventory("PlasmaGauge",70);
                                         giveinventory("BOOST",1);
                                         Delay(20);
                                         //takeinventory("BOOST",1);
@@ -705,7 +963,7 @@ int playerSpeed; int dodgeSpeed;
                                 BoostRight[pln] = DODGEWINDOW;
                         }
                  }
-				}
+                }
                 else
                 {}
                 BoostUP[pln] = max(BoostUP[pln]-1, 0);
@@ -733,9 +991,13 @@ script 479 RESPAWN net
         ACS_ExecuteAlways(469, 0, 0, 0, 0);
 }
 
-script "Shield_Timer" (void)
+script "Shield_Timer" (int del)
 {
-Delay(35*20);
+int tic;
+        For(tic = del; tic >= 0.0; tic -= 1)
+        {
+            Delay(1);
+        }
 GiveInventory("ShieldFinished",1);
 Delay(1);
 TakeInventory("ShieldFinished",999);
@@ -763,3 +1025,378 @@ delay(35);
 delay(1);
 terminate;
 }
+script "CheckMastersGetHurt" (int tid)
+{
+SetActorProperty (0, APROP_MasterTID,tid);
+int firstH,LastH;
+if (GetActorProperty (tid, APROP_Health)<1)
+{
+terminate;
+}
+firstH = GetActorProperty (tid, APROP_Health);
+Delay(3);
+LastH = GetActorProperty (tid, APROP_Health);
+if (firstH-LastH>0)
+{
+Acs_NamedExecuteAlways("InvulTime",0,3,1,0);
+}
+Restart;
+}
+
+
+//
+//  Scripts
+//
+//  Functions
+//
+
+// IsTIDUnique (Int TID)
+// Returns true if only one actor has the specified TID
+// Returns false if it finds none, or there is more than one
+Function Bool IsTIDUnique (Int TID)
+{
+    If (ThingCount(T_NONE, TID) > 1)
+    {
+        // It isn't unique, so return false
+        Return False;
+    }
+    
+    If (!(IsTIDUsed(TID)))
+    {
+        // There are no actors with this TID
+        Return False;
+    }
+    Return True;
+}
+
+// GetActivatorTID
+// Checks if the activator has a TID and gets it
+// If the activator doesn't have a TID, a new one is set
+Function Int GetActivatorTID (void)
+{
+    If (!(IsTIDUnique(ActivatorTID())))
+        Thing_ChangeTID (0, UniqueTID());
+    Return ActivatorTID();
+}
+
+// Int IsOdd (Int Number)
+// Checks if a number is even or odd
+// Returns 0 for even numbers and 1 for odd numbers
+Function Int IsOdd (Int number)
+{ 
+   int p = number % 2;
+   return p;
+}
+
+// Abs (Int x)
+// Gets the absolute value of the specified number
+// Numbers less than 0 are inverted, so -5 becomes 5
+Function Int Abs (Int x)
+{
+    If (x < 0)
+        Return -x;
+
+    Return x;
+}
+
+// Pow (Int x, Int n)
+// Multiplies x by itself n times.
+// Pow (3, 4) would be 81 since 3 * 3 * 3 * 3 = 81
+Function Int Pow (Int x, Int n)
+{
+    Int y = 1;
+    While (n-- > 0) y *= x;
+    Return y;
+}
+
+// Round (Int f)
+// Rounds a decimal to a whole number
+// Numbers will be rounded down unless you add 0.5 before using the function
+Function Int Round (Int f)
+{
+    Return f >> 16;
+}
+
+// FixedDistance (Int tid1, Int tid2)
+// Gets the 2D distance between two actors
+// Number is return as a fixed point
+Function Int FixedDistance (Int tid1, Int tid2)
+{   
+    Int x = GetActorX(tid1) - GetActorX(tid2);
+    Int y = GetActorY(tid1) - GetActorY(tid2);
+    
+    Int len = VectorLength(x, y);
+    Return len;
+}
+
+// Distance (Int tid1, Int tid2)
+// Same as FixedDistance, except it returns a whole number
+Function Int Distance (Int tid1, Int tid2)
+{
+    Return Round(FixedDistance(tid1, tid2));
+}
+
+// XYZ_FixedDistance (Int tid1, Int tid2)
+// Gets the 3D distance between two actors
+// Number is return as a fixed point
+Function Int XYZ_FixedDistance (Int tid1, Int tid2)
+{
+    Int z = ZDistance(tid1, tid2);
+    
+    Int len = VectorLength ((FixedDistance (tid1, tid2)), z);
+    Return len;
+}
+
+// XYZ_Distance (Int tid1, Int tid2)
+// Same as XYZ_FixedDistance, except it returns a whole number
+Function Int XYZ_Distance (Int tid1, Int tid2)
+{
+    Return Round (XYZ_FixedDistance (tid1, tid2));
+}
+
+// ZDistance (Int tid1, Int tid2)
+// Gets the height difference between two actors
+Function Int ZDistance (Int tid1, Int tid2)
+{
+    Return (GetActorZ(tid1) - GetActorZ(tid2));
+}
+
+// Angle (Int tid1, Int tid2)
+// Gets the angle between two actors
+// An actor's facing angle isn't taken into account
+Function Int Angle (Int tid1, Int tid2)
+{
+    int x, y;
+    x = GetActorX(tid1) - GetActorX(tid2);
+    y = GetActorY(tid1) - GetActorY(tid2);
+    return VectorAngle(x, y);
+}
+
+// ByteAngle (Int tid1, Int tid2)
+// Same as Angle, but returned as a byte angle instead
+Function Int ByteAngle (Int tid1, Int tid2)
+{
+    return Angle(tid1, tid2) >> 8;
+}
+
+// Pitch (Int tid1, Int tid2)
+// Gets the pitch between two actors
+// An actor's camera pitch isn't taken into account
+Function Int Pitch (Int tid1, Int tid2)
+{
+    Int x, y, z, xy, a;
+    x = GetActorX(tid2) - GetActorX(tid1);
+    y = GetActorY(tid2) - GetActorY(tid1);
+    z = GetActorZ(tid2) - GetActorZ(tid1);
+    a = VectorAngle(x, y);
+
+    if ((a + 0.125) % 0.5 > 0.25)
+        xy = FixedDiv(y, sin(a));
+    else
+        xy = FixedDiv(x, cos(a));
+
+    return -VectorAngle(xy, z);
+}
+
+// BytePitch (Int tid1, Int tid2)
+// Same as Pitch, but returned as a byte pitch instead
+Function Int BytePitch (Int tid1, Int tid2)
+{
+    return Pitch(tid1, tid2) >> 8;
+}
+
+// Player color functions
+
+// PlayerColor (Int playernum)
+// Get the player's color as a hexadecimal with range of [0, 255]
+Function Int GetPlayerColor (Int playernum)
+{
+    Int playercolor;
+
+    playercolor = GetPlayerInfo (playernum, PlayerInfo_Color);
+    Return playercolor;
+}
+
+Function Int PlayerColorRed (Int playernum)
+{
+    Int playerred;
+    playerred = GetPlayerColor(playernum) >> 16;
+    Return playerred;
+}
+
+Function Int PlayerColorGreen (Int playernum)
+{
+    Int playergreen;
+    playergreen = (GetPlayerColor(playernum) - (PlayerColorRed(playernum) << 16)) >> 8;
+    Return playergreen;
+}
+
+Function Int PlayerColorBlue (Int playernum)
+{
+    Int playerblue;
+    playerblue = GetPlayerColor(playernum) - (PlayerColorRed(playernum) << 16) - (PlayerColorGreen(playernum) << 8);
+    Return playerblue;
+}
+
+
+
+Function Int PressedKey (Int key)
+{
+    int previous_buttons = GetPlayerInput (-1, ModInput_OldButtons);
+    int current_buttons = GetPlayerInput (-1, ModInput_Buttons);
+    
+    if ((current_buttons & key) && !(previous_buttons & key))
+    {
+        Return key;
+    }
+    Return 0;
+}
+
+Function Int HeldKey (Int key)
+{
+    Int buttons = GetPlayerInput (-1, ModInput_Buttons);
+    if (buttons & key)
+        Return key;
+    Return 0;
+}
+
+
+// PlayerHasSigil
+// Goes through each player to check if they have a sigil
+// If anyone has one, all of them are given the sigil
+Function Bool PlayerHasSigil (void)
+{
+    Bool foundSigil;
+    If (GameType () == GAME_NET_COOPERATIVE) // Don't run this in deathmatch or single player
+    {
+        // If the activator isn't a player, don't do anything
+        If (ClassifyActor(0) & ACTOR_PLAYER)
+        {
+            Int ActivatorPlayer = PlayerNumber ();
+            Int NumberOfPlayers = PlayerCount();
+            Int n;
+            foundSigil = False;
+            For (n = 0; n < NumberOfPlayers; n++)
+            {
+                If (SetActivator (0, AAPTR_PLAYER1 << n))
+                {
+                    If (GetSigilPieces())
+                        foundSigil = True;
+                    // We found one, so stop executing the loop
+                    If (foundSigil)
+                        break;
+                }
+            }
+            
+            // Someone had it, so give one to everyone
+            If (foundSigil)
+            {
+                For (n = 0; n < NumberOfPlayers; n++)
+                {
+                    If (SetActivator (0, AAPTR_PLAYER1 << n))
+                    {
+                        GiveInventory ("Sigil", 1);
+                    }
+                }
+            }
+            SetActivator (0, AAPTR_PLAYER1 << ActivatorPlayer);
+        }
+    }
+    
+    Return foundSigil;
+}
+
+// DrawSprite (Str Sprite, Int ID, Int X, Int Y, Int Alpha)
+// Draws an image to the HUD with the specified coordinates, HUDMessage ID, and alpha
+Function Bool DrawSprite (Str Sprite, Int ID, Int X, Int Y, Int Alpha)
+{
+    SetFont(Sprite);
+    HUDMessage(s:"A"; HUDMSG_FADEOUT|HUDMSG_NOTWITHFULLMAP|HUDMSG_ALPHA, ID, CR_UNTRANSLATED, X, Y, 0.029, 0.25, Alpha);
+    Return True;
+}
+
+
+
+Script "Hook_HitWall" (void)
+{
+    Int HTID = GetActivatorTID ();
+    Int StoredPlayer_TID;
+    SetActivatorToTarget(HTID); // Should be the player, unless something went horribly wrong
+    
+    If (ActivatorTID() != 0)
+    {
+        StoredPlayer_TID = ActivatorTID();
+        Thing_ChangeTID (ActivatorTID(), UniqueTID());
+    }
+    Int PTID = GetActivatorTID ();
+    
+    Int f_Distance = Distance (HTID, PTID);
+    Int b_Angle = ByteAngle (HTID, PTID);
+    Int ZHeight = (ZDistance(PTID, HTID) + 0.5) >> 16;
+    ThrustThing (b_Angle, f_Distance/24, True, PTID);
+    ThrustThingZ (PTID, (ZHeight/2), 1,0 );
+    If(f_Distance >128)
+    {
+       ThrustThingZ (PTID, (ZHeight/2), 1,0 );
+    }
+	else
+	{
+	    ThrustThingZ (PTID, (ZHeight/12), 1,1);
+	}
+    If (StoredPlayer_TID != 0)
+    {
+        SetActivator(PTID);
+        Thing_ChangeTID(PTID, StoredPlayer_TID);
+    }
+}
+Script "Hook_HitEnemy" (void)
+{
+    // Get a unique TID for the Hookshot
+    Int HTID = GetActivatorTID ();
+
+    // Rearrange the pointers so that the player is the master, and the target is whatever the Hookshot hit
+    SetPointer(AAPTR_MASTER, 0, AAPTR_TARGET);
+    SetPointer(AAPTR_TARGET, 0, AAPTR_TRACER);
+    
+    // Change activator to player
+    SetActivator(0, AAPTR_MASTER);
+    
+    Int StoredPlayer_TID;
+    
+    // Even if the player has a TID, we need to make sure it is unique
+    if (ActivatorTID() != 0)
+    {
+        StoredPlayer_TID = ActivatorTID(); // Store our TID before we change it
+        Thing_ChangeTID(ActivatorTID(), UniqueTID());
+    }
+    
+    // Get a unique TID for the player if it doesn't have one
+    Int PTID = GetActivatorTID ();
+    
+    // Change activator back to the Hookshot
+    SetActivator(HTID);
+
+    Int f_Distance, b_Angle, ZHeight;
+    
+    // Change activator to target, if it still exists
+    if (SetActivatorToTarget(HTID))
+    {
+        // Calculate how far away the target is from the player
+        f_Distance = (FixedDistance (0, PTID) + 0.5) >> 16;
+        b_Angle = ByteAngle (PTID, 0);
+        ZHeight = (ZDistance(PTID, 0) + 0.5) >> 16;
+        
+        // Then pull them towards you
+		
+        ThrustThing (b_Angle, f_Distance/12, True, 0);
+        ThrustThingZ (0, (ZHeight/2), 0, 0);
+    }
+    
+    // Return our TID to what we originally had
+    if (StoredPlayer_TID != 0)
+    {
+        SetActivator(PTID);
+        Thing_ChangeTID(0, StoredPlayer_TID);
+    }
+}
+

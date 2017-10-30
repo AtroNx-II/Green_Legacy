@@ -1,0 +1,3618 @@
+actor PlayingEmily : Boolean {}
+actor LoadingEmily : Boolean {}
+actor HOOKCancel : Boolean {}
+actor HOOKnotattached : Boolean {}
+actor HOOKACTIVATOR : Boolean {}
+ACTOR EmilyPlayer : PLAYERPAWN
+{
+species playerside
+Mass 9999999999
+    Radius 8
+    Height 52
+	
+    Player.MorphWeapon "PlasmaPistol2"
+  DAMAGEFACTOR "PlayerOnly" , 0.0
+  DAMAGEFACTOR "PlayerSide" , 0.0
+  
+  Player.StartItem "PlayingEmily"
+  Player.DisplayName "Sidescroll Sam"
+  Player.StartItem "PlasmaPistol2"
+    cameraheight 52
+  Player.CrouchSprite "PLYC"
+  Player.Jumpz 14
+  Painchance 255
+  deathsound "M16_DEAD"
+  Player.RunHealth 99999
+    Gravity 1.1
+  Speed 1.0
+  scale 1.0
+  Health 50
+  Player.ForwardMove 0.0,0.0
+  Player.SideMove 5.0,5.0
+  +NOBLOOD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +THRUGHOST
+  +SOLID
+  RenderStyle Translucent
+    States
+    {
+    Spawn:
+        TNT1 A 0 A_SETSIZE(-1,52)
+    Goto SpawnSkip
+    SpawnSkip:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SpawnSkipRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SpawnSkipMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SpawnSkipSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SpawnSkipSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnSkipLeft")
+    SpawnSkipRight:
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SpawnSkipRightRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SpawnSkipRightMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SpawnSkipRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SpawnSkipRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+        EPST A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                if (CountInv("Boost") > 0) { return state("Boost");}
+
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("Aimup");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+            if (CountInv("BackwardsCheck") > 0) { return state("SpawnSkipLeft"); }
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+    SpawnSkipLeft:
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SpawnSkipLeftRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SpawnSkipLeftMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SpawnSkipLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SpawnSkipLeftSMG")
+        TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPST A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Aimup") > 0) { return state("Aimup");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+            if (CountInv("BackwardsCheck") == 0) { return state("SpawnSkipRight"); }
+        
+      }
+        
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+AIMUP:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AIMUPRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AIMUPMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AIMUPSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AIMUPSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AIMUPLeft")
+    AIMUPRight:
+      TNT1 A 0 A_SetScale(1.0,1.0)
+        EUPS A 1 A_JumpIf(momz > 8, "Jumping")
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AIMUPRightRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AIMUPRightMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AIMUPRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AIMUPRightSMG")
+        PSTD A 0 
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    AIMUPLeft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EUPS A 1 A_JumpIf(momz > 8, "Jumping")
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AIMUPLeftRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AIMUPLeftMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AIMUPLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AIMUPLeftSMG")
+        PSTD A 0 
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+      }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    See:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+    SeeRight:
+
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeRightRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeRightMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        E3MV ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+                      if (CountInv("Boost") > 0) { return state("Boost");}
+            if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+  
+        if (CountInv("Fire_pressed") > 0) { return state("SeeAttack");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeft"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        E3MV JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+                      if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+             if (CountInv("Fire_pressed") > 0) { return state("SeeAttack");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeft"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeLeft:
+
+
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeLeftRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeLeftMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeLeftSMG")
+                TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        E3MV ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+                      if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+             if (CountInv("Fire_pressed") > 0) { return state("SeeAttack");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRight"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        E3MV JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+                      if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+             if (CountInv("Fire_pressed") > 0) { return state("SeeAttack");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRight"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+
+    SeeAttack:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeAttackRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeAttackMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeAttackSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeAttackSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeAttackLeft")
+    SeeAttackRight:
+
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeAttackRightRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeAttackRightMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeAttackRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeAttackRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPMV ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+            if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeAttackLeft"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPMV JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeAttackLeft"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"SeeAttack")
+        goto SpawnSkip
+    SeeAttackLeft:
+
+
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"SeeAttackLeftRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"SeeAttackLeftMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"SeeAttackLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SeeAttackLeftSMG")
+                TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPMV ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeAttackRight"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPMV JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeAttackRight"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"SeeAttack")
+        goto SpawnSkip
+UPSee:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"UPSeeRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"UPSeeMG")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"UPSeeSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"UPSeeSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"UPSeeLeft")
+    UPSeeRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURN ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+                if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }    
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeft"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURN JKLMNOQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+                if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeft"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    UPSeeLeft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURN ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRight"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURN JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRight"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+
+
+    
+
+    Pain:
+      TNT1 A 0 A_PlaySound("M16_HURT")
+        TNT1 A 0 ACS_NamedExecuteAlways("InvulTime",0,15,0,0)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"PainLeft")
+    PainRight:
+TNT1 A 0 A_SetScale(1.0,1.0)
+    DUDE A 0 A_Jump(128,"PainRight2")
+        DUDE A 4 
+        DUDE A 4 
+        goto SpawnSkip
+    PainLeft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    DUDE A 0 A_Jump(128,"PainLeft2")
+        DUDE A 4 
+        DUDE A 4 
+        goto SpawnSkip
+    PainRight2:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        DUDE C 4 
+        DUDE C 4 
+        goto SpawnSkip
+    PainLeft2:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        DUDE C 4 
+        DUDE C 4 
+        goto SpawnSkip
+   Dash:
+    TNT1 A 0 A_PlaySound("M16_DASH", 7,1.0,0,ATTN_NONE)
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DashLeft")
+    DashRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    PDSH A 0 A_CustomMissile("Dashdust_L",0,0,270,2,0)
+    SPEM ABCDEFGHIJ 1 ThrustThing(angle*256/360+192, 10, 0, 0)
+    TNT1 A 0 
+    goto SpawnSkip
+    DashLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+  PDSH A 0 A_CustomMissile("Dashdust_R",0,0,90,2,0)
+  SPEM ABCDEFGHIJ 1 ThrustThing(angle*256/360+64, 10, 0, 0)
+  TNT1 A 0
+       goto SpawnSkip
+   Crouch:
+    TNT1 A 0 A_SETSIZE(-1,24)
+          TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchAttackRL")
+          TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchAttackSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeft")
+    CrouchRight:
+              TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchRightAttackRL")
+              TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchRightAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchRightAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchRightAttackSMG")
+          TNT1 A 0 A_SetScale(1.0,1.0)
+   EPCR A 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("Aimup");}
+            if (CountInv("Fire_pressed") > 0) { return state("Attack");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Crouching",1,"CrouchRight")
+        goto SpawnSkip
+    CrouchLeft:
+            TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchLeftAttackRL")
+            TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchLeftAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchLeftAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchLeftAttackSMG")
+          TNT1 A 0 A_SetScale(-1.0,1.0)
+   EPCR A 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("Aimup");}
+            if (CountInv("Fire_pressed") > 0) { return state("Attack");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Crouching",1,"CrouchLeft")
+       goto SpawnSkip
+     
+       CrouchAttack:
+    TNT1 A 0 A_SETSIZE(-1,24)
+          TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchAttackRL")
+          TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchAttackSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeftAttack")
+    CrouchRightAttack:
+              TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchRightAttackRL")
+              TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchRightAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchRightAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchRightAttackSMG")
+          TNT1 A 0 A_SetScale(1.0,1.0)
+        EPCR A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+  TNT1 A 0 A_JumpIfInventory("Boost",1,"Boost")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        goto SpawnSkip
+    CrouchLeftAttack:
+            TNT1 A 0 A_JumpIfInventory("HaveRL",1,"CrouchLeftAttackRL")
+            TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"CrouchLeftAttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"CrouchLeftAttackSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"CrouchLeftAttackSMG")
+          TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPCR A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+  TNT1 A 0 A_JumpIfInventory("Boost",1,"Boost")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+       goto SpawnSkip
+  
+  Attack:
+    TNT1 A 0 A_SETSIZE(-1,52)
+              TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AttackRL")
+              TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AttackMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AttackSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AttackSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLeft")
+  AttackRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+   SPEM P 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUP");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttack");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+   SPEM P 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUP");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttack");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+            TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackUP:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+    TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AttackUPRL")
+    TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AttackUPMG")
+      TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AttackUPSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AttackUPSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackUPLeft")
+  AttackUPRight:
+      TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AttackUPRightRL")
+      TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AttackUPRightMG")
+          TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AttackUPRightSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AttackUPRightSMG")
+          TNT1 A 0 A_SetScale(1.0,1.0)
+        EUPS A 1 A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+  AttackUPLeft:
+        TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AttackUPLeftRL")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AttackUPLeftMG")
+            TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AttackUPLeftSG")
+          TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AttackUPLeftSMG")
+          TNT1 A 0 A_SetScale(-1.0,1.0)
+        EUPS A  1  A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+    
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////// JUMPING STATE  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  Jumping:
+          TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpingRL")
+          TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpingMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpingSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpingSMG")
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpLeft")
+    JumpRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    EJMP A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    
+    goto Jumping
+    JumpLeft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJMP A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                              if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    goto Jumping
+
+JumpAttack:
+          TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAttackRL")
+          TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAttackMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAttackSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAttackSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAttackLeft")
+  JumpAttackRight:
+            TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAttackRightRL")
+            TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAttackRightMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAttackRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAttackRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+    EJMP C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJMP C 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttack")
+    goto Jumping
+  JumpAttackLeft:
+              TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAttackLeftRL")
+              TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAttackLeftMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAttackLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAttackLeftSMG")
+        TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJMP C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJMP D 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttack")
+    goto Jumping
+    
+
+  JumpAimUp:
+
+                TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAimUpRL")
+                TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAimUpMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAimUpSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAimUpSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAimUpLeft")
+  JumpAimUpRight:
+                TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAimUpRightRL")
+                TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAimUpRightMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAimUpRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAimUpRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+    EJMP B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                   if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") > 0) { return state("JumpAimUpLeft");}
+                  return state("");
+    }
+    EJMP C 0 A_JumpIfInventory("Aimup",1,"JumpAimUpRight")
+    goto Jumping
+  JumpAimUpLeft:
+                  TNT1 A 0 A_JumpIfInventory("HaveRL",1,"JumpAimUpLeftRL")
+                  TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"JumpAimUpLeftMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"JumpAimUpLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"JumpAimUpLeftSMG")
+        TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJMP B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") == 0) { return state("JumpAimUpRight");}
+                  return state("");
+    }
+    EJMP F 0 A_JumpIfInventory("Aimup",1,"JumpAimUpLeft")
+    goto Jumping
+
+AimDown:
+          TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AimDownRL")
+          TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AimDownMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AimDownSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AimDownSMG")
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AimDownLeft")
+  AimDownRight:
+            TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AimDownRightRL")
+            TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AimDownRightMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AimDownRightSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AimDownRightSMG")
+        TNT1 A 0 A_SetScale(1.0,1.0)
+    EJMP D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    EJMP D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  AimDownLeft:
+              TNT1 A 0 A_JumpIfInventory("HaveRL",1,"AimDownLeftRL")
+              TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"AimDownLeftMG")
+              TNT1 A 0 A_JumpIfInventory("HaveSG",1,"AimDownLeftSG")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"AimDownLeftSMG")
+        TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJMP D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+
+                  return state("");
+    }
+    EJMP D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+    
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////// END OF JUMPING  ///////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////ROCKET LAUNCHER FORM
+    SpawnSkipRL:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnSkipLeftRL")
+    SpawnSkipRightRL:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPS5 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AimupRL");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+            if (CountInv("BackwardsCheck") > 0) { return state("SpawnSkipLeftRL"); }
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+    SpawnSkipLeftRL:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPS5 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Aimup") > 0) { return state("AimupRL");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+            if (CountInv("BackwardsCheck") == 0) { return state("SpawnSkipRightRL"); }
+        
+      }
+        
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+AIMUPRL:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AIMUPLeftRL")
+    AIMUPRightRL:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EMRL K 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                 if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    AIMUPLeftRL:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMRL K 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+                     if (CountInv("AimDown") > 0) { return state("AimDown");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+      }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeRL:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+    SeeRightRL:
+            TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPRL ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftRL"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPRL JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftRL"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeLeftRL:
+            TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPRL ABCDEFGHI 1 //A_JumpIf(momz >> 0, "Jumping")
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightRL"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPRL JKLMNOPQR 1 //A_JumpIf(momz >> 0, "Jumping")
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightRL"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+UPSeeRL:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+  
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"UPSeeLeftRL")
+    UPSeeRightRL:
+    TNT1 A 0 A_PlaySound("M16_WALK")
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EURL ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftRL"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURL JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftRL"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    UPSeeLeftRL:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURL ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightRL"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EURL JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightRL"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    
+CrouchAttackRL:
+    TNT1 A 0 A_SETSIZE(-1,24)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeftAttackRL")
+    CrouchRightAttackRL:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPC5 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        goto SpawnSkip
+    CrouchLeftAttackRL:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPC5 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+       goto SpawnSkip
+     
+ AttackRL:
+    TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLeftRL")
+  AttackRightRL:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+   EMRL E 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPRL");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackRL");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackLeftRL:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+   EMRL E 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPRL");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackRL");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+            TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackUPRL:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackUPLeftRL")
+  AttackUPRightRL:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+        EMRL K 1 A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+  AttackUPLeftRL:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMRL K  1  A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+JumpingRL:
+
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpingRLleft")
+    JumpingRLRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM5 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    
+    goto Jumping
+    JumpingRLleft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM5 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                              if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    goto Jumping
+  JumpAttackRL:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAttackLeftRL")
+  JumpAttackRightRL:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM5 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM5 C 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackRL")
+    goto Jumping
+  JumpAttackLeftRL:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM5 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM5 D 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackRL")
+    goto Jumping
+    
+  JumpAimUpRL:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAimUpLeftRL")
+  JumpAimUpRightRL:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM5 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") > 0) { return state("JumpAimUpLeftRL");}
+                  return state("");
+    }
+    EJM5 C 0 A_JumpIfInventory("Aimup",1,"JumpAimUpRight")
+    goto Jumping
+  JumpAimUpLeftRL:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM5 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") == 0) { return state("JumpAimUpRightRL");}
+                  return state("");
+    }
+    EJM5 F 0 A_JumpIfInventory("Aimup",1,"JumpAimUpLeft")
+    goto Jumping
+AimDownRL:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AimDownRLLeft")
+  AimDownRLRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM5 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    PDWN C 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  AimDownRLLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM5 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+
+                  return state("");
+    }
+    PDWN D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  ////////////////////////////////////////////////////////////////////////////////////////////////////// END OF ROCKETLAUNCHER FORM 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// SMG FORM
+    SpawnSkipSMG:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnSkipLeftSMG")
+    SpawnSkipRightSMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPS2 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                if (CountInv("Aimup") > 0) { return state("AimupSMG");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+            if (CountInv("BackwardsCheck") > 0) { return state("SpawnSkipLeftSMG"); }
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+    SpawnSkipLeftSMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPS2 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Aimup") > 0) { return state("AimupSMG");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+            if (CountInv("BackwardsCheck") == 0) { return state("SpawnSkipRightSMG"); }
+        
+      }
+        
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+AIMUPSMG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AIMUPLeftSMG")
+    AIMUPRightSMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        ESMN A 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                 if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    AIMUPLeftSMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        ESMN A 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+                     if (CountInv("AimDown") > 0) { return state("AimDown");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+      }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeSMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+    SeeRightSMG:
+            TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSK ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftSMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSK JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftSMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeLeftSMG:
+            TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSK ABCDEFGHI 1 //A_JumpIf(momz >> 0, "Jumping")
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightSMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSK JKLMNOPQR 1 //A_JumpIf(momz >> 0, "Jumping")
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightSMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+UPSeeSMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+  
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"UPSeeLeftSMG")
+    UPSeeRightSMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSK ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }    
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftSMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSK JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftSMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    UPSeeLeftSMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSK ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightSMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSK JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightSMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    
+CrouchAttackSMG:
+    TNT1 A 0 A_SETSIZE(-1,24)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeftAttackSMG")
+    CrouchRightAttackSMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPC2 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        goto SpawnSkip
+    CrouchLeftAttackSMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPC2 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+       goto SpawnSkip
+     
+ AttackSMG:
+    TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLeftSMG")
+  AttackRightSMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+   ESMG F 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPSMG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackSMG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackLeftSMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+   ESMG F 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPSMG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackSMG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+            TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackUPSMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackUPLeftSMG")
+  AttackUPRightSMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+        ESMN A 1 A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+  AttackUPLeftSMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+        ESMN A  1  A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+    JumpingSMG:
+
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpingSMGleft")
+    JumpingSMGRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM2 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    
+    goto Jumping
+    JumpingSMGleft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM2 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                              if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    goto Jumping
+  JumpAttackSMG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAttackLeftSMG")
+  JumpAttackRightSMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM2 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM2 C 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackSMG")
+    goto Jumping
+  JumpAttackLeftSMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM2 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM2 D 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackSMG")
+    goto Jumping
+    
+  JumpAimUpSMG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAimUpLeftSMG")
+  JumpAimUpRightSMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM2 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") > 0) { return state("JumpAimUpLeftSMG");}
+                  return state("");
+    }
+    EJM2 C 0 A_JumpIfInventory("Aimup",1,"JumpAimUpRight")
+    goto Jumping
+  JumpAimUpLeftSMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM2 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") == 0) { return state("JumpAimUpRightSMG");}
+                  return state("");
+    }
+    EJM2 F 0 A_JumpIfInventory("Aimup",1,"JumpAimUpLeft")
+    goto Jumping
+  AimDownSMG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AimDownSMGLeft")
+  AimDownSMGRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM2 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    PDWN C 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  AimDownSMGLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM2 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+
+                  return state("");
+    }
+    PDWN D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////End Of SMG FORM 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// SG FORM
+
+    SpawnSkipSG:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnSkipLeftSG")
+    SpawnSkipRightSG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPSS A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AimupSG");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+            if (CountInv("BackwardsCheck") > 0) { return state("SpawnSkipLeftSG"); }
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+    SpawnSkipLeftSG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPSS A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Aimup") > 0) { return state("AimupSG");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+            if (CountInv("BackwardsCheck") == 0) { return state("SpawnSkipRightSG"); }
+        
+      }
+        
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+AIMUPSG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AIMUPLeftSG")
+    AIMUPRightSG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EMSG M 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                 if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    AIMUPLeftSG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMSG M 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+                     if (CountInv("AimDown") > 0) { return state("AimDown");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+      }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeSG:
+
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+    SeeRightSG:
+                TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSG ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftSG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSG JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftSG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeLeftSG:
+            TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSG ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightSG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPSG JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightSG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+UPSeeSG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+  
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"UPSeeLeftSG")
+    UPSeeRightSG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSG ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftSG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSG JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftSG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    UPSeeLeftSG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSG ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightSG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUSG JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightSG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    
+CrouchAttackSG:
+    TNT1 A 0 A_SETSIZE(-1,24)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeftAttackSG")
+    CrouchRightAttackSG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPC3 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        goto SpawnSkip
+    CrouchLeftAttackSG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPC3 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+       goto SpawnSkip
+     
+ AttackSG:
+    TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLeftSG")
+  AttackRightSG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+   EMSG E 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPSG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackSG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackLeftSG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+   EMSG E 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPSG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackSG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+            TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackUPSG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackUPLeftSG")
+  AttackUPRightSG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+        EMSG M 1 A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+  AttackUPLeftSG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMSG M  1  A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+    JumpingSG:
+
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpingSGleft")
+    JumpingSGRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM3 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    
+    goto Jumping
+    JumpingSGleft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM3 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                              if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    goto Jumping
+  JumpAttackSG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAttackLeftSG")
+  JumpAttackRightSG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM3 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM3 C 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackSG")
+    goto Jumping
+  JumpAttackLeftSG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM3 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM3 D 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackSG")
+    goto Jumping
+    
+  JumpAimUpSG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAimUpLeftSG")
+  JumpAimUpRightSG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM3 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") > 0) { return state("JumpAimUpLeftSG");}
+                  return state("");
+    }
+    EJM3 C 0 A_JumpIfInventory("Aimup",1,"JumpAimUpRight")
+    goto Jumping
+  JumpAimUpLeftSG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM3 B 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") == 0) { return state("JumpAimUpRightSG");}
+                  return state("");
+    }
+    EJM3 F 0 A_JumpIfInventory("Aimup",1,"JumpAimUpLeft")
+    goto Jumping
+      AimDownSG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AimDownSGLeft")
+  AimDownSGRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM3 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    PDWN C 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  AimDownSGLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM3 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+
+                  return state("");
+    }
+    PDWN D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// END OF SG FORM
+///////////////////////////////////////////////////////////////////////////////////////////////////////////HMG FORM
+    SpawnSkipMG:
+        TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnSkipLeftMG")
+    SpawnSkipRightMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EPS4 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AimupMG");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+            if (CountInv("BackwardsCheck") > 0) { return state("SpawnSkipLeftMG"); }
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+    SpawnSkipLeftMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EPS4 A 1 
+    {
+          if (momz > 8) { return state("Jumping"); }
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+              if (CountInv("Aimup") > 0) { return state("AimupMG");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+            if (CountInv("BackwardsCheck") == 0) { return state("SpawnSkipRightMG"); }
+        
+      }
+        
+    ELSE
+    {
+    }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        loop
+AIMUPMG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AIMUPLeftMG")
+    AIMUPRightMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+        EMRN A 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                 if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch");}
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    AIMUPLeftMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMRN A 1 A_JumpIf(momz > 8, "Jumping")
+        PSTD A 0 
+    {
+                     if (CountInv("Boost") > 0) { return state("Boost");}
+                     if (CountInv("Dashing") > 0) { return state("Dash");}
+                     if (CountInv("AimDown") > 0) { return state("AimDown");}
+              if (CountInv("Crouching") > 0) { return state("Crouch");
+      }
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+    SeeRightMG:
+            TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPAR ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPAR JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") > 0) { return state("SeeLeftMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    SeeLeftMG:
+            TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPAR ABCDEFGHI 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EPAR JKLMNOPQR 1
+        {
+            if (momz > 8) { return state("Jumping"); }
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("Aimup") > 0) { return state("UpSee");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) == 0) { return state("SpawnSkip"); }
+            if (CountInv("BackwardsCheck") == 0) { return state("SeeRightMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+UPSeeMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+  
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"UPSeeLeftMG")
+    UPSeeRightMG:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUAR ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }     
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUAR JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") > 0) { return state("UPSeeLeftMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    UPSeeLeftMG:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUAR ABCDEFGHI 1
+        {
+
+            if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightMG"); }
+            return state("");
+        }
+    TNT1 A 0 A_PlaySound("M16_WALK")
+        EUAR JKLMNOPQR 1
+        {
+             if (momz > 8) { return state("Jumping"); }
+       if (CountInv("Aimup") == 0) { return state("See");}
+        if (CountInv("Boost") > 0) { return state("Boost");}
+        if (CountInv("Dashing") > 0) { return state("Dash");}
+        if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Crouching") > 0) { return state("Crouch"); }
+            if ((momx*momx) + (momy*momy) < 2) { return state("SpawnSkip"); }   
+            if (CountInv("BackwardsCheck") == 0) { return state("UPSeeRightMG"); }
+            return state("");
+        }
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+        goto SpawnSkip
+    
+CrouchAttackMG:
+    TNT1 A 0 A_SETSIZE(-1,24)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"CrouchLeftAttackMG")
+    CrouchRightAttackMG:
+        EPC4 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+        goto SpawnSkip
+    CrouchLeftAttackMG:
+        EPC4 A 1 A_JumpIf(momz >> 0, "Jumping")
+    TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+    TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+       goto SpawnSkip
+     
+ AttackMG:
+    TNT1 A 0 A_SETSIZE(-1,52)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLeftMG")
+  AttackRightMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+   EMRF F 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPMG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackMG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+        TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackLeftMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+   EMRF F 1 
+    {
+          if (momz >> 1) { return state("Jumping"); }
+                 if (CountInv("Boost") > 0) { return state("Boost");}
+                 if (CountInv("Dashing") > 0) { return state("Dash");}
+                if (CountInv("Aimup") > 0) { return state("AttackUPMG");}
+            if (CountInv("Crouching") > 0) { return state("CrouchAttackMG");}
+                if ((momx*momx) + (momy*momy) >= 4) { return state("See");}
+
+         return state("");
+    }
+            TNT1 A 0 A_JumpIfInventory("Fire_pressed",1,"Attack")
+    goto SpawnSkip
+  AttackUPMG:
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AttackUPLeftMG")
+  AttackUPRightMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+        EMRN A 1 A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+  AttackUPLeftMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+        EMRN A  1  A_JumpIf(momz >> 0, "Jumping")
+        TNT1 A 0 A_JumpIf((momx*momx) + (momy*momy) >= 4,"See")
+            TNT1 A 0 A_JumpIfInventory("Dashing",1,"Dash")
+        TNT1 A 0 A_JumpIfInventory("Aimup",1,"AttackUP")
+    goto SpawnSkip
+JumpingMG:
+
+    TNT1 A 0 A_SETSIZE(-1,52,True)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpingMGleft")
+    JumpingMGRight:
+    TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM4 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    
+    goto Jumping
+    JumpingMGleft:
+    TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM4 A 1
+    {
+                  if (CountInv("Boost") > 0) { return state("Boost");}
+
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                              if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("Fire_pressed") > 0) { return state("JumpAttack");}
+      If (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    goto Jumping
+  JumpAttackMG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAttackLeftMG")
+  JumpAttackRightMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM4 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM4 C 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackMG")
+    goto Jumping
+  JumpAttackLeftMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM4 C 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+            if (CountInv("AimDown") > 0) { return state("AimDown");}
+            if (CountInv("AimUp") > 0) { return state("JumpAimUp");}
+                  return state("");
+    }
+    EJM4 D 0 A_JumpIfInventory("Fire_pressed",1,"JumpAttackMG")
+    goto Jumping
+    
+  JumpAimUpMG:
+        TNT1 A 0 
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"JumpAimUpLeftMG")
+  JumpAimUpRightMG:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM4 B 1
+    {
+      if (momz == 0) { return state("SpawnSkip");}
+      if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") > 0) { return state("JumpAimUpLeftMG");}
+                  return state("");
+    }
+    EJM4 C 0 A_JumpIfInventory("Aimup",1,"JumpAimUpRight")
+    goto Jumping
+  JumpAimUpLeftMG:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM4 B 1
+    {
+      if (momz == 0) { return state("SpawnSkip");}
+      if (CountInv("AimDown") > 0) { return state("AimDown");}
+      if (CountInv("BackwardsCheck") == 0) { return state("JumpAimUpRightMG");}
+                  return state("");
+    }
+    EJM4 F 0 A_JumpIfInventory("Aimup",1,"JumpAimUpLeft")
+    goto Jumping
+
+      AimDownMG:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"AimDownMGLeft")
+  AimDownMGRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+    EJM4 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+                  return state("");
+    }
+    EJM4 D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+  AimDownMGLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+    EJM4 D 1
+    {
+            if (momz == 0) { return state("SpawnSkip");}
+
+                  return state("");
+    }
+    PDW4 D 0 A_JumpIfInventory("AimDown",1,"AimDown")
+    goto Jumping
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////// END OF MG
+  XDeath:
+  Death:
+        TNT1 A 0 ThrustThingz(0,50,0,1)
+      TNT1 A 0 A_Scream
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+TNT1 A 0 A_SetScale(1.0,1.0)
+        TNT1 A 0 ThrustThing(angle*256/360+64, 10, 0, 0)
+        PTDT AABBCCDDEEFF 1 A_JumpIf(momz == 0, "DeathLandRight")
+    goto DeathRight+12
+  DeathLeft:
+  TNT1 A 0 A_SetScale(-1.0,1.0)
+        TNT1 A 0 ThrustThing(angle*256/360+192, 10, 0, 0)
+        PTDT AABBCCDDEEFF 1 A_JumpIf(momz == 0, "DeathLandLeft")
+    goto DeathLeft+12
+  DeathLandRight:
+  TNT1 A 0 A_SetScale(1.0,1.0)
+        TNT1 A 0 ThrustThing(angle*256/360+64, 1, 0, 0)
+          TNT1 A 0 ThrustThingz(0,15,0,1)
+      PTDT GHI 3 
+    PTDT J 40
+    PTDT J 40 ACS_NamedExecute("InvulTime",0,40,0,0)
+    TNT1 A -1
+    STOP
+
+    DeathLandLeft:
+      TNT1 A 0 A_SetScale(-1.0,1.0)
+            TNT1 A 0 ThrustThing(angle*256/360+92, 1, 0, 0)
+            TNT1 A 0 ThrustThingz(0,15,0,1)
+      PTDT GHI 3 
+    PTDT J 40
+    PTDT J 40 ACS_NamedExecute("InvulTime",0,40,0,0)
+    TNT1 A -1
+    STOP
+    }
+}
+
+ACTOR PlasmaPistol2 : Weapon
+{
+  Inventory.Pickupmessage "You got the Plasma Pistol!"
+  Weapon.SlotNumber 2
+  Weapon.SlotPriority 1
+  +INVENTORY.UNDROPPABLE
+  +NOAUTOFIRE
+  +NOAUTOAIM
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    Stop
+  Ready:
+  //TNT1 A 0 A_JumpIfInventory("HaveRL",1,"Ready2")
+      //  TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"Ready2")
+        //TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Ready2")
+    TNT1 A 0 A_JumpIfInventory("HookActivator",1,"HookFire")
+    TNT1 A 0 A_Giveinventory("PlasmaGauge",2)
+    TNT1 A 1 A_WeaponReady
+    Loop
+Ready2:
+    TNT1 A 1 A_WeaponReady
+    Loop
+  Select:
+    TNT1 A 1 A_Raise
+    Loop
+  Deselect:
+    TNT1 A 1 A_Lower
+    Loop
+HookFire:
+TNT1 A 0
+    {
+    A_TakeInventory("PlasmaGauge",100);
+    A_PlaySound("hookshot", 7,1.0,0,ATTN_NONE);
+    A_GiveInventory("Fire_pressed",1);
+    if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+
+        A_FireProjectile("Hookshot",0,0,0,-60,0,90);
+        
+       }
+      else 
+      { 
+  
+        A_FireProjectile("Hookshot",0,0,0,-60,0,90);
+        
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if (CountInv("Moving") == 0)
+  {
+A_FireProjectile("Hookshot",0,0,0,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Hookshot",-90,0,25,30,0,-45);
+  }
+  
+  }
+  else 
+  { 
+if (CountInv("Moving") == 0)
+  {
+A_FireProjectile("Hookshot",0,0,0,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Hookshot",90,0,-25,30,0,-45);
+  }
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Hookshot",-90,0,40,random(-5,5));
+  }
+  else 
+  { 
+  A_FireProjectile("Hookshot",90,0,-40,random(-5,5));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Hookshot",-90,0,40,random(-5,5));
+  }
+  else 
+  { 
+  A_FireProjectile("Hookshot",90,0,-40,random(-5,5));
+  }
+  }
+  }
+  }
+}
+
+    TNT1 A 1
+        TNT1 A 1 A_WeaponReady
+TNT1 A 10 A_Quake(100, 5, 0, 128, 0) 
+MTRL A 0 A_takeInventory("Fire_pressed",1)
+Goto Ready
+
+
+  Fire:
+  TNT1 A 0 A_JumpIfInventory("HaveFT",1,"FTFire")
+TNT1 A 0 A_JumpIfInventory("HaveRL",1,"RLFire")
+        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"HeavyMachinegun")
+        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Shotgun")
+        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SubMachinegun")
+    TNT1 A 0
+    {
+    A_TakeInventory("PlasmaGauge",1);
+    A_PlaySound("EMLY_PS", 7,1.0,0,ATTN_NONE);
+    A_GiveInventory("Fire_pressed",1);
+    if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
+        A_FireProjectile("Casing1",-90,0,5,-10,0,random(-30,30));
+       }
+      else 
+      { 
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
+        A_FireProjectile("Casing1",90,0,-5,-10,0,random(-30,30));
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,-8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,-8,70,0,-90);
+  
+A_FireProjectile("Emily_PistolBullet",0,0,-8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",-90,0,25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45R",-90,0,55,60); 
+  A_FireProjectile("Emily_PistolBullet",-90,0,25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",-90,0,5,10,0,random(-30,30));
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,8,70,0,-90);
+A_FireProjectile("Emily_PistolBullet",0,0,8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",90,0,-25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45L",90,0,-55,60); 
+  A_FireProjectile("Emily_PistolBullet",90,0,-25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",90,0,-5,10,0,random(-30,30));
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,65,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",-90,0,-65,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,72,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",90,0,-72,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  }
+  }
+}
+    TNT1 A 1
+        TNT1 A 5 A_WeaponReady
+        TNT1 A 0 A_Refire//("FireNoTurn")
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+  HeavyMachinegun:
+  TNT1 A 0 A_TakeInventory("HaveHMG",1)
+  TNT1 A 0
+  {
+  A_PlaySound("M16_HMG", 7,1.0,0,ATTN_NONE);
+  A_GiveInventory("Fire_pressed",1);
+   if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
+        A_FireProjectile("Casing1",-90,0,5,-10,0,random(-30,30));
+       }
+      else 
+      { 
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
+        A_FireProjectile("Casing1",90,0,-5,-10,0,random(-30,30));
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,-8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,-8,70,0,-90);
+  
+A_FireProjectile("Emily_PistolBullet",0,0,-8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",-90,0,25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45R",-90,0,55,60); 
+  A_FireProjectile("Emily_PistolBullet",-90,0,25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",-90,0,5,10,0,random(-30,30));
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,8,70,0,-90);
+A_FireProjectile("Emily_PistolBullet",0,0,8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",90,0,-25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45L",90,0,-55,60); 
+  A_FireProjectile("Emily_PistolBullet",90,0,-25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",90,0,-5,10,0,random(-30,30));
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,65,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",-90,0,-65,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,72,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",90,0,-72,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  }
+  }
+}
+
+  TNT1 A 2
+      TNT1 A 0
+    {
+                if (CountInv("HaveHMG") == 0)
+   {
+  A_SpawnItemEx("EMPTYARM_HMG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
+  }
+    }
+  TNT1 A 0 A_Refire//("FireNoTurn")
+  TNT1 A 0
+  {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+  else {
+  A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+  }
+  ELSE
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+  else {
+  A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_L",-90,0,30); }
+  else {
+  A_FireProjectile("GunSmoke_R",90,0,-30); }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_R",-90,0,30); }
+  else {
+  A_FireProjectile("GunSmoke_L",90,0,-30); }
+  }
+  }
+  }
+
+  TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+  Goto Ready
+  SubMachinegun:
+  TNT1 A 0 A_TakeInventory("HaveSMG",1)
+  TNT1 A 0
+  {
+  A_PlaySound("M16_SMG", 7,1.0,0,ATTN_NONE);
+  A_GiveInventory("Fire_pressed",1);
+    if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
+        A_FireProjectile("Casing1",-90,0,5,-10,0,random(-30,30));
+       }
+      else 
+      { 
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_PistolBullet",0,0,0,-60,0,90);
+        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
+        A_FireProjectile("Casing1",90,0,-5,-10,0,random(-30,30));
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,-8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,-8,70,0,-90);
+  
+A_FireProjectile("Emily_PistolBullet",0,0,-8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",-90,0,25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45R",-90,0,55,60); 
+  A_FireProjectile("Emily_PistolBullet",-90,0,25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",-90,0,5,10,0,random(-30,30));
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,8,70,0,-90);
+A_FireProjectile("Emily_PistolBullet",0,0,8,30,0,-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",90,0,-25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45L",90,0,-55,60); 
+  A_FireProjectile("Emily_PistolBullet",90,0,-25,30,0,-45);
+  }
+
+
+  A_FireProjectile("Casing1",90,0,-5,10,0,random(-30,30));
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,65,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",-90,0,-65,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",-90,0,35,random(5,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,72,10); 
+  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+  A_FireProjectile("Emily_PistolBullet",90,0,-35,random(5,10));
+  A_FireProjectile("SMGMuzzle_L",90,0,-72,10); 
+  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  }
+  }
+}
+    
+    TNT1 A 3
+    TNT1 A 0
+    {
+                if (CountInv("HaveSMG") == 0)
+   {
+  A_SpawnItemEx("EMPTYARM_SMG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
+  }
+    }
+    
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+       if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+     
+    Goto Ready
+  Shotgun:
+  TNT1 A 0 A_TakeInventory("HaveSG",1)
+TNT1 A 0
+ {
+  A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
+  A_PlaySound("EMILY_SG", 7,1.0,0,ATTN_NONE);
+  A_GiveInventory("Fire_pressed",1);
+     if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+		A_FireProjectile("Emily_SGBulletUP",-90,0,0,-60,0,random(-8,+8)+90); 
+        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
+        A_FireProjectile("Casing2",-90,0,5,-10,0,random(-30,30));
+       }
+      else 
+      { 
+		A_FireProjectile("Emily_GunSmoke",0,0,0,-60,0,-90);
+        A_FireProjectile("Emily_SGBulletUP",90,0,0,-60,0,random(-8,+8)+90); 
+        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
+        A_FireProjectile("Casing2",90,0,-5,-10,0,random(-30,30));
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,-8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,-8,70,0,-90);
+A_FireProjectile("Emily_SGBulletUP",0,0,-10,60,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",-90,0,25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45R",-90,0,55,60); 
+  A_FireProjectile("Emily_SGBullet",-90,0,25,30,0,random(-8,+8)-45);
+  }
+
+
+  A_FireProjectile("Casing2",-90,0,5,10,0,random(-30,30));
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+  A_FireProjectile("Emily_GunSmoke",0,0,8,30,0,-90);
+  A_FireProjectile("SMGMuzzleUP",0,0,8,70,0,-90);
+A_FireProjectile("Emily_SGBulletUP",0,0,-10,60,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_GunSmoke",90,0,-25,30,0,-45);
+  A_FireProjectile("SMGMuzzle_45L",90,0,-55,60); 
+  A_FireProjectile("Emily_SGBullet",90,0,-25,30,0,random(-8,+8)-45);
+  }
+
+
+  A_FireProjectile("Casing2",90,0,-5,10,0,random(-30,30));
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_SGBullet",-90,0,35,random(5,10),0,random(-10,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,65,10); 
+  A_FireProjectile("Casing2",-90,0,10,5,0,random(-90,-110));
+
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+A_FireProjectile("Emily_SGBullet",90,0,-35,random(5,10),0,random(-10,10));
+  A_FireProjectile("SMGMuzzle_L",-90,0,-65,10); 
+  A_FireProjectile("Casing2",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_GunSmoke",-90,0,35,random(5,10),0,-90);
+  A_FireProjectile("Emily_SGBullet",-90,0,35,random(5,10),0,random(-10,10));
+  A_FireProjectile("SMGMuzzle_R",-90,0,72,10); 
+  A_FireProjectile("Casing2",-90,0,10,5,0,random(-90,-110));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_GunSmoke",90,0,-35,random(5,10),0,-90);
+  A_FireProjectile("Emily_SGBullet",90,0,-35,random(5,10),0,random(-10,10));
+  A_FireProjectile("SMGMuzzle_L",90,0,-72,10); 
+  A_FireProjectile("Casing2",90,0,-10,5,0,random(-90,-110));
+  }
+  }
+  }
+  }
+}
+  TNT1 AAAAAAAAAA 0
+ {
+  A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
+  A_PlaySound("EMILY_SG", 7,1.0,0,ATTN_NONE);
+  A_GiveInventory("Fire_pressed",1);
+     if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+        A_FireProjectile("Emily_SGBulletUP",0,0,0,-60,0,90+random(-10,10));
+       }
+      else 
+      { 
+        A_FireProjectile("Emily_SGBulletUP",0,0,0,-60,0,90+random(-10,10));
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+A_FireProjectile("Emily_SGBulletUP",0,0,-10,60,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_SGBullet",-90,0,25,30,0,-45+random(-10,10));
+  }
+
+
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+A_FireProjectile("Emily_SGBulletUP",0,0,-10,60,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_SGBullet",90,0,-25,30,0,-45+random(-10,10));
+  }
+
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_SGBullet",-90,0,35,random(5,10),0,random(-10,10));
+
+  }
+  else 
+  { 
+A_FireProjectile("Emily_SGBullet",90,0,-35,random(5,10),0,random(-10,10));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_SGBullet",-90,0,35,random(5,10),0,random(-10,10));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_SGBullet",90,0,-35,random(5,10),0,random(-10,10));
+  }
+  }
+  }
+  }
+}
+
+  TNT1 A 14
+      TNT1 A 0
+    {
+                if (CountInv("HaveSG") == 0)
+   {
+  A_SpawnItemEx("EMPTYARM_SG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
+  }
+    }
+  TNT1 A 0 A_Refire//("FireNoTurn")
+  TNT1 A 0
+  {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+  else {
+  A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+  }
+  ELSE
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+  else {
+  A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_L",-90,0,30); }
+  else {
+  A_FireProjectile("GunSmoke_R",90,0,-30); }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) { 
+  A_FireProjectile("GunSmoke_R",-90,0,30); }
+  else {
+  A_FireProjectile("GunSmoke_L",90,0,-30); }
+  }
+  }
+  }
+  TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+  Goto Ready
+RLFire:
+  TNT1 A 0 A_TakeInventory("HaveRL",1)
+    TNT1 A 0
+{
+  A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
+  A_PlaySound("EMILY_SG", 7,1.0,0,ATTN_NONE);
+  A_GiveInventory("Fire_pressed",1);
+     if (CountInv("AimDown") == 1)
+    {
+      if (CountInv("BackwardsCheck") == 0) 
+      {
+
+        A_FireProjectile("Emily_Rocket",0,0,random(5,15),-60,0,random(-8,+8)+90);
+
+       }
+      else 
+      { 
+  
+        A_FireProjectile("Emily_Rocket",0,0,random(-15,-5),-60,0,random(-8,+8)+90);
+
+      }
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+A_FireProjectile("Emily_Rocket",0,0,random(5,15),30,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_Rocket",-90,0,random(5,15),60,0,random(-8,+8)-45);
+  }
+  }
+  else 
+  { 
+if ((momx*momx) + (momy*momy) < 3)
+  {
+A_FireProjectile("Emily_Rocket",0,0,random(-15,-5),30,0,random(-8,+8)-90);
+  }
+  else
+  {
+  A_FireProjectile("Emily_Rocket",90,0,random(-15,-5),60,0,random(-8,+8)-45);
+  }
+
+  }
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_Rocket",-90,0,40,random(-5,5));
+
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_Rocket",90,0,-40,random(-5,5));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Emily_Rocket",-90,0,40,random(-5,5));
+  }
+  else 
+  { 
+  A_FireProjectile("Emily_Rocket",90,0,-40,random(-5,5));
+  }
+  }
+  }
+  }
+}
+    TNT1 A 2
+    {
+                if (CountInv("HaveRL") == 0)
+   {
+  A_SpawnItemEx("EMPTYARM_RL",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
+  }
+    }
+        TNT1 A 10 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+       if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+FTFire:
+  TNT1 A 0 A_TakeInventory("HaveFT",1)
+    TNT1 A 0
+    {
+
+      A_PlaySound("M16_FT", 7,1.0,0,ATTN_NONE);
+      A_GiveInventory("Fire_pressed",1);
+      if (CountInv("AimDown") == 1)
+      {
+      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShotDOWN",0,0,10,-20,0,90);}
+      else { A_FireProjectile("FTShotDOWN",0,0,-10,-20,0,90); }
+      }
+      else
+      {
+      if (CountInv("Aimup") == 1)
+      {
+      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShotUP",0,0,10,20,0,-90);}
+      else { A_FireProjectile("FTShotUP",0,0,-10,20,0,-90);}
+      }
+      else
+      {
+
+      if (CountInv("Moving") == 0)
+      {
+      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShot",-90,0,40); }
+      else { A_FireProjectile("FTShotL",90,0,-40);}
+      }
+      else
+      {
+      if (CountInv("BackwardsCheck") == 0) { 
+      A_FireProjectile("FTShot",-90,0,40);}
+      else { A_FireProjectile("FTShotL",90,0,-40); }
+      }
+      }
+      }
+    }
+    TNT1 A 0
+    {
+                if (CountInv("HaveFT") == 0)
+   {
+  A_SpawnItemEx("EMPTYARM_RL",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
+  }
+    }
+        TNT1 A 1 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire//("FireNoTurn")
+   TNT1 A 0
+    {
+          if (CountInv("Aimup") == 1)
+          {
+       if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+    }
+    ELSE
+    {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+        else {
+    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+    }
+      }
+      else
+      {
+      if (CountInv("Moving") == 0)
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_L",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_R",90,0,-30); }
+          }
+          else
+          {
+        if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GunSmoke_R",-90,0,30); }
+        else {
+    A_FireProjectile("GunSmoke_L",90,0,-30); }
+          }
+      }
+    }
+         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+AltFire:
+TNT1 A 0 A_JumpIfInventory("HaveGL",1,"GLFire")
+TNT1 A 10
+    Goto Ready
+GLFire:
+TNT1 A 0 A_TakeInventory("HaveGL",1)
+TNT1 A 0
+{
+A_PlaySound("M16_GL", 7,1.0,0,ATTN_NONE);
+A_GiveInventory("Fire_pressed",1);
+    if (CountInv("AimDown") == 1)
+    {
+    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,10,-50,0,90); }
+    else { A_FireProjectile("GLShot",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,-10,-50,0,90); }
+    }
+    else
+    {
+    if (CountInv("Aimup") == 1)
+    {
+    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
+    else { A_FireProjectile("GLShot",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+    }
+    else
+    {
+
+    if (CountInv("Moving") == 0)
+    {
+    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+    else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+    }
+    else
+    {
+    if (CountInv("BackwardsCheck") == 0) { 
+    A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
+    else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+    }
+    }
+    }
+}
+TNT1 A 10
+TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
+TNT1 A 0 A_Refire//("FireNoTurn")
+TNT1 A 0
+{
+if (CountInv("Aimup") == 1)
+{
+if (CountInv("Moving") == 0)
+{
+if (CountInv("BackwardsCheck") == 0) { 
+A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
+else {
+A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+}
+ELSE
+{
+if (CountInv("BackwardsCheck") == 0) { 
+A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
+else {
+A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
+}
+}
+else
+{
+if (CountInv("Moving") == 0)
+{
+if (CountInv("BackwardsCheck") == 0) { 
+A_FireProjectile("GunSmoke_L",-90,0,30); }
+else {
+A_FireProjectile("GunSmoke_R",90,0,-30); }
+}
+else
+{
+if (CountInv("BackwardsCheck") == 0) { 
+A_FireProjectile("GunSmoke_R",-90,0,30); }
+else {
+A_FireProjectile("GunSmoke_L",90,0,-30); }
+}
+}
+}
+TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+Goto Ready
+
+  }
+}
+ACTOR HOOKend : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
+-INVBAR
+}
+
+actor HOOKSHOT : fastprojectile
+{
++MTHRUSPECIES 
+    Species Playerside
+height 12
+radius 12
+speed 45
+scale 0.5
+DAMAGE 0
+Renderstyle Translucent
+
++SKYEXPLODE
+Projectile
+States
+{
+Spawn:
+MIS2 A 0 bright
+MMIS B 0 bright
+SHK1 AAAA 1 bright  A_CustomMissile("HOOKROPE",0,0,0,CMF_AIMOFFSET)
+goto Death2
+Death2:
+SHK1 A 1 A_GiveToTarget("HOOKnotattached",1)
+stop
+Crash:
+XDeath:
+EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+TNT1 A 0 A_PlaySound("hookhit", 7,1.0,0,ATTN_NONE)
+TNT1 A 0 A_JumpIfInTargetInventory("HookCancel",1,"RemoveHook")
+MIS2 A 0 A_GiveToTarget("HOOKEND",1)
+MIS2 A 0 A_CustomMissile("HOOKROPE",0,0,0,CMF_OFFSETPITCH |CMF_AIMOFFSET )
+stop
+Death:
+ 
+EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+TNT1 A 0 A_PlaySound("hookhit", 7,1.0,0,ATTN_NONE)
+TNT1 A 0 A_JumpIfInTargetInventory("HookCancel",1,"RemoveHook")
+MIS2 A 0 A_GiveToTarget("HOOKEND",1)
+MIS2 A 0 A_CustomMissile("HOOKROPE",0,0,0,CMF_OFFSETPITCH |CMF_AIMOFFSET )
+SHK1 A 1 bright  
+{
+ A_CustomMissile("HOOKROPE",0,0,0,CMF_OFFSETPITCH |CMF_AIMOFFSET );
+ACS_NamedExecuteAlways("Hook_HitWall", 0, 0, 0, 0);
+}
+GOTO DEATH+2
+
+RemoveHook:
+TNT1 A 0 A_PlaySound("hookcanc", 7,1.0,0,ATTN_NONE)
+SHK1 A 1 A_TakeFromTarget("HOOKEND",1)
+stop
+}
+}
+
+ACTOR HOOKROPE2
+{
+  Radius 20
+  Height  40
+  +NOBLOCKMAP
+  +NOGRAVITY
+   +noclip
+   +BRIGHT
+   +FLOORCLIP
+
+    scale 0.2
+  States
+  {
+  Spawn:
+    SHK1 AAA 1 A_JumpIfCloser(20.0,"Death",false)
+    Stop
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+ACTOR HOOKROPE : FastProjectile
+{
+  Radius 1
+  Height 1
+  Speed 20
+  Damage 0
+  scale 0.2
+  Projectile
+  Cameraheight 32
+  MissileType "HOOKROPE2"
+  MissileHeight 8
+  ReactionTime 4
++Seekermissile
++SCREENSEEKER
+  +NOGRAVITY
++LOOKALLAROUND
+  States
+  {
+  Spawn:
+  SHK1 A 0 
+  SHK1 A 0  A_CountDown
+  SHK1 A 0  A_SeekerMissile(0,0,SMF_PRECISE,255,2000)
+EMBX A 0 bright A_SpawnItemEx("HOOKROPE2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+    SHK1 A 1 A_JumpIfCloser(20.0,"Death",false)
+    Loop
+  Death:
+    SHK1 B 1
+    Stop
+  }
+}
+
+ACTOR Spawn_Emily : CustomInventory
+{
+  Inventory.Pickupsound "Pick_weapon"
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+  species playerside
+  +NOGRAVITY
+  +FLOATBOB
+  -COUNTITEM
+  States
+  {
+  Spawn:
+    SMG1 A 1
+    Loop
+
+  Pickup:
+  TNT1 A 0 A_SetRenderStyle(0.0 ,STYLE_Translucent)
+      TNT1 A 0 A_PlaySound("misc/teleport")
+    TNT1 A 1 A_SpawnItemEx("WaitingM16",0,0,0,0.0,0.0,0.0,GetAngle (GAF_SWITCH,AAPTR_MASTER),SXF_SETMASTER|SXF_NOCHECKPOSITION ,0)
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SPAWNLeft")
+    TNT1 A 1 A_SpawnItemEx("PLAYER_EmilySPAWNR",0,0,32,9.0,0.0,6.0,-90,SXF_SETMASTER|SXF_NOCHECKPOSITION ,0)
+    Fail
+ SPAWNLeft:
+    TNT1 A 1 A_SpawnItemEx("PLAYER_EmilySPAWNL",0,0,32,9.0,0.0,6.0,90,SXF_SETMASTER|SXF_NOCHECKPOSITION,0)
+    Fail
+  }
+}
+ACTOR PLAYER_EmilySPAWNR
+{
+species playerside
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 10
+  MASS 100
+  ReactionTime 5
+  Damage 0
+  -SHOOTABLE
+  -SOLID
+  +FLOORCLIP
+  +MISSILE
+    +THRUSPECIES
+    +MTHRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  -NOGRAVITY
+  States
+  {
+  Spawn:
+    TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_PlaySound("misc/teleport")
+    SPEM ABCDEFG 2 
+  Goto Spawn+8
+  Death:
+   TNT1 A 0 A_Giveinventory("ShowMaster",1,AAPTR_MASTER)
+	TNT1 A 0 A_Warp(AAPTR_MASTER,0,0,0,ANGLE,WARPF_MOVEPTR|WARPF_COPYINTERPOLATION |WARPF_NOCHECKPOSITION)
+    Stop
+  }
+}
+ACTOR PLAYER_EmilySPAWNL
+{
+species playerside
+HEIGHT 5
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 10
+  MASS 100
+  ReactionTime 5
+  Damage 0
+  -SHOOTABLE
+  -SOLID
+  +FLOORCLIP
+  +MISSILE
+    +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  -NOGRAVITY
+  States
+  {
+  Spawn:
+    TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_PlaySound("misc/teleport")
+    SPMM ABCDEFG 2 
+  Goto Spawn+8
+  Death:
+   TNT1 A 0 A_Giveinventory("ShowMaster",1,AAPTR_MASTER)
+	TNT1 A 0 A_Warp(AAPTR_MASTER,0,0,0,ANGLE,WARPF_MOVEPTR|WARPF_COPYINTERPOLATION |WARPF_NOCHECKPOSITION)
+    Stop
+  }
+}
+ACTOR WaitingM16
+{
+  Radius 20
+  Height  40
+  +NOBLOCKMAP
+   +noclip
+   +FLOORCLIP
+    scale 1.0
+  States
+  {
+  Spawn:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
+    SpawnRight:
+	PSTD A 0 A_SetScale(1.0,1.0)
+        PSTD A 1 
+    {
+	if(CountInv("PlayingEmily",AAPTR_MASTER)==0)
+	{
+	Return State("Death");
+	}
+	A_FaceMaster;
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") > 0) { return state("SpawnLeft");}
+    return state("");
+    }
+        loop
+    SpawnLeft:
+	PSTD A 0 A_SetScale(-1.0,1.0)
+        PSTD A 1 
+    {   
+	if(CountInv("PlayingEmily",AAPTR_MASTER)==0)
+	{
+	Return State("Death");
+	}
+	A_FaceMaster;
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") ==0) { return state("SpawnRight");}
+    return state("");
+    }
+        loop
+  Death:
+    TNT1 A 1
+    Stop
+  }
+}
+ACTOR HideMaster : CustomInventory
+{
+  Inventory.Pickupsound "Pick_weapon"
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+  species playerside
+  +NOGRAVITY
+  +FLOATBOB
+  -COUNTITEM
+  States
+  {
+  Spawn:
+    SMG1 A 1
+    Loop
+
+  Pickup:
+  TNT1 A 0 A_SetRenderStyle(0.0 ,STYLE_Translucent)
+    stop
+  }
+}
+ACTOR ShowMaster : CustomInventory
+{
+  Inventory.Pickupsound "Pick_weapon"
+  Inventory.PickupMessage ""
+    Inventory.MaxAmount 1
+  species playerside
+  +NOGRAVITY
+  +FLOATBOB
+  -COUNTITEM
+  States
+  {
+  Spawn:
+    SMG1 A 1
+    Loop
+
+  Pickup:
+  TNT1 A 0 A_SetRenderStyle(1.0 ,STYLE_Translucent)
+    stop
+  }
+}
+ACTOR NoFlash
+{
+ // SeeSound "mysounds/myflashsound"
+ RenderStyle None
+ States
+ {
+ Spawn:
+  TNT1 A 1
+  Stop
+ }
+}

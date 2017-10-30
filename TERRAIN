@@ -1,0 +1,561 @@
+//First of all, the splashes
+
+splash Water
+{
+	smallclass		NEWWater_Small_Splash
+	smallclip		1
+	smallsound		world/drip
+
+	baseclass		NEWWater_Splash
+	//chunkclass		WaterSplash
+	//chunkxvelshift	8
+	//chunkyvelshift	8
+	//chunkzvelshift	8
+	//chunkbasezvel	2
+	//sound			world/watersplash
+}
+
+splash Blood
+{
+	smallclass		BloodSplash
+	smallclip		10
+	smallsound		world/sludgegloopsmall
+
+	baseclass		BloodSplash
+	chunkclass		BloodSplash
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			world/sludgegloop
+	NoAlert
+}
+
+splash Nuke
+{
+	smallclass		SludgeSplash
+	smallclip		6
+	smallsound		world/lavasizzlesmall
+
+	baseclass		SludgeSplash
+	chunkclass		LavaSmoke
+	chunkxvelshift	-1
+	chunkyvelshift	-1
+	chunkzvelshift	7
+	chunkbasezvel	1
+	sound			world/lavasizzle
+	NoAlert
+}
+
+splash Lava
+{
+	smallclass		LavaSplash
+	smallclip		12
+	smallsound		world/lavasizzlesmall
+
+	baseclass		LavaSplash
+	chunkclass		LavaSmoke
+	chunkxvelshift	-1
+	chunkyvelshift	-1
+	chunkzvelshift	7
+	chunkbasezvel	1
+	sound			world/lavasizzle
+	NoAlert
+}
+
+
+splash Lav2
+{
+	smallclass		BloodSplash
+	smallclip		12
+	smallsound		world/lavasizzlesmall
+
+	baseclass		BloodSplash
+	chunkclass		LavaSmoke
+	chunkxvelshift	-1
+	chunkyvelshift	-1
+	chunkzvelshift	7
+	chunkbasezvel	1
+	sound			world/lavasizzle
+	NoAlert
+}
+
+splash Lav3
+{
+	smallclass		LavaSmoke
+	smallclip		12
+	smallsound		world/lavsiz2
+
+	baseclass		LavaSmoke
+	chunkclass		LavaSmoke
+	chunkxvelshift	-1
+	chunkyvelshift	-1
+	chunkzvelshift	7
+	chunkbasezvel	1
+	sound			world/lavsiz2
+	NoAlert
+}
+
+splash Slime
+{
+	smallclass		SlimeSplash
+	smallclip		6
+	smallsound		world/sludgegloopsmall
+
+	baseclass		SlimeSplash
+	chunkclass		SlimeChunk
+	chunkxvelshift	8
+	chunkyvelshift	8
+	chunkzvelshift	8
+	chunkbasezvel	1
+	sound			world/sludgegloop
+	NoAlert
+}
+
+splash Grey
+{
+	smallclass		BloodSplashBase
+	smallclip		12
+	smallsound		world/watersplashsmall
+	
+	baseclass		BloodSplashBase
+	chunkclass		SludgeChunk
+	chunkxvelshift	8
+	chunkyvelshift	8
+	chunkzvelshift	8
+	chunkbasezvel	2
+	sound			world/watersplash
+	NoAlert
+}
+
+
+splash Sludge
+{
+	smallclass		SludgeSplash
+	smallclip		8
+	smallsound		world/sludgegloopsmall
+
+	baseclass		SludgeSplash
+	chunkclass		SlimeChunk
+	chunkxvelshift	6
+	chunkyvelshift	6
+	chunkzvelshift	6
+	chunkbasezvel	1
+	sound			world/sludgegloop
+	NoAlert
+}
+
+//And now the hard floor sound definitions
+
+splash carpet
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/carpet
+	NoAlert
+}
+
+splash dirt
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/dirt
+	NoAlert
+}
+
+splash gravel
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/gravel
+	NoAlert
+}
+
+splash metal
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/metal
+	NoAlert
+}
+
+splash metal2
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/metal2
+	NoAlert
+}
+splash metal3
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			FOOT/PLAYER
+	NoAlert
+}
+
+
+splash slimy
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/slimy
+	NoAlert
+}
+
+
+splash snow
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/snow
+	NoAlert
+}
+
+splash hard
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/hard
+	NoAlert
+}
+
+splash tile
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/tile
+	NoAlert
+}
+splash rock
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/rock
+	NoAlert
+}
+splash grass
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/grass
+	NoAlert
+}
+splash tile2
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/tile2
+	NoAlert
+}
+
+splash wood
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/wood
+	NoAlert
+}
+
+
+splash electric
+{
+	smallclass		None
+	smallclip		0
+	smallsound		njmt
+
+	baseclass		None
+	chunkclass		None
+	chunkxvelshift	0
+	chunkyvelshift	0
+	chunkzvelshift	0
+	chunkbasezvel	0
+	sound			floor/elec1
+	NoAlert
+}
+
+//Terrains
+
+terrain Water
+{
+	splash			Water
+	footclip		10
+	liquid
+}
+
+terrain Lava
+{
+	splash			Lava
+	footclip		10
+	liquid
+}
+
+terrain Lav2
+{
+	splash			Lav2
+	footclip		4
+	liquid
+}
+
+terrain Lav3
+{
+	splash			Lav3
+	footclip		0
+	liquid
+}
+
+terrain Blood
+{
+	splash			Blood
+	footclip		10
+	liquid
+}
+
+terrain Nuke
+{
+	splash			Nuke
+	footclip		10
+	liquid
+}
+
+terrain Slime
+{
+	splash			Slime
+	footclip		10
+	liquid
+}
+
+terrain Grey
+{
+	splash			Grey
+	footclip		10
+	liquid
+}
+
+terrain Sludge
+{
+	splash			Sludge
+	footclip		10
+	liquid
+}
+
+terrain Slime2
+{
+	splash			Slime
+	footclip		25
+	liquid
+}
+
+//And now the hard terrains
+
+terrain carpet
+{
+	splash			carpet
+	footclip		0
+	//liquid
+}
+
+terrain dirt
+{
+	splash			dirt
+	footclip		0
+	//liquid
+}
+
+terrain gravel
+{
+	splash			gravel
+	footclip		0
+	//liquid
+}
+
+terrain metal
+{
+	splash			metal
+	footclip		0
+	//liquid
+}
+
+terrain metal2
+{
+	splash			metal2
+	footclip		0
+	//liquid
+}
+
+terrain metal3
+{
+	splash			metal3
+	footclip		0
+	//liquid
+}
+
+
+terrain rock
+{
+	splash			rock
+	footclip		0
+	//liquid
+}
+
+terrain snow
+{
+	splash			snow
+	footclip		0
+	//liquid
+}
+
+terrain slimy
+{
+	splash			slimy
+	footclip		0
+	//liquid
+}
+
+terrain hard
+{
+	splash			hard
+	footclip		0
+	//liquid
+}
+
+terrain tile
+{
+	splash			tile
+	footclip		0
+	//liquid
+}
+
+terrain tile2
+{
+	splash			tile2
+	footclip		0
+	//liquid
+}
+
+terrain wood
+{
+	splash			wood
+	footclip		0
+	//liquid
+	
+}
+
+terrain electric
+{
+	splash			electric
+	footclip		0
+	//liquid
+}
