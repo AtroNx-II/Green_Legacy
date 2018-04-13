@@ -2,6 +2,6 @@ ClearPlayerClasses
 AddPlayerClass M16
 
 
-defaultbind F +user1
-defaultbind K +user2
-defaultbind S +crouch
+defaultbind V +user1
+defaultbind Space +user2
+defaultbind downarrow +crouch

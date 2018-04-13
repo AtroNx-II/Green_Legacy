@@ -1,0 +1,74 @@
+class BridgeVerticalMovePlatform : Actor
+{
+    //$Category Terrain/MovePlatform
+    //$Arg0 "Distance"
+    //$Arg0ToolTip "Set Platform's Move Distance"
+    //$Arg1 "Speed"
+    //$Arg1ToolTip "Set Move Speed"
+    //$Arg2 "platformid"
+    //$Arg2ToolTip "Set platformID(25000-30000)"
+	//$Arg3 "Type"
+	//$Arg3ToolTip "1=Vertical,0=Horizontal"
+	//$Arg4 "auto"
+	//$Arg4ToolTip "1=switch,0=auto"
+    int user_delay_move;
+
+    default
+    {
+        Radius 60;
+        Height 10;
+
++NOBLOOD 
++NOGRAVITY+SHOOTABLE+INVULNERABLE+ACTLIKEBRIDGE+SOLID+CANNOTPUSH+NOTARGET+CANPASS+NORADIUSDMG
+    }
+
+    states
+    {
+    Spawn:
+		TNT1 A 0 A_JumpIf(args[3]==1,"Vertical");
+		TNT1 A 0 A_JumpIf(args[3]==0,"Horizontal");
+		Goto Work;
+		Vertical:
+		PLAT A 0
+		{
+		self.bCanPass  = false;
+		}
+		PLAT A 1 ACS_NamedExecuteAlways("PlatformMoverV", 0, args[0], args[1], args[2]);
+		Goto Work;
+		Horizontal:
+        PLAT A 1 ACS_NamedExecuteAlways("PlatformMoverH", 0, args[0], args[1], args[2]);
+		Goto Work;
+    Work:
+        PLAT A 1;
+        loop;
+    Inactive:
+        PLAT A -1;
+        loop;
+    Active:
+        PLAT A 1;
+        goto Work;
+    }
+
+
+override bool CanCollideWith(Actor other, bool passive)
+{
+    if (other is "PlayerPawn")
+    {
+	
+	 //
+	 if(args[3]==1)
+	 {
+	 ACS_NamedExecuteAlways("PlatFormPhysicsV", 0,args[2],0,0);
+	 }
+	 else
+	 {
+	 ACS_NamedExecuteAlways("PlatFormPhysicsH", 0,args[2],0,0);
+	 }
+        
+    }
+
+    return super.CanCollideWith(other, passive);
+}
+
+}
+

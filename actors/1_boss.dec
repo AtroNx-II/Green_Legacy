@@ -1,0 +1,2504 @@
+ACTOR stage_1boss 22300
+{
+//$Category Enemy/boss
+
+  Health 10000
+  PainChance 255
+  Speed 0
+  Radius 10
+  Height 10
+  Mass 10
+  Monster
+  RenderStyle Translucent
+  Scale 0.7
+PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+  MaxTargetRange 800
+  BloodColor "White"
+  -Solid
+  -SHOOTABLE
+  +THRUSPECIES
+  +NOGRAVITY
+  -CANPASS
+  -COUNTKILL
+  +CANNOTPUSH
+  +NORADIUSDMG
+  +BOSS
+  +NOCLIP
+  +THRUACTORS
+  +NOBLOCKMAP
+  species enemy
+  gravity 0.01
+  SeeSound "worm_sight"
+  AttackSound "worm_sight"
+  PainSound "worm_pain"
+  DeathSound "worm_death"
+  ActiveSound "worm_active"
+  States
+  {
+  Spawn:
+        TNT1 A 1 
+
+        loop
+  See:
+  1BSI A 0 A_JumpIfInventory("BackwardsCheck",1,"SeeLeft")
+  SeeRight:
+  1BSI A 0 TeleportOther(7666,7700,0)
+    1BSI AABBCCDDEEFFGGFFEDDCCBB 1 
+  {
+
+  }
+  
+  GOTO SEE
+  SeeLeft:
+  1BSI A 0 TeleportOther(7666,7704,0)
+    1BSI AABBCCDDEEFFGGFFEDDCCBB 1 
+  {
+
+  }
+  
+  GOTO SEE
+  
+  Active:
+  MB1A H 0 A_SETSCALE(0.7,0.7)
+  1BOS ABCDEFGHIJ 2 
+  1BSS ABCDEFGHIJKLMNOPQRSTUVWXYZ 2
+  1BS1 AB 2
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB ABCDEFGHIJKLMNOPIJKLMNOPIJKLMNOPQRSTUVWX 2
+  Goto See
+  InActive:
+  TNT1 A 3
+  Loop
+    Attack:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"AttackLEFT")
+    AttackRIGHT:
+  1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2  
+  Goto TeleportRandom
+    AttackLEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2
+  Goto TeleportRandom
+  TeleportRandom:
+   TNT1 A 0 
+
+    TNT1 A 1 Acs_NamedExecute("ForceTeleport",0,random(7601,7603),0,0)
+  goto AttackWait
+  AttackWait:
+  
+  MB1A H 0 A_PlaySound("S1BOS_S1", 7,1.0,0,ATTN_NONE)
+  MB1A H 0 
+  TNT1 A 0 A_SpawnItemEx("Boss_AttackIndicator",0,0,2.0,0,0,0,0,SXF_NOCHECKPOSITION )
+  TNT1 A 5
+  Goto AttackWait+2
+
+  AttackAPPEAR:
+  CRDT A 0 A_Explode(50,256,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide")
+  MB1A H 0 A_PlaySound("S1BOS_S2", 0,1.0,0,ATTN_NONE)
+  MB1A H 0 A_JUMP(128,"AttackAPPEARL")
+  MB1A H 0 A_TakeInventory("BackwardsCheck",1)
+  MB1A H 0 A_SETSCALE(0.7,0.7)
+  AttackAPPEARST:
+TNT1 AAA 0 Bright 
+{
+A_CustomMissile("Attack_Debris_Rock", 110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock2",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock3",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock4",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock5",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock6",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock7",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock8",110, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock9",110, random(-16,16), random(0,360), 2, random(-90,90));
+}
+  1BOS ABCDEFGHIJ 2 
+    1BOS JIHGFEDCBA 2
+  GOTO TeleportRandom
+AttackAPPEARL:
+MB1A H 0 A_GiveInventory("BackwardsCheck",1)
+  MB1A H 0 A_SETSCALE(-0.7,0.7)
+  GOTO AttackAPPEARST
+  
+  AttackEND:
+  MB1A H 0 A_PlaySound("S1BOS_S2", 7,1.0,0,ATTN_NONE)
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"AttackENDL")
+
+  AttackENDR:
+
+  MB1A H 0 A_SETSCALE(0.7,0.7)
+  MB1A H 0 Teleport_NoFog(7601,0,600)
+  1BOS ABCDEFGHIJ 2 
+    1BHD SRQPONMLKJIHGFEDCBA 3
+  Goto See
+  AttackENDL:
+    MB1A H 0 A_SETSCALE(-0.7,0.7)
+  MB1A H 0 Teleport_NoFog(7603,0,600)
+
+  1BOS ABCDEFGHIJ 2 
+    1BHD SRQPONMLKJIHGFEDCBA 3
+  Goto See
+    Attack2:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"Attack2LEFT")
+    Attack2RIGHT:
+  1BHD A 0 A_SETSCALE(0.7,0.7)
+1BTA ABCDEFGHIJKLM 2
+1BTA T 0 A_FaceTarget
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,200,ANGLE,2,random(-30,1))
+1BTA NOP 3
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,200,ANGLE,2,random(-30,8))
+1BTA QRS 3
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,200,ANGLE,2,random(-30,8))
+1BTA TUV 3
+1BTA WXY 2
+1BTA Z 2
+  GOTO SEE
+  Attack2LEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BTA ABCDEFGHIJKLM 2
+1BTA T 0 A_FaceTarget
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,-200,ANGLE+180,2,random(-30,1))
+1BTA NOP 3
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,-200,ANGLE+180,2,random(-30,8))
+1BTA QRS 3
+1BTA H 0 A_PlaySound("S1BOS_P1", 0,1.0,0,ATTN_NONE)
+1BTA T 0 A_CustomMissile("RockShot",180,-200,ANGLE+180,2,random(-30,8))
+1BTA TUV 3
+
+1BTA WXY 2
+1BTA Z 2
+  GOTO SEE
+    Attack3:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"Attack3LEFT")
+    Attack3RIGHT:
+  1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BSI A 0 TeleportOther(7666,7700,0)
+  1BSS TUVWXYZ 2
+  1BS1 A 2 TeleportOther(7666,7700,0)
+  1BS1 B 2 TeleportOther(7666,7701,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 2
+  1BSB B 2 TeleportOther(7666,7702,0)
+  1BSB CD 2
+  1BSI A 0 TeleportOther(7666,7703,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 2
+  1BSB Q 2 TeleportOther(7666,7702,0)
+  1BSB R 2 TeleportOther(7666,7701,0)
+  1BSB S 2 
+  1BSB T 2 TeleportOther(7666,7700,0)
+  1BSB TUVWX 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD ABCDEFGH 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD IJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2
+  GOTO TeleportRandom
+  Attack3LEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BSI A 0 TeleportOther(7666,7704,0)
+  1BSS TUVWXYZ 2
+  1BS1 A 2 TeleportOther(7666,7704,0)
+  1BS1 B 2 TeleportOther(7666,7705,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 2
+  1BSB B 2 TeleportOther(7666,7706,0)
+  1BSB CD 2
+  1BSI A 0 TeleportOther(7666,7707,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 2
+  1BSB Q 2 TeleportOther(7666,7706,0)
+  1BSB R 2 TeleportOther(7666,7705,0)
+  1BSB S 2 
+  1BSB T 2 TeleportOther(7666,7704,0)
+  1BSB TUVWX 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD ABCDEFGH 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD IJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2
+  GOTO TeleportRandom
+      Attack4:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"Attack4LEFT")
+    Attack4RIGHT:
+  1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BUP ABCDEEEEEEEEFG 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+  1BUP HIJ 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP KLM 2 
+1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP NOP 2
+1BUP QRSTUVWXYZ 2
+    1BOS EDCBA 2 
+  GOTO TeleportRandom
+  Attack4LEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BUP ABCDEEEEEEEEFG 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+  1BUP HIJ 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP KLM 2
+1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_BabyShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP NOP 2
+1BUP QRSTUVWXYZ 2
+    1BOS EDCBA 2 
+  GOTO TeleportRandom
+Attack5:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"Attack5LEFT")
+    Attack5Right:
+    1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BP1 ABCD 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BP1 EFGHIJKLMNOPQRSTUVWXYZ 2
+  1BP2 ABCDEFGHIJKLMNOPQRS 2
+  1BP2 A 0 
+  1BP2 TUVWXYZ 2
+  1BP3 ABCD 2
+
+  1BSI A 0 TeleportOther(7666,7700,0)
+  1BSS TUVWXYZ 1
+  1BS1 A 1 TeleportOther(7666,7700,0)
+  1BS1 B 1 TeleportOther(7666,7701,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+   1BTA T 0 A_CustomMissile("RockShotA",180,200,ANGLE,2,-10)
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 1
+  1BSB B 1 TeleportOther(7666,7702,0)
+  1BSB CD 1
+  1BSI A 0 TeleportOther(7666,7703,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 1
+  1BSB Q 1 TeleportOther(7666,7702,0)
+  1BSB R 1 TeleportOther(7666,7701,0)
+  1BSB S 1 
+  1BSB T 1 TeleportOther(7666,7700,0)
+  1BSB TUVWX 1
+  1BSB A 0 TeleportOther(7666,7699,0)
+  GOTO SEE
+  Attack5LEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BP1 ABCD 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BP1 EFGHIJKLMNOPQRSTUVWXYZ 2
+  1BP2 ABCDEFGHIJKLMNOPQRS 2
+  1BP2 A 0 
+  1BP2 TUVWXYZ 2
+  1BP3 ABCD 2
+
+  1BSI A 0 TeleportOther(7666,7704,0)
+  1BSS TUVWXYZ 1
+  1BS1 A 2 TeleportOther(7666,7704,0)
+  1BS1 B 2 TeleportOther(7666,7705,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+   
+      1BTA T 0 A_CustomMissile("RockShotA",180,-200,ANGLE+180,2,-10)
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 1
+  1BSB B 1 TeleportOther(7666,7706,0)
+  1BSB CD 1
+  1BSI A 0 TeleportOther(7666,7707,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 1
+  1BSB Q 1 TeleportOther(7666,7706,0)
+  1BSB R 1 TeleportOther(7666,7705,0)
+  1BSB S 1 
+  1BSB T 1 TeleportOther(7666,7704,0)
+  1BSB TUVWX 1
+  1BSB A 0 TeleportOther(7666,7699,0)
+  GOTO SEE
+      Attack6:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"Attack6LEFT")
+    Attack6RIGHT:
+  1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BUP ABCDEEEEEEEEFG 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+  1BUP HIJ 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP KLM 2 
+1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP NOP 2
+1BUP QRSTUVWXYZ 2
+    1BOS EDCBA 2 
+  GOTO TeleportRandom
+  Attack6LEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BHD ABCDEFGHIJKLMNOPQRS 2
+  1BUP ABCDEEEEEEEEFG 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+  1BUP HIJ 2
+  1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP KLM 2
+1BTA H 0 A_PlaySound("S1BOS_P2", 0,1.0,0,ATTN_NONE)
+  1BUP I 0 A_SpawnItemEx("Boss_ToxicShot",0,0,110.0,0,0,40,0,SXF_NOCHECKPOSITION )
+1BUP NOP 2
+1BUP QRSTUVWXYZ 2
+    1BOS EDCBA 2 
+  GOTO TeleportRandom
+Pain:
+  MB1A H 0 
+  MB1A H 0 A_JumpIfInventory("BackwardsCheck",1,"PainLEFT")
+    PainRight:
+    1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BP1 ABCD 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BP1 EFGHIJKLMNOPQRSTUVWXYZ 2
+  1BP2 ABCDEFGHIJKLMNOPQRS 2
+  1BP2 A 0
+  1BP2 TUVWXYZ 2
+  1BP3 ABCD 2
+
+  1BSI A 0 TeleportOther(7666,7700,0)
+  1BSS TUVWXYZ 2
+  1BS1 A 2 TeleportOther(7666,7700,0)
+  1BS1 B 2 TeleportOther(7666,7701,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+   
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 2
+  1BSB B 2 TeleportOther(7666,7702,0)
+  1BSB CD 2
+  1BSI A 0 TeleportOther(7666,7703,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 2
+  1BSB Q 2 TeleportOther(7666,7702,0)
+  1BSB R 2 TeleportOther(7666,7701,0)
+  1BSB S 2 
+  1BSB T 2 TeleportOther(7666,7700,0)
+  1BSB TUVWX 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD ABCDEFGH 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD IJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2
+  GOTO TeleportRandom
+  PainLEFT:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+  1BP1 ABCD 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BP1 EFGHIJKLMNOPQRSTUVWXYZ 2
+  1BP2 ABCDEFGHIJKLMNOPQRS 2
+  1BP2 A 0
+  1BP2 TUVWXYZ 2
+  1BP3 ABCD 2
+
+  1BSI A 0 TeleportOther(7666,7704,0)
+  1BSS TUVWXYZ 2
+  1BS1 A 2 TeleportOther(7666,7704,0)
+  1BS1 B 2 TeleportOther(7666,7705,0)
+   1BSB A 0 A_QuakeEx(1,0,1,70,0,3000)
+  1BSB A 0 A_PlaySound("S1BOS_S1", CHAN_AUTO ,1.0,0,ATTN_NONE)
+  1BSB A 2
+  1BSB B 2 TeleportOther(7666,7706,0)
+  1BSB CD 2
+  1BSI A 0 TeleportOther(7666,7707,0)
+  1BSB EFGHIJKLMNOPIJKLMNOPIJKLMNOP 2
+  1BSB Q 2 TeleportOther(7666,7706,0)
+  1BSB R 2 TeleportOther(7666,7705,0)
+  1BSB S 2 
+  1BSB T 2 TeleportOther(7666,7704,0)
+  1BSB TUVWX 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD ABCDEFGH 2
+  1BSB A 0 TeleportOther(7666,7699,0)
+  1BHD IJKLMNOPQRS 2
+  1BOS JIHGFEDCBA 2
+  GOTO TeleportRandom
+  
+  Death:
+  TNT1 A 0 A_SpawnItemEx("Boss_DeathFx",0,0,10.0,0,0,0,0,SXF_NOCHECKPOSITION )
+  TNT1 A 0 ACS_NamedExecutealways("flashTime",0,52,1,0)
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+    1BHD A 0 A_SETSCALE(0.7,0.7)
+  1BDT ABCDEFGHIJKLMNOPQRSTUVWX 2
+  {
+    A_PlaySound("S1BOS_D1", 7,1.0,0,ATTN_NONE);
+  A_CustomMissile("Debris_FireTrail_GL2", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  A_CustomMissile("Debris_FireTrail_GL", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  }
+TNT1 A 0 A_QuakeEx(8,0,8,3,0,3000)
+TNT1 A 0 A_Fall
+   TNT1 A 0 Bright 
+{
+A_CustomMissile("Dead_Debris_Head1", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head2", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head3", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head4",260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head5",260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head6", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body1",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body2",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body3", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body4",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body5",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body6", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body7",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body8",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body9", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body10",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body11",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body12", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body13", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body14", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+}
+        TNT1 A 0 Acs_NamedExecute("ForceTeleport",0,7804,0,0)
+Goto Deathloop
+  DeathLeft:
+  1BHD A 0 A_SETSCALE(-0.7,0.7)
+    1BDT ABCDEFGHIJKLMNOPQRSTUVWX 2
+  {
+    A_PlaySound("S1BOS_D1", 7,1.0,0,ATTN_NONE);
+  A_CustomMissile("Debris_FireTrail_GL2", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  A_CustomMissile("Debris_FireTrail_GL", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  }
+TNT1 A 0  A_QuakeEx(10,0,10,35,0,3000)
+TNT1 A 0 A_Fall
+TNT1 AAAA 0 
+{
+  A_CustomMissile("Debris_FireTrail_GL2", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  A_CustomMissile("Debris_FireTrail_GL", random(60,360), random(-16,16), random(0,360), 2, random(-90,90));
+  
+}
+   TNT1 A 0 Bright 
+{
+A_CustomMissile("Dead_Debris_Head1", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head2", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head3", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head4",260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head5",260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Head6", 260, random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body1",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body2",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body3", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body4",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body5",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body6", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body7",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body8",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body9", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body10",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body11",random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body12", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body13", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Dead_Debris_Body14", random(64,260), random(-16,16), random(0,360), 2, random(-90,90));
+}
+          TNT1 A 0 Acs_NamedExecute("ForceTeleport",0,7805,0,0)
+
+Goto Deathloop
+  Deathloop:
+      TNT1 A 0 
+    {A_QuakeEx(5,0,5,30,0,3000);
+  A_QuakeEx(3,0,3,70,0,3000);
+    A_QuakeEx(1,0,1,700,0,3000);
+A_SetGravity(0.01);
+   }
+  TNT1 A 0 A_Fall
+
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathloopLEFT")
+  DeathloopRight:
+  
+  1BDP ABCDEFGH 3 
+  {
+   A_ChangeVelocity(0,0, -0.5, CVF_REPLACE);
+  }
+  LOOP
+  DeathloopLEFT:
+  1BDP ABCDEFGH 3 
+  {
+   A_ChangeVelocity(0,0, -0.5, CVF_REPLACE);
+  }
+   LOOP
+}
+}
+ACTOR Boss_BabyShot 
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 6
+  SCALE 1.5
+  height 1
+  radius 1
+  Damage 0
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +noclip
+  
+  States
+  {
+  Spawn:
+    EMBX A 0
+    1BWS AAAAAAAAAAAAAAAA 1
+  }
+}
+ACTOR Boss_ToxicShot 
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 6
+  SCALE 1.5
+  height 1
+  radius 1
+  Damage 0
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +noclip
+  
+  States
+  {
+  Spawn:
+    EMBX A 0
+    1BTX AAAAAAAAAAAAAAAA 1
+  }
+}
+ACTOR Boss_GasLeak
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 10
+  SCALE 1.5
+  height 1
+  radius 1
+  Damage 0
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +THRUACTORS
+  +noclip
+  
+  States
+  {
+  Spawn:
+  1BTG A 3
+  {
+  A_Explode(15,56,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide");
+  A_SetRenderStyle(0.5,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.4,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.3,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.25,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_Explode(15,56,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide");
+  A_SetRenderStyle(0.15,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.25,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.3,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.4,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.5,STYLE_Translucent);
+  }
+      EMBX A 0 A_CountDown
+        LOOP
+    Death:
+    1BTG A 1 A_FADEOUT(0.1)
+    LOOP
+  }
+}
+ACTOR Boss_GasLeak2
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 6
+  SCALE 2.0
+  height 1
+  radius 1
+  Damage 0
+  +THRUACTORS
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +noclip
+  
+  States
+  {
+  Spawn:
+  1BTG A 3
+  {
+  A_Explode(15,56,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide");
+  A_SetRenderStyle(0.5,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.4,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.3,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.25,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_Explode(15,56,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide");
+  A_SetRenderStyle(0.15,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.25,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.3,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.4,STYLE_Translucent);
+  }
+  1BTG A 3
+  {
+  A_SetRenderStyle(0.5,STYLE_Translucent);
+  }
+      EMBX A 0 A_CountDown
+    LOOP
+    Death:
+    1BTG A 1 A_FADEOUT(0.1)
+    LOOP
+  
+  }
+}
+ACTOR Boss_AttackIndicator 
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 6
+  SCALE 1.5
+  height 1
+  radius 1
+  Damage 20
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +noclip
+  
+  States
+  {
+  Spawn:
+    EMBX A 0
+  EMBX A 0 A_Jump(192,"Spawn2","Spawn3","Spawn4")
+    1BF1 ABCDEFGHIJKLMN 1  
+    Stop
+Spawn2:
+    1BF2 ABCDEFGHIJKLM 1  
+    Stop
+Spawn3:
+    1BF3 ABCDEFGHIJKLM 1  
+    Stop
+Spawn4:
+    1BF4 ABCDEFGHIJKLMN 1 
+    Stop
+  }
+}
+ACTOR Boss_DeathFX
+{
+species enemy
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 300
+  SCALE 1.5
+  height 1
+  radius 1
+  Damage 20
+     +FORCEXYBILLBOARD
+  +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +NOGRAVITY
+  +noclip
+  +WallSprite
+  States
+  {
+  Spawn:
+    EMBX A 0 A_COUNTDOWN
+  TNT1 A 5 A_SpawnItemEx("Boss_AttackIndicator",5.0,0.0,0.0,0,0,0,0,SXF_NOCHECKPOSITION )
+    Loop
+	Death:
+   TNT1 A 3  
+	stop
+  }
+}
+ACTOR Boss_Hurtindicator
+{ 
+damageFactor "Flame", 0.0
+  +NORADIUSDMG 
+  +NOTAUTOAIMED
+  
+DamageFactor "EnemySide", 0.0
+  DAMAGEFACTOR "PlayerSide" , 0.0
+DamageFactor "NORMAL", 0.0
+  Health 200
+  height 2
+  SCALE 3.0
+  radius 2
+        ExplosionRadius 0
+  Speed  0
+species enemy
+  RENDERSTYLE ADD
+
+    painchance 255
+    monster
+    -COUNTKILL
+    +THRUSPECIES 
+  +NOBLOOD
+    +FLOORCLIP
+    BloodColor "Green"
+        +DROPOFF
++MTHRUSPECIES
++NOTIMEFREEZE
++LOOKALLAROUND
++SEEINVISIBLE
+    -SHOOTABLE
+    +QUICKTORETALIATE
+    +FRIENDLY
+        +NOCLIP
+    -SOLID
+        +NORADIUSDMG
+  +NOGRAVITY
+  States
+  {
+
+    Spawn: 
+    FLAR A 0
+    FLAR A 1  ACS_NamedExecuteAlways("CheckMastersGetHurt",0,600,0,0)
+    FLAR A 1
+  {
+  A_CopySpriteFrame(AAPTR_MASTER,AAPTR_DEFAULT);
+  A_Warp(AAPTR_MASTER, 0, 0.1,0.0, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+
+  }
+    Goto Spawn+2
+    SEE:
+    FLAR A 1  
+  {
+  A_Warp(AAPTR_MASTER, 0, 0.1, 0.0, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_WARPINTERPOLATION );
+  A_SetRenderStyle(1.0,STYLE_Add);
+  }
+    GOTO SEE
+    PAIN:
+      
+                TNT1 AAA 0 A_Scream
+      GOTO SEE
+    Death:
+                TNT1 AAA 0 A_Scream
+    Stop
+  }
+}
+
+ACTOR bossweakpoint 31050
+{
+
+Radius 30
+Height 60
+health 9500
+speed 0
+MASS 99999999
+painchance 255
+BloodColor "Green"
+MONSTER
+  +THRUSPECIES
+  PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+species enemy
++NOTIMEFREEZE
++NOTARGET
++LOOKALLAROUND
++SEEINVISIBLE
+-COUNTKILL
++NOCLIP
++NOGRAVITY
++SHOOTABLE
+RENDERSTYLE ADD
+States
+{
+Spawn:
+
+TNT1 A 1 A_LOOK
+Loop
+See:
+TNT1 A 1 A_chase
+Loop
+Missile:
+TNT1 A 1
+goto see
+InActive:
+TNT1 A 0 A_ChangeFlag("SHOOTABLE",0)
+TNT1 A 1 A_SetInvulnerable
+goto see
+Active:
+SHTG A 0 A_ChangeFlag("SHOOTABLE",1)
+TNT1 A 1 A_UnSetInvulnerable
+goto see
+PAIN:
+
+BARI A 0 A_JumpIfHealthLower(4000,"Pain2")
+ELEC A 0 A_GiveToTarget("Score_count",1)
+TNT1 A 0 ACS_NamedExecuteAlways("FlashTime",0,3,1,7600)
+goto see
+Pain2:
+    BARI A 0 A_JumpIfInventory("HealthBomb1",1,"Pass")
+  BARI A 0 ACS_Execute(670,0,0,0,0)
+  BARI AAAAA 0 A_CustomMissile("RocketANI",random(-180,180),random(-180,180),0,2,0)
+  BARI A 0 A_GiveInventory("HealthBomb1",1)
+  GOTO SEE
+Pass:
+    BARI A 0
+  GOTO Pain+1
+Death:
+SKUL H 0 Bright  A_CustomMissile("RocketANI",0,0,0)
+ELEC A 0 A_GiveToTarget("Score_count",5000)
+stop
+}
+}
+ACTOR Boss1_Attack_worm
+{
+SPEED 10
+  Health 1
+  Radius 13
+  MASS 99999
+  Height 8
+DamageFactor "EnemySide", 0.0
+  species Enemy
+  MONSTER
+  -COUNTKILL
+  -SOLID
+  +SHOOTABLE
+  +NOBLOOD
+  +Floorclip
+  +dropoff
+  
+  +ACTIVATEMCROSS
+  +NOICEDEATH
+  +FULLVOLDEATH
+  +BLOODLESSIMPACT
+  +THRUSPECIES
+  +CANNOTPUSH
+    DamageType "EnemySide"
+  States
+  {
+  Spawn:
+        RUST B 0 A_Fall
+  Goto SetGravity
+SetGravity:
+RUST B 0 A_Jump(64,"SetGravity2","SetGravity3")
+RUST B 0 A_SetGravity(0.01)
+Goto SpawnSkip
+    Spawnskip:
+  
+      RUST B 0 A_Fall
+    1BWR ABCDEFGHIJKLMNOP 1 
+  {
+   A_Weave(random(1,3), random(1,3), 1.0, 1.0);
+  if(velz==0){return state("Hatch");}
+  return state("");
+  }
+  Goto Spawnskip
+  
+  Death:
+
+   RUST B 0 A_Explode(15,72,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide")
+    RUST B 0 A_Fall
+  1BWS KLMNOPQRSTU 2
+  STOP
+  Hatch:
+    RUST B 0 A_SpawnItemEx("BabyWorm",0,0,8.0,0,0,10,ANGLE,SXF_NOCHECKPOSITION|SXF_SETMASTER )
+    RUST B 0 A_Fall
+    1BWS BCDEFGHIJ 2
+  stop
+  }
+}
+ACTOR Boss1_Attack_Gasbubble
+{
+SPEED 10
+  Health 1
+  Radius 13
+  MASS 99999
+  Height 8
+DamageFactor "EnemySide", 0.0
+  species Enemy
+  Vspeed -0.5
+  -COUNTKILL
+  -SOLID
+  +SHOOTABLE
+  +NOBLOOD
+  +dropoff
+  +MISSILE
+  +ACTIVATEMCROSS
+  +NOICEDEATH
+  +FULLVOLDEATH
+  +BLOODLESSIMPACT
+  +THRUSPECIES
+  +THRUGHOST
+  +ghost
+    DamageType "EnemySide"
+  States
+  {
+  Spawn:
+        RUST B 0 A_Fall
+  Goto SetGravity
+SetGravity:
+RUST B 0 A_Jump(64,"SetGravity2","SetGravity3")
+RUST B 0 A_SetGravity(0.01)
+Goto SpawnSkip
+    Spawnskip:
+  
+      RUST B 0 A_Fall
+    1BTX A 1 
+  {
+   A_Weave(random(1,3), random(1,3), 1.0, 1.0);
+  if(velz==0){return state("MOVER");}
+  if(GetDistance(True,AAPTR_PLAYER1)<10){return state("MOVER");}
+  return state("");
+  }
+  Goto Spawnskip
+  
+  Death:
+
+    RUST BB 0 A_SpawnItemEx("Boss_GasLeak",0,0,0.0,0,0,0,ANGLE,SXF_NOCHECKPOSITION|SXF_SETMASTER )
+    RUST B 0 A_Fall
+  1BTX BCDEFGHIJKL 2
+  STOP
+  MOVER:
+    RUST BB 0 A_SpawnItemEx("Boss_GasLeak2",0,0,0.0,random(-3,3),0,0,ANGLE,SXF_NOCHECKPOSITION|SXF_SETMASTER )
+    RUST B 0 A_Fall
+  1BTX BCDEFGHIJKL 2
+  stop
+  }
+}
+
+
+ACTOR BabyWorm
+{
+//$Category Enemy/Maggot
+  Health 1
+  PainChance 255
+  Speed 4
+  Radius 8
+  Height 20
+  Mass 40000
+  Monster
+    scale 1.0
+PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+  MaxTargetRange 400
+  +ACTLIKEBRIDGE
+  +THRUSPECIES
+  -SOLID
+  -COUNTKILL
+  +FLOORCLIP
+  +LOOKALLAROUND
+  BloodColor "Green"
+  MaxDropOffHeight 64
+  MeleeRange 70
+  species enemy
+  SeeSound "worm_sight"
+  AttackSound "worm_sight"
+  PainSound "worm_pain"
+  DeathSound "worm_death"
+  ActiveSound "worm_active"
+  Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
+  States
+  {
+  Spawn:
+ TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
+    SpawnRight:
+        1BWM A 1 
+    {
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") > 0) { return state("SpawnLeft");}
+    ELSE
+    {
+    }
+    return state("");
+    }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,550,350,360.0,"See")
+        loop
+    SpawnLeft:
+        1BWM A 1 
+    {     
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") ==0) { return state("SpawnRight");}
+    ELSE
+    {
+    }
+    return state("");
+    }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,550,350,360.0,"See")
+        loop
+  See:
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
+  SeeRight:
+     TNT1 A 0 A_SetScale(-1.0,1.0)
+    1BWM ABCDE 1 
+  {
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+  return state("");
+  }
+    1BWM FG  1 
+  {
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  A_Chase("Melee","");
+  if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+  return state("");
+  }
+  GOTO SEE
+  
+  SeeLeft:
+     TNT1 A 0 A_SetScale(1.0,1.0)
+    1BWM ABCDE 1 
+  {
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  if (CountInv("BackwardsCheck")== 0) { return state("SeeRight");}
+  return state("");
+  }
+    1BWM FG  1 
+  {
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  A_Chase("Melee","");
+  if (CountInv("BackwardsCheck")== 0) { return state("SeeRight");}
+  return state("");
+  }
+  GOTO SEE
+
+  Pain:
+  TNT1 A 0 A_GiveToTarget("Score_count",1)
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_Pain
+  TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,0,0)
+  GOTO SEE
+  Death:
+   TNT1 A 0 A_Die
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+   TNT1 A 0 A_SetScale(-1.0,1.0)
+  1BWD ABCD 2
+    TNT1 A 0 A_scream
+  CRDT A 0 A_Explode(15,72,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide")
+   1BWD EFGHIJK 2
+  STOP
+  DeathLeft:
+   TNT1 A 0 A_SetScale(1.0,1.0)
+  1BWD ABCD 2
+   TNT1 A 0 A_scream
+  CRDT A 0 A_Explode(15,72,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide")
+   1BWD EFGHIJK 2
+  STOP
+  
+  Melee:
+  TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"MeleeLeft")
+  GOTO DEATH
+
+}
+}
+
+ACTOR RockShot
+{
+Species "enemy"
+SeeSound ""
+  RenderStyle Normal
+  Speed 30
+  ReactionTime 5
+  DamageType EnemySide
+  Damage 5
+  SeeSOUND "BOOM1"
+  DEATHSOUND "BOOM1"
+  PROJECTILE
+    +MTHRUSPECIES
+    +THRUSPECIES
+  +FULLVOLDEATH
+  +NOGRAVITY
+  +NOEXTREMEDEATH
+  +BRIGHT
+    Height 8
+  Radius 13
+  States
+  {
+  Spawn:
+    DIEX A 2 bright
+    GOTO SPAWN
+  Death:
+TNT1 A 0 Bright 
+{
+A_CustomMissile("Attack_Debris_Rock", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock3", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock4", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock5", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock6", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock7", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock8", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+A_CustomMissile("Attack_Debris_Rock9", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90));
+}
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(5,256)
+      APLS A 0 bright A_SetScale(3.0,3.0)
+  EPRO AA 1 bright A_Stop
+  TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+      APLS A 0 bright A_SetScale(2.0,2.0)
+EXPL ABCDEFGHIJKLMN 1 bright A_STOP
+    Stop
+  }
+}
+ACTOR RockShotA : RockShot
+{
+  Damage 8
+  Speed 20
+  SCALE 1.5
+    +DONTREFLECT
+  States
+  {
+  Spawn:
+    DIEX A 2 bright
+    GOTO SPAWN
+  Death:
+TNT1 A 0 Bright 
+{
+A_CustomMissile("RockShot",0,0,angle, 2, 45);
+A_CustomMissile("RockShot",0,0,angle, 2, 30);
+A_CustomMissile("RockShot",0,0,angle, 2, 15);
+A_CustomMissile("RockShot",0,0,angle, 2, -45);
+A_CustomMissile("RockShot",0,0,angle, 2, -30);
+A_CustomMissile("RockShot",0,0,angle, 2, -15);
+A_CustomMissile("RockShot",0,0,angle, 2, 0);
+A_CustomMissile("RockShot",0,0,angle, 2, 0);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -90);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 90);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 0);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 45);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 30);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 15);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -45);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -30);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -15);
+}
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(5,256)
+      APLS A 0 bright A_SetScale(3.0,3.0)
+  EPRO AA 1 bright A_Stop
+  TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+      APLS A 0 bright A_SetScale(2.0,2.0)
+EXPL ABCDEFGHIJKLMN 1 bright A_STOP
+    Stop
+  }
+}
+ACTOR RockShotB : RockShot
+{
+  Damage 8
+  Speed 20
+  SCALE 1.5
+  +DONTREFLECT
+  States
+  {
+  Spawn:
+    DIEX A 2 bright
+    GOTO SPAWN
+  Death:
+TNT1 A 0 Bright 
+{
+A_CustomMissile("RockShot",0,0,angle, 2, 45);
+A_CustomMissile("RockShot",0,0,angle, 2, 30);
+A_CustomMissile("RockShot",0,0,angle, 2, 15);
+A_CustomMissile("RockShot",0,0,angle, 2, -45);
+A_CustomMissile("RockShot",0,0,angle, 2, -30);
+A_CustomMissile("RockShot",0,0,angle, 2, -15);
+A_CustomMissile("RockShot",0,0,angle, 2, 0);
+A_CustomMissile("RockShot",0,0,angle, 2, 0);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -90);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 90);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 0);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 45);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 30);
+A_CustomMissile("RockShot",0,0,angle+180, 2, 15);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -45);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -30);
+A_CustomMissile("RockShot",0,0,angle+180, 2, -15);
+}
+TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
+      APLS A 0 bright A_Explode(5,256)
+      APLS A 0 bright A_SetScale(3.0,3.0)
+  EPRO AA 1 bright A_Stop
+  TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+      APLS A 0 bright A_SetScale(2.0,2.0)
+EXPL ABCDEFGHIJKLMN 1 bright A_STOP
+    Stop
+  }
+}
+ACTOR Attack_Debris_Rock
+{
+Damage 0
+BounceFactor 0.5
+Height 12
+Radius 9
+Speed 10
+Scale 1.35
+Mass 0
+PROJECTILE
+gravity 0.2
+ReactionTime 20
++USEBOUNCESTATE
++DOOMBOUNCE
++DONTBOUNCEONSHOOTABLES
++DROPOFF
+- NOGRAVITY
++ROLLSPRITE
+BounceSound  "BOOM1"
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+BOUNCE:
+TNT1 A 0 A_PlaySound("BOOM1")
+TNT1 A 0 Bright
+Goto Spawn
+Death:
+DIEX B 30
+DIEX BBBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock2 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX C 30
+DIEX CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock3 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SeTRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX D 30
+DIEX DDDDDDDDDD 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock4 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX E 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX E 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX E 30
+DIEX EEEEEEEEE 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock5 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX F 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX F 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX F 30
+DIEX FFFFFFFFFF 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock6 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX G 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX G 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX G 30
+DIEX GGGGGGGGG 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock7 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX H 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX H 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+
+Death:
+DIEX H 30
+DIEX HHHHHHHHH 1 A_Fadeout
+STOP
+}
+}
+
+
+ACTOR Attack_Debris_Rock8 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX I 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX I 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+
+Death:
+DIEX I 30
+DIEX IIIIIIIIIIIII 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Attack_Debris_Rock9 : Attack_Debris_Rock
+{
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+DIEX J 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+DIEX J 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+DIEX J 30
+DIEX JJJJJJJJJJJJJJ 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head1 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 A 30
+BPB1 AAAAAAAAAA 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_Head2 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 B 30
+BPB1 BBBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head3 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 C 30
+BPB1 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head4 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 D 30
+BPB1 DDDDDDDDDD 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head5 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 E 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 E 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 E 30
+BPB1 EEEEEEEEEE 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head6 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 F 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 F 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 F 30
+BPB1 FFFFFFFFFFF 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_Head7 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB1 G 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB1 G 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB1 G 30
+BPB1 GGGGGGGGG 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body1 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 A 30
+BPB2 AAAAAAAAAA 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_body2 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 B 30
+BPB2 BBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body3 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 C 30
+BPB2 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body4 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 D 30
+BPB2 DDDDDDDDDD 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body5 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 C 30
+BPB2 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body6 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 C 30
+BPB2 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body7 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB2 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB2 D 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB2 D 30
+BPB2 DDDDDDDDDD 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body8 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB3 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB3 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB3 A 30
+BPB3 AAAAAAAAAA 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body9 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB3 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB3 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB3 B 30
+BPB3 BBBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body10 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB4 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB4 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB4 A 30
+BPB4 AAAAAAAAAA 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_body11 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB4 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB4 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB4 B 30
+BPB4 BBBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_body12 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB4 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB4 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB4 C 30
+BPB4 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}
+
+ACTOR Dead_Debris_body13 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB5 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB5 A 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB5 A 30
+BPB5 AAAAAAAAAA 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_body14 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB5 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB5 B 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+Death:
+BPB5 B 30
+BPB5 BBBBBBBBBB 1 A_Fadeout
+STOP
+}
+}
+ACTOR Dead_Debris_body15 : Attack_Debris_Rock
+{
+  SCALE 0.7
+States
+{
+Spawn:
+TNT1 A 0
+BUL1 A 0 A_Jump(128,"Spawn2")
+BUL1 A 0 A_PlaySound("NULL")
+BPB5 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll-40);
+}
+
+Goto Spawn+3
+
+Spawn2:
+BPB5 C 1
+{
+if(velz==0)
+{
+A_CountDown;
+}
+A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+A_SetRoll(Roll+40);
+}
+Loop
+
+Death:
+BPB5 C 30
+BPB5 CCCCCCCCC 1 A_Fadeout
+STOP
+}
+}

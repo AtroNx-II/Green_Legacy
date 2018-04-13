@@ -9,12 +9,349 @@ InInventory NOT CutSceneBlock, 1
    DrawImage "HUDNAMEL",-187,31;
   DrawImage "HUDWNBOX",-92,10;
 
-    DrawImage "HUDWLHF",480,50,Center;
-	  DrawString FONT2, White, "Score", 480, 10,0,alignment(center);
-DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 480, 30;
+	  DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
+DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 930, 10;
 
 drawmugshot "STF", 1, -86, 10;
-DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
+  InInventory NOT PlayingEmily, 1 
+ {
+DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), 432, 530;
+
+   DrawImage "EBARE1",432, 530;
+InInventory PlasmaGauge, 10
+ {
+   DrawImage "EBARE2",432, 530;
+ }
+ InInventory PlasmaGauge, 20
+ {
+   DrawImage "EBARE3",432, 530;
+ }
+ InInventory PlasmaGauge, 30
+ {
+   DrawImage "EBARE4",432, 530;
+ }
+  InInventory PlasmaGauge, 40
+ {
+   DrawImage "EBARE5",432, 530;
+ }
+  InInventory PlasmaGauge, 50
+ {
+   DrawImage "EBARE6",432, 530;
+ }
+  InInventory PlasmaGauge, 60
+ {
+   DrawImage "EBARE7",432, 530;
+ }
+  InInventory PlasmaGauge, 70
+ {
+   DrawImage "EBARE8",432, 530;
+ }
+  InInventory PlasmaGauge, 80
+ {
+   DrawImage "EBARE9",432, 530;
+ }
+  InInventory PlasmaGauge, 90
+ {
+   DrawImage "EBARE10",432, 530;
+ }
+   InInventory PlasmaGauge, 100
+ {
+   DrawImage "EBARE11",432, 530;
+ }
+    InInventory PlasmaGauge, 110
+ {
+   DrawImage "EBARE12",432, 530;
+ }
+     InInventory PlasmaGauge, 120
+ {
+   DrawImage "EBARE13",432, 530;
+ }
+     InInventory PlasmaGauge, 130
+ {
+   DrawImage "EBARE14",432, 530;
+ }
+      InInventory PlasmaGauge, 140
+ {
+   DrawImage "EBARE15",432, 530;
+ }
+       InInventory PlasmaGauge, 150
+ {
+   DrawImage "EBARE16",432, 530;
+ }
+       InInventory PlasmaGauge, 160
+ {
+   DrawImage "EBARE17",432, 530;
+ }
+       InInventory PlasmaGauge, 170
+ {
+   DrawImage "EBARE18",432, 530;
+ }
+       InInventory PlasmaGauge, 180
+ {
+   DrawImage "EBARE19",432, 530;
+ }
+       InInventory PlasmaGauge, 190
+ {
+   DrawImage "EBARE20",432, 530;
+ }
+       InInventory PlasmaGauge, 200
+ {
+   DrawImage "EBARE21",432, 530;
+ }
+        InInventory PlasmaGauge, 200
+ {
+   DrawImage "FC000",384, 482;
+ }
+ 
+
+DrawBar "ESDBAR", "ESDBARE",PlasmaGauge, Horizontal, interpolate(20)|Reverse, 303, 578;
+DrawBar "ESDBAR", "ESDBARE",PlasmaGauge, Horizontal, interpolate(20), 528, 578;
+}
+  InInventory NOT PlayingEmily, 1 
+ {
+DrawNumber 3,FONT2, WHITE, Health,whennotzero,alignment(Right)|interpolate(1), 72, 50;
+DrawString FONT3, White, "M16", -127, 40;
+}
+  InInventory PlayingEmily, 1 
+ {
+ DrawNumber 3,FONT2, WHITE, EmilyPain,whennotzero,alignment(Right)|interpolate(1), 72, 50;
+ }
+}
+
+ InInventory NOT CutSceneBlock, 1 
+ {
+
+InInventory HaveSG, 1 
+ {
+   DrawImage "HUDSG",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveSG",whennotzero,alignment(center), -1, 120;
+ }
+InInventory HaveSMG, 1 
+ {
+    DrawImage "HUDSMG",-45,79;
+ DrawNumber 3,FONT3, WHITE,"HaveSMG",whennotzero,alignment(center), -1, 120;
+ }
+ InInventory HaveHMG, 1 
+ {
+     DrawImage "HUDHMG",-45,79;
+ DrawNumber 3,FONT3, WHITE,"HaveHMG",whennotzero,alignment(center), -1, 120;
+ }
+  InInventory HaveRL, 1 
+ {
+     DrawImage "HUDRL",-45,79;
+ DrawNumber 2,FONT3, WHITE,"HaveRL",whennotzero,alignment(center), -1, 120;
+ }
+ 
+ }
+ InInventory NOT CutSceneBlock, 1 
+ {
+ InInventory HaveEmily, 1 
+ {
+ InInventory HaveGL, 1 
+ {
+   DrawImage "HUDGL",-22,54;
+ DrawNumber 2,FONT3, WHITE,"HaveGL",whennotzero,alignment(center), 22, 98;
+ }
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+
+  InInventory Emily_Weapon_AR, 1 
+ {
+  DrawImage "EMILYAR",-64,140;
+  }
+  InInventory Emily_Weapon_SMG, 1 
+ {
+  DrawImage "EMILYSMG",-64,140;
+  }
+  InInventory Emily_Weapon_RL, 1 
+ {
+  DrawImage "EMILYRL",-64,140;
+  }
+  InInventory Emily_Weapon_SG, 1 
+ {
+  DrawImage "EMILYSG",-64,140;
+  }
+
+
+ DrawImage "EMILYHED",-140,75;
+ 
+  InInventory EmilyWeaponPick, 1 
+ {
+ DrawImage "EMILYHE4",-140,75;
+ }
+ 
+   InInventory Emilydizzy, 1 
+ {
+ DrawImage "EMILYDZ1",-140,75;
+ }
+ DrawString FONT3, White, "EMILY", -112, 60;
+
+ InInventory EmilyCooltime, 1 
+ {
+
+   DrawImage "EMILYHE2",-140,75;
+    DrawNumber 2,FONT2, WHITE, EmilyCooltime,whennotzero,alignment(center)|interpolate(20), -94, 100;
+ }
+ }
+ }
+ 
+ InInventory NOT CutSceneBlock, 1 
+ {
+ 
+InInventory HaveCatty, 1 
+ {
+ 
+   DrawImage "HUDNAME2",-162,56;
+  DrawImage "HUDWBOX",-141,52;
+   DrawImage "HUDWBOX",-94,100;
+DrawBar "CTSWE", "CTSW",CattyCooltime, vertical, interpolate(50)|REVERSE, -94, 100;
+   
+
+ 
+ DrawImage "CATTHEAD",-130,70;
+ 
+ // 0: COMMON
+// 1: ALERT
+// 2: PROTECTING
+// 3: Tired
+// 4: attack
+
+
+ DrawString FONT3, White, "CATTY",-112, 60;
+ }
+ }
+
+DrawBar "CUTSCENE", "CUTBOX",CutSceneBlock, vertical, interpolate(50), -160, 544;
+DrawBar "CUTSCENE", "CUTBOX",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
+DrawBar "TALKPIC1", "TALKPICE",PrintTEXT, horizontal, interpolate(20), -160, 0;
+DrawBar "TALKPIC2", "TALKPICE",PrintTEXT2, horizontal, interpolate(20)|reverse, -160, 0;
+DrawBar "TRANSI01", "TRANSIBS",Transition01, horizontal, interpolate(50), -160, 0;
+DrawBar "TRANSI01", "TRANSIBS",Transition02, horizontal, interpolate(50)|reverse, -160, 0;
+DrawBar "MISSIONS", "MISSIONE",MissionStart, horizontal, interpolate(50), 0, 128;
+DrawBar "MISSIONC", "MISSIONE",MissionClear, horizontal, interpolate(50), 0, 128;
+DrawBar "STAGE1S", "STAGE1E",PrintSTAGE, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE2S", "STAGE1E",PrintSTAGE2, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE3S", "STAGE1E",PrintSTAGE3, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE4S", "STAGE1E",PrintSTAGE4, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE5S", "STAGE1E",PrintSTAGE5, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE6S", "STAGE1E",PrintSTAGE6, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE7S", "STAGE1E",PrintSTAGE7, vertical, interpolate(200)|reverse,800, 0;
+DrawBar "STAGE8S", "STAGE1E",PrintSTAGE8, vertical, interpolate(200)|reverse,800, 0;
+
+ }
+ 
+ 
+
+
+
+
+
+
+
+
+StatusBar FullScreen, ForceScaled, .5
+{
+InInventory NOT CutSceneBlock, 1 
+ {
+
+ 
+   DrawImage "HUDNAMEL",-187,31;
+  DrawImage "HUDWNBOX",-92,10;
+
+	  DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
+DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 930, 10;
+
+drawmugshot "STF", 1, -86, 10;
+DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), 432, 530;
+
+   DrawImage "EBARE1",432, 530;
+InInventory PlasmaGauge, 10
+ {
+   DrawImage "EBARE2",432, 530;
+ }
+ InInventory PlasmaGauge, 20
+ {
+   DrawImage "EBARE3",432, 530;
+ }
+ InInventory PlasmaGauge, 30
+ {
+   DrawImage "EBARE4",432, 530;
+ }
+  InInventory PlasmaGauge, 40
+ {
+   DrawImage "EBARE5",432, 530;
+ }
+  InInventory PlasmaGauge, 50
+ {
+   DrawImage "EBARE6",432, 530;
+ }
+  InInventory PlasmaGauge, 60
+ {
+   DrawImage "EBARE7",432, 530;
+ }
+  InInventory PlasmaGauge, 70
+ {
+   DrawImage "EBARE8",432, 530;
+ }
+  InInventory PlasmaGauge, 80
+ {
+   DrawImage "EBARE9",432, 530;
+ }
+  InInventory PlasmaGauge, 90
+ {
+   DrawImage "EBARE10",432, 530;
+ }
+   InInventory PlasmaGauge, 100
+ {
+   DrawImage "EBARE11",432, 530;
+ }
+    InInventory PlasmaGauge, 110
+ {
+   DrawImage "EBARE12",432, 530;
+ }
+     InInventory PlasmaGauge, 120
+ {
+   DrawImage "EBARE13",432, 530;
+ }
+     InInventory PlasmaGauge, 130
+ {
+   DrawImage "EBARE14",432, 530;
+ }
+      InInventory PlasmaGauge, 140
+ {
+   DrawImage "EBARE15",432, 530;
+ }
+       InInventory PlasmaGauge, 150
+ {
+   DrawImage "EBARE16",432, 530;
+ }
+       InInventory PlasmaGauge, 160
+ {
+   DrawImage "EBARE17",432, 530;
+ }
+       InInventory PlasmaGauge, 170
+ {
+   DrawImage "EBARE18",432, 530;
+ }
+       InInventory PlasmaGauge, 180
+ {
+   DrawImage "EBARE19",432, 530;
+ }
+       InInventory PlasmaGauge, 190
+ {
+   DrawImage "EBARE20",432, 530;
+ }
+       InInventory PlasmaGauge, 200
+ {
+   DrawImage "EBARE21",432, 530;
+ }
+        InInventory PlasmaGauge, 200
+ {
+   DrawImage "FC000",384, 482;
+ }
+DrawBar "ESDBAR", "ESDBARE",PlasmaGauge, Horizontal, interpolate(20)|Reverse, 303, 578;
+DrawBar "ESDBAR", "ESDBARE",PlasmaGauge, Horizontal, interpolate(20), 528, 578;
 DrawNumber 3,FONT2, WHITE, Health,whennotzero,alignment(Right)|interpolate(1), 72, 50;
 DrawString FONT3, White, "M16", -127, 40;
 }
@@ -83,6 +420,11 @@ InInventory HaveSMG, 1
  
  DrawString FONT3, White, "EMILY", -112, 60;
 
+   InInventory Emilydizzy, 1 
+ {
+ DrawImage "EMILYDZ1",-140,75;
+ }
+ 
  InInventory EmilyCooltime, 1 
  {
 
@@ -113,196 +455,15 @@ DrawBar "CTSWE", "CTSW",CattyCooltime, vertical, interpolate(50)|REVERSE, -94, 1
 // 3: Tired
 // 4: attack
 
-InInventory CATTY_EMOTION_ALERT, 1 
-{
- DrawImage "CATTHEA2",-130,70;
-}
- InInventory CATTY_EMOTION_PROTECT, 1 
-{
- DrawImage "CATTHEA3",-130,70;
-}
-
-InInventory CATTY_EMOTION_ATTACK, 1
-{
- DrawImage "CATTHEA5",-130,70;
-}
- 
- InInventory CATTY_EMOTION_TIRED, 1 
-{
- DrawImage "CATTHEA4",-130,70;
-}
 
  DrawString FONT3, White, "CATTY",-112, 60;
  }
  }
 
-DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
-DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
-DrawBar "TALKPIC2", "TALKPICE",PrintTEXT, vertical, interpolate(50), -160, 0;
-DrawBar "TALKPIC1", "TALKPICE",PrintTEXT, vertical, interpolate(50)|reverse, -160, 96;
-DrawBar "TALKPIC4", "TALKPICE",PrintTEXT2, vertical, interpolate(50), -160, 0;
-DrawBar "TALKPIC3", "TALKPICE",PrintTEXT2, vertical, interpolate(50)|reverse, -160, 96;
-DrawBar "TRANSI01", "TRANSIBS",Transition01, horizontal, interpolate(50), -160, 0;
-DrawBar "TRANSI01", "TRANSIBS",Transition02, horizontal, interpolate(50)|reverse, -160, 0;
-DrawBar "MISSIONS", "MISSIONE",MissionStart, horizontal, interpolate(50), 0, 128;
-DrawBar "STAGE1S", "STAGE1E",PrintSTAGE, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE2S", "STAGE1E",PrintSTAGE2, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE3S", "STAGE1E",PrintSTAGE3, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE4S", "STAGE1E",PrintSTAGE4, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE5S", "STAGE1E",PrintSTAGE5, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE6S", "STAGE1E",PrintSTAGE6, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE7S", "STAGE1E",PrintSTAGE7, vertical, interpolate(200)|reverse,800, 0;
-DrawBar "STAGE8S", "STAGE1E",PrintSTAGE8, vertical, interpolate(200)|reverse,800, 0;
- }
- 
- 
-
-
-
-
-
-
-
-
-StatusBar FullScreen, ForceScaled, .5
-{
-InInventory NOT CutSceneBlock, 1 
- {
-
- 
-   DrawImage "HUDNAMEL",-187,31;
-  DrawImage "HUDWNBOX",-92,10;
-
-    DrawImage "HUDWLHF",480,50,Center;
-	  DrawString FONT2, White, "Score", 480, 10,0,alignment(center);
-DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 480, 30;
-
-drawmugshot "STF", 1, -86, 10;
-DrawBar "EGBAR", "EGBARE",PlasmaGauge, Vertical, interpolate(20), -22, 10;
-DrawNumber 3,FONT2, WHITE, Health,whennotzero,alignment(Right)|interpolate(1), 72, 50;
-DrawString FONT3, White, "M16", -127, 40;
-}
-
- InInventory NOT CutSceneBlock, 1 
- {
-InInventory HaveGL, 1 
- {
-   DrawImage "HUDGL",-22,54;
- DrawNumber 2,FONT3, WHITE,"HaveGL",whennotzero,alignment(center), 22, 98;
- }
-InInventory HaveSG, 1 
- {
-   DrawImage "HUDSG",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveSG",whennotzero,alignment(center), -1, 120;
- }
-InInventory HaveSMG, 1 
- {
-    DrawImage "HUDSMG",-45,79;
- DrawNumber 3,FONT3, WHITE,"HaveSMG",whennotzero,alignment(center), -1, 120;
- }
- InInventory HaveHMG, 1 
- {
-     DrawImage "HUDHMG",-45,79;
- DrawNumber 3,FONT3, WHITE,"HaveHMG",whennotzero,alignment(center), -1, 120;
- }
-  InInventory HaveRL, 1 
- {
-     DrawImage "HUDRL",-45,79;
- DrawNumber 2,FONT3, WHITE,"HaveRL",whennotzero,alignment(center), -1, 120;
- }
- 
- }
- InInventory NOT CutSceneBlock, 1 
- {
- InInventory HaveEmily, 1 
- {
-   DrawImage "HUDNAME2",-162,56;
-  DrawImage "HUDWBOX",-141,52;
-   DrawImage "HUDWBOX",-94,100;
-
-  InInventory Emily_Weapon_AR, 1 
- {
-  DrawImage "EMILYAR",-64,140;
-  }
-  InInventory Emily_Weapon_SMG, 1 
- {
-  DrawImage "EMILYSMG",-64,140;
-  }
-  InInventory Emily_Weapon_RL, 1 
- {
-  DrawImage "EMILYRL",-64,140;
-  }
-
-
-
- DrawImage "EMILYHED",-140,75;
- 
-  InInventory EmilyWeaponPick, 1 
- {
- DrawImage "EMILYHE4",-140,75;
- }
- 
- DrawString FONT3, White, "EMILY", -112, 60;
-
- InInventory EmilyCooltime, 1 
- {
-
-   DrawImage "EMILYHE2",-140,75;
-    DrawNumber 2,FONT2, WHITE, EmilyCooltime,whennotzero,alignment(center)|interpolate(20), -94, 100;
- }
- }
- }
- 
- InInventory NOT CutSceneBlock, 1 
- {
- 
-InInventory HaveCatty, 1 
- {
- 
-   DrawImage "HUDNAME2",-162,56;
-  DrawImage "HUDWBOX",-141,52;
-   DrawImage "HUDWBOX",-94,100;
-DrawBar "CTSWE", "CTSW",CattyCooltime, vertical, interpolate(50)|REVERSE, -94, 100;
-   
-
- 
- DrawImage "CATTHEAD",-130,70;
- 
- // 0: COMMON
-// 1: ALERT
-// 2: PROTECTING
-// 3: Tired
-// 4: attack
-
-InInventory CATTY_EMOTION_ALERT, 1 
-{
- DrawImage "CATTHEA2",-130,70;
-}
- InInventory CATTY_EMOTION_PROTECT, 1 
-{
- DrawImage "CATTHEA3",-130,70;
-}
-
-InInventory CATTY_EMOTION_ATTACK, 1
-{
- DrawImage "CATTHEA5",-130,70;
-}
- 
- InInventory CATTY_EMOTION_TIRED, 1 
-{
- DrawImage "CATTHEA4",-130,70;
-}
-
- DrawString FONT3, White, "CATTY",-112, 60;
- }
- }
-
-DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50), -160, 544;
-DrawBar "CUTSCENE", "TALKPICE",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
-DrawBar "TALKPIC2", "TALKPICE",PrintTEXT, vertical, interpolate(50), -160, 0;
-DrawBar "TALKPIC1", "TALKPICE",PrintTEXT, vertical, interpolate(50)|reverse, -160, 96;
-DrawBar "TALKPIC4", "TALKPICE",PrintTEXT2, vertical, interpolate(50), -160, 0;
-DrawBar "TALKPIC3", "TALKPICE",PrintTEXT2, vertical, interpolate(50)|reverse, -160, 96;
+DrawBar "CUTSCENE", "CUTBOX",CutSceneBlock, vertical, interpolate(50), -160, 544;
+DrawBar "CUTSCENE", "CUTBOX",CutSceneBlock, vertical, interpolate(50)|reverse, -160, 0;
+DrawBar "TALKPIC1", "TALKPICE",PrintTEXT, horizontal, interpolate(20), -160, 0;
+DrawBar "TALKPIC2", "TALKPICE",PrintTEXT2, horizontal, interpolate(20)|reverse, -160, 0;
 DrawBar "TRANSI01", "TRANSIBS",Transition01, horizontal, interpolate(50), -160, 0;
 DrawBar "TRANSI01", "TRANSIBS",Transition02, horizontal, interpolate(50)|reverse, -160, 0;
 DrawBar "MISSIONS", "MISSIONE",MissionStart, horizontal, interpolate(50), 0, 128;

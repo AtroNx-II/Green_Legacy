@@ -1,9 +1,27 @@
+//MUSIC
+STAGCLER STAGCLER
+MAINT MAINT
 EMILY_SG EMILY_SG
 hookshot hookshot
 hookhit hookhit
 hookcanc hookcanc
+
+// BOSS
+diggout diggout
+S1BOS_S1 S1BOS_S1
+S1BOS_S2 S1BOS_S2
+S1BOS_D1 S1BOS_D1
+S1BOS_P1 S1BOS_P1
+S1BOS_P2 S1BOS_P2
+S1BOS_P3 S1BOS_P3
 //AUTO SAVING
 MEOW MEOW
+
+//SLOW MOTION
+
+SLED SLED
+SLST SLST
+
 //CUTSCENE
 //SPECIALATTAK_CATTY
 SPEC000 SPEC000
@@ -12,7 +30,9 @@ SPEC002 SPEC002
 SPEC003 SPEC003
 SPEC004 SPEC004
 SPEC005 SPEC005
-
+vcharge vcharge
+vslash vslash
+DRAWSWRD DRAWSWRD
 // MONSTERS
 
 // PillBug
@@ -22,6 +42,12 @@ $limit nope 0
 nope nope
 tmenumv tmenumv
 tmenusnd tmenusnd
+$random tingting { tingting1 tingting2 tingting3 tingting4 }
+$limit tingting 0
+tingting kting1
+tingting kting2
+tingting kting3
+tingting kting4
 $limit Pillbug_move 0
 $random Pillbug_move { Pillbug_move1 Pillbug_move2 Pillbug_move3 Pillbug_move4 }
 Pillbug_move1 pmv1
@@ -54,6 +80,12 @@ ST3INT ST3INT
 ST4INT ST4INT
 ST5INT ST5INT
 ST6INT ST6INT
+// MISC
+
+minideb1 minideb1
+mquake mquake
+SECRET SECRET
+
 // Menu Sound
 menu/activate			menuon	 // Activate a new menu
 menu/backup			menucl	 // Backup to previous menu
@@ -64,7 +96,11 @@ menu/invalid			menuoff		// Menu not available
 menu/dismiss			menuoff	// Dismiss a prompt message
 menu/choose			menusele	// Choose a menu item
 menu/clear			menuoff	// Close top menu
-SND/TEXT menumov
+SND/TEXT text1
+SND/TEXT2 text2
+//SWITCHSOUND
+SW1 SW1
+SW2 SW2
 
 //PROJECTILE
 acids acids
@@ -89,13 +125,21 @@ title_vulcan vulcan
 $limit title_vulcan 0
 $limit LASER1 0
 LASER1 LASER1
+//HUD INTERFACE
+CHGCP CHGCP
 // M16'S WEAPONS
 M16_GL M16_GL
 M16_SG M16_SG
 M16_SMG M16_SMG
+M16_SMGL M16_SMGL
+M16_HMGL M16_HMGL
 M16_HMG M16_HMG
 M16_RL M16_RL
 MISL MISL
+low50 low50
+low25 low25
+$limit M16_SMG 0
+$limit M16_HMG 0
 $limit sldoff 0
 $limit Sreflec 0
 
@@ -108,13 +152,23 @@ weapon/addplasma2 plasma2
 weapon/addplasma3 plasma3
 weapon/addplasma_explode plasma
 
+// CATTY
+CATTY_ST CATTY_ST
 
 //PICKUP SOUND
 Pick_weapon WP_PICK
 Pick_Health H_PICK
 Pick_Health2 H_PICK2
 
+$limit KATA 0
+$random KATA { KATA1 KATA2 KATA3 KATA4 KATA5}
+KATA1 KATA1
+KATA2 KATA2
+KATA3 KATA3
+KATA4 KATA4
+KATA5 KATA5
 // Ricochet
+
 $limit Ricochet 0
 $random Ricochet { Ricochet1 Ricochet2 Ricochet3 Ricochet4 }
 Ricochet1 rico1
@@ -150,7 +204,7 @@ EMILY_RD EMILY_RD
 $playersound	player	male	*jump		M16_JUMP
 $playersound	player	male	*falling	M16_FALL
 $playersound	player	male	*grunt	M16_LANH
-$playersound	player	male	*land		M16_LAND
+$playersound	player	male	*land		D_NOMUS
 $playersound	player	male	*death		M16_DEAD
 M16_DEAD M16_DEAD
 M16_DASH M16_DASH
@@ -159,7 +213,8 @@ M16_BOOST BOOST
 M16_WALK M16_WALK
 M16_HURT1 M16_HUR1
 M16_HURT2 M16_HUR2
-
+chargeE chargeE
+chargef chargef
 //Misc
 teleout teleout
 $random whoosh { whoosh1 whoosh2 }

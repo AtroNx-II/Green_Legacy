@@ -1,13 +1,33 @@
 
-bind F +user1
-bind K +user2
-bind E +use
-bind r +reload
-bind w +forward
-bind alt +zoom
-bind a +moveleft
-bind s +crouch
-bind d +moveright
-bind space +jump
-bind L +altattack
-bind J +attack
+
+UpArrow +forward
+Leftarrow +moveleft
+DownArrow +crouch
+Rightarrow +moveright
+
+a +use
+v +user1
+space +user2
+
+x +jump
+z +speed
+f +altattack
+c +attack
+bind space +user2
+
+joy1 ""
+joy2 ""
+joy3 ""
+joy4 ""
+dpadup ""
+dpaddown ""
+dpadup ""
+dpadleft ""
+dpadright ""
+pad_start ""
+pad_back ""
+
+lthumb ""
+ltrigger ""
+rtrigger ""
+

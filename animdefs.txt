@@ -1,28 +1,123 @@
+// FX
+
+cameratexture FORBLUR0 1920 1160//320 200//1280 720
+
+
 ////////////////////
 // Characters //////
 ////////////////////
 
 // M16
 Texture smile2
-pic smile2 tics 5
-pic smile1 tics 5
+pic smile2 tics 3
+pic smile1 tics 3
 
 Texture norm2
-pic norm2 tics 5
-pic norm1 tics 5
+pic norm2 tics 3
+pic norm1 tics 3
+
+Texture Enice2
+pic Enice2 tics 3
+pic Enice1 tics 3
 
 Texture nice2
-pic nice2 tics 5
-pic nice1 tics 5
+pic nice2 tics 3
+pic nice1 tics 3
 
 Texture anger2
-pic anger2 tics 5
-pic anger1 tics 5
+pic anger2 tics 3
+pic anger1 tics 3
 
 Texture warning2
-pic warning2 tics 5
-pic warning1 tics 5
+pic warning2 tics 3
+pic warning1 tics 3
 
 Texture wonder2
-pic wonder2 tics 5
-pic wonder1 tics 5
+pic wonder2 tics 3
+pic wonder1 tics 3
+
+Texture EMILYDZ1
+pic EMILYDZ1 tics 3
+pic EMILYDZ2 tics 3
+pic EMILYDZ3 tics 3
+pic EMILYDZ4 tics 3
+
+Texture TTAP41
+pic TTAP41 tics 8
+pic TTAP42 tics 8
+pic TTAP43 tics 8
+pic TTAP42 tics 8
+
+Texture TTAP51
+pic TTAP51 tics 8
+pic TTAP52 tics 8
+pic TTAP53 tics 8
+pic TTAP54 tics 8
+pic TTAP53 tics 8
+pic TTAP52 tics 8
+
+
+Texture TTAP71
+pic TTAP71 tics 3
+pic TTAP72 tics 3
+pic TTAP73 tics 3
+pic TTAP74 tics 3
+pic TTAP75 tics 3
+pic TTAP76 tics 3
+pic TTAP77 tics 3
+
+Texture TTAP91
+pic TTAP91 tics 3
+pic TTAP92 tics 3
+pic TTAP93 tics 3
+pic TTAP94 tics 3
+pic TTAP95 tics 3
+pic TTAP96 tics 3
+pic TTAP97 tics 3
+pic TTAP98 tics 3
+pic TTAP99 tics 3
+
+Texture FC000
+pic FC000 tics 1
+pic FC001 tics 1
+pic FC002 tics 1
+pic FC003 tics 1
+pic FC004 tics 1
+pic FC005 tics 1
+pic FC006 tics 1
+pic FC007 tics 1
+pic FC008 tics 1
+pic FC009 tics 1
+pic FC008 tics 1
+pic FC007 tics 1
+pic FC006 tics 1
+pic FC005 tics 1
+pic FC004 tics 1
+pic FC003 tics 1
+pic FC002 tics 1
+pic FC001 tics 1
+
+Texture LDIC01
+
+pic LDIC01 tics 1
+pic LDIC02 tics 1
+pic LDIC03 tics 1
+pic LDIC04 tics 1
+pic LDIC05 tics 1
+pic LDIC06 tics 1
+pic LDIC07 tics 1
+pic LDIC08 tics 1
+pic LDIC09 tics 1
+pic LDIC010 tics 1
+pic LDIC011 tics 1
+pic LDIC012 tics 1
+
+
+
+switch SW1AB02 on sound SW1 pic SW1AB03 tics 0
+switch SW1AB03 off sound SW2 pic SW1AB02 tics 0
+switch SW2AB02 on sound SW1 pic SW2AB03 tics 0
+switch SW2AB03 off sound SW2 pic SW2AB02 tics 0
+switch SW3AB02 on sound SW1 pic SW3AB01 tics 0
+switch SW3AB01 off sound SW2 pic SW3AB02 tics 0
+

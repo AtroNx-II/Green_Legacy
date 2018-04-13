@@ -38,7 +38,8 @@ LISTMENU "MainMenu"
     //Position 100, 188
     PatchItem "OP3","o", "OptionsMenu2"
         //Position 180, 188
-    PatchItem "OP4", "q", "QuitMenu"
+	PatchItem "OP4","r", "ReadThisMenu"
+    PatchItem "OP5", "q", "QuitMenu"
 }
 
 //-------------------------------------------------------------------------------------------
@@ -140,9 +141,6 @@ OptionMenu "OptionsMenu2"
   Submenu "Display Options",      "VideoOptions"
 
   Submenu "Set video mode",     "VideoModeMenu"
-  StaticText " "
-  SafeCommand "Reset to defaults",  "reset2defaults"
-  Command "Go to console",      "menuconsole"
 }
 
 
@@ -162,10 +160,10 @@ OptionMenu "CustomizeControls2"
   Control   "Attack",         "+attack"
   Control   "Shield",         "+user2"
   Control   "Use supporter/Special attack",         "+user1"
-  Control   "GrenadeLauncher",    "+altattack"
+  Control   "Grenade",    "+altattack"
   Control   "Use / Open",     "+use"
-  Control   "Move forward",     "+moveleft"
-  Control   "Move backward",      "+moveright"
+  Control   "Move LEFT",     "+moveleft"
+  Control   "Move RIGHT",      "+moveright"
   Control   "Aim Upper",      "+forward"
   Control   "Crouch",   "+Crouch"
   Control   "Jump",         "+jump"
@@ -200,29 +198,5 @@ OptionMenu "MouseOptions2"
   Option "Invert Mouse",        "invertmouse", "OnOff"
 }
 
-OptionMenu VideoModeMenu
-{
-	Title "$VIDMNU_TITLE"
-	
-	Option "$VIDMNU_FULLSCREEN",		"fullscreen", "YesNo"
-	IfOption(Mac)
-	{
-		Option "$VIDMNU_HIDPI",			"vid_hidpi", "YesNo"
-	}
-	Option "$VIDMNU_ASPECTRATIO",		"menu_screenratios", "Ratios"
-	StaticText " "
 
-	ScreenResolution "res_1"
-	ScreenResolution "res_2"
-	ScreenResolution "res_3"
-	ScreenResolution "res_4"
-	ScreenResolution "res_5"
-	ScreenResolution "res_6"
-	ScreenResolution "res_7"
-	ScreenResolution "res_8"
-	ScreenResolution "res_9"
-	StaticTextSwitchable "$VIDMNU_ENTERTEXT", "", "VMEnterText"
-	StaticText " "
-	StaticTextSwitchable "$VIDMNU_TESTTEXT1", "$VIDMNU_TESTTEXT2", "VMTestText"
-	class VideoModeMenu
-}
+

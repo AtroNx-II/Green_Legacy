@@ -1,3 +1,29 @@
+brightmap texture SW1AB02
+{
+	map "brightmaps/texture/BSW1AB02.png"
+	iwad
+	disablefullbright
+}
+brightmap texture SW1AB03
+{
+	map "brightmaps/texture/BSW1AB03.png"
+	iwad
+	disablefullbright
+}
+
+
+brightmap texture PUZHELP1
+{
+	map "brightmaps/texture/PUZHEPB1"
+	iwad
+	disablefullbright
+}
+brightmap texture PUZHELP2
+{
+	map "brightmaps/texture/PUZHEPB2"
+	iwad
+	disablefullbright
+}
 pointlight Plasmashot1
 {
     color 0.8 0.8 1.0
@@ -17,6 +43,25 @@ pointlight Plasmashot3
     size 256
     offset 0 0 0
 }
+pointlight GreenLightSmall
+{
+    color 0.4 0.8 0.4
+    size 40
+    offset 0 0 0
+}
+pointlight GreenLightMED
+{
+    color 0.4 0.8 0.4
+    size 80
+    offset 0 0 0
+}
+pointlight GreenLightbig
+{
+    color 0.4 0.8 0.4
+    size 192
+    offset 0 0 0
+}
+
 pointlight YellowMuzzleBig5
 {
     color 0.8 0.8 0.6
@@ -95,6 +140,22 @@ object SMGMUZZLEUP
 	frame MUZUM  { light YellowMuzzleBig }
 	frame MUZUN  { light YellowMuzzleBig }
 }
+object SMGMUZZLEDOWN
+{
+    frame MUZUA  { light YellowMuzzleBig5 }
+	frame MUZUB  { light YellowMuzzleBig4 }
+	frame MUZUC  { light YellowMuzzleBig3 }
+	frame MUZUD  { light YellowMuzzleBig2 }
+	frame MUZUE  { light YellowMuzzleBig }
+	frame MUZUF  { light YellowMuzzleBig }
+	frame MUZUG  { light YellowMuzzleBig }
+	frame MUZUH  { light YellowMuzzleBig }
+	frame MUZUI  { light YellowMuzzleBig }
+	frame MUZUJ  { light YellowMuzzleBig }
+	frame MUZUL  { light YellowMuzzleBig }
+	frame MUZUM  { light YellowMuzzleBig }
+	frame MUZUN  { light YellowMuzzleBig }
+}
 object SGMUZZLE_L
 {
     frame SGMFA  { light YellowMuzzleBig5 }
@@ -118,6 +179,17 @@ object SGMUZZLE_R
 	frame SGMFH  { light YellowMuzzleBig }
 }
 object SGMUZZLEUP
+{
+    frame SGMUA  { light YellowMuzzleBig5 }
+    frame SGMUB  { light YellowMuzzleBig4 }
+	frame SGMUC  { light YellowMuzzleBig3 }
+	frame SGMUD  { light YellowMuzzleBig2 }
+	frame SGMUE  { light YellowMuzzleBig }
+	frame SGMUF  { light YellowMuzzleBig }
+	frame SGMUG  { light YellowMuzzleBig }
+	frame SGMUH  { light YellowMuzzleBig }
+}
+object SGMUZZLEDOWN
 {
     frame SGMUA  { light YellowMuzzleBig5 }
     frame SGMUB  { light YellowMuzzleBig4 }
@@ -271,3 +343,134 @@ object GreenPlasmaMUZZLEUP
     frame PLMUN { light Plasmashot2 }
 }
 
+object GreenPlasmaMUZZLEDOWN
+{
+    frame PLMUA  { light Plasmashot2 }
+    frame PLMUB  { light Plasmashot2 }
+    frame PLMUC  { light Plasmashot2 }
+    frame PLMUD  { light Plasmashot2 }
+    frame PLMUE  { light Plasmashot2 }
+    frame PLMUF  { light Plasmashot2 }
+    frame PLMUG  { light Plasmashot2 }
+    frame PLMUH  { light Plasmashot2 }
+    frame PLMUI  { light Plasmashot2 }
+    frame PLMUJ  { light Plasmashot2 }
+    frame PLMUK  { light Plasmashot2 }
+    frame PLMUL  { light Plasmashot2 }
+    frame PLMUM  { light Plasmashot2 }
+    frame PLMUN { light Plasmashot2 }
+}
+object GreenPlasmaMUZZLEUP
+{
+    frame PLMUA  { light Plasmashot2 }
+    frame PLMUB  { light Plasmashot2 }
+    frame PLMUC  { light Plasmashot2 }
+    frame PLMUD  { light Plasmashot2 }
+    frame PLMUE  { light Plasmashot2 }
+    frame PLMUF  { light Plasmashot2 }
+    frame PLMUG  { light Plasmashot2 }
+    frame PLMUH  { light Plasmashot2 }
+    frame PLMUI  { light Plasmashot2 }
+    frame PLMUJ  { light Plasmashot2 }
+    frame PLMUK  { light Plasmashot2 }
+    frame PLMUL  { light Plasmashot2 }
+    frame PLMUM  { light Plasmashot2 }
+    frame PLMUN { light Plasmashot2 }
+}
+object Worm_DeathFX_R
+{
+    frame CDTXA  { light GreenLightMED }
+    frame CDTXB  { light GreenLightMED }
+    frame CDTXC  { light GreenLightMED }
+    frame CDTXD  { light GreenLightMED }
+    frame CDTXE  { light GreenLightMED }
+    frame CDTXF  { light GreenLightMED }
+    frame CDTXG  { light GreenLightMED }
+
+}
+
+object Worm_DeathFX_L
+{
+    frame CDTXA  { light GreenLightMED }
+    frame CDTXB  { light GreenLightMED }
+    frame CDTXC  { light GreenLightMED }
+    frame CDTXD  { light GreenLightMED }
+    frame CDTXE  { light GreenLightMED }
+    frame CDTXF  { light GreenLightMED }
+    frame CDTXG  { light GreenLightMED }
+
+}
+
+object GreenBall_Worm
+{
+    frame CDPRA  { light GreenLightSmall }
+    frame CDPRB  { light GreenLightSmall }
+    frame CDPRC  { light GreenLightSmall }
+    frame CDPRD  { light GreenLightSmall }
+    frame CDPRE { light GreenLightSmall }
+    frame CDPRF  { light GreenLightSmall }
+    frame CDPXA  { light GreenLightSmall }
+    frame CDPXB  { light GreenLightSmall }
+    frame CDPXC  { light GreenLightSmall }
+    frame CDPXD  { light GreenLightSmall }
+    frame CDPXE { light GreenLightSmall }
+    frame CDPXF  { light GreenLightSmall }
+
+}
+
+object GreenBall_Worm2
+{
+    frame CDPRA  { light GreenLightSmall }
+    frame CDPRB  { light GreenLightSmall }
+    frame CDPRC  { light GreenLightSmall }
+    frame CDPRD  { light GreenLightSmall }
+    frame CDPRE { light GreenLightSmall }
+    frame CDPRF  { light GreenLightSmall }
+    frame CDPXA  { light GreenLightSmall }
+    frame CDPXB  { light GreenLightSmall }
+    frame CDPXC  { light GreenLightSmall }
+    frame CDPXD  { light GreenLightSmall }
+    frame CDPXE { light GreenLightSmall }
+    frame CDPXF  { light GreenLightSmall }
+
+}
+
+object MagneticShield
+{
+    frame SHLDA  { light Plasmashot2 }
+    frame SHLDB  { light Plasmashot2 }
+    frame SHLDC  { light Plasmashot2 }
+    frame SHLDD  { light Plasmashot2 }
+    frame SHLDE  { light Plasmashot2 }
+    frame SHDTA  { light Plasmashot2 }
+    frame SHDTB  { light Plasmashot2 }
+    frame SHDTC  { light Plasmashot2 }
+    frame SHDTD  { light Plasmashot2 }
+    frame SHDTE  { light Plasmashot2 }
+    frame SHDTF  { light Plasmashot2 }
+    frame SHLPA  { light Plasmashot2 }
+    frame SHLPB  { light Plasmashot2 }
+    frame SHLPC  { light Plasmashot2 }
+    frame SHLPD  { light Plasmashot2 }
+    frame SHLPE  { light Plasmashot2 }
+    frame SHLPF  { light Plasmashot2 }
+	frame SHLPG  { light Plasmashot2 }
+	frame SHLPH  { light Plasmashot2 }
+	frame SHLPI  { light Plasmashot2 }
+	frame SHLPJ  { light Plasmashot2 }
+	frame SHLPK  { light Plasmashot2 }
+	frame SHLPL  { light Plasmashot2 }
+	frame SHLPM  { light Plasmashot2 }
+	frame SHLPN  { light Plasmashot2 }
+	frame SHLPO  { light Plasmashot2 }
+	frame SHLPP  { light Plasmashot2 }
+	frame SHLPQ  { light Plasmashot2 }
+	frame SHLPR  { light Plasmashot2 }
+	frame SHLPS  { light Plasmashot2 }
+	frame SHLPT  { light Plasmashot2 }
+	frame SHLPU  { light Plasmashot2 }
+	frame SHLPV  { light Plasmashot2 }
+	frame SHLPW  { light Plasmashot2 }
+	frame SHLPX  { light Plasmashot2 }
+	frame SHLPY  { light Plasmashot2 }
+}

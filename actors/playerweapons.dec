@@ -1,6 +1,54 @@
-ACTOR PlasmaPistol : Weapon
+
+actor ChargeComplete : Boolean {}
+actor Spinattacking : Boolean {}
+actor JumpCombo : Boolean {}
+ACTOR Catty_Slash
 {
-  Inventory.Pickupmessage "You got the Plasma Pistol!"
+SeeSound ""
+  Obituary "%o was burned by %k's Plasma Pistol."
+  RenderStyle Normal
+  Speed 20
+  ReactionTime 3
+  Damage 30
+  RADIUS 20
+  Height 52
+  Yscale 1.0
+  Xscale 1.0
+    species playerside
+  DAMAGEFACTOR "PlayerOnly" , 0.0
+  DAMAGEFACTOR "PlayerSide" , 0.0
+  +MISSILE
+  +SHOOTABLE
+    +MTHRUSPECIES
+  +THRUSPECIES
+  +BLOODSPLATTER
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    TNT1 A 1 bright A_CountDown
+    GOTO SPAWN
+  Crash:
+  XDeath:
+  APLS A 0 A_Explode(60,72,XF_EXPLICITDAMAGETYPE,false,0,0,0,"BulletPuff","PlayerSide")
+    APLS A 0  A_PlaySound("SPEC004")
+  APLS A 0  A_TakeFromTarget("CattyCooltime",Random(1,5),AAPTR_PLAYER1)
+      EMBX A 0 bright A_SpawnItemEx("SwordHit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  stop
+  Death:
+  APLS A 0 bright A_SetScale(1.0,1.0) 
+    TNT1 A 2 bright A_Stop
+    Stop
+  }
+}
+ACTOR Catty_Slash2 : Catty_Slash
+{
+  Damage 1
+}
+ACTOR DaiKatana : Weapon
+{
+  Inventory.Pickupmessage "DaiKatana!"
   Weapon.SlotNumber 2
   Weapon.SlotPriority 1
   +INVENTORY.UNDROPPABLE
@@ -12,10 +60,6 @@ ACTOR PlasmaPistol : Weapon
     TNT1 A 0
     Stop
   Ready:
-  //TNT1 A 0 A_JumpIfInventory("HaveRL",1,"Ready2")
-      //  TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"Ready2")
-        //TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Ready2")
-       // TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"Ready2")
     TNT1 A 0 A_Giveinventory("PlasmaGauge",2)
     TNT1 A 1 A_WeaponReady
     Loop
@@ -29,171 +73,27 @@ Ready2:
     TNT1 A 1 A_Lower
     Loop
   Fire:
-  TNT1 A 0 A_JumpIfInventory("HaveFT",1,"FTFire")
-TNT1 A 0 A_JumpIfInventory("HaveRL",1,"RLFire")
-        TNT1 A 0 A_JumpIfInventory("HaveHMG",1,"HeavyMachinegun")
-        TNT1 A 0 A_JumpIfInventory("HaveSG",1,"Shotgun")
-        TNT1 A 0 A_JumpIfInventory("HaveSMG",1,"SubMachinegun")
-TNT1 A 0 A_JumpIfInventory("PlasmaGauge",200,"Plasma_Fire3")
-TNT1 A 0 A_JumpIfInventory("PlasmaGauge",50,"Plasma_Fire2")
-    TNT1 A 0
-    {
-    A_TakeInventory("PlasmaGauge",1);
-    A_PlaySound("weapon/addplasma", 7,1.0,0,ATTN_NONE);
-    A_GiveInventory("Fire_pressed",1);
-    if (CountInv("AimDown") == 1)
-    {
-    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaWeakUP",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,6,-50,0,90); }
-    else { A_FireProjectile("GreenPlasmaWeakUP",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,-6,-50,0,90); }
-    }
-    else
-    {
-        if (CountInv("Aimup") == 1)
-        {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaWeakUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,6,50,0,-90); }
-        else { A_FireProjectile("GreenPlasmaWeakUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-6,50,0,-90); }
-        }
-        else
-        {
+  TNT1 A 0 A_GiveInventory("Fire_pressed",1)
+  TNT1 A 0 A_JumpIfInventory("Jumping",1,"JumpAttack")
 
-        if (CountInv("Moving") == 0)
-        {
-          if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaWeak",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-          else { A_FireProjectile("GreenPlasmaWeak",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
-          }
-          else
-          {
-          if (CountInv("BackwardsCheck") == 0) 
-          { 
-          A_FireProjectile("GreenPlasmaWeak",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-          else { A_FireProjectile("GreenPlasmaWeak",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
-          }
-        }
-    }
-    }
-    TNT1 A 1
-        TNT1 A 1 
-        TNT1 A 0 A_Refire//("FireNoTurn")
-         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-    Goto Ready
-Plasma_Fire2:
-    TNT1 A 0
-    {
-              A_TakeInventory("PlasmaGauge",2);
-    A_PlaySound("weapon/addplasma2", 7,1.0,0,ATTN_NONE);
-          A_GiveInventory("Fire_pressed",1);
-      if (CountInv("AimDown") == 1)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaUP",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzle2DOWN",0,0,6,-50,0,90); }
-      else { A_FireProjectile("GreenPlasmaUP",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzle2DOWN",0,0,-6,-50,0,90); }
-      }
-        else
-        {
-        if (CountInv("Aimup") == 1)
-        {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzle2UP",0,0,6,50,0,-90); }
-        else { A_FireProjectile("GreenPlasmaUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzle2UP",0,0,-6,50,0,-90); }
-        }
-        else
-        {
-
-        if (CountInv("Moving") == 0)
-        {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasma_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle2_R",-90,0,50); }
-        else { A_FireProjectile("GreenPlasma_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle2_L",90,0,-50); }
-        }
-        else
-        {
-        if (CountInv("BackwardsCheck") == 0) { 
-        A_FireProjectile("GreenPlasma_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle2_R",-90,0,50); }
-        else { A_FireProjectile("GreenPlasma_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle2_L",90,0,-50); }
-        }
-        }
-        }
-      }
-    TNT1 A 1
-        TNT1 A 4 A_WeaponReady(WRF_NOSWITCH)
-        TNT1 A 0 A_Refire//("FireNoTurn")
-         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-    Goto Ready
-Plasma_Fire3:
-
-    TNT1 A 0
-    {
-    A_TakeInventory("PlasmaGauge",400);
-    A_PlaySound("weapon/addplasma3", 7,1.0,0,ATTN_NONE);
-    A_GiveInventory("Fire_pressed",1);
-        if (CountInv("AimDown") == 1)
-        {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaFCUP",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzle3DOWN",0,0,10,-30,0,90); }
-        else { A_FireProjectile("GreenPlasmaFCUP",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzle3DOWN",0,0,-10,-30,0,90); }
-        }
-        else
-        {
-          if (CountInv("Aimup") == 1)
-          {
-          if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaFCUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzle3UP",0,0,10,30,0,-90); }
-          else { A_FireProjectile("GreenPlasmaFCUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzle3UP",0,0,-10,30,0,-90); }
-          }
-          else
-          {
-
-          if (CountInv("Moving") == 0)
-          {
-          if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GreenPlasmaFC_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle3_R",-90,0,50); }
-          else { A_FireProjectile("GreenPlasmaFC_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle3_L",90,0,-50); }
-          }
-          else
-          {
-          if (CountInv("BackwardsCheck") == 0) { 
-          A_FireProjectile("GreenPlasmaFC_R",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle3_R",-90,0,50); }
-          else { A_FireProjectile("GreenPlasmaFC_L",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle3_L",90,0,-50); }
-          }
-          }
-        }
-    }
-    TNT1 A 40
-    TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
-    TNT1 A 0 A_Refire//("FireNoTurn")
-    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-    Goto Ready
-  HeavyMachinegun:
-  TNT1 A 0 A_TakeInventory("HaveHMG",1)
+  TNT1 A 0 A_JumpIfInventory("AimUp",1,"UpAttack")
+  TNT1 A 0 A_JumpIfInventory("CommonCombo",7,"CommonCombo3")
+  TNT1 A 0 A_JumpIfInventory("CommonCombo",6,"CommonCombo2")
+  TNT1 A 0 A_JumpIfInventory("CommonCombo",4,"CommonCombo1")
   TNT1 A 0
-  {
-  A_PlaySound("M16_HMG", 7,1.0,0,ATTN_NONE);
-  A_GiveInventory("Fire_pressed",1);
+    {
+    A_TakeInventory("PlasmaGauge",2);
+    A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
+
     if (CountInv("AimDown") == 1)
     {
-      if (CountInv("BackwardsCheck") == 0) 
-      {
-        A_FireProjectile("MGBulletUP",0,0,random(5,15),-60,0,90);
-        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
-        A_FireProjectile("Casing1",-90,0,5,-10,0,random(-30,30));
-       }
-      else 
-      { 
-        A_FireProjectile("MGBulletUP",0,0,random(-15,-5),-60,0,90);
-        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
-        A_FireProjectile("Casing1",90,0,-5,-10,0,random(-30,30));
-      }
+        A_FireProjectile("Catty_Slash",0,0,0,-60,0,90);
     }
     else
     {
   if (CountInv("Aimup") == 1)
   {
-  if (CountInv("BackwardsCheck") == 0) 
-  { 
-  A_FireProjectile("MGBulletUP",0,0,random(5,15),60,0,-90);
-  A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90);
-  A_FireProjectile("Casing1",-90,0,5,10,0,random(-30,30));
-  }
-  else 
-  { 
-  A_FireProjectile("MGBulletUP",0,0,random(-15,-5),60,0,-90);
-  A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90);
-  A_FireProjectile("Casing1",90,0,-5,10,0,random(-30,30));
-  }
+A_FireProjectile("Catty_Slash",0,0,8,30,0,-90);
   }
   else
   {
@@ -201,2284 +101,366 @@ Plasma_Fire3:
   {
   if (CountInv("BackwardsCheck") == 0) 
   { 
-  A_FireProjectile("MGBullet",-90,0,40,random(-5,5));
-  A_FireProjectile("SMGMuzzle_R",-90,0,60); 
-  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+  A_FireProjectile("Catty_Slash",-90,0,35,random(5,10));
 
   }
   else 
   { 
-  A_FireProjectile("MGBullet",90,0,-40,random(-5,5));
-  A_FireProjectile("SMGMuzzle_L",-90,0,-60); 
-  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+A_FireProjectile("Catty_Slash",90,0,-35,random(5,10));
   }
   }
   else
   {
   if (CountInv("BackwardsCheck") == 0) 
   { 
-  A_FireProjectile("MGBullet",-90,0,40,random(-5,5));
-  A_FireProjectile("SMGMuzzle_R",-90,0,60); 
-  A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));
+  A_FireProjectile("Catty_Slash",-90,0,35,random(5,10));
   }
   else 
   { 
-  A_FireProjectile("MGBullet",90,0,-40,random(-5,5));
-  A_FireProjectile("SMGMuzzle_L",90,0,-60); 
-  A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
+  A_FireProjectile("Catty_Slash",90,0,-35,random(5,10));
   }
   }
   }
   }
 }
-
-  TNT1 A 2
-      TNT1 A 0
-  {
-          if (CountInv("HaveHMG") == 0)
-   {
-  A_SpawnItemEx("EMPTYARM_HMG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
-  }
-  }
-  TNT1 A 0 A_Refire//("FireNoTurn")
-  TNT1 A 0
-  {
-  if (CountInv("Aimup") == 1)
-  {
-  if (CountInv("Moving") == 0)
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-  else {
-  A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-  }
-  ELSE
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-  else {
-  A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-  }
-  }
-  else
-  {
-  if (CountInv("Moving") == 0)
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_L",-90,0,30); }
-  else {
-  A_FireProjectile("GunSmoke_R",90,0,-30); }
-  }
-  else
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_R",-90,0,30); }
-  else {
-  A_FireProjectile("GunSmoke_L",90,0,-30); }
-  }
-  }
-  }
-
-  TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-  Goto Ready
-  SubMachinegun:
-  TNT1 A 0 A_TakeInventory("HaveSMG",1)
-  TNT1 A 0
-  {
-  A_PlaySound("M16_SMG", 7,1.0,0,ATTN_NONE);
-  A_GiveInventory("Fire_pressed",1);
-    if (CountInv("AimDown") == 1)
-    {
-      if (CountInv("BackwardsCheck") == 0) 
-      {
-        A_FireProjectile("SMGBulletUP",0,0,random(5,15),-60,0,90);
-        A_FireProjectile("SMGMuzzleDOWN",0,0,10,-60,0,90);
-        A_FireProjectile("Casing1",-90,0,5,-10,0,random(-30,30));
-       }
-      else 
-      { 
-        A_FireProjectile("SMGBulletUP",0,0,random(-15,-5),-60,0,90);
-        A_FireProjectile("SMGMuzzleDOWN",0,0,-10,-60,0,90);
-        A_FireProjectile("Casing1",90,0,-5,-10,0,random(-30,30));
-      }
-    }
-    else
-    {
-        if (CountInv("Aimup") == 1)
-        {
-        if (CountInv("BackwardsCheck") == 0) { 
-
-        A_FireProjectile("SMGBulletUP",0,0,random(5,15),60,0,-90);
-        A_FireProjectile("SMGMuzzleUP",0,0,10,60,0,-90); 
-        A_FireProjectile("Casing1",-90,0,5,10,0,random(-30,30));}
-        else { 
-        A_FireProjectile("SMGBulletUP",0,0,random(-15,-5),60,0,-90);
-        A_FireProjectile("SMGMuzzleUP",0,0,-10,60,0,-90); 
-        A_FireProjectile("Casing1",90,0,-5,10,0,random(-30,30));}
-        }
-        else
-        {
-        if (CountInv("Moving") == 0)
-        {
-        if (CountInv("BackwardsCheck") == 0) { 
-        A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));
-        A_FireProjectile("SMGMuzzle_R",-90,0,60);
-        A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));}
-        else { 
-        A_FireProjectile("SMGBullet",90,0,-40,random(-5,5));
-        A_FireProjectile("SMGMuzzle_L",90,0,-60);
-        A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110));
-        }
-        }
-        else
-        {
-        if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SMGBullet",-90,0,40,random(-5,5));A_FireProjectile("SMGMuzzle_R",-90,0,60);A_FireProjectile("Casing1",-90,0,10,5,0,random(-90,-110));}
-        else { A_FireProjectile("SMGBullet",90,0,-40,random(-5,5));A_FireProjectile("SMGMuzzle_L",90,0,-60);A_FireProjectile("Casing1",90,0,-10,5,0,random(-90,-110)); }
-        }
-        }
-        }
-  }
-    
-    TNT1 A 3
-    TNT1 A 0
-  {
-          if (CountInv("HaveSMG") == 0)
-   {
-  A_SpawnItemEx("EMPTYARM_SMG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
-  }
-  }
-  
-        TNT1 A 0 A_Refire//("FireNoTurn")
-   TNT1 A 0
-    {
-          if (CountInv("Aimup") == 1)
-          {
-       if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-    }
-    ELSE
-    {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-    }
-      }
-      else
-      {
-      if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_L",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_R",90,0,-30); }
-          }
-          else
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_L",90,0,-30); }
-          }
-      }
-    }
-         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-     
+    TNT1 A 1 
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 1 
+    TNT1 A 2 A_GiveInventory("CommonCombo",1)
+    TNT1 A 20 A_WeaponReady
+    TNT1 A 0 A_TakeInventory("CommonCombo",999)
+    TNT1 A 0 A_ReFire("Vcharge1")
     Goto Ready
-  Shotgun:
-  TNT1 A 0 A_TakeInventory("HaveSG",1)
-  TNT1 A 0
-  {
-  A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
-  A_PlaySound("M16_SG", 7,1.0,0,ATTN_NONE);
-  A_GiveInventory("Fire_pressed",1);
-    if (CountInv("AimDown") == 1)
-        {
-    if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SGMuzzleDOWN",0,0,10,-60,0,90);A_FireProjectile("Casing2",-90,0,5,-10,0,random(-30,30));}
-    else {A_FireProjectile("SGMuzzleDOWN",0,0,-10,-60,0,90);A_FireProjectile("Casing2",90,0,-5,-10,0,random(-30,30));}
-        }
-    else
+Vcharge1:
+    TNT1 A 0 A_GiveInventory("FX_Thunder",1)
+TNT1 A 0 A_GiveInventory("Enable_DashAttack",1)
+    TNT1 A 0 A_PlaySound("vcharge", 7,1.0,0,ATTN_NONE)
+    Goto Vcharge2
+Vcharge2:
+  TNT1 A 0 A_JumpIfInventory("VCharged",100,"Vcharge3")
+    TNT1 A 1 A_GiveInventory("VCharged",1)
+    TNT1 A 0 
     {
-    if (CountInv("Aimup") == 1)
-    {
-    if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SGMuzzleUP",0,0,10,60,0,-90);A_FireProjectile("Casing2",-90,0,5,10,0,random(-30,30));}
-    else {A_FireProjectile("SGMuzzleUP",0,0,-10,60,0,-90);A_FireProjectile("Casing2",90,0,-5,10,0,random(-30,30));}
+    A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,2,2,0);
+    if (CountInv("Enable_DashAttack") == 0) { return state("Ready"); }
+              return state("");
     }
-    else
+    TNT1 A 0 A_ReFire("Vcharge2")
+    Goto Release
+Vcharge3:
+    //TNT1 A 0 A_GiveInventory("FX_Thunder",1)
+    TNT1 A 0 
+    Goto Vcharge4
+Vcharge4:
+    TNT1 A 1 A_GiveInventory("VCharged",1)
+    TNT1 A 0 
     {
-    if (CountInv("Moving") == 0)
+      A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,5,5,0);
+    if (CountInv("Enable_DashAttack") == 0) { return state("Ready"); }
+              return state("");
+    }
+    TNT1 A 0 A_ReFire("Vcharge4")
+    Goto Release
+Release:
+     TNT1 A 0 A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0)
+    TNT1 A 0 A_PlaySound("vslash", 7,1.0,0,ATTN_NONE)
+    TNT1 A 0 A_GiveInventory("Fire_pressed",1)
+
+    TNT1 A 0 A_TakeInventory("CommonCombo",999)
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("VCharged",999)
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 0 A_TakeInventory("Enable_DashAttack",1)
+    TNT1 AAAAAAAAAAAA 1
     {
+    A_TakeInventory("PlasmaGauge",2);
     if (CountInv("BackwardsCheck") == 0) 
     { 
-    A_FireProjectile("SGMuzzle_R",-90,0,60);
-    A_FireProjectile("Casing2",-90,0,10,5,0,random(-90,-110));
+    A_FireProjectile("Catty_Slash",-90,0,90,random(5,10));
     }
     else 
     { 
-    A_FireProjectile("SGMuzzle_L",90,0,-60);
-    A_FireProjectile("Casing2",90,0,-10,5,0,random(-90,-110));
+    A_FireProjectile("Catty_Slash",90,0,-90,random(5,10));
     }
+    }
+    TNT1 A 4
+    Goto Ready
+UpAttack:
 
-    }
-    else
+       TNT1 A 0
     {
-    if (CountInv("BackwardsCheck") == 0) {A_FireProjectile("SGMuzzle_R",-90,0,60);  A_FireProjectile("Casing2",-90,0,10,5,0,random(-90,-110)); }
-    else {A_FireProjectile("SGMuzzle_L",90,0,-60);  A_FireProjectile("Casing2",90,0,-10,5,0,random(-90,-110)); }
-    }
-    }
-    }
-  }
+    A_TakeInventory("PlasmaGauge",2);
+A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
 
-  TNT1 AAAAAAAAAA 0
-  {
-  A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
-  A_PlaySound("M16_SG", 7,1.0,0,ATTN_NONE);
-  A_GiveInventory("Fire_pressed",1);
-      if (CountInv("AimDown") == 1)
-        {
-  if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBulletUP",0,0,10,-60,0,random(-8,+8)+90); }
-  else { A_FireProjectile("SGBulletUP",0,0,-10,-60,0,random(-8,+8)+90); }
-        }
-    else
-    {
   if (CountInv("Aimup") == 1)
   {
-  if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBulletUP",0,0,10,60,0,random(-8,+8)-90); }
-  else { A_FireProjectile("SGBulletUP",0,0,-10,60,0,random(-8,+8)-90); }
-  }
-  else
-  {
-  if (CountInv("Moving") == 0)
-  {
-  if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBullet",-90,0,40,0,0,random(-8,+8));}
-  else { A_FireProjectile("SGBullet",90,0,-40,0,0,random(-8,+8));}
-  }
-  else
-  {
-  if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("SGBullet",-90,0,40,0,0,random(-8,+8));}
-  else { A_FireProjectile("SGBullet",90,0,-40,0,0,random(-8,+8));}
-  }
-  }
-  }
+A_FireProjectile("Catty_Slash",0,0,0,30,0,-90);
   }
 
-  TNT1 A 14
-      TNT1 A 0
-  {
-          if (CountInv("HaveSG") == 0)
-   {
-  A_SpawnItemEx("EMPTYARM_SG",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
-  }
-  }
-  TNT1 A 0 A_Refire//("FireNoTurn")
-  TNT1 A 0
-  {
-  if (CountInv("Aimup") == 1)
-  {
-  if (CountInv("Moving") == 0)
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-  else {
-  A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-  }
-  ELSE
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-  else {
-  A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-  }
-  }
-  else
-  {
-  if (CountInv("Moving") == 0)
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_L",-90,0,30); }
-  else {
-  A_FireProjectile("GunSmoke_R",90,0,-30); }
-  }
-  else
-  {
-  if (CountInv("BackwardsCheck") == 0) { 
-  A_FireProjectile("GunSmoke_R",-90,0,30); }
-  else {
-  A_FireProjectile("GunSmoke_L",90,0,-30); }
-  }
-  }
-  }
-  TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-  Goto Ready
-RLFire:
-  TNT1 A 0 A_TakeInventory("HaveRL",1)
-    TNT1 A 0
-    {
-
-      A_PlaySound("M16_RL", 7,1.0,0,ATTN_NONE);
-      A_GiveInventory("Fire_pressed",1);
-      if (CountInv("AimDown") == 1)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("RLShotDOWN",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,10,-50,0,90); }
-      else { A_FireProjectile("RLShotDOWN",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,-10,-50,0,90); }
-      }
-      else
-      {
-      if (CountInv("Aimup") == 1)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("RLShotUP",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
-      else { A_FireProjectile("RLShotUP",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
-      }
-      else
-      {
-
-      if (CountInv("Moving") == 0)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("RLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-      else { A_FireProjectile("RLShotL",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
-      }
-      else
-      {
-      if (CountInv("BackwardsCheck") == 0) { 
-      A_FireProjectile("RLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-      else { A_FireProjectile("RLShotL",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
-      }
-      }
-      }
-    }
-    TNT1 A 2
-  {
-          if (CountInv("HaveRL") == 0)
-   {
-  A_SpawnItemEx("EMPTYARM_RL",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
-  }
-  }
-        TNT1 A 10 A_WeaponReady(WRF_NOSWITCH)
-        TNT1 A 0 A_Refire//("FireNoTurn")
-   TNT1 A 0
-    {
-          if (CountInv("Aimup") == 1)
-          {
-       if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-    }
-    ELSE
-    {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-    }
-      }
-      else
-      {
-      if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_L",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_R",90,0,-30); }
-          }
-          else
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_L",90,0,-30); }
-          }
-      }
-    }
-         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+}
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 3
+    TNT1 A 3 A_TakeInventory("CommonCombo",999)
+    TNT1 A 20 A_WeaponReady
     Goto Ready
-FTFire:
-  TNT1 A 0 A_TakeInventory("HaveFT",1)
-    TNT1 A 0
+CommonCombo1:
+        TNT1 A 0
     {
+    A_TakeInventory("PlasmaGauge",2);
+A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
+    A_GiveInventory("Fire_pressed",1);
 
-      A_PlaySound("M16_FT", 7,1.0,0,ATTN_NONE);
-      A_GiveInventory("Fire_pressed",1);
-      if (CountInv("AimDown") == 1)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShotDOWN",0,0,10,-20,0,90);}
-      else { A_FireProjectile("FTShotDOWN",0,0,-10,-20,0,90); }
-      }
-      else
-      {
-      if (CountInv("Aimup") == 1)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShotUP",0,0,10,20,0,-90);}
-      else { A_FireProjectile("FTShotUP",0,0,-10,20,0,-90);}
-      }
-      else
-      {
-
-      if (CountInv("Moving") == 0)
-      {
-      if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("FTShot",-90,0,40); }
-      else { A_FireProjectile("FTShotL",90,0,-40);}
-      }
-      else
-      {
-      if (CountInv("BackwardsCheck") == 0) { 
-      A_FireProjectile("FTShot",-90,0,40);}
-      else { A_FireProjectile("FTShotL",90,0,-40); }
-      }
-      }
-      }
-    }
-    TNT1 A 0
-  {
-          if (CountInv("HaveFT") == 0)
-   {
-  A_SpawnItemEx("EMPTYARM_RL",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION );
-  }
-  }
-        TNT1 A 1 A_WeaponReady(WRF_NOSWITCH)
-        TNT1 A 0 A_Refire//("FireNoTurn")
-   TNT1 A 0
-    {
-          if (CountInv("Aimup") == 1)
-          {
-       if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
-    }
-    ELSE
-    {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-        else {
-    A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-    }
-      }
-      else
-      {
-      if (CountInv("Moving") == 0)
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_L",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_R",90,0,-30); }
-          }
-          else
-          {
-        if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GunSmoke_R",-90,0,30); }
-        else {
-    A_FireProjectile("GunSmoke_L",90,0,-30); }
-          }
-      }
-    }
-         TNT1 A 0 A_TakeInventory("Fire_pressed",1)
-    Goto Ready
-AltFire:
-TNT1 A 0 A_JumpIfInventory("HaveGL",1,"GLFire")
-TNT1 A 10
-    Goto Ready
-GLFire:
-TNT1 A 0 A_TakeInventory("HaveGL",1)
-TNT1 A 0
-{
-A_PlaySound("M16_GL", 7,1.0,0,ATTN_NONE);
-A_GiveInventory("Fire_pressed",1);
     if (CountInv("AimDown") == 1)
     {
-    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",0,0,10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,10,-50,0,90); }
-    else { A_FireProjectile("GLShot",0,0,-10,-20,0,90);A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,-10,-50,0,90); }
+        A_FireProjectile("Catty_Slash",0,0,0,-60,0,90);
     }
     else
     {
-    if (CountInv("Aimup") == 1)
+  if (CountInv("Aimup") == 1)
+  {
+A_FireProjectile("Catty_Slash",0,0,0,30,0,-90);
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,45,random(5,10));
+
+  }
+  else 
+  { 
+A_FireProjectile("Catty_Slash",90,0,-45,random(5,10));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,60,random(5,10));
+  }
+  else 
+  { 
+  A_FireProjectile("Catty_Slash",90,0,-60,random(5,10));
+  }
+  }
+  }
+  }
+}
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 1 
+    TNT1 A 2  A_GiveInventory("CommonCombo",1)
+    TNT1 A 2
+    TNT1 A 18 A_WeaponReady
+    TNT1 A 0 A_TakeInventory("CommonCombo",999)
+    Goto Ready
+CommonCombo2:
+       TNT1 A 0
     {
-    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",0,0,10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,10,50,0,-90); }
-    else { A_FireProjectile("GLShot",0,0,-10,20,0,-90);A_FireProjectile("GreenPlasmaMuzzleUP",0,0,-10,50,0,-90); }
+    A_TakeInventory("PlasmaGauge",2);
+A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
+
+    if (CountInv("AimDown") == 1)
+    {
+        A_FireProjectile("Catty_Slash",0,0,0,-60,0,90);
     }
     else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+A_FireProjectile("Catty_Slash",0,0,8,30,0,-90);
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,45,random(5,10));
+
+  }
+  else 
+  { 
+A_FireProjectile("Catty_Slash",90,0,-45,random(5,10));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,60,random(5,10));
+  }
+  else 
+  { 
+  A_FireProjectile("Catty_Slash",90,0,-60,random(5,10));
+  }
+  }
+  }
+  }
+}
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 8
+    TNT1 A 0  A_GiveInventory("CommonCombo",1)
+    TNT1 A 2
+    TNT1 A 16 A_WeaponReady
+    TNT1 A 0 A_TakeInventory("CommonCombo",999)
+    Goto Ready
+CommonCombo3:
+        TNT1 A 0
+    {
+    A_TakeInventory("PlasmaGauge",2);
+A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
+
+    if (CountInv("AimDown") == 1)
+    {
+        A_FireProjectile("Catty_Slash",0,0,0,-60,0,90);
+    }
+    else
+    {
+  if (CountInv("Aimup") == 1)
+  {
+A_FireProjectile("Catty_Slash",0,0,0,30,0,-90);
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,45,random(5,10));
+
+  }
+  else 
+  { 
+A_FireProjectile("Catty_Slash",90,0,-45,random(5,10));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,60,random(5,10));
+  }
+  else 
+  { 
+  A_FireProjectile("Catty_Slash",90,0,-60,random(5,10));
+  }
+  }
+  }
+  }
+}
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 8
+    TNT1 A 0  A_GiveInventory("CommonCombo",1)
+    TNT1 A 2
+        TNT1 A 0 A_TakeInventory("CommonCombo",999)
+    TNT1 A 12 A_WeaponReady
+    Goto Ready
+JumpAttack:
+TNT1 A 0 A_JumpIfInventory("CommonCombo",2,"SpinAttack")
+    TNT1 A 0
+    {
+    A_TakeInventory("PlasmaGauge",2);
+A_PlaySound("KATA", 7,1.0,0,ATTN_NONE);
+
+    if (CountInv("AimDown") == 1)
     {
 
-    if (CountInv("Moving") == 0)
-    {
-    if (CountInv("BackwardsCheck") == 0) { A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-    else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
+        A_FireProjectile("Catty_Slash",0,0,0,-60,0,90);
     }
     else
     {
-    if (CountInv("BackwardsCheck") == 0) { 
-    A_FireProjectile("GLShot",-90,0,40);A_FireProjectile("GreenPlasmaMuzzle_R",-90,0,50); }
-    else { A_FireProjectile("GLShot",90,0,-40);A_FireProjectile("GreenPlasmaMuzzle_L",90,0,-50); }
-    }
-    }
-    }
+  if (CountInv("Aimup") == 1)
+  {
+A_FireProjectile("Catty_Slash",0,0,0,30,0,-90);
+  }
+  else
+  {
+  if (CountInv("Moving") == 0)
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,45,random(5,10));
+
+  }
+  else 
+  { 
+A_FireProjectile("Catty_Slash",90,0,-45,random(5,10));
+  }
+  }
+  else
+  {
+  if (CountInv("BackwardsCheck") == 0) 
+  { 
+  A_FireProjectile("Catty_Slash",-90,0,45,random(5,10));
+  }
+  else 
+  { 
+  A_FireProjectile("Catty_Slash",90,0,-45,random(5,10));
+  }
+  }
+  }
+  }
 }
-TNT1 A 10
-TNT1 A 7 A_WeaponReady(WRF_NOSWITCH)
-TNT1 A 0 A_Refire//("FireNoTurn")
+    TNT1 A 1
+    TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    TNT1 A 5 A_GiveInventory("JumpCombo",1)
+    TNT1 A 2
+    TNT1 A 10 A_WeaponReady
+    TNT1 A 0 A_TakeInventory("JumpCombo",999)
+    Goto Ready
+SpinAttack:
+TNT1 A 1 A_JumpIfInventory("Landing",1,"Landing")
+TNT1 A 0  A_GiveInventory("Fire_pressed",1)
+TNT1 A 0 A_GiveInventory("SpinAttacking",1)
 TNT1 A 0
 {
-if (CountInv("Aimup") == 1)
+if (CountInv("Wall_Touched") == 1) 
+  {Return State("Landing2");}
+  Return State("");
+}
+
+    Goto SpinAttack
+        
+Landing:
+        TNT1 A 0 A_TakeInventory("Landing",999)
+TNT1 A 0 A_TakeInventory("PlasmaGauge",4)
+TNT1 A 0 A_TakeInventory("CommonCombo",999)
+TNT1 A 0 A_TakeInventory("Fire_pressed",9999)
+TNT1 A 12
+    Goto Ready
+Landing2:
+TNT1 A 0 A_TakeInventory("Landing",999)
+TNT1 A 0 A_TakeInventory("CommonCombo",999)
+TNT1 A 0 A_TakeInventory("Fire_pressed",9999)
+TNT1 A 1 
+    Goto Ready
+
+
+
+AltFire:
+TNT1 A 10
 {
-if (CountInv("Moving") == 0)
-{
-if (CountInv("BackwardsCheck") == 0) { 
-A_FireProjectile("GunSmoke_U",0,0,6,30,0,-90); }
-else {
-A_FireProjectile("GunSmoke_U",0,0,-6,30,0,-90); }
+ if (CountInv("CattyCoolTime") == 0)
+    {
+Return State("SpecialAttack");
+    }
+Return State("");
 }
-ELSE
-{
-if (CountInv("BackwardsCheck") == 0) { 
-A_FireProjectile("GunSmoke_R",0,0,-10,30,0,-90); }
-else {
-A_FireProjectile("GunSmoke_L",0,0,-10,30,0,-90); }
-}
-}
-else
-{
-if (CountInv("Moving") == 0)
-{
-if (CountInv("BackwardsCheck") == 0) { 
-A_FireProjectile("GunSmoke_L",-90,0,30); }
-else {
-A_FireProjectile("GunSmoke_R",90,0,-30); }
-}
-else
-{
-if (CountInv("BackwardsCheck") == 0) { 
-A_FireProjectile("GunSmoke_R",-90,0,30); }
-else {
-A_FireProjectile("GunSmoke_L",90,0,-30); }
-}
-}
-}
-TNT1 A 0 A_TakeInventory("Fire_pressed",1)
+    Goto Ready
+SpecialAttack:
+TNT1 A 0 ACS_NamedExecute("CattySpecialAttack",0,0,0,0)
+
+TNT1 A 1
+TNT1 A 1 A_WeaponReady(WRF_NOSWITCH)
+TNT1 A 0 A_Refire//("FireNoTurn")
 Goto Ready
 
   }
 }
 
-ACTOR GreenPlasma_R
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 12
-  Damage (random(20,40))
-  projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS A 2 bright A_CountDown
-    GOTO SPAWN
-    Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  APLS A 0 bright 
-    APLS A 0 bright A_SetScale(0.4,0.4)
-  APLS A 0 bright A_Jump(64,"Death2","Death3")
-    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death2:
-    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death3:
-    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  }
-}
-ACTOR GreenPlasma_L :  GreenPlasma_R
-{
-SCALE -1.0
-}
-ACTOR GreenPlasmaWeak
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 5
-  Damage 3
-    Xscale 0.8
-  Yscale 0.3
-  projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS A 2 bright A_CountDown
-    GOTO SPAWN
-    Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  APLS A 0 bright 
-    APLS A 0 bright A_SetScale(0.4,0.4)
-  APLS A 0 bright A_Jump(64,"Death2","Death3")
-    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death2:
-    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death3:
-    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR GreenPlasmaFC_R
-{
-species playerside
-  DamageType PlayerSide
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 10
-  
-  Damage 50
-  projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-xscale 2.0
-yscale 4.5
-  States
-  {
-  Spawn:
-    APLS A 2 bright A_CountDown
-    loop
-  Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
-      APLS A 0 bright A_Explode(200,256)
-      APLS A 0  bright A_SetScale(1.0,1.0)
-    PBFC ABCDEFGHIJ 1 bright A_Stop
-    Stop
-  }
-}
-ACTOR GreenPlasmaFC_L : GreenPlasmaFC_R
-{
-xscale -2.0
-yscale 4.5
-
-}
-ACTOR ChargeFX
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-xscale 1.0
-+NOCLIP
-yscale 3.5
-  Projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    TNT1 A 1 bright   A_SpawnProjectile("Debris_PlasmaTrail",0,0, random(0,360), 2, random(-90,90))
-  Death:
-    TNT1 A 1 bright   A_SpawnProjectile("Debris_PlasmaTrail",0,0, random(0,360), 2, random(-90,90))
-    Stop
-  }
-}
-
-ACTOR GunSmoke_U
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle ADD
-  Speed 0
-  ReactionTime 5
-  Damage 0
-  +MISSILE
-    +MTHRUSPECIES
-  +NOGRAVITY
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    SMK3 ABCDEFGHIJKLMNOP 1 bright A_FadeOut(0.05)
-    Stop
-  }
-}
-ACTOR GunSmoke_L
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle ADD
-  Speed 0
-  ReactionTime 5
-  Damage 0
-
-  +MISSILE
-    +MTHRUSPECIES
-  +NOGRAVITY
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    SMK1 ABCDEFGHIJKLMNO 1 bright A_FadeOut(0.05)
-    Stop
-  }
-}
-ACTOR GunSmoke_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle ADD
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    +NOGRAVITY
-  +MISSILE
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +NOCLIP
-  +BRIGHT
-  States
-  {
-  Spawn:
-    SMK2 ABCDEFGHIJKLMNO 1 bright A_FadeOut(0.05)
-    Stop
-  }
-}
-
-
-ACTOR GreenPlasmaUP 
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 10
-  Damage (random(20,40))
-  +NOEXTREMEDEATH
-    +MTHRUSPECIES
-  +BLOODSPLATTER
-  +BRIGHT
-  PROJECTILE
-  States
-  {
-  Spawn:
-    APLS C 2 bright A_CountDown
-    GOTO SPAWN
-  Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  APLS A 0 bright 
-    APLS A 0 bright A_SetScale(0.4,0.4)
-  APLS A 0 bright A_Jump(64,"Death2","Death3")
-    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death2:
-    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death3:
-    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR GreenPlasmaWeakUP 
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 10
-    Yscale 0.8
-  Xscale 0.3
-  Damage 3
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-  PROJECTILE
-  States
-  {
-  Spawn:
-    APLS C 2 bright A_CountDown
-    GOTO SPAWN
-  Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  APLS A 0 bright 
-    APLS A 0 bright A_SetScale(0.4,0.4)
-  APLS A 0 bright A_Jump(64,"Death2","Death3")
-    PXBX ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death2:
-    PXB2 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  Death3:
-    PXB3 ABCDEFGHIJKLMN 1 bright A_Stop
-    Stop
-  }
-}
-ACTOR GreenPlasmaFCUP 
-{
-species playerside
-  DamageType PlayerSide
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 10
-  Damage 50
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BRIGHT
-  PROJECTILE
-  yscale 2.0
-xscale 4.5
-  States
-  {
-  Spawn:
-    APLS C 2 bright A_CountDown
-    GOTO SPAWN
-  Death:
-      TNT1 AAAAAAA 0 A_SpawnParticle("CYAN",SPF_FULLBRIGHT ,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 AAAAAAA 0 A_SpawnParticle("White",SPF_FULLBRIGHT,random(5,15),random(4,10),random(0,360),0.0,0.0,0.0,random(-10,10),0,random(-10,10))
-  TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
-      APLS A 0 bright A_Explode(200,256)
-      APLS A 0 bright A_SetScale(1.0,1.0)
-    PBFC ABCDEFGHIJ 1 bright A_Stop
-    Stop
-  }
-}
-
-
-ACTOR GreenPlasmaMUZZLE_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.5
-  Yscale 0.5
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
-    PLMZ AB 1 bright
-  stop
-Spawn2:
-    PLMZ CD 1 bright
-    Stop
-Spawn3:
-    PLMZ EF 1 bright
-    Stop
-Spawn4:
-    PLMZ GH 1 bright
-    Stop
-Spawn5:
-    PLMZ IJ 1 bright
-    Stop
-Spawn6:
-    PLMZ KL 1 bright
-    Stop
-Spawn7:
-    PLMZ MN 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLE_L : GreenPlasmaMUZZLE_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale -0.5
-}
-ACTOR GreenPlasmaMUZZLEUP
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.5
-  Yscale 0.5
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-+BLOODSPLATTER
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
-    PLMU AB 1 bright
-  stop
-Spawn2:
-    PLMU CD 1 bright
-    Stop
-Spawn3:
-    PLMU EF 1 bright
-    Stop
-Spawn4:
-    PLMU GH 1 bright
-    Stop
-Spawn5:
-    PLMU IJ 1 bright
-    Stop
-Spawn6:
-    PLMU KL 1 bright
-    Stop
-Spawn7:
-    PLMU MN 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLEDOWN : GreenPlasmaMUZZLEUP
-{
-  Yscale -0.5
-}
-
-ACTOR GreenPlasmaMUZZLE2_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 1.0
-  Yscale 1.0
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
-    PMMZ A 1 bright
-  stop
-Spawn2:
-    PMMZ B 1 bright
-    Stop
-Spawn3:
-    PMMZ C 1 bright
-    Stop
-Spawn4:
-    PMMZ D 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLE2_L : GreenPlasmaMUZZLE2_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale -1.0
-}
-ACTOR GreenPlasmaMUZZLE2UP
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 1.0
-  Yscale 1.0
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
-    PMMU A 1 bright
-  stop
-Spawn2:
-    PMMU B 1 bright
-    Stop
-Spawn3:
-    PMMU C 1 bright
-    Stop
-Spawn4:
-    PMMU D 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLE2DOWN : GreenPlasmaMUZZLE2UP
-{
-  Yscale -1.0
-}
-
-ACTOR GreenPlasmaMUZZLE3_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 10
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 1.0
-  Yscale 1.0
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-    PBMZ ABCDEFGH 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLE3_L : GreenPlasmaMUZZLE3_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 10
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale -1.0
-}
-ACTOR GreenPlasmaMUZZLE3UP
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 1.0
-  Yscale 1.0
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-      PBMU ABCDEFGH 1 bright
-    Stop
-  }
-}
-ACTOR GreenPlasmaMUZZLE3DOWN : GreenPlasmaMUZZLE3UP
-{
-  Yscale -1.0
-}
-ACTOR SMGMUZZLE_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.8
-  Yscale 0.8
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +ROLLSPRITE
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
-    MUZZ AB 1 bright
-  stop
-Spawn2:
-    MUZZ CD 1 bright
-    Stop
-Spawn3:
-    MUZZ EF 1 bright
-    Stop
-Spawn4:
-    MUZZ GH 1 bright
-    Stop
-Spawn5:
-    MUZZ IJ 1 bright
-    Stop
-Spawn6:
-    MUZZ KL 1 bright
-    Stop
-Spawn7:
-    MUZZ MN 1 bright
-    Stop
-Spawn8:
-    TNT1 AA 1 bright
-    Stop
-  }
-}
-ACTOR SMGMUZZLE_L : SMGMUZZLE_R
-{
-XSCALE -0.8
-}
-ACTOR SMGMUZZLE_45L : SMGMUZZLE_R
-{
-XSCALE -0.8
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_SetRoll(315.0,SPF_INTERPOLATE)
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
-    MUZZ AB 1 bright
-  stop
-Spawn2:
-    MUZZ CD 1 bright
-    Stop
-Spawn3:
-    MUZZ EF 1 bright
-    Stop
-Spawn4:
-    MUZZ GH 1 bright
-    Stop
-Spawn5:
-    MUZZ IJ 1 bright
-    Stop
-Spawn6:
-    MUZZ KL 1 bright
-    Stop
-Spawn7:
-    MUZZ MN 1 bright
-    Stop
-Spawn8:
-    TNT1 AA 1 bright
-    Stop
-  }
-}
-ACTOR SMGMUZZLE_45R : SMGMUZZLE_R
-{
-XSCALE 0.8
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_SetRoll(45.0,SPF_INTERPOLATE)
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
-    MUZZ AB 1 bright
-  stop
-Spawn2:
-    MUZZ CD 1 bright
-    Stop
-Spawn3:
-    MUZZ EF 1 bright
-    Stop
-Spawn4:
-    MUZZ GH 1 bright
-    Stop
-Spawn5:
-    MUZZ IJ 1 bright
-    Stop
-Spawn6:
-    MUZZ KL 1 bright
-    Stop
-Spawn7:
-    MUZZ MN 1 bright
-    Stop
-Spawn8:
-    TNT1 AA 1 bright
-    Stop
-  }
-}
-ACTOR SMGMUZZLEUP
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.8
-  Yscale 0.8
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 A 0
-  TNT1 A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7","Spawn8")
-    MUZU AB 1 bright
-  stop
-Spawn2:
-    MUZU CD 1 bright
-    Stop
-Spawn3:
-    MUZU EF 1 bright
-    Stop
-Spawn4:
-    MUZU GH 1 bright
-    Stop
-Spawn5:
-    MUZU IJ 1 bright
-    Stop
-Spawn6:
-    MUZU KL 1 bright
-    Stop
-Spawn7:
-    MUZU MN 1 bright
-    Stop
-Spawn8:
-    TNT1 AA 1 bright
-    Stop
-  }
-}
-
-ACTOR SGMUZZLE_R
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.8
-  Yscale 0.8
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    SGMF ABCDEFGH 1 bright
-    Stop
-  }
-}
-ACTOR SGMUZZLE_L : SGMUZZLE_R
-{
-XSCALE -0.8
-}
-ACTOR SMGMUZZLEDOWN : SMGMUZZLEUP
-{
-  Yscale -0.8
-}
-ACTOR SGMUZZLEUP
-{
-HEIGHT 5
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    Projectile
-  Xscale 0.8
-  Yscale 0.8
-    Projectile
-    +MTHRUSPECIES
-  +NOCLIP
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    SGMU ABCDEFGH 1 bright
-    Stop
-  }
-}
-ACTOR SGMUZZLEDOWN : SGMUZZLEUP
-{
-  Yscale -0.8
-}
-ACTOR GLShot
-{
-species playerside
-SeeSound ""
-  RenderStyle Normal
-  Speed 30
-  ReactionTime 5
-  DamageType PlayerSide
-  Damage 20
-  DEATHSOUND "BOOM1"
-  PROJECTILE
-    +MTHRUSPECIES
-  +FULLVOLDEATH
-  -NOGRAVITY
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    GLSH A 2 bright
-    GOTO SPAWN
-  Death:
-TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL3", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
-      APLS A 0 bright A_Explode(200,256)
-      APLS A 0 bright A_SetScale(3.0,3.0)
-  EPRO AA 1 bright A_Stop
-      APLS A 0 bright A_SetScale(2.0,2.0)
-EXPL ABCDEFGHIJKLMN 1 bright A_STOP
-    Stop
-  }
-}
-
-
-ACTOR Debris_FireTrail_GL
-{
-HEIGHT 2
-SeeSound ""
-  RenderStyle Normal
-  Speed 20
-  ReactionTime 5
-  Damage 0
-  Projectile
-  BounceFactor 1.0
-  BounceType Grenade
-  BounceCount 5
-    +MTHRUSPECIES
--NOGRAVITY
-  +NOEXTREMEDEATH
-  Scale 0.5
-  +BRIGHT
-  States
-  {
-  Spawn:
-    TNT1 AAAAAAAAAAAAAAAAAAAAA 1 bright A_SpawnItemEx("Fire_To_SmokeTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-    TNT1 A 1 bright
-    Stop
-  }
-}
-
-ACTOR Debris_FireTrail_GL2 : FastProjectile
-{
-HEIGHT 2
-SeeSound ""
-  RenderStyle Normal
-  ReactionTime 5
-  Damage 0
-  Projectile
-  BounceFactor 1.0
-  BounceType Grenade
-  BounceCount 5
-  +BRIGHT
-    +MTHRUSPECIES
-  +THRUACTORS
-  +NOEXTREMEDEATH
-SPEED 20
-SCALE 0.1
-  MissileType "Fire_To_SmokeTrail2"
-+NOGRAVITY
-  States
-  {
-  Spawn:
-    EMBL AAAAAAAAA 1 bright
-  stop
-  }
-
-}
-
-ACTOR Debris_FireTrail_GL3 : Debris_FireTrail_GL
-{
-SPEED 5
-SCALE 0.01
-Reactiontime 6
-  States
-  {
-  Spawn:
-  EPRO A 0 A_Jump(128,"Spawn2","Spawn3")
-    EPRO A 1 bright A_CountDown
-  Goto Spawn+1
-  Spawn2:
-    EPRO A 0 bright A_CountDown
-    EPRO A 1 bright A_CountDown
-  Goto Spawn2
-  Spawn3:
-    EPRO AA 0 bright A_CountDown
-    EPRO A 1 bright A_CountDown
-  Goto Spawn3
-  Death:
-TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,6,8.5)
-  EPRO A 0 A_Jump(128,"Death2","Death3")
-  EPRO A 0 A_SetScale(1.0,1.0)
-    EPRO A 1 A_STOP
-  STOP
-  Death2:
-  EPRO A 0 A_SetScale(1.5,1.5)
-    EPRO A 1 A_STOP
-  STOP
-  Death2:
-  EPRO A 0 A_SetScale(2.5,2.5)
-    EPRO A 1 A_STOP
-  STOP
-  }
-}
-ACTOR Debris_FireTrail_GL4 : Debris_FireTrail_GL
-{
-  States
-  {
-  Spawn:
-    TNT1 AAAAAAA 1 bright A_SpawnItemEx("Fire_To_SmokeTrail4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  }
-}
-ACTOR Debris_FireTrail_GL5 : Debris_FireTrail_GL
-{
-SPEED 5
-SCALE 0.01
-Reactiontime 6
-  States
-  {
-  Spawn:
-  EPRO A 0 A_Jump(128,"Spawn2","Spawn3")
-    EPRO A 1 bright A_CountDown
-  Goto Spawn+1
-  Spawn2:
-    EPRO A 0 bright A_CountDown
-    EPRO A 1 bright A_CountDown
-  Goto Spawn2
-  Spawn3:
-    EPRO AA 0 bright A_CountDown
-    EPRO A 1 bright A_CountDown
-  Goto Spawn3
-  Death:
-TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,6,8.5)
-  EPRO A 0 A_Jump(128,"Death2","Death3")
-  EPRO A 0 A_SetScale(1.0,1.0)
-    EPRO A 1 A_STOP
-  STOP
-  Death2:
-  EPRO A 0 A_SetScale(0.5,0.5)
-    EPRO A 1 A_STOP
-  STOP
-  Death2:
-  EPRO A 0 A_SetScale(1.5,1.5)
-    EPRO A 1 A_STOP
-  STOP
-  }
-}
-
-ACTOR Debris_FireTrail_GL6 : FastProjectile
-{
-HEIGHT 2
-SeeSound ""
-  RenderStyle Normal
-  ReactionTime 5
-  Damage 0
-  Projectile
-  BounceFactor 1.0
-  BounceType Grenade
-  BounceCount 5
-  +BRIGHT
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-SPEED 20
-SCALE 0.1
-  MissileType "Fire_To_SmokeTrail2"
-+NOGRAVITY
-  States
-  {
-  Spawn:
-    EMBL AAAAA 1 bright
-  stop
-  }
-
-}
-ACTOR Fire_To_SmokeTrail
-{
-HEIGHT 2
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Health 5
-  Speed 0
-  ReactionTime 5
-  Damage 0
-    +MTHRUSPECIES
-  +INVULNERABLE
-  +NOEXTREMEDEATH
-  -SOLID
-  -SHOOTABLE
-  Scale 0.5
-  +BRIGHT
-  States
-  {
-  Spawn:
-EXPL ABCDEFGHIJKLMN 1 bright
-{A_FadeOut(0.1);
-A_STOP;}
-  STOP
-  Death:
-EXPL ABCDEFGHIJKLMN 1 bright
-{A_FadeOut(0.1);
-A_STOP;}
-    Stop
-  }
-}
-ACTOR Fire_To_SmokeTrail2 : Fire_To_SmokeTrail
-{
-SCALE 0.1
-}
-ACTOR Fire_To_SmokeTrail3 : Fire_To_SmokeTrail
-{
-SCALE 0.25
-}
-ACTOR Fire_To_SmokeTrail4 : Fire_To_SmokeTrail
-{
-SCALE 0.3
-}
-ACTOR RLShot
-{
-species playerside
-  DamageType PlayerSide
-SeeSound ""
-  RenderStyle Normal
-  Speed 30
-  ReactionTime 10
-
-  Damage 24
-  SEESOUND "MISL"
-  DEATHSOUND "MISLEX"
-  PROJECTILE
-  MissileHeight 8
-  Height 8
-  Radius 8
-  MissileType "Fire_To_SmokeTrail2"
-    +MTHRUSPECIES
-  +THRUSPECIES
-  +FULLVOLDEATH
-  +NOGRAVITY
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-  TNT1 AA 0
-  {
-  A_Weave(0,5,0.0,1.0);
-  }
-    RLSH A 0 A_CheckSightOrRange(350,"Remove",false)
-TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,0, 2, random(-10,10))
-    RLSH A 1 bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,0, 2, random(-10,10))
-    GOTO SPAWN
-  Death:
-TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL4", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL6", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 AAAAAA 0 Bright A_CustomMissile("Debris_FireTrail_GL5", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
-TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,4,4,8.5)
-      APLS A 0 bright A_Explode(100,192)
-      APLS A 0 bright A_SetScale(2.0,2.0)
-  EPRO AA 1 bright A_Stop
-      APLS A 0 bright A_SetScale(1.0,1.0)
-EXPL ABCDEFGHIJKLMN 1 bright A_STOP
-    Stop
-  Remove:
-    RLSH A 0
-  stop
-  }
-}
-ACTOR RLShotL : RLShot
-{
-  States
-  {
-  Spawn:
-  TNT1 AA 0
-  {
-  A_Weave(0,5,0.0,1.0);
-  }
-    RLSH A 0 A_CheckSightOrRange(350,"Remove",false)
-TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,180, 2, random(-10,10))
-    RLSH B 1 bright A_CustomMissile("Fire_To_SmokeTrail3", random(-3,3),0,180, 2, random(-10,10))
-    GOTO SPAWN
-  }
-}
-ACTOR RLShotUP : RLShot
-{
-  States
-  {
-    Spawn:
-  TNT1 AA 0
-  {
-  A_Weave(0,5,0.0,1.0);
-  }
-    RLSH A 0 A_CheckSightOrRange(250,"Remove",false)
-TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, random(-10,10))
-    RLSH C 1 bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, random(-10,10))
-    GOTO SPAWN
-  }
-}
-ACTOR RLShotDOWN : RLShotUP
-{
-YScale -1.0
-  States
-  {
-    Spawn:
-  TNT1 AA 0
-  {
-  A_Weave(0,5,0.0,1.0);
-  }
-    RLSH A 0 A_CheckSightOrRange(250,"Remove",false)
-TNT1 A 0 Bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, random(-10,10))
-    RLSH C 1 bright A_CustomMissile("Fire_To_SmokeTrail3",0,0,random(0,360), 2, random(-10,10))
-    GOTO SPAWN
-  }
-
-}
-
-
-ACTOR FTShot
-{
-species playerside
-  DamageType PlayerSide
-SeeSound ""
-  RenderStyle Normal
-  Speed 15
-  ReactionTime 10
-XScale 0.1
-YScale 0.1
-  Damage 1
-  SEESOUND "MISL"
-  PROJECTILE
-  MissileHeight 8
-  Height 8
-  Radius 8
-    +MTHRUSPECIES
-  +THRUSPECIES
-  +RIPPER
-  +ROLLSPRITE
-  +FULLVOLDEATH
-  +NOGRAVITY
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS A 0
-    APLS A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll+10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll+10,SPF_INTERPOLATE);
-}
-    Stop
-  Spawn2:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-}
-    Stop
-  Spawn3:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-5,SPF_INTERPOLATE);
-}
-    Stop
-    Spawn4:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-5,SPF_INTERPOLATE);
-}
-    Stop
-  Death:
-  TNT1 AAAAAA 0 Bright A_CustomMissile("FireFx",0,0, random(0,360), 2, random(-90,90))
-  Stop
-  }
-}
-ACTOR FireFx
-{
-species playerside
-  DamageType PlayerSide
-SeeSound ""
-  RenderStyle Normal
-  Speed 2
-  ReactionTime 10
-XScale 0.1
-YScale 0.1
-  Damage 0
-  SEESOUND "MISL"
-  PROJECTILE
-  MissileHeight 8
-  Height 8
-  Radius 8
-    +MTHRUSPECIES
-  +THRUACTORS
-  +RIPPER
-  +ROLLSPRITE
-  +BOUNCEONWALLS
-  +BOUNCEONFLOORS
-  +BOUNCEONCEILINGS
-  +FULLVOLDEATH
-  +NOGRAVITY
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS A 0
-    APLS A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll+10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll+10,SPF_INTERPOLATE);
-}
-    Stop
-  Spawn2:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-}
-    Stop
-  Spawn3:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-5,SPF_INTERPOLATE);
-}
-    Stop
-    Spawn4:
-        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
-  EPRO A 1 bright
-  {
-  A_Weave(0,5,0.0,1.0);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-10,SPF_INTERPOLATE);
-  }
-EXPL ABCDEFGHIJKLMN 1 bright
-{
-A_Weave(10,10,0.2,0.2);
-A_SetScale(ScaleX+0.05,ScaleY+0.05);
-A_SetRoll(Roll-5,SPF_INTERPOLATE);
-}
-    Stop
-  Death:
-  EXPL A 0 A_SpawnItemEx("FireFx",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION )
-  Stop
-  }
-}
-
-
-ACTOR FTShotL : FTShot
-{
-
-
-}
-ACTOR FTShotUP : FTShot
-{
-}
-ACTOR FTShotDOWN : FTShotUP
-{
-}
-ACTOR SMGBullet : FastProjectile
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 5
-  Damage 5
-  RADIUS 10
-  Yscale 1.0
-  Xscale 0.3
-  PROJECTILE
-    +MTHRUSPECIES
-  +BLOODSPLATTER
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS B 2 bright A_CountDown
-    GOTO SPAWN
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR SMGBulletUP : FastProjectile
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  RADIUS 6
-  ReactionTime 10
-  Damage 10
-  xscale 1.0
-  yscale 0.3
-  Projectile
-    +MTHRUSPECIES
-  +BLOODSPLATTER
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS D 2 bright A_CountDown
-    GOTO SPAWN
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-ACTOR MGBullet : FastProjectile
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 5
-  Damage 10
-  Yscale 0.3
-  Xscale 1.5
-  Height 10
-    RADIUS 10
-    Projectile
-    +MTHRUSPECIES
-  +BLOODSPLATTER
-  +NOEXTREMEDEATH
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS B 2 bright A_CountDown
-    GOTO SPAWN
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR MGBulletUP : FastProjectile
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 10
-  Damage 10
-  xscale 0.4
-  yscale 1.4
-  Height 10
-    RADIUS 10
-    Projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-  States
-  {
-  Spawn:
-    APLS D 2 bright A_CountDown
-    GOTO SPAWN
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR SGBullet
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 70
-  ReactionTime 4
-  Damage 6
-  Yscale 0.3
-  Xscale 0.3
-    RADIUS 10
-  Height 10
-    Projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BRIGHT
-  +BLOODSPLATTER
-  States
-  {
-  Spawn:
-      APLS E 0 A_jump(128,"spawn2")
-    APLS E 0 bright A_Weave(40,0,RANDOM(0,6),0)
-    EMBL A 1 bright A_CountDown
-    GOTO SPAWN
-Spawn2:
-    APLS E 0 bright A_Weave(40,0,RANDOM(0,6),0)
-    EMBL A 1 bright A_CountDown
-    APLS E 0 bright A_CountDown
-    GOTO SPAWN2
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-ACTOR SGBulletUP
-{
-SeeSound ""
-  Obituary "%o was burned by %k's Plasma Pistol."
-  RenderStyle Normal
-  Speed 55
-  ReactionTime 2
-  Damage 6
-  Yscale 0.3
-  Xscale 0.3
-    RADIUS 10
-  Height 10
-    Projectile
-    +MTHRUSPECIES
-  +NOEXTREMEDEATH
-  +BLOODSPLATTER
-  +BRIGHT
-  States
-  {
-  Spawn:
-      APLS E 0 A_jump(128,"spawn2")
-    APLS E 0 bright A_Weave(40,0,RANDOM(-6,6),0)
-    APLS E 1 bright A_CountDown
-    GOTO SPAWN
-Spawn2:
-    APLS E 0 bright A_Weave(40,0,RANDOM(-6,6),0)
-    APLS E 1 bright A_CountDown
-    APLS E 0 bright A_CountDown
-    GOTO SPAWN2
-  Crash:
-  XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
-      EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-  stop
-  Death:
-  APLS A 0 bright A_SetScale(1.0,1.0) 
-  APBX D 0 A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
-    TNT1 A 2 bright A_Stop
-    Stop
-  }
-}
-
-ACTOR Casing1
-{
-BounceFactor 0.4
-Height 12
-Radius 9
-Speed 6
-Scale 0.35
-Mass 0
-PROJECTILE
-+USEBOUNCESTATE
-+DOOMBOUNCE
-+DROPOFF
-- NOGRAVITY
-+ROLLSPRITE
-BounceSound "casing/tin"
-States
-{
-Spawn:
-TNT1 A 0
-BUL1 A 0 A_Jump(128,"Spawn2")
-BUL1 A 0 A_PlaySound("NULL")
-BUL1 A 1
-{
-A_SetRoll(Roll-40);
-A_SpawnItemEx("CasingCopy",0.0,0.0,0.0,0.0,0.0,0.0,0.0,SXF_ORIGINATOR|SXF_SETMASTER|SXF_TRANSFERROLL,0,0);
-}
-
-Goto Spawn+3
-
-Spawn2:
-BUL1 A 1
-{
-A_SetRoll(Roll+40);
-A_SpawnItemEx("CasingCopy",0.0,0.0,0.0,0.0,0.0,0.0,0.0,SXF_ORIGINATOR|SXF_SETMASTER|SXF_TRANSFERROLL,0,0);
-}
-Loop
-BOUNCE:
-TNT1 A 0 A_PlaySound("casing/tin")
-TNT1 A 0 Bright
-Goto Spawn
-Death:
-BUL1 A 30
-BUL1 AAAAAAAAAA 1 A_Fadeout
-STOP
-}
-}
-
-
-ACTOR CasingCopy
-{ 
-damageFactor "Flame", 0.0
-  +NORADIUSDMG 
-  +NOTAUTOAIMED
-  
-DamageFactor "EnemySide", 0.0
-  DAMAGEFACTOR "PlayerSide" , 0.0
-DamageFactor "NORMAL", 0.0
-  Health 200
-  height 2
-  SCALE 0.35
-  radius 2
-        ExplosionRadius 0
-  Speed  0
-species playerside
-  RENDERSTYLE Translucent
-
-    painchance 255
-    monster
-    -COUNTKILL
-    +THRUSPECIES 
-  +NOBLOOD
-    +FLOORCLIP
-        +DROPOFF
-+MTHRUSPECIES
-+LOOKALLAROUND
-+SEEINVISIBLE
-    -SHOOTABLE
-    +QUICKTORETALIATE
-    +FRIENDLY
-        +NOCLIP
-    -SOLID
-        +NORADIUSDMG
-  +NOGRAVITY
-  +ROLLSPRITE
-  States
-  {
-
-    Spawn: 
-    FLAR A 1
-  {
-  A_CopySpriteFrame(AAPTR_MASTER,AAPTR_DEFAULT);
-  A_FadeOut(0.3);
-  }
-    loop
-    SEE:
-    FLAR A 1
-  {
-  A_CopySpriteFrame(AAPTR_MASTER,AAPTR_DEFAULT);
-  A_FadeOut(0.1);
-  }
-    loop
-    PAIN:
-                TNT1 AAA 0 A_Scream
-      GOTO SEE
-    Death:
-                TNT1 AAA 0 A_Scream
-    Stop
-  }
-}
-ACTOR Casing2
-{
-
-Height 12
-Radius 9
-Speed 6
-Scale 0.35
-BounceFactor 0.6
-Mass 0
-PROJECTILE
-+USEBOUNCESTATE
-+DOOMBOUNCE
-+DROPOFF
-- NOGRAVITY
-+ROLLSPRITE
-States
-{
-Spawn:
-TNT1 A 0
-BUL2 A 0 A_Jump(128,"Spawn2")
-BUL2 A 0 A_PlaySound("NULL")
-BUL2 A 1
-{
-A_SetRoll(Roll-40);
-A_SpawnItemEx("CasingCopy",0.0,0.0,0.0,0.0,0.0,0.0,0.0,SXF_ORIGINATOR|SXF_SETMASTER|SXF_TRANSFERROLL,0,0);
-}
-
-Goto Spawn+3
-
-Spawn2:
-BUL2 A 1
-{
-A_SetRoll(Roll+40);
-A_SpawnItemEx("CasingCopy",0.0,0.0,0.0,0.0,0.0,0.0,0.0,SXF_ORIGINATOR|SXF_SETMASTER|SXF_TRANSFERROLL,0,0);
-}
-Loop
-BOUNCE:
-TNT1 A 0 A_PlaySound("casing/shell")
-TNT1 A 0 Bright
-Goto Spawn
-Death:
-BUL2 A 30
-BUL2 AAAAAAAAAA 1 A_Fadeout
-STOP
-}
-}

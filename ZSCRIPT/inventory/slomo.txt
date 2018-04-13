@@ -121,3 +121,83 @@ class PowerTimeFreezer2 : Powerup
 		S_ResumeSound(false);
 	}
 }
+
+class HOOKSHOT : Actor
+{
+
+
+    default
+    {
+    Species "Playerside";
+	height 12;
+	radius 12;
+	speed 45;
+	scale 0.5;
+	Damage 0;
+	Projectile;
+	Renderstyle "Translucent";
+	CameraHeight 32;
+	+NOGRAVITY
+	+MTHRUSPECIES 
+	+SKYEXPLODE
+    }
+
+States
+{
+Spawn:
+MIS2 A 0 bright;
+MMIS B 0 bright;
+SHK1 AAAA 1 bright  A_SpawnActorLine("HOOKROPE2",self.pos,target.pos+(0,0,target.height*0.5),5);
+goto Death2;
+Death2:
+SHK1 A 1 A_GiveToTarget("HOOKnotattached",1);
+stop;
+Crash:
+XDeath:
+EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+TNT1 A 0 A_PlaySound("hookhit", 7,1.0,0,ATTN_NONE);
+TNT1 A 0 A_JumpIfInTargetInventory("HookCancel",1,"RemoveHook");
+MIS2 A 0 A_GiveToTarget("HOOKEND",1);
+MIS2 A 0 A_SpawnActorLine("HOOKROPE2",self.pos,target.pos+(0,0,target.height*0.5),5);
+stop;
+Death:
+ 
+EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+TNT1 A 0 A_PlaySound("hookhit", 7,1.0,0,ATTN_NONE);
+TNT1 A 0 A_JumpIfInTargetInventory("HookCancel",1,"RemoveHook");
+MIS2 A 0 A_GiveToTarget("HOOKEND",1);
+SHK1 A 1 bright
+{
+ A_SpawnActorLine("HOOKROPE2",self.pos,target.pos+(0,0,target.height*0.5),5);
+ACS_NamedExecuteAlways("Hook_HitWall", 0, 0, 0, 0);
+}
+GOTO DEATH+2;
+
+RemoveHook:
+TNT1 A 0 A_PlaySound("hookcanc", 7,1.0,0,ATTN_NONE);
+SHK1 A 1 A_TakeFromTarget("HOOKEND",1);
+stop;
+}
+
+action void A_SpawnActorLine(string classname, Vector3 pointA, Vector3 pointB, double units = 1)
+{
+    // get a vector pointing from A to B
+    let pointAB = pointB - pointA;
+    
+    // get distance
+    let dist = pointAB.Length();
+    
+    // normalize it
+    pointAB /= dist == 0 ? 1 : dist;
+    
+    // iterate in units of 'units'
+    for (double i = 0; i < dist; i += units)
+    {
+        // we can now use 'pointA + i * pointAB' to
+        // get a position that is 'i' units away from
+        // pointA, heading in the direction towards pointB
+        let position = pointA + i * pointAB;
+        Spawn(classname, position);
+    }
+}
+}

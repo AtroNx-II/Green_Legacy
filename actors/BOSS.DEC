@@ -24,7 +24,6 @@ DamageFactor "EnemySide", 0.0
   PainSound "worm_pain"
   DeathSound "worm_death"
   ActiveSound "worm_active"
-  Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
   States
   {
   Spawn:

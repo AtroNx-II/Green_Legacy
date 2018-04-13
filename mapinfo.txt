@@ -7,11 +7,10 @@ gameinfo
     advisorytime = 0
     pagetime = 255
     chatsound = "misc/chat"
-    drawreadthis = FALSE
     infopage = "HELP", "CREDIT","IPRIN"
     intermissionmusic = "$MUSIC_DM2INT"
     intermissioncounter = false
-    quitmessages = ""
+    quitmessages = "Are you sure?"
 	dimcolor = "black"
 	dimamount = 0.5
     menufontcolor_title = "UNTRANSLATED"
@@ -19,9 +18,189 @@ gameinfo
     menufontcolor_value = "White"
     menufontcolor_action = "White"
     menufontcolor_header = "White"
-    menufontcolor_highlight = "White"
-    menufontcolor_selection = "White"
+    menufontcolor_highlight = "Yellow"
+    menufontcolor_selection = "Yellow"
     menubackbutton = "M_BACK_D"
     playerclasses = "M16"
     pausesign = "M_PAUSE"
+}
+
+
+
+ClearEpisodes
+
+
+skill "Hard"
+{
+   DamageFactor = 1.5
+   AmmoFactor = 1
+   MonsterHealth = 1.0
+   SpawnFilter = Hard
+   Key = "b"
+   TextColor = "red" 
+   Aggressiveness = 0.7
+   PicName = "M_ULTRA"
+
+}
+
+skill "Easy"
+{
+   DamageFactor = 1.0
+   AmmoFactor = 1
+   MonsterHealth = 1.0
+   SpawnFilter = Hard
+   Key = "b"
+   TextColor = "red" 
+   Aggressiveness = 0.5
+   PicName = "M_ULTRA"
+
+}
+
+   
+episode TUTORIAL
+{
+    noskillmenu
+    Name = "Select Difficulty"
+}
+
+
+
+map TUTORIAL "TUTORIAL"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT01"
+NoIntermission
+   music = "D_NOMUS"
+   }
+   
+map TITLEMAP "TITLEMAP"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "TUTORIAL"
+NoIntermission
+music = "D_NOMUS"
+PrecacheTextures = "TTAP41","TTAP42","TTAP43","TTAP51","TTAP52","TTAP53","TTAP54","TTAP71","TTAP72","TTAP73","TTAP74",
+"TTAP75","TTAP76","TTAP77","TTAP91","TTAP92","TTAP93","TTAP94","TTAP95","TTAP96","TTAP97","TTAP98","TTAP99","TTAP101","TTAP102","TTAP103","TTAP104","TTAP105","TTAP106","TTAP107","TTAP108","TTAP109","TTAP1010",
+"TTAP1","TTAP6","TTAP8","TTAP11","TTAP12"
+}
+   
+map GALLERYM "GALLERY"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "TUTORIAL"
+NoIntermission
+   music = "STAGE0_1"
+}
+map PLAT01 "Stage1"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT02"
+NoIntermission
+   music = "STAGE1_1"
+PrecacheClasses = "stage_1boss"
+
+}
+
+map PLAT02 "Stage2"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT03"
+NoIntermission
+   music = "STAGE2_1"
+}
+
+map PLAT03 "Stage3"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT04"
+NoIntermission
+   music = "STAGE3_1"
+}
+
+
+map PLAT04 "Stage4"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT05"
+NoIntermission
+   music = "STAGE4_1"
+}
+
+map PLAT05 "Stage5"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT06"
+NoIntermission
+   music = "STAGE5_1"
+}
+
+map PLAT06 "Stage3"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT07"
+NoIntermission
+   music = "STAGE6_1"
+}
+
+map PLAT07 "Stage3"
+{
+UsePlayerStartZ
+Sky1 = BLUESKY
+Par  = 90
+NoCrouch
+NoInfighting
+Cluster = 1
+Next = "PLAT08"
+NoIntermission
+   music = "STAGE7_1"
+}
+
+DoomEdNums
+{
+    15119 = BridgeVerticalMovePlatform
 }

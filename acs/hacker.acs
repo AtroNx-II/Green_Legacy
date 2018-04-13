@@ -11,81 +11,350 @@ str UPPERimage[72] = {"CATSH00","CATSH01","CATSH02","CATSH03",
 ,"CATSH51","CATSH52","CATSH53","CATSH54","CATSH55","CATSH56","CATSH57","CATSH58"
 ,"CATSH59","CATSH60","CATSH61","CATSH62","CATSH63","CATSH64","CATSH65","CATSH66","CATSH67"
 ,"CATSH68","CATSH69","CATSH70","CATSH71"};
+str Chargeimage[16] = {"EBFC000","EBFC001","EBFC002","EBFC003","EBFC004","EBFC005","EBFC006","EBFC007","EBFC008","EBFC009",
+"EBFC010","EBFC011","EBFC012","EBFC013","EBFC014","EBFC015",};
 
-script "TidCaller" (int Tid)
+
+script "Beep" (int type)
 {
-SetResultValue(Tid);
+if(Type==1)
+{
+If(Checkinventory("Waitingforrestart")==0)
+{
+LocalAmbientsound("low50",127);
+Acs_NamedExecute("Beepcheck",0,0,0,0);
+GiveInventory("Waitingforrestart",1);
+Delay(105);
 }
 
+}
+else
+{
+If(Checkinventory("Waitingforrestart2")==0)
+{
+LocalAmbientsound("low25",127);
+Acs_NamedExecute("Beepcheck2",0,0,0,0);
+GiveInventory("Waitingforrestart2",1);
+Delay(105);
+}
+}
+Delay(1);
+}
+
+script "Beep2" (void)
+{
+If(Checkinventory("Cutsceneblock")==0)
+{
+If(Checkinventory("Plasmagauge")>101 && Checkinventory("Plasmagauge")<200)
+{
+LocalAmbientsound("chargef",127);
+}
+else If(Checkinventory("Plasmagauge")>0 && Checkinventory("Plasmagauge")<100)
+{
+LocalAmbientsound("chargeE",127);
+}
+Else
+{}
+}
+delay(105);
+}
+
+script "Beepcheck" (void)
+{
+If(Checkinventory("Fire_pressed")==0)
+{
+TakeInventory("Waitingforrestart",1);
+Terminate;
+}
+else
+{
+
+}
+Delay(1);
+restart;
+}
+script "Beepcheck2" (void)
+{
+If(Checkinventory("Fire_pressed")==0)
+{
+TakeInventory("Waitingforrestart2",1);
+Terminate;
+}
+else
+{
+
+}
+Delay(1);
+restart;
+}
+script "ChargeComplete" (void)
+{
+
+If(Checkinventory("PlayingEmily")== 0)
+{
+If(Checkinventory("Cutsceneblock")== 0)
+{
+
+LocalAmbientsound("CHGCP",127);
+    int Imagenum;
+    For(Imagenum = 0; Imagenum <= 15; Imagenum += 1)
+    {
+            Setfont(Chargeimage[Imagenum]);
+      If(Checkinventory("Transition01")== 1 ||Checkinventory("Transition02")== 1)
+      {
+            HudMessage(s:""; HUDMSG_ADDBLEND, 2017,CR_UNTRANSLATED, 480.0,578.0, 0.1);
+      }
+      else
+      {
+            HudMessage(s:"A"; HUDMSG_ADDBLEND, 2017,CR_UNTRANSLATED, 480.0,578.0, 0.1);
+      }
+
+       SetHUDSize(960, 640, TRUE);
+            Delay(1);
+    }
+    }
+  }
+}
 script "AutoSaving" (void)
 {
+  SetHUDSize(1600, 900, TRUE);
+  SetFont("LDIC01");
+  HudMessage(s:"A";HUDMSG_FADEINOUT, 20002, -1, 1220.0, 820.0,2.0,0.3,0.3);
+  SetHUDSize(640, 440, TRUE);
+  SetFont("font2");
+  HudMessage(s:"CHECKPOINT REACHED";HUDMSG_FADEINOUT, 20000, -1, 500.5, 400.0,2.0,0.3,0.3);
 Autosave();
 }
-script "PlatFormMover" (int Distance,int Speed,int StayDelay) 
+script "FoundSecret" (void)
+{
+  SetHUDSize(800, 600, TRUE);
+  SetFont("font2");
+  HudMessage(s:"SECRET REVEALED!";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+  HudMessage(s:"SECRET REVEALED";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+  HudMessage(s:"SECRET REVEALED";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+  HudMessage(s:"SECRET REVEALED";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+  HudMessage(s:"SECRET REVEALED";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+  HudMessage(s:"SECRET REVEALED";HUDMSG_PLAIN, 20001, -1, 400.0, 300.0,0.1);
+  Delay(5);
+
+}
+script "NavigatorScript" (int nnum)
 {
 
-    int RESTARTANIMATION,MoveDistance,FirstX,SecondX,FirstY,SecondY,FirstZ,SecondZ,Xdiff,Ydiff,Zdiff,platform_Height,platform_Radius,player_radius,platform_Radius2,player_height,FDiffDist;
+SetActivator(0,AAPTR_TARGET);
+
+  IF(nnum==5) //left
+  {
+
+    SetHUDSize(400, 270, TRUE);
+    SetFont("NL");
+    HudMessage(s:"A";HUDMSG_PLAIN, 9000, -1, 200.0, 135.0,0.1);
+    Delay(5);
+  }
+  else IF(nnum==6) //right
+  {
+    SetHUDSize(400, 270, TRUE);
+    SetFont("NR");
+    HudMessage(s:"A";HUDMSG_PLAIN, 9000, -1, 200.0, 135.0,0.1);
+    Delay(5);
+  }
+  else IF(nnum==3) //up
+  {
+
+    SetHUDSize(400, 270, TRUE);
+    SetFont("NAVID");
+    HudMessage(s:"A";HUDMSG_PLAIN, 9000, -1, 200.0, 135.0,0.1);
+    Delay(5);
+  }
+  else IF(nnum==4) //down
+  {
+
+    SetHUDSize(400, 270, TRUE);
+    SetFont("NAVIU");
+    HudMessage(s:"A";HUDMSG_PLAIN, 9000, -1, 200.0, 135.0,0.1);
+    DELAY(5);
+  }
+  else
+  {
+  }
+
+}
+script "PlatFormMoverV" (int Distance,int Speed,int Plattid) 
+{
+
+    int RESTARTANIMATION,MoveDistance,platform_Height,platform_Radius,player_radius,player_height,FDiffDist,Reverse;
     IF(RESTARTANIMATION==0) //PREVENT CHANGE TID CONTINUOSLY 
     {
-        int MissileID = UniqueTid();//Acs_NamedExecuteWithResult("TidCaller",0,2000,0,0);
-        Thing_ChangeTID(0, MissileID);
-        SetActivator(1001+PlayerNumber(), AAPTR_PLAYER1);
-        platform_Height = GetActorProperty(MissileID, APROP_Height);
-        platform_Radius = GetActorProperty(MissileID, APROP_Radius)+player_radius;
+  
+  Thing_ChangeTID(0,Plattid);
+        platform_Height = GetActorProperty(0, APROP_Height)+GetActorZ(0);
+        platform_Radius = GetActorProperty(0, APROP_Radius)+player_radius;
         player_radius = GetActorProperty(APROP_TargetTID, APROP_Radius)/2;
-		player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
+    player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
     }
     
-        For(MoveDistance = Distance*1.0; MoveDistance >= 0.0; MoveDistance -= 1.0) // MOVE DISTANCE
-        { 
-    FirstX=GetActorX(MissileID);
-    FirstY=GetActorY(ActivatorTid());
-    FirstZ=GetActorZ(ActivatorTid())-GetActorFLOORZ(ActivatorTid());
-    SetActorVelocity(MissileID,Speed*1.0,0,0,False,False);
-		ModifyPlayerFriction(MissileID, 0.55);
-            Delay(1);
-    SecondX=GetActorX(ActivatorTid());
-    SecondY=GetActorY(ActivatorTid());
-    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
-    Xdiff = FirstX-SecondX;
-    Ydiff = FirstY-SecondY;
-    Zdiff = FirstZ-SecondZ;
-if(GetActorX(MissileID)-GetActorX(ActivatorTid())< platform_Radius && GetActorZ(MissileID)+platform_Height==GetActorZ(ActivatorTid()))
-        {
-        SetActorPosition(ActivatorTid(),GetActorX(MissileID)-Xdiff,GetActorY(MissileID),GetActorZ(ActivatorTid()),False);
-				ModifyPlayerFriction(ActivatorTid(), 0.55);
-        }
-        }
-    Thing_Stop(MissileID);
-                    Delay(StayDelay);
-        For(MoveDistance = Distance*1.0; MoveDistance >= 0.0; MoveDistance -= 1.0)
-        { 
-    FirstX=GetActorX(MissileID);
-    FirstY=GetActorY(ActivatorTid());
-    FirstZ=GetActorZ(ActivatorTid())-GetActorFLOORZ(ActivatorTid());
-        SetActorVelocity(MissileID,-Speed*1.0,0,0,False,False);
-		ModifyPlayerFriction(MissileID, 0.55);
-        Delay(1);
-    SecondX=GetActorX(ActivatorTid());
-    SecondY=GetActorY(ActivatorTid());
-    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
-    Xdiff = FirstX-SecondX;
-    Ydiff = FirstY-SecondY;
-    Zdiff = FirstZ-SecondZ;
-	if(GetActorX(MissileID)-GetActorX(ActivatorTid())< platform_Radius && GetActorZ(MissileID)+platform_Height==GetActorZ(ActivatorTid()))
-        {
-        SetActorPosition(ActivatorTid(),GetActorX(MissileID)-Xdiff,GetActorY(MissileID),GetActorZ(ActivatorTid()),False);
-		ModifyPlayerFriction(ActivatorTid(), 0.55);
-        }
 
-		
-        }
-        Thing_Stop(MissileID);
-                    Delay(StayDelay);
+    MoveDistance = Distance;
+    Until(MoveDistance==0)
+    {
+    If(GetActorVelZ(Plattid)==0)
+    {
+    }
+    else
+    {
+    MoveDistance--;
+    }
+    If(Reverse==1)
+    {
+    SetActorVelocity(Plattid,0,0,-Speed*1.0,False,False);
+    }
+    else
+    {
+    SetActorVelocity(Plattid,0,0,Speed*1.0,False,False);
+    }
+    Delay(1);
+    }
+    Thing_Stop(0);
+        Delay(35);
+
 RESTARTANIMATION=1;
+    If(Reverse==0){Reverse=1;}
+    else{Reverse=0;
+}
+
+
           restart;
 }
 
+script "PlatFormMoverH" (int Distance,int Speed,int Plattid ) 
+{
+
+    int RESTARTANIMATION,MoveDistance,platform_Height,platform_Radius,player_radius,player_height,FDiffDist,Reverse;
+    IF(RESTARTANIMATION==0) //PREVENT CHANGE TID CONTINUOSLY 
+    {
+  
+  Thing_ChangeTID(0,Plattid);
+        platform_Height = GetActorProperty(0, APROP_Height)+GetActorZ(0);
+        platform_Radius = GetActorProperty(0, APROP_Radius)+player_radius;
+        player_radius = GetActorProperty(APROP_TargetTID, APROP_Radius)/2;
+    player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
+    }
+    
+
+    MoveDistance = Distance;
+    Until(MoveDistance==0)
+    {
+    If(GetActorVelx(Plattid)==0)
+    {
+    }
+    else
+    {
+    MoveDistance--;
+    }
+    If(Reverse==1)
+    {
+    SetActorVelocity(Plattid,-Speed*1.0,0,0,False,False);
+    }
+    else
+    {
+    SetActorVelocity(Plattid,Speed*1.0,0,0,False,False);
+    }
+    Delay(1);
+    }
+    Thing_Stop(0);
+        Delay(35);
+
+RESTARTANIMATION=1;
+    If(Reverse==0){Reverse=1;}
+    else{Reverse=0;
+}
+
+          restart;
+}
+script "PlatFormPhysicsV" (int Plattid)
+{
+
+ int RESTARTANIMATION,FirstX,SecondX,FirstY,SecondY,FirstZ,SecondZ,Xdiff,Ydiff,Zdiff,platform_Height,platform_Radius,player_radius,player_height;
+    IF(RESTARTANIMATION==0) //PREVENT CHANGE TID CONTINUOSLY 
+    {
+                  platform_Height = GetActorProperty(Plattid, APROP_Height)+GetActorZ(Plattid);
+        platform_Radius = GetActorProperty(Plattid, APROP_Radius)+player_radius;
+        player_radius = GetActorProperty(APROP_TargetTID, APROP_Radius)/2;
+    player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
+        Thing_ChangeTID(0,Plattid);
+     int playerangle = GetActorAngle(ActivatorTid()) >> 8;
+     int playerheightwithZ = GetActorProperty(ActivatorTid(), APROP_Height)+GetActorZ(ActivatorTid());
+    SetActivator(1001+PlayerNumber(), AAPTR_PLAYER1);
+    
+    RESTARTANIMATION=1;
+    }
+    FirstX=GetActorX(Plattid); /////store platform's position
+    FirstY=GetActorY(Plattid);
+    FirstZ=GetActorProperty(Plattid, APROP_Height)+GetActorZ(Plattid);
+        Delay(1); 
+    SecondX=GetActorX(ActivatorTid()); /////store player's current position
+    SecondY=GetActorY(ActivatorTid());
+    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
+    Xdiff = FirstX-SecondX;
+    Ydiff = FirstY-SecondY;
+    Zdiff = FirstZ-SecondZ;
+  SetHudSize(640,400,1);
+          HudMessage(s:"  - ", f:GetActorX(Plattid)-GetActorX(ActivatorTid()),s:" platformdistance\n",
+                              s:"  - ", f:platform_Radius,s:" platformradius\n";
+         HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
+    if(GetActorX(Plattid)-GetActorX(ActivatorTid())< platform_Radius && platform_Height==GetActorZ(ActivatorTid()))
+        {
+            SetActorVelocity(ActivatorTid(),GetActorVelX(ActivatorTid()),GetActorVelY(ActivatorTid()),GetActorVelZ(Plattid),False,False);
+        
+        }
+    else
+    {}
+    }
+    
+script "PlatFormPhysicsH" (int Plattid)
+{
+
+ int RESTARTANIMATION,FirstX,SecondX,FirstY,SecondY,FirstZ,SecondZ,Xdiff,Ydiff,Zdiff,platform_Height,platform_Radius,player_radius,player_height;
+    IF(RESTARTANIMATION==0) //PREVENT CHANGE TID CONTINUOSLY 
+    {
+                  platform_Height = GetActorProperty(Plattid, APROP_Height)+GetActorZ(Plattid);
+        platform_Radius = GetActorProperty(Plattid, APROP_Radius)+player_radius;
+        player_radius = GetActorProperty(APROP_TargetTID, APROP_Radius)/2;
+    player_height = GetActorProperty(APROP_TargetTID, APROP_Height);
+        Thing_ChangeTID(0,Plattid);
+     int playerangle = GetActorAngle(ActivatorTid()) >> 8;
+     int playerheightwithZ = GetActorProperty(ActivatorTid(), APROP_Height)+GetActorZ(ActivatorTid());
+    SetActivator(1001+PlayerNumber(), AAPTR_PLAYER1);
+    
+    RESTARTANIMATION=1;
+    }
+    FirstX=GetActorX(Plattid); /////store platform's position
+    FirstY=GetActorY(Plattid);
+    FirstZ=GetActorProperty(Plattid, APROP_Height)+GetActorZ(Plattid);
+        Delay(1); 
+    SecondX=GetActorX(ActivatorTid()); /////store player's current position
+    SecondY=GetActorY(ActivatorTid());
+    SecondZ=GetActorZ(ActivatorTid())-GetActorFloorZ(ActivatorTid());
+    Xdiff = FirstX-SecondX;
+    Ydiff = FirstY-SecondY;
+    Zdiff = FirstZ-SecondZ;
+  SetHudSize(640,400,1);
+          HudMessage(s:"  - ", f:GetActorX(Plattid)-GetActorX(ActivatorTid()),s:" platformdistance\n",
+                              s:"  - ", f:platform_Radius,s:" platformradius\n";
+         HUDMSG_PLAIN, 10, CR_UNTRANSLATED, 4.0, 72.0, 0.1);
+    if(GetActorX(Plattid)-GetActorX(ActivatorTid())< platform_Radius && platform_Height==GetActorZ(ActivatorTid()))
+        {
+SetActorPosition(ActivatorTid(),GetActorX(Plattid)-Xdiff,GetActorY(Plattid)-Ydiff,GetActorZ(ActivatorTid()),False);
+        }
+    else
+    {}
+    }
+    
 script "CheckSupporterSkill" ENTER
 {
         int buttons; int heldButtons; int newButtons; int oldButtons;
@@ -100,6 +369,7 @@ script "CheckSupporterSkill" ENTER
  newButtons = (buttons ^ heldButtons) & buttons;
  oldButtons = (buttons ^ heldButtons) & heldButtons;
  INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+ int cattyhealth,m16health;
 
  if (GetActorProperty (0, APROP_HEALTH) > 0 && GameType () != GAME_TITLE_MAP )
  {
@@ -107,50 +377,17 @@ script "CheckSupporterSkill" ENTER
    {
     If(CheckInventory("HaveEmily"))
    {
-	
-    If(CheckInventory("LoadingEmily"))
+  
+    If(CheckInventory("LoadingEmily"))  // check inventory forchange charecter
    {
-    If(CheckInventory("PlayingEmily")==0)
+    If(CheckInventory("PlayingEmily")==0 ) 
    {
-  SetPlayerProperty(TRUE, ON, PROP_TOTALLYFROZEN);
- Delay(1);
-            Takeinventory("ShieldOnline",1);
-       Takeinventory("ShieldFinished",1);
-	     Takeinventory("ShieldPowerGiver",1);
-		 Takeinventory("ShieldPower",1);
-
- Delay(1);
- 	     Takeinventory("ShieldPowerGiver",1);
-		 Takeinventory("ShieldPower",1);
-   MorphActor(0,"EmilyPlayer","",0x7fffffff,MRF_FULLHEALTH ,"NoFlash","NoFlash");
-          Thing_ChangeTID(0,1001+PlayerNumber());
-   Giveinventory("PlayingEmily",1);
-
-	SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
-   INT OLDPOSX = GetActorX(0);
-   INT OLDPOSY = GetActorY(0);
-   INT OLDPOSZ = GetActorZ(0);
-        Giveinventory("Spawn_Emily",1);
-
-   					 Giveinventory("HideMaster",1);
-
-      Delay(20);
-SetPlayerProperty(TRUE, OFF, PROP_TOTALLYFROZEN);
-	 
-	}
-	Else
-	{
-	SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
-	 Delay(1);
-
-	SetActorPosition(0,OLDPOSX,OLDPOSy,OLDPOSz,False);
-	UnMorphActor(0,True);
-		Thing_ChangeTID(0,1001+PlayerNumber());
-					 Giveinventory("HookCancel",1);
-					 Giveinventory("ShowMaster",1);
-			 Takeinventory("PlayingEmily",1);
-	 Delay(20);
-	}
+  ACS_NamedExecute("UnMorphEmily",0,1,0,0);
+  }
+  Else
+  {
+  ACS_NamedExecute("UnMorphEmily",0,0,0,0);
+  }
    }
    else
    {
@@ -160,12 +397,94 @@ SetPlayerProperty(TRUE, OFF, PROP_TOTALLYFROZEN);
     }
   Else If(CheckInventory("HaveCatty"))
    {
-   if(CheckInventory("CattyCooltime")==0)
+
+    If(CheckInventory("LoadingCatty"))
+   {
+    If(CheckInventory("PlayingCatty")==0)
+   {
+       If(CheckInventory("Cattyonce")==0)
+   {
+   Giveinventory("Cattyonce",1);
+    cattyhealth = 100; 
+  }
+  else
+  {
+
+   }
+     Takeinventory("Fire_Pressed",1);
+            Takeinventory("ShieldOnline",1);
+       Takeinventory("ShieldFinished",1);
+       Takeinventory("ShieldPowerGiver",1);
+     Takeinventory("ShieldPower",1);
+      m16health = GetActorProperty (0, APROP_HEALTH);
+ Delay(1);
+       Takeinventory("ShieldPowerGiver",1);
+     Takeinventory("ShieldPower",1);
+   MorphActor(1001+PlayerNumber(),"CattyPlayer","",0x7fffffff,MRF_UNDOALWAYS|MRF_WHENINVULNERABLE ,"NoFlash","NoFlash");
+Thing_ChangeTID(0,1001+PlayerNumber());
+Delay(1);
+  SetActorProperty (0, APROP_HEALTH,cattyhealth);
+ACS_NamedExecuteAlways("InvulTime",0,10,0,0);
+   Giveinventory("PlayingCatty",1);
+     Takeinventory("Fire_Pressed",1);
+  SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+   INT OLDPOSX = GetActorX(0);
+   INT OLDPOSY = GetActorY(0);
+   INT OLDPOSZ = GetActorZ(0);
+        Giveinventory("Spawn_Catty",1);
+      Delay(15);
+   
+  }
+  Else
+  {
+  cattyhealth = GetActorProperty (0, APROP_HEALTH);
+  Takeinventory("Enable_DashAttack",1);
+     Takeinventory("Fire_Pressed",1);
+     Takeinventory("SlomoOnline",1);
+  SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+   Delay(1);
+
+  
+  Giveinventory("Spawn_M16",1);
+  UnMorphActor(1001+PlayerNumber(),True);
+  SetActorProperty (0, APROP_HEALTH,m16health);
+    Thing_ChangeTID(0,1001+PlayerNumber());
+  ACS_NamedExecuteAlways("InvulTime",0,10,0,0);
+         Takeinventory("Fire_Pressed",1);
+           Giveinventory("ShowMaster",1);
+       Takeinventory("PlayingCatty",1);
+   Delay(15);
+  }
+   }
+  Else
+  {
+
+    }
+  }
+  Else
+  {
+    }
+  }
+    ELSE
+    {
+
+    }
+
+
+   }
+
+      delay(1);
+}
+
+}
+
+script "CattySpecialAttack" (void)
+{
+  if(CheckInventory("CattyCooltime")==0)
    {
    SetActorProperty(0, APROP_Invulnerable, true);
 Giveinventory("Baldo",1);
 
-   ACS_NamedExecute("Check_CoolTime_Catty",0,0,0,0);
    GiveInventory("CattyCooltime",300);
        SetHUDSize(880, 640, TRUE);
      delay(10);
@@ -185,30 +504,73 @@ Giveinventory("Baldo",1);
 
             Delay(2);
       Giveinventory("CattySpecialAttack",1);
-
-     Acs_NamedExecute("CattySpecial",0,0,0,0);
          delay(35*1);
             SetActorProperty(0, APROP_Invulnerable, false);
      delay(35*2);
 
      }
-    }
-  Else
-  {
-    }
-  }
-    ELSE
+}
+
+script "UnmorphEmily" (int type)
+{
+if(type == 1)
+{
+    GiveInventory("EmilyPain",4);
+  SetPlayerProperty(TRUE, ON, PROP_TOTALLYFROZEN);
+ Delay(1);
+ 
+     Takeinventory("Fire_Pressed",1);
+            Takeinventory("ShieldOnline",1);
+       Takeinventory("ShieldFinished",1);
+       Takeinventory("ShieldPowerGiver",1);
+     Takeinventory("ShieldPower",1);
+
+ Delay(1);
+       Takeinventory("ShieldPowerGiver",1);
+     Takeinventory("ShieldPower",1);
+   MorphActor(1001+PlayerNumber(),"EmilyPlayer","",0x7fffffff,MRF_FULLHEALTH|MRF_UNDOALWAYS|MRF_WHENINVULNERABLE ,"NoFlash","NoFlash");
+          Thing_ChangeTID(0,1001+PlayerNumber());
+   Giveinventory("PlayingEmily",1);
+ACS_NamedExecuteAlways("InvulTime",0,10,0,0);
+  SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+   INT OLDPOSX = GetActorX(0);
+   INT OLDPOSY = GetActorY(0);
+   INT OLDPOSZ = GetActorZ(0);
+        Giveinventory("Spawn_Emily",1);
+             Giveinventory("HideMaster",1);
+    Until(CheckInventory("EmilyReady")==1)
     {
+            Delay(1);
+        }
 
-    }
 
+      Delay(5);
+SetPlayerProperty(TRUE, OFF, PROP_TOTALLYFROZEN);
+}
+else
+{
+  Takeinventory("EmilyReady",1);
+     Takeinventory("Fire_Pressed",1);
+  SpawnForced("TeleportRing",GetactorX(0),GetActorY(0),GetActorZ(0),0,GetActorAngle(0));
+   Delay(1);
 
-   }
-
-      delay(1);
+  UnMorphActor(1001+PlayerNumber(),True);
+    Thing_ChangeTID(0,1001+PlayerNumber());
+  ACS_NamedExecuteAlways("InvulTime",0,10,0,0);
+           Giveinventory("HookCancel",1);
+           Giveinventory("ShowMaster",1);
+       Takeinventory("PlayingEmily",1);
+     Takeinventory("HOOKEND",1);
+     if(CheckInventory("Emilypuzzle")==1)
+     {
+     ACS_NamedExecute("emily_return",0,0,0,0);
+     }
+     else
+     {
+     }
+     }
 }
 
-}
 Script "SpecialattackSound" (void)
 {
 SetMusicVolume(0.25);
@@ -273,121 +635,51 @@ delay(1);
 terminate;
 }
 
-script "Catty_Emotion" (int type,int duration) 
-{
-// 0: COMMON
-// 1: ALERT
-// 2: PROTECTING
-// 3 : tired
-// 4: attack
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-
-if(type==4)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
-else if(type==3)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
-}
-else if(type==2)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-}
-else if(type==1)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-}
-else
-{
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
-delay(duration);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
-
-script "Catty_Emotion2" (int type,int duration) 
-{
-// 0: COMMON
-// 1: ALERT
-// 2: PROTECTING
-// 3 : tired
-// 4: attack
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-
-if(type==4)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
-else if(type==3)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
-}
-else if(type==2)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-}
-else if(type==1)
-{
-GiveActorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-}
-else
-{
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
-delay(duration);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ALERT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_PROTECT",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_TIRED",1);
-TakeactorInventory(GetActorProperty(0,APROP_MasterTID),"CATTY_EMOTION_ATTACK",1);
-}
 
 
 script "InvulTime" (int time)
 {
+int tid;
 While(time>0)
 {
-SetActorProperty(0, APROP_Invulnerable, true);
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_add);
+if (!(ClassifyActor(0) & ACTOR_PLAYER))
+{
+tid = 0;
+}
+else
+{
+If(Checkinventory("PlayingEmily")||Checkinventory("PlayingCatty"))
+{tid = 1001+PlayerNumber();}
+}
+SetActorProperty(tid, APROP_Invulnerable, true);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_add);
 Delay(1);
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_none);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_none);
 Delay(1);
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_Translucent);
 Delay(1);
 time--;
 }
-SetActorProperty(0, APROP_Invulnerable, false);
+SetActorProperty(tid, APROP_Invulnerable, false);
 delay(1);
 }
-script "FlashTime" (int time,int appear)
+script "FlashTime" (int time,int appear,int tid)
 {
 While(time>0)
 {
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_add);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_add);
 Delay(1);
 If(appear==1)
 {
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_Translucent);
 }
 Else
 {
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_none);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_none);
 Delay(1);
 }
 
-SetActorProperty(0, APROP_RENDERSTYLE, STYLE_Translucent);
+SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_Translucent);
 Delay(1);
 time--;
 }
@@ -409,21 +701,65 @@ script "CheckSpeed" ENTER
  newButtons = (buttons ^ heldButtons) & buttons;
  oldButtons = (buttons ^ heldButtons) & heldButtons;
  INT FLOORHEIGHT = GETACTORZ(0)-GETACTORFLOORZ(0);
+      playerangle = GetActorAngle(0) >> 8;
 
  if (GetActorProperty (0, APROP_HEALTH) > 0)
  {
     IF(newButtons == BT_Speed)
    {
+         If(CheckInventory("PlayingCatty")==1)
+   {
      Giveinventory("Dashing",1);
+   }
+   else
+   {
+     Giveinventory("Dashing",1);
+   }
   Delay(1);
      takeinventory("Dashing",1);
+       If(CheckInventory("PlayingCatty")==0)
+   {
   Delay(20);
+  }
+  else
+  {
+  Delay(10);
+  }
     }
     Else IF(newButtons == BT_JUMP)
    {
-     Giveinventory("HookCancel",1);
-  Delay(1);
-takeinventory("HookCancel",1);
+      if(CheckInventory("Wall_Touched") > 0 && CheckInventory("PlayingCatty") > 0 && CheckInventory("PlasmaGauge") > 21)
+   {
+
+        if (CheckInventory("BackwardsCheck") > 0)
+       {
+       takeinventory("BackwardsCheck",1);
+       Giveinventory("Find_NextWall",1);
+       takeinventory("Wall_Touched",1);
+      Playsound(0,"*jump",0,1.0,false,ATTN_NONE);
+            ThrustThing(playerangle*256/360+192, 40, 0, 0);
+			 Delay(1);
+			 ThrustThingZ(0,64,0,0);
+      
+       }
+       else
+       {
+        Giveinventory("BackwardsCheck",1);
+       Giveinventory("Find_NextWall",1);
+       takeinventory("Wall_Touched",1);
+       Playsound(0,"*jump",0,1.0,false,ATTN_NONE);
+            ThrustThing(playerangle*256/360+64, 40, 0, 0);
+			 Delay(1);
+			 ThrustThingZ(0,64,0,0);
+   }
+   }
+   Else
+   {
+   Giveinventory("HookCancel",1);
+   Delay(1);
+   takeinventory("HookCancel",1);
+   }
+
     }
     ELSE
     {
@@ -476,10 +812,31 @@ if(CheckInventory("PlayingEmily")==1)
     }
 
     }
+Else if(CheckInventory("PlayingCatty")==1) //CATTY
+{
+    if(CheckInventory("SlomoOnline")==1)
+    {
+  Acs_NamedExecute("FadeInmusic",0,0,0,0);
+    Takeinventory("SlomoOnline",1);
+          HudMessage(s:""; HUDMSG_PLAIN, 9031, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9032, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9033, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9034, CR_UNTRANSLATED, 0, 0, 0);
+    }
+    else
+    {
+PlaySound (0,"SLST", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+  Acs_NamedExecute("SlomoActivator",0,0,0,0);
+  Acs_NamedExecute("FadeOutmusic",0,0,0,0);
+    Giveinventory("SlomoOnline",1);
+    }
+
+    }
     ELSE
     {
-    if(CheckInventory("ShieldOnline")==1)
+    if(CheckInventory("ShieldOnline")==1)//m16
     {
+
     Takeinventory("ShieldOnline",1);
     Takeinventory("ShieldFinished",1);
     }
@@ -495,6 +852,92 @@ if(CheckInventory("PlayingEmily")==1)
       delay(1);
 }
 
+}
+
+script "FadeOutmusic" (void) {
+  INT VOL;
+  if(GetCVar("snd_musicvolume")>0.0)
+  {
+      For(VOL = 1.0; VOL >= 0.2; VOL -= 0.05)
+        {
+            SetMusicVolume(VOL);
+            Delay(1);
+        }
+                Delay(35);
+          }
+          else
+          {}
+          
+
+}
+script "FadeInmusic" (void) 
+{
+    INT VOL;
+  if(GetCVar("snd_musicvolume")>0.0)
+  {
+        For(VOL = 0.2; VOL <= 1.0; VOL += 0.05)
+        {
+            SetMusicVolume(VOL);
+            Delay(1);
+        }
+          }
+          else
+          {}
+  
+}
+
+script "SlomoActivator" (void)
+{
+
+    while(Checkinventory("Plasmagauge")>0)
+  {
+
+  SetCameraToTexture(ActivatorTID()+1000,"FORBLUR0",120);
+  SetFont("FORBLUR0");
+    SetHudSize(1200,720,FALSE);
+  HudMessage(s:"a"; HUDMSG_PLAIN | HUDMSG_ALPHA | HUDMSG_LAYER_UNDERHUD | HUDMSG_NOTWITHFULLMAP,9032, CR_UNTRANSLATED, 600.0, 360.0, 0.0, 0.125);
+    SetHudSize(1120,680,FALSE);
+  HudMessage(s:"a"; HUDMSG_PLAIN | HUDMSG_ALPHA | HUDMSG_LAYER_UNDERHUD | HUDMSG_NOTWITHFULLMAP,9033, CR_UNTRANSLATED, 560.0, 340.0, 0.0, 0.100);
+    SetHudSize(1080,640,FALSE);
+  HudMessage(s:"a"; HUDMSG_PLAIN | HUDMSG_ALPHA | HUDMSG_LAYER_UNDERHUD | HUDMSG_NOTWITHFULLMAP,9034, CR_UNTRANSLATED, 540.0, 320.0, 0.0, 0.075);
+  TakeInventory("Plasmagauge",3);
+  giveinventory("Slomotime",1); 
+  
+    giveinventory("SlomoTrail",1); 
+    if(CheckInventory("SlomoOnline")==0)
+    {
+  PlaySound (0,"SLED", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+  Acs_NamedExecute("FadeInmusic",0,0,0,0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9032, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9033, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9034, CR_UNTRANSLATED, 0, 0, 0);
+  Terminate;
+  }
+    if(CheckInventory("Plasmagauge")==0)
+    {
+      Takeinventory("SlomoOnline",1);
+      PlaySound (0,"SLED", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+      Acs_NamedExecute("FadeInmusic",0,0,0,0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9032, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9033, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9034, CR_UNTRANSLATED, 0, 0, 0);
+    Terminate;
+
+  }
+  delay(1);
+      giveinventory("SlomoTrail",1); 
+  TakeInventory("Plasmagauge",2);
+  delay(1);
+      giveinventory("SlomoTrail",1); 
+  TakeInventory("Plasmagauge",2);
+  delay(1);
+  }
+      HudMessage(s:""; HUDMSG_PLAIN, 9032, CR_UNTRANSLATED, 0, 0, 0);
+      HudMessage(s:""; HUDMSG_PLAIN, 9033, CR_UNTRANSLATED, 0, 0, 0);
+  HudMessage(s:""; HUDMSG_PLAIN, 9034, CR_UNTRANSLATED, 0, 0, 0);
+  Takeinventory("SlomoOnline",1);
+  PlaySound (0,"SLED", CHAN_NOPAUSE, 1.0, 0,ATTN_NONE);
+  Acs_NamedExecute("FadeInmusic",0,0,0,0);
 }
 
 script "CheckJumpDown" ENTER
@@ -571,17 +1014,25 @@ script "CheckCrouch" ENTER
 
 if (buttons & BT_CROUCH )
 {
+
+If(CheckInventory("HOOKEND")>0 && CheckInventory("PlayingEmily")>0 )
+{
+  Giveinventory("AimDown",1);
+  }
+  else
+  {
     if(GetActorVelZ(0)==0)
     {
 
      SetPlayerProperty (0, 1, PROP_FROZEN);
+   
          Giveinventory("Crouching",1);
     }
     ELSE
     {
     if(buttons & BT_Jump )
     {
-         SetPlayerProperty (0, 0, PROP_FROZEN);
+	SetPlayerProperty (0, 0, PROP_FROZEN);
              Giveinventory("AimDown",1);
              }
          SetPlayerProperty (0, 0, PROP_FROZEN);
@@ -589,11 +1040,12 @@ if (buttons & BT_CROUCH )
     }
     if(GetActorVelZ(0)==0)
     {
-
+	SetPlayerProperty (0, 0, PROP_FROZEN);
      SetPlayerProperty (0, 1, PROP_FROZEN);
           takeinventory("AimDown",1);
          Giveinventory("Crouching",1);
     }
+  }
 }
 
 
@@ -642,12 +1094,35 @@ script 102 death
 
 int xmod;
 
-Script 101 ENTER
+
+function int CheckPlayerOnWall(void)
+{
+  int Wallcheck;
+  if(!Spawn("WallCheck", GetActorX(0), GetActorY(0), GetActorZ(0) + 32.0, 0, GetActorAngle(0))
+       )
+  {
+    Wallcheck = 1;
+    //SetFont("smallfont");
+    //Print(s: "on ground");
+  }
+  else
+  {
+    Wallcheck = 0;
+    //SetFont("smallfont");
+    //Print(s: "in air");
+  }
+  return Wallcheck;
+}
+
+
+Script 101 ENTER //CAMERA AND INPUT
 {
     int buttons, oldbuttons;
     int buttonweight, buttonweightmove, buttondelay;
     int jumpstate, grounded, jumped, airtime, savejump;
+  int WallCheck;
     //int xmod;
+
     Thing_ChangeTID(0,1001+PlayerNumber());
     Spawnforced("SideCam",GetActorX(0),GetActorY(0),GetActorfloorZ(0),ActivatorTID()+1000,64);
   if(ThingCountName("Respawn_Pointer",2500)>0)
@@ -665,34 +1140,44 @@ Script 101 ENTER
         changeActorAngle(0,0.25,0);
     SetActorPitch(0,0);
 
+
+ 
         // Friction on the ground, slower jump in mid-air
     if (CheckPlayerOnGround())
         {
             ModifyPlayerFriction(1001+PlayerNumber(), 0.55);
 
-		  if(CheckInventory("PlayingEmily") > 0)
-		  {
+      if(CheckInventory("PlayingEmily") > 0)
+      {
  SetActorProperty(0, APROP_SPEED,1.0);
-			}
-			Else
-			{
+      }
+            else if(CheckInventory("PlayingCatty") > 0)
+      {
+ SetActorProperty(0, APROP_SPEED,1.0);
+      }     
+      Else
+      {
             TakeInventory("JumpSpeed",1);
-			}
+      }
             jumped = 0;
             airtime = 0;
             savejump = 0;
         }
         else
         {
-		  if(CheckInventory("PlayingEmily") > 0)
-		  {
+      if(CheckInventory("PlayingEmily") > 0)
+      {
  SetActorProperty(0, APROP_SPEED,0.25);
-			}
-			Else
-			{
+      }
+      else if(CheckInventory("PlayingCatty") > 0)
+      {
+ SetActorProperty(0, APROP_SPEED,0.25);
+      }
+      Else
+      {
  SetActorProperty(0, APROP_SPEED,1.0);
-			GiveInventory("JumpSpeed",1);
-			}
+      GiveInventory("JumpSpeed",1);
+      }
             
             airtime++;
         }
@@ -703,7 +1188,7 @@ Script 101 ENTER
            //ThrustThingZ(0,57,0,0);
            jumped = 1;
            savejump = 1;
-		   
+       
         }
 
     Switch(jumpstate)
@@ -711,6 +1196,7 @@ Script 101 ENTER
     Case 1: // You pressed Jump
       grounded = 0;
             jumped = 1;
+
       break;
 
     Case 2: // You Released Jump
@@ -733,7 +1219,7 @@ Script 101 ENTER
       if(GetActorVelZ(0) < 0.0)
       {
         TakeInventory("JumpStop",1);
-		
+    
         //print(s:"You're falling!");
         grounded = 0;
       }
@@ -749,9 +1235,19 @@ Script 101 ENTER
     }
         if (buttons & BT_MOVERIGHT) // Checks for if the player is holding right.
         {
-
+      GiveInventory("WallCheckerR",1);
   TakeInventory("BackwardsCheck",1);
   GiveInventory("Moving",1);
+        if(CheckInventory("Wall_Touched") > 0 && CheckInventory("PlayingCatty") > 0 && CheckInventory("PlasmaGauge") > 21)
+      {
+    
+            if(CheckInventory("CommonCombo") < 2)
+      {
+    
+        ThrustThingZ(0,30,0,0);
+      }
+      }
+    
             if (buttonweightmove < 0) { buttonweightmove = 0.0; }
             buttonweightmove = buttonweightmove + 4.0;
       buttonweight = buttonweight + 1.0;
@@ -759,8 +1255,18 @@ Script 101 ENTER
     }
         if (buttons & BT_MOVELEFT) // Checks for if the player is holding left.
     {
+    GiveInventory("WallCheckerL",1);
     GiveInventory("BackwardsCheck",1);
             GiveInventory("Moving",1);
+        if(CheckInventory("Wall_Touched") > 0 && CheckInventory("PlayingCatty") > 0 && CheckInventory("PlasmaGauge") > 21)
+      {
+            if(CheckInventory("CommonCombo") < 2)
+      {
+    
+        ThrustThingZ(0,30,0,0);
+      }
+      }
+
 
             buttonweightmove = buttonweightmove - 4.0;
       buttonweight = buttonweight - 1.0;
@@ -768,6 +1274,7 @@ Script 101 ENTER
     }
         if ( !(buttons & BT_FORWARD)) // If the player is not pushing up
         {
+
             TakeInventory("aimup",1);
             buttondelay = buttondelay + 1.0;
         }
@@ -793,10 +1300,10 @@ Script 101 ENTER
         if (CheckInventory("CamOff") > 0) 
         {
 
-        Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-320.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
         }
         else{        
-        Warp(ActivatorTID()+1000,GetActorX(0),GetActorY(0)-330.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        Warp(ActivatorTID()+1000,GetActorX(0),GetActorY(0)-320.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
         }
         
         //if (CheckInventory("RespawnFollowOff") > 0) {}
@@ -830,11 +1337,22 @@ Script 101 ENTER
     Delay(1);
   }
 }
-script "EmilyEmotion" (void)
+script "EmilyEmotion" (Int type)
+{
+if(type==0)
 {
 giveinventory("EmilyWeaponPick",1);
 delay(70);
 takeinventory("EmilyWeaponPick",1);
+}
+if(type==1)
+{
+takeinventory("EmilyWeaponPick",1);
+giveinventory("EmilyDizzy",1);
+delay(70);
+takeinventory("EmilyDizzy",1);
+}
+
 }
 
 
@@ -887,9 +1405,9 @@ int playerSpeed; int dodgeSpeed;
                                 Delay(1);
                                 If(GetActorVelZ(0) == 0.0)
                                 {
-                                        giveinventory("JumptoDown",1);
+                                        //giveinventory("JumptoDown",1);
                                         Delay(1);
-                                        takeinventory("JumptoDown",1);
+                                        //takeinventory("JumptoDown",1);
                                 }
                                 dDuckC[pln] = 0;
                         }
@@ -991,40 +1509,8 @@ script 479 RESPAWN net
         ACS_ExecuteAlways(469, 0, 0, 0, 0);
 }
 
-script "Shield_Timer" (int del)
-{
-int tic;
-        For(tic = del; tic >= 0.0; tic -= 1)
-        {
-            Delay(1);
-        }
-GiveInventory("ShieldFinished",1);
-Delay(1);
-TakeInventory("ShieldFinished",999);
-}
 
-script "Catty_point" (void)
-{
-Giveinventory("Warned",1);
-delay(35*5);
-Takeinventory("Warned",1);
-}
-Script "CattySpecial" (void)
-{
-GiveInventory("CattyActivated",1);
-delay(70);
-TakeInventory("CattyActivated",1);
-}
-script "Check_CoolTime_Catty" (void)
-{
-While(CheckInventory("CattyCooltime")>0)
-{
-TakeInventory("CattyCooltime",1);
-delay(35);
-}
-delay(1);
-terminate;
-}
+
 script "CheckMastersGetHurt" (int tid)
 {
 SetActorProperty (0, APROP_MasterTID,tid);
@@ -1042,7 +1528,6 @@ Acs_NamedExecuteAlways("InvulTime",0,3,1,0);
 }
 Restart;
 }
-
 
 //
 //  Scripts
@@ -1158,7 +1643,9 @@ Function Int XYZ_Distance (Int tid1, Int tid2)
 // Gets the height difference between two actors
 Function Int ZDistance (Int tid1, Int tid2)
 {
-    Return (GetActorZ(tid1) - GetActorZ(tid2));
+Int getactorattackz = (GetActorProperty(tid1,APROP_HEIGHT)/2);
+int GetactorZheight = GetActorZ(tid1)+getactorattackz;
+    Return (GetactorZheight- GetActorZ(tid2));
 }
 
 // Angle (Int tid1, Int tid2)
@@ -1333,70 +1820,90 @@ Script "Hook_HitWall" (void)
     Int f_Distance = Distance (HTID, PTID);
     Int b_Angle = ByteAngle (HTID, PTID);
     Int ZHeight = (ZDistance(PTID, HTID) + 0.5) >> 16;
-    ThrustThing (b_Angle, f_Distance/24, True, PTID);
-    ThrustThingZ (PTID, (ZHeight/2), 1,0 );
+    ThrustThing (b_Angle, f_Distance/4, false, PTID);
     If(f_Distance >128)
     {
-       ThrustThingZ (PTID, (ZHeight/2), 1,0 );
+       ThrustThingZ (PTID, (ZHeight/6), 1,0 );
     }
-	else
-	{
-	    ThrustThingZ (PTID, (ZHeight/12), 1,1);
-	}
+  else
+  {
+    ThrustThingZ (PTID, (ZHeight/4), 1,0);
+  }
     If (StoredPlayer_TID != 0)
     {
         SetActivator(PTID);
         Thing_ChangeTID(PTID, StoredPlayer_TID);
     }
 }
-Script "Hook_HitEnemy" (void)
+
+script "Health_Checker" ENTER 
 {
-    // Get a unique TID for the Hookshot
-    Int HTID = GetActivatorTID ();
 
-    // Rearrange the pointers so that the player is the master, and the target is whatever the Hookshot hit
-    SetPointer(AAPTR_MASTER, 0, AAPTR_TARGET);
-    SetPointer(AAPTR_TARGET, 0, AAPTR_TRACER);
-    
-    // Change activator to player
-    SetActivator(0, AAPTR_MASTER);
-    
-    Int StoredPlayer_TID;
-    
-    // Even if the player has a TID, we need to make sure it is unique
-    if (ActivatorTID() != 0)
-    {
-        StoredPlayer_TID = ActivatorTID(); // Store our TID before we change it
-        Thing_ChangeTID(ActivatorTID(), UniqueTID());
-    }
-    
-    // Get a unique TID for the player if it doesn't have one
-    Int PTID = GetActivatorTID ();
-    
-    // Change activator back to the Hookshot
-    SetActivator(HTID);
 
-    Int f_Distance, b_Angle, ZHeight;
-    
-    // Change activator to target, if it still exists
-    if (SetActivatorToTarget(HTID))
+int percent = GetActorProperty(0, APROP_HEALTH)*100/100;
+
+    if (GameType () != GAME_TITLE_MAP)
+  {
+  If(CheckInventory("PlayingEmily")==1)
+  {
+  if (CheckInventory("EmilyPain") == 3)   
     {
-        // Calculate how far away the target is from the player
-        f_Distance = (FixedDistance (0, PTID) + 0.5) >> 16;
-        b_Angle = ByteAngle (PTID, 0);
-        ZHeight = (ZDistance(PTID, 0) + 0.5) >> 16;
-        
-        // Then pull them towards you
-		
-        ThrustThing (b_Angle, f_Distance/12, True, 0);
-        ThrustThingZ (0, (ZHeight/2), 0, 0);
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -12, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.5);
     }
-    
-    // Return our TID to what we originally had
-    if (StoredPlayer_TID != 0)
+if (CheckInventory("EmilyPain") == 2)   
     {
-        SetActivator(PTID);
-        Thing_ChangeTID(0, StoredPlayer_TID);
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -13, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.6);
     }
+if (CheckInventory("EmilyPain") == 1)   
+    {
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -14, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.7);
+    }
+  }
+  else
+  {
+  if (percent <= 50 && percent > 0)   
+    {
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -12, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.3);
+    }
+if (percent <= 40 && percent > 0)   
+    {
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -13, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.3);
+    }
+if (percent <= 30 && percent > 0)   
+    {
+     SetHudSize(384, 480, 0);
+     SetFont("HUDPAIN"); 
+     HudMessage(s:"A";HUDMSG_LAYER_UNDERHUD | HUDMSG_FADEINOUT | HUDMSG_ALPHA | HUDMSG_ADDBLEND, -14, CR_WHITE, 192.0, 240.0, 0.0, 0.25,0.25,0.3);
+    }
+  }
+  }
+  delay(35);
+    restart; 
 }
 
+script "Health_Regen" (void)
+{
+int percent = GetActorProperty(0, APROP_HEALTH)*100/100;
+
+if(GetActorProperty(0, APROP_HEALTH) == 100 || CheckInventory("PlayingCatty")==0)
+{
+terminate;
+}
+else
+{
+GiveInventory("Healthregen",1);
+delay(35);
+}
+
+restart;
+}
