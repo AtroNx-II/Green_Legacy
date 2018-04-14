@@ -3203,11 +3203,10 @@ ACTOR Defencebonus_hpgive_1 : Health
    RENDERSTYLE Add
    ALPHA 0.6
    ReactionTime 70
-   Inventory.PickupMessage  "HP+1"
+   Inventory.PickupMessage  ""
    Inventory.PickupSound ""
  Inventory.Amount 1
   Inventory.MaxAmount 40
-  Inventory.PickupMessage "$GOTHTHBONUS" // "Picked up a health bonus."
 
    SeeSound "demonicpowerpickup"
    +NOGRAVITY
@@ -3263,10 +3262,7 @@ SeeSound ""
   loop
   }
 }
-ACTOR Defencebonus_hpgive_2 : Defencebonus_hpgive_1
-{
- Inventory.Amount 2
-}
+
 ACTOR Respawn_Pointer
 { 
 damageFactor "Flame", 0.0
