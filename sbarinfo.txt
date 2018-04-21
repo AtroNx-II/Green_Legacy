@@ -9,7 +9,7 @@ InInventory NOT CutSceneBlock, 1
    DrawImage "HUDNAMEL",-187,31;
   DrawImage "HUDWNBOX",-92,10;
 
-	  DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
+    DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
 DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 930, 10;
 
 drawmugshot "STF", 1, -86, 10;
@@ -114,7 +114,7 @@ DrawString FONT3, White, "M16", -127, 40;
 }
   InInventory PlayingEmily, 1 
  {
- DrawNumber 3,FONT2, WHITE, EmilyPain,whennotzero,alignment(Right)|interpolate(1), 72, 50;
+ DrawNumber 3,FONT2, WHITE, EmilyPain,whennotzero,alignment(Right)|interpolate(1), 102, 50;
  }
 }
 
@@ -142,6 +142,7 @@ InInventory HaveSMG, 1
  DrawNumber 2,FONT3, WHITE,"HaveRL",whennotzero,alignment(center), -1, 120;
  }
  
+ 
  }
  InInventory NOT CutSceneBlock, 1 
  {
@@ -158,19 +159,19 @@ InInventory HaveSMG, 1
 
   InInventory Emily_Weapon_AR, 1 
  {
-  DrawImage "EMILYAR",-64,140;
+  DrawImage "EMILYAR",-34,140;
   }
   InInventory Emily_Weapon_SMG, 1 
  {
-  DrawImage "EMILYSMG",-64,140;
+  DrawImage "EMILYSMG",-34,140;
   }
   InInventory Emily_Weapon_RL, 1 
  {
-  DrawImage "EMILYRL",-64,140;
+  DrawImage "EMILYRL",-34,140;
   }
   InInventory Emily_Weapon_SG, 1 
  {
-  DrawImage "EMILYSG",-64,140;
+  DrawImage "EMILYSG",-34,140;
   }
 
 
@@ -181,12 +182,13 @@ InInventory HaveSMG, 1
  DrawImage "EMILYHE4",-140,75;
  }
  
+ DrawString FONT3, White, "EMILY", -112, 60;
+
    InInventory Emilydizzy, 1 
  {
  DrawImage "EMILYDZ1",-140,75;
  }
- DrawString FONT3, White, "EMILY", -112, 60;
-
+ 
  InInventory EmilyCooltime, 1 
  {
 
@@ -198,6 +200,7 @@ InInventory HaveSMG, 1
  
  InInventory NOT CutSceneBlock, 1 
  {
+ 
  
 InInventory HaveCatty, 1 
  {
@@ -259,7 +262,7 @@ InInventory NOT CutSceneBlock, 1
    DrawImage "HUDNAMEL",-187,31;
   DrawImage "HUDWNBOX",-92,10;
 
-	  DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
+    DrawString FONT2, White, "Score", 850, 10,0,alignment(center);
 DrawNumber 7,FONT2, WHITE, Score_count,fillzeros,alignment(center)|interpolate(20), 930, 10;
 
 drawmugshot "STF", 1, -86, 10;

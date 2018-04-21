@@ -14,6 +14,17 @@ str UPPERimage[72] = {"CATSH00","CATSH01","CATSH02","CATSH03",
 str Chargeimage[16] = {"EBFC000","EBFC001","EBFC002","EBFC003","EBFC004","EBFC005","EBFC006","EBFC007","EBFC008","EBFC009",
 "EBFC010","EBFC011","EBFC012","EBFC013","EBFC014","EBFC015",};
 
+script "DamageFactorcontrol" (int onoff)
+{
+If(onoff ==0)
+{
+SetActorProperty(0,APROP_DamageFactor,0.5);
+}
+else
+{
+SetActorProperty(0,APROP_DamageFactor,1.0);
+}
+}
 
 script "Beep" (int type)
 {
@@ -651,7 +662,15 @@ else
 If(Checkinventory("PlayingEmily")||Checkinventory("PlayingCatty"))
 {tid = 1001+PlayerNumber();}
 }
+If(Checkinventory("ShieldOnline")==1)
+{
+
+}
+else
+{
 SetActorProperty(tid, APROP_Invulnerable, true);
+}
+
 SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_add);
 Delay(1);
 SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_none);
@@ -660,7 +679,15 @@ SetActorProperty(tid, APROP_RENDERSTYLE, STYLE_Translucent);
 Delay(1);
 time--;
 }
+If(Checkinventory("ShieldOnline")==1)
+{
+
+}
+else
+{
 SetActorProperty(tid, APROP_Invulnerable, false);
+}
+
 delay(1);
 }
 script "FlashTime" (int time,int appear,int tid)
@@ -1121,6 +1148,8 @@ Script 101 ENTER //CAMERA AND INPUT
     int buttonweight, buttonweightmove, buttondelay;
     int jumpstate, grounded, jumped, airtime, savejump;
   int WallCheck;
+  int Getvx;
+  int getvz;
     //int xmod;
 
     Thing_ChangeTID(0,1001+PlayerNumber());
@@ -1149,6 +1178,7 @@ Script 101 ENTER //CAMERA AND INPUT
 
       if(CheckInventory("PlayingEmily") > 0)
       {
+	  Getvx = GetActorVelx(0)*4;
  SetActorProperty(0, APROP_SPEED,1.0);
       }
             else if(CheckInventory("PlayingCatty") > 0)
@@ -1157,6 +1187,8 @@ Script 101 ENTER //CAMERA AND INPUT
       }     
       Else
       {
+		Getvx = GetActorVelx(0)*4;
+			TakeInventory("DashSpeed",1);
             TakeInventory("JumpSpeed",1);
       }
             jumped = 0;
@@ -1168,6 +1200,7 @@ Script 101 ENTER //CAMERA AND INPUT
       if(CheckInventory("PlayingEmily") > 0)
       {
  SetActorProperty(0, APROP_SPEED,0.25);
+ Getvx = GetActorVelx(0)*2;
       }
       else if(CheckInventory("PlayingCatty") > 0)
       {
@@ -1176,9 +1209,13 @@ Script 101 ENTER //CAMERA AND INPUT
       Else
       {
  SetActorProperty(0, APROP_SPEED,1.0);
-      GiveInventory("JumpSpeed",1);
+ GiveInventory("JumpSpeed",1);
+ TakeInventory("DashSpeed",1);
+		Getvx = GetActorVelx(0)*2;
+      
       }
-            
+
+			 
             airtime++;
         }
  
@@ -1292,18 +1329,14 @@ Script 101 ENTER //CAMERA AND INPUT
         if (buttonweight > 12.0) { xmod = xmod + 8; }
         if (buttonweight > 12.0) { buttonweight = 12.0; }
         if (buttonweight < -12.0) { buttonweight = -12.0; }
-        if (xmod > 80.0) { xmod = 80.0; }
-        if (xmod < -80.0) { xmod = -80.0; }
 
-        // Last, set the camera
-    //SetActorPosition(ActivatorTID()+1000,GetActorX(0) + xmod,GetActorY(0)-320.0,GetActorZ(0)+75.0,0);
         if (CheckInventory("CamOff") > 0) 
         {
 
-        Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-320.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        Warp(ActivatorTID()+1000,GetActorX(ActivatorTID()+1000),GetActorY(0)-320.0,GetActorZ(0)+96.0-GetActorVelz(0),GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
         }
         else{        
-        Warp(ActivatorTID()+1000,GetActorX(0),GetActorY(0)-320.0,GetActorZ(0)+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
+        Warp(ActivatorTID()+1000,GetActorX(0)+Getvx,GetActorY(0)-320.0,GetActorZ(0)-getactorVelz(0)/3+96.0,GetActorAngle(0) >> 8,WARPF_INTERPOLATE | WARPF_WARPINTERPOLATION | WARPF_NOCHECKPOSITION | WARPF_ABSOLUTEPOSITION | WARPF_MOVEPTR);
         }
         
         //if (CheckInventory("RespawnFollowOff") > 0) {}
@@ -1320,7 +1353,7 @@ Script 101 ENTER //CAMERA AND INPUT
              s:"  - ", f:buttonweightmove,s:" buttonweightmove\n",
              s:"  - ", d:grounded,s:" grounded\n",
              s:"  - ", d:jumpstate,s:" jumpstate\n",
-             s:"  - ", f:xmod,s:" xmod\n",
+             s:"  - ", f:GetActorVelx(0),s:" velx\n",
                s:"  - ", f:GetActorCeilingZ(0) - GetActorZ(0),s:" ceilz\n",
                               s:"  - ", f:GetActorZ(0) -GetActorfloorZ(0) ,s:" floorz\n",
                                           s:"  - ", f:GetActorZ(0),s:" z\n",
@@ -1336,6 +1369,28 @@ Script 101 ENTER //CAMERA AND INPUT
 
     Delay(1);
   }
+}
+script "DashSpeed" (int direction,int speed)
+{
+If(direction==0)
+{
+SetActorVelocity(0,speed<<16,GetActorVelY(0),GetActorVelZ(0),FALSE,FALSE); //right
+}
+else
+{
+SetActorVelocity(0,-speed<<16,GetActorVelY(0),GetActorVelZ(0),FALSE,FALSE);//left
+}
+}
+script "DashSpeed2" (int direction,int speed,int Velz)
+{
+If(direction==0)
+{
+SetActorVelocity(0,speed<<16,GetActorVelY(0),Velz<<16,FALSE,FALSE); //right
+}
+else
+{
+SetActorVelocity(0,-speed<<16,GetActorVelY(0),Velz<<16,FALSE,FALSE);//left
+}
 }
 script "EmilyEmotion" (Int type)
 {

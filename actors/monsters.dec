@@ -1321,7 +1321,7 @@ MaxTargetRange 400
 +FLOORCLIP
 BloodColor "Green"
 +THRUSPECIES
-+NODROPOFF
++DROPOFF
 +LOOKALLAROUND
 species enemy
 SeeSound "worm_sight"
@@ -1602,7 +1602,7 @@ DamageFactor "EnemySide", 0.0
     TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
     TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
   SeeRight:
-        TNT1 A 0 A_SetScale(1.7,1.7)
+    TNT1 A 0 A_SetScale(1.7,1.7)
     AFMV ABCDEFGHIJ 1
     {
     A_FaceTarget(8);
@@ -1613,7 +1613,7 @@ DamageFactor "EnemySide", 0.0
     return state("");
     }
     TNT1 A 0 A_PlaySound("AFMOVE")
-        TNT1 A 0 A_SetScale(1.7,1.7)
+    TNT1 A 0 A_SetScale(1.7,1.7)
     AFMV KLMNOPQRST 1
     {
     A_FaceTarget(8);
@@ -1668,20 +1668,20 @@ DamageFactor "EnemySide", 0.0
     TNT1 A 0 A_ChangeFlag("NOPAIN",1)
     TNT1 A 0 A_SetScale(1.7,1.7)
     AFDF ABCD 1
-    AFDF E 2 A_SetInvulnerable
+    AFDF E 2 ACS_NamedExecutealways("DamageFactorcontrol",0,0,0,0)
     AFDF FFFFFF 2
     AFDF E 2
-    AFDF DCBA 2 A_UnSetInvulnerable
+    AFDF DCBA 2 ACS_NamedExecutealways("DamageFactorcontrol",0,1,0,0)
     TNT1 A 0 A_ChangeFlag("NOPAIN",0)
     GOTO See
   DefenceLeft:
     TNT1 A 0 A_ChangeFlag("NOPAIN",1)
     TNT1 A 0 A_SetScale(-1.7,1.7)
     AFDF ABCD 1
-    AFDF E 2 A_SetInvulnerable
+    AFDF E 2 ACS_NamedExecutealways("DamageFactorcontrol",0,0,0,0)
     AFDF FFFFFF 2
     AFDF E 2
-    AFDF DCBA 2 A_UnSetInvulnerable
+    AFDF DCBA 2 ACS_NamedExecutealways("DamageFactorcontrol",0,1,0,0)
     TNT1 A 0 A_ChangeFlag("NOPAIN",0)
     GOTO See
   Death:
@@ -2075,7 +2075,7 @@ DamageFactor "EnemySide", 0.0
   +FLOORCLIP
   BloodColor "White"
   +DONTRIP
-  scale 0.7
+  scale 1.0
   species enemy
   SeeSound ""
   AttackSound ""
@@ -2086,56 +2086,79 @@ DamageFactor "EnemySide", 0.0
   States
   {
   Spawn:
-        BARI A 1 
+        SELD AAABBBCCCDDDEEEFFFGGGHHH 1
         loop
   See:
-  BARI A 0 A_JumpIfHealthLower(1000,"See2")
-    BARI A 1 
+  SELD AAABBBCCCDDDEEEFFFGGGHHH 1 A_JumpIfHealthLower(1000,"See2")
   GOTO SEE
   See2:
-  BARI A 0 A_JumpIfHealthLower(500,"See3")
-    BARI B 1 
+  SELD IIIJJJKKKLLLMMMNNNOOOPPP 1 
   GOTO SEE
-  See3:
-    BARI C 1 
-  GOTO SEE
-  Pain:
-    BARI A 0 A_JumpIfHealthLower(2000,"Pain2")
-  BARI A 0 A_JumpIfHealthLower(1000,"Pain3")
-TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,1,1,0.01)
+Pain:
+  BARI A 0 A_JumpIfHealthLower(1000,"Pain2")
+  TNT1 A 0 A_QuakeEx(0,0,0,10,0,2048,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,1,1,0.01)
   TNT1 A 0 A_GiveToTarget("Score_count",1)
   TNT1 A 0 A_Pain
   TNT1 A 0 A_FaceTarget
   TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,1,0)
   GOTO SEE
 Pain2:
-    BARI A 0 A_JumpIfInventory("HealthBomb1",1,"Pass")
+  BARI A 0 A_JumpIfInventory("HealthBomb1",1,"Pass")
   BARI AAAAA 0 A_CustomMissile("RocketANI",random(-180,180),random(-180,180),0,2,0)
   BARI A 0 A_GiveInventory("HealthBomb1",1)
-  GOTO SEE
-Pain3:
-    BARI A 0 A_JumpIfInventory("HealthBomb2",1,"Pass2")
-  BARI AAAAA 0 A_CustomMissile("RocketANI",random(-180,180),random(-180,180),0,2,0)
-  BARI A 0 A_GiveInventory("HealthBomb2",1)
   GOTO SEE
 Pass:
     BARI A 0
   GOTO Pain+1
-Pass2:
-    BARI A 0
-  GOTO Pain+2
   Death:
   TNT1 A 0 A_GiveToTarget("Score_count",2000)
    TNT1 A 0 A_Die
    TNT1 A 0 A_scream
   TNT1 A 0 A_FaceTarget
+  BARI AAAA 0 A_SpawnItemEx("WormFX",0.0,0.0,random(10,120),random(-5,5),0,random(5,10),0,SXF_NOCHECKPOSITION)
   BARI AAAAA 0 A_CustomMissile("RocketANI",random(32,180),random(-180,180),0,2,0)
-  BARI C 1 A_CustomMissile("RocketANI",random(80,180),random(-180,180),0,2,0)
+  TNT1 A 1 A_CustomMissile("RocketANI",random(80,180),random(-180,180),0,2,0)
 STOP
 
 }
 }
-
+ACTOR WormFX
+{
+Species "enemy"
+HEIGHT 6
+Radius 6
+SeeSound ""
+  RenderStyle Normal
+  Speed 0
+  ReactionTime 5
+  Damage 0
+  scale 0.8
+  Projectile
+      SeeSound "worm_death"
+-NOGRAVITY
++THRUGHOST
++MTHRUSPECIES
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  +BRIGHT
+  States
+  {
+  Spawn:
+    SEFX ABC 2 A_SpawnItemEx("GreenBloodTrail_Worm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
+  LOOP
+  Death:
+  TNT1 A 0 A_SetScale(0.7,0.7)
+    CROD ABCDE 2
+  CROD F 2 
+  {
+  A_SpawnItemEx("Worm_DeathFX_R",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION );
+  //A_Explode(15,72,XF_NOTMISSILE ,0,0,0,0,"BulletPuff","EnemySide");
+  }
+  CROD GHI 2
+  CROD I 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
+    Stop
+  }
+}
 actor HealthBomb1 : Boolean
 {
     Inventory.MaxAmount 1

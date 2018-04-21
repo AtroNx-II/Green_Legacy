@@ -201,3 +201,85 @@ action void A_SpawnActorLine(string classname, Vector3 pointA, Vector3 pointB, d
     }
 }
 }
+
+class RigTrackerex : Actor
+{
+int jumpcount;
+default
+{
+DamageFactor "Flame", 0.0;
+DamageFactor "EnemySide", 1.0;
+DAMAGEFACTOR "PlayerSide" , 0.0;
+DamageFactor "NORMAL",1.0;
+Health 0x7FFFFFFF;
+height 64;
+radius 64;
+SCALE 0.7;
+ExplosionRadius 0;
+Speed  0;
+species "playerside";
+RENDERSTYLE "Translucent";
+Alpha 0.8;
+painchance 255;
+BloodColor "Green";
+
+Monster;
++NORADIUSDMG 
++NOTAUTOAIMED
+-COUNTKILL
++THRUSPECIES 
++NOBLOOD
++FLOORCLIP
++DROPOFF
++MTHRUSPECIES
++LOOKALLAROUND
++SEEINVISIBLE
+-SHOOTABLE
++QUICKTORETALIATE
++NOCLIP
+-SOLID
++FLOAT
++FLOATBOB
++NOGRAVITY
++NORADIUSDMG
+}
+States
+{
+  Spawn: 
+  1BSP B 1
+  {
+  A_Chase();
+   A_SpawnActorLine("RigToBody",self.pos,master.pos,64);
+  }
+  Goto Spawn;
+
+  PAIN:
+  TNT1 A 0;
+  GOTO Spawn;
+  Death:
+  SHDT A 0 A_Scream;
+  TNT1 A 1;
+  Stop;
+}
+action void A_SpawnActorLine(string classname, Vector3 pointA, Vector3 pointB, double units = 1)
+{
+    // get a vector pointing from A to B
+    let pointAB = pointB - pointA;
+    
+    // get distance
+    let dist = pointAB.Length();
+    
+    // normalize it
+    pointAB /= dist == 0 ? 1 : dist;
+    
+    // iterate in units of 'units'
+    for (double i = 0; i < dist; i += units)
+    {
+        // we can now use 'pointA + i * pointAB' to
+        // get a position that is 'i' units away from
+        // pointA, heading in the direction towards pointB
+        let position = pointA + i * pointAB;
+        Spawn(classname, position);
+    }
+}
+}

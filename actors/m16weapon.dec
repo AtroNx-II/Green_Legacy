@@ -34,7 +34,7 @@ ACTOR PlasmaPistol : Weapon
           {
             Acs_NamedExecute("Beep2",0,1,0,0);
         }
-	TNT1 A 0 A_JumpIfInventory("PlasmaGauge",200,"Ready2")
+  TNT1 A 0 A_JumpIfInventory("PlasmaGauge",200,"Ready2")
     TNT1 A 0 A_Giveinventory("PlasmaGauge",2)
     TNT1 A 1 A_WeaponReady
     Goto Ready+1
@@ -74,10 +74,10 @@ TNT1 A 0 A_JumpIfInventory("HaveRL",1,"RLFire")
         else{}
         }
 
-TNT1 A 0 A_JumpIfInventory("PlasmaGauge",100,"Plasma_Fire2")
+TNT1 A 0 A_JumpIfInventory("PlasmaGauge",50,"Plasma_Fire2")
     TNT1 A 0
     {
-    A_TakeInventory("PlasmaGauge",2);
+    A_TakeInventory("PlasmaGauge",1);
     A_PlaySound("weapon/addplasma", 7,1.0,0,ATTN_NONE);
     A_GiveInventory("Fire_pressed",1);
 
@@ -127,7 +127,7 @@ A_FireProjectile("GreenPlasmaMuzzleDOWN",0,0,-20,-30,0,0);
 Plasma_Fire2:
     TNT1 A 0
     {
-              A_TakeInventory("PlasmaGauge",4);
+              A_TakeInventory("PlasmaGauge",2);
     A_PlaySound("weapon/addplasma2", 7,1.0,0,ATTN_NONE);
           A_GiveInventory("Fire_pressed",1);
       if (CountInv("AimDown") == 1)
@@ -468,7 +468,7 @@ Plasma_Fire2:
   TNT1 AAAAAAAAAA 0
   {
   A_QuakeEx(0,0,0,10,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,10,10,0);
-  A_PlaySound("M16_SG", 7,1.0,0,ATTN_NONE);
+  A_PlaySound("M16_SG", 1,2.5,0,ATTN_NONE);
   A_GiveInventory("Fire_pressed",1);
       if (CountInv("AimDown") == 1)
         {
@@ -740,54 +740,54 @@ TNT1 A 1
     {
     if (CountInv("PlasmaGauge") >= 50)
     {
-	Return State("PowerShot");
-	}
-	}
+  Return State("PowerShot");
+  }
+  }
     else if (CountInv("PenaltyReduction") == 2)
     {
     if (CountInv("PlasmaGauge") >= 100)
     {
-	Return State("PowerShot");
-	}
-	}
+  Return State("PowerShot");
+  }
+  }
     else if (CountInv("PenaltyReduction") == 1)
     {
     if (CountInv("PlasmaGauge") >= 150)
     {
-	Return State("PowerShot");
-	}
-	}
+  Return State("PowerShot");
+  }
+  }
     else if (CountInv("PenaltyReduction") == 0)
     {
     if (CountInv("PlasmaGauge") == 200)
     {
-	Return State("PowerShot");
-	}
-	}
-	Return State("");
-	}
+  Return State("PowerShot");
+  }
+  }
+  Return State("");
+  }
     Goto Ready
 PowerShot:
 TNT1 A 1
 {
     if (CountInv("PenaltyReduction") == 3)
     {
-	A_TakeInventory("PlasmaGauge",50);
-	}
+  A_TakeInventory("PlasmaGauge",50);
+  }
     else if (CountInv("PenaltyReduction") == 2)
     {
-	A_TakeInventory("PlasmaGauge",100);
-	}
+  A_TakeInventory("PlasmaGauge",100);
+  }
     else if (CountInv("PenaltyReduction") == 1)
     {
-	A_TakeInventory("PlasmaGauge",150);
-	}
+  A_TakeInventory("PlasmaGauge",150);
+  }
     else if (CountInv("PenaltyReduction") == 0)
     {
-	A_TakeInventory("PlasmaGauge",200);
-	}
-	Return State("");
-	}
+  A_TakeInventory("PlasmaGauge",200);
+  }
+  Return State("");
+  }
     TNT1 A 0
     {
 
@@ -2104,7 +2104,176 @@ ACTOR FTshot2 : FTshot
   Damage 1
 species Enemy
   DamageType flame
+SeeSound ""
+  RenderStyle Normal
+  Speed 15
+  ReactionTime 10
+XScale 0.1
+YScale 0.1
+  Damage 1
+  SEESOUND "MFire"
+  PROJECTILE
+  MissileHeight 8
+  Height 1
+  Radius 1
+  var int user_sizecount;
+    +MTHRUSPECIES
+  +THRUSPECIES
+  +RIPPER
+  +ROLLSPRITE
+  +FULLVOLDEATH
+  +NOGRAVITY
+  +NOEXTREMEDEATH
+  +BRIGHT
   +STRIFEDAMAGE
+  States
+  {
+  Spawn:
+    APLS A 0
+    APLS A 0 A_Jump(128,"Spawn2","Spawn3","Spawn4")
+        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
+  EPRO A 1 bright
+ {
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+  A_Weave(0,5,0.0,1.0);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll+10,SPF_INTERPOLATE);
+  }
+EXPL ABCDEFGHIJKLMN 1 bright
+{
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+A_Weave(10,10,0.2,0.2);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll+10,SPF_INTERPOLATE);
+}
+    Stop
+  Spawn2:
+        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
+  EPRO A 1 bright
+  {
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+  A_Weave(0,5,0.0,1.0);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-10,SPF_INTERPOLATE);
+  }
+EXPL ABCDEFGHIJKLMN 1 bright
+{
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+A_Weave(10,10,0.2,0.2);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-10,SPF_INTERPOLATE);
+}
+    Stop
+  Spawn3:
+        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
+  EPRO A 1 bright
+  {
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+  A_Weave(0,5,0.0,1.0);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-10,SPF_INTERPOLATE);
+  }
+EXPL ABCDEFGHIJKLMN 1 bright
+{
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+A_Weave(10,10,0.2,0.2);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-5,SPF_INTERPOLATE);
+}
+    Stop
+    Spawn4:
+        APLS A 0 bright A_SetScale(Scalex+0.05,Scaley+0.05)
+  EPRO A 1 bright
+  {
+   if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+  A_Weave(0,5,0.0,1.0);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-10,SPF_INTERPOLATE);
+  }
+EXPL ABCDEFGHIJKLMN 1 bright
+{
+ if(user_sizecount>8)
+ {
+ A_SetSize(8,8,false);
+ user_sizecount=8;
+ }
+else
+{
+A_SetSize(radius+1,Height+1,false);
+user_sizecount++;
+}
+A_Weave(10,10,0.2,0.2);
+A_SetScale(ScaleX+0.05,ScaleY+0.05);
+A_SetRoll(Roll-5,SPF_INTERPOLATE);
+}
+    Stop
+  Death:
+  TNT1 AAAAAA 0 Bright A_CustomMissile("FireFx",0,0, random(0,360), 2, random(-90,90))
+  Stop
+  }
 }
 ACTOR FireFx
 {
@@ -2238,7 +2407,7 @@ SeeSound ""
     GOTO SPAWN
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
@@ -2272,7 +2441,7 @@ SeeSound ""
     GOTO SPAWN
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
@@ -2306,7 +2475,7 @@ SeeSound ""
     GOTO SPAWN
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
@@ -2341,7 +2510,7 @@ SeeSound ""
     GOTO SPAWN
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
@@ -2383,7 +2552,7 @@ Spawn2:
     GOTO SPAWN2
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
@@ -2424,7 +2593,7 @@ Spawn2:
     GOTO SPAWN2
   Crash:
   XDeath:
-    APLS A 0  A_PlaySound("Ricochet")
+    APLS A 0  A_PlaySound("Ricochet",4,1.0,FALSE,ATTN_NONE,FALSE)
       EMBX A 0 bright A_SpawnItemEx("Emily_BulletSpark",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION )
   stop
   Death:
