@@ -898,7 +898,244 @@ TNT1 AAA 0 Bright A_CustomMissile("FLY_LEG2", random(-16,16), random(-16,16), 0,
 
 }
 }
+ACTOR Fly_Floor Replaces Cacodemon
+{
+//$Category Enemy/Fly
+  Health 100
+  PainChance 255
+  Speed 5
+  Radius 16
+  Height 64
+  Mass 40000
+  Monster
+  MeleeDamage 3
+PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+  MeleeRange 128
+  MaxTargetRange 300
+  +ACTLIKEBRIDGE
+  +FLOORCLIP
+  BloodColor "Green"
+  +THRUSPECIES
+  +NOGRAVITY
+  +FLOAT
+  -SOLID
+  +DONTFALL
+  +NOPAIN
+  +FLOORCLIP
+  BloodColor "Green"
+  MinMissileChance 1
+  species enemy
+  SeeSound "worm_sight"
+  AttackSound "worm_sight"
+  PainSound "Fly_Pain"
+  DeathSound "Fly_die"
+  ActiveSound "Fly_AC"
+  States
+  {
+  Spawn:
+  TNT1 A 0
 
+
+
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
+    SpawnRight:
+        FLST ABCDCBA 1
+    {
+  
+  A_SetScale(1.0,1.0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") > 0) { return state("SpawnLeft");}
+    ELSE
+    {
+    }
+    return state("");
+    }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,350,350,360.0,"SeeStartRight")
+        loop
+    SpawnLeft:
+        FLST ABCDCBA 1
+    {   
+  
+  A_SetScale(-1.0,1.0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck") ==0) { return state("SpawnRight");}
+    ELSE
+    {
+    }
+    return state("");
+    }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,350,350,360.0,"SeeStartLeft")
+        loop
+		
+
+  SeeStart:
+
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeStartLeft")
+  SeeStartRight:
+        FLST EEFFGG 1
+  {
+  
+  A_SetScale(1.0,1.0);
+    ThrustThingZ(0,random(2,5),0,1);
+
+
+  }
+  TNT1 A 0 A_ChangeFlag("Nopain",False)
+  TNT1 A 0 A_SpawnItemEx("WingTracker",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION )
+TNT1 A 0 A_SpawnItemEx("WingTracker2",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION )
+  GOTO SEE
+  
+  SeeStartLeft:
+        FLST EEFFGG 1
+  {
+  
+  A_SetScale(-1.0,1.0);
+ThrustThingZ(0,random(2,5),0,1);
+
+
+  }
+  TNT1 A 0 A_ChangeFlag("Nopain",False)
+TNT1 A 0 A_SpawnItemEx("WingTracker",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION )
+TNT1 A 0 A_SpawnItemEx("WingTracker2",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_NOCHECKPOSITION )
+  GOTO SEE
+  See:
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
+  SeeRight:
+        FLYM ABCDCBA 1
+  {
+  
+  A_SetScale(1.0,1.0);
+    A_FaceTarget(8);
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    if (GetDistance(True,AAPTR_TARGET) < 250.0) { return state("Missile");}
+  if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+  return state("");
+  }
+  GOTO SEE
+  
+  SeeLeft:
+        FLYM ABCDCBA 1
+  {
+  
+  A_SetScale(-1.0,1.0);
+    A_FaceTarget(8);
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    if (GetDistance(True,AAPTR_TARGET) < 250.0) { return state("Missile");}
+  if (CountInv("BackwardsCheck") ==0) { return state("SeeRight");}
+  return state("");
+  }
+  GOTO SEE
+  Seenoattack:
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeenoattackLeft")
+  SeenoattackRight:
+        FLYM ABCDCBA 1
+  {
+  
+  A_SetScale(1.0,1.0);
+    A_FaceTarget(8);
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+  if (CountInv("BackwardsCheck")> 0) { return state("SeenoattackLeft");}
+  return state("");
+  }
+  GOTO SEE
+  
+  SeenoattackLeft:
+        FLYM ABCDCBA 1
+  {
+  
+  A_SetScale(-1.0,1.0);
+    A_FaceTarget(8);
+  ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+  ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+  if (CountInv("BackwardsCheck") ==0) { return state("SeenoattackRight");}
+  return state("");
+  }
+  GOTO SEE
+
+  Pain:
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_GiveToTarget("Score_count",1)
+  TNT1 A 0 A_Pain
+  TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,0,0)
+  GOTO SEE
+
+  Death:
+  TNT1 A 0 A_GiveToTarget("Score_count",200)
+    TNT1 A 0 A_STOP
+  TNT1 A 0 Bright A_CustomMissile("FLY_BELLY", random(-16,16), random(-16,16),0, CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH  , random(-90,90))
+TNT1 AA 0 Bright A_CustomMissile("FLY_WING", random(-16,16), random(-16,16),0, CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH  , random(-90,90))
+TNT1 AAA 0 Bright A_CustomMissile("FLY_LEG1", random(-16,16), random(-16,16),0, CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH  , random(-90,90))
+TNT1 AAA 0 Bright A_CustomMissile("FLY_LEG2", random(-16,16), random(-16,16), 0, CMF_ABSOLUTEANGLE|CMF_OFFSETPITCH , random(-90,90))
+   TNT1 A 0 A_Removechildren(True)
+   TNT1 A 0 A_Die
+   TNT1 A 0 A_scream
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+    FDTH A 0 
+  {
+  A_SetScale(1.0,1.0);
+  }
+    FDTH ABCDEFGHIJK 1 
+    FDTH LMNOPQRSTUVWXYZ 1
+    FDT2 ABCDEFGHIJKL 1
+  STOP
+  DeathLeft:
+    FDTH A 0 
+  {
+  A_SetScale(-1.0,1.0);
+  }
+    FDTH ABCDEFGHIJK 1
+    FDTH LMNOPQRSTUVWXYZ 1
+    FDT2 ABCDEFGHIJKL 1
+  STOP
+  Raise:
+    SARG N 5
+    SARG MLKJI 5
+    Goto See
+  Missile:
+    TNT1 A 0  A_JUMP(180,"Seenoattack")
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"MissileLeft")
+  MissileRight:
+    TNT1 A 0 A_TakeInventory("BackwardsCheck",1)
+        FLYM AAABBBCCCDDDAAABBBCCCDDD 1
+    {  
+  A_SetScale(1.0,1.0);A_FACETARGET(8); A_STOP;}
+    FLYA AABBBCCCDDDEEEFFFGGGHHHIII 1
+    {  
+  A_SetScale(1.0,1.0);A_FACETARGET(8); A_STOP;}
+    CAAT A 0 A_CustomMissile("GreenBall_Worm2",8,0,0,0,0)
+      FLYA JJJKKK 1
+    {  
+  A_SetScale(1.0,1.0);A_FACETARGET(8); A_STOP;}
+  GOTO See
+  
+  MissileLeft:
+  TNT1 A 0 A_GiveInventory("BackwardsCheck",1)
+        FLYM AAABBBCCCDDDAAABBBCCCDDD 1
+    { 
+  A_SetScale(-1.0,1.0);A_FACETARGET(8); A_STOP;}
+    FLYA AABBBCCCDDDEEEFFFGGGHHHIII 1
+    {  
+  A_SetScale(-1.0,1.0);A_FACETARGET(8); A_STOP;}
+    CAAT A 0 A_CustomMissile("GreenBall_Worm2",8,0,0,0,0)
+      FLYA JJJKKK 1
+    {  
+  A_SetScale(-1.0,1.0);A_FACETARGET(8); A_STOP;}
+  GOTO See
+
+}
+}
 
 ACTOR WingTracker
 { 
@@ -1115,7 +1352,7 @@ species playerside
   SHK1 A 0 A_PlaySound("TIN2")
     goto spawn
   Death:
-  TNT1 A 0
+  TNT1 A 0 A_Nogravity
   TNT1 A 0 A_Jump(32,"Death2","Death3","Death4","Death5","Death6")
   FLEG A 500
     Stop
@@ -1660,7 +1897,6 @@ DamageFactor "EnemySide", 0.0
     TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,0,0)
     GOTO SEE
   Defence:
-  TNT1 A 0 A_Jump(128,"Melee2")
     TNT1 A 0 A_FaceTarget
   TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
   TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"DefenceLeft")
@@ -1739,7 +1975,7 @@ STOP
     TNT1 A 0 A_SetScale(1.7,1.7)
     TNT1 A 0 A_PlaySound("AFATK2")
     AFYA IIJJKLM 2
-    AFYA N 2 A_MeleeAttack
+    AFYA N 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
     AFYA OP 2
     TNT1 A 0 A_ChangeFlag("NOPAIN",0)
     GOTO See
@@ -1747,7 +1983,7 @@ STOP
     TNT1 A 0 A_SetScale(-1.7,1.7)
     TNT1 A 0 A_PlaySound("AFATK2")
     AFYA IIJJKLM 2
-    AFYA N 2 A_MeleeAttack
+    AFYA N 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
     AFYA OP 2
     TNT1 A 0 A_ChangeFlag("NOPAIN",0)
     GOTO See
@@ -1776,6 +2012,318 @@ Spawn2:
         ELSE
         {
         }
+        return state("");
+        }
+    GOTO SEE
+}
+}
+ACTOR Fly_Armored_Assault  Replaces Archvile
+{
+//$Category Enemy/Maggot
+  Health 1000
+  PainChance 255
+  Speed 6
+  Radius 20
+  Height 72
+  Mass 40000
+  Monster
+    scale 1.5
+PainChance "EnemySide", 0
+DamageFactor "EnemySide", 0.0
+  MaxTargetRange 400
+  +ACTLIKEBRIDGE
+  +THRUSPECIES
+  +FLOORCLIP
+  BloodColor "Green"
+  +DONTRIP
+  MaxDropOffHeight 64
+  MeleeRange 100
+  MeleeDamage 5
+  species enemy
+  SeeSound "AFSEE"
+  +BOSS
+  PainSound "AFPAIN"
+  DeathSound "AFDTH"
+  ActiveSound "worm_active"
+  MeleeSound "AFHIT"
+  Obituary "$OB_DEMONHIT" // ""
+  States
+  {
+  Spawn:
+        TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"SpawnLeft")
+    SpawnRight:
+        TNT1 A 0 A_SetScale(1.5,1.5)
+        ASFS ABCDEFEDCBA 1 
+        {
+        ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+        if (CountInv("BackwardsCheck") > 0) { return state("SpawnLeft");}
+        ELSE
+        {
+        }
+        return state("");
+        }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,550,350,80.0,"See")
+        loop
+    SpawnLeft:
+        TNT1 A 0 A_SetScale(-1.5,1.5)
+        ASFS ABCDEFEDCBA 1 
+        {           
+        ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+        if (CountInv("BackwardsCheck") ==0) { return state("SpawnRight");}
+        ELSE
+        {
+        }
+        return state("");
+        }
+        TNT1 A 0 A_LookEx(LOF_NOSOUNDCHECK ,0,550,350,80.0,"See")
+        loop
+
+    See:
+
+      TNT1 A 0 A_Jump(128,"Spawn2")
+    TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+    TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"SeeLeft")
+  SeeRight:
+    TNT1 A 0 A_SetScale(1.5,1.5)
+    ASMV ABCDEFGHIJ 1
+    {
+    A_FaceTarget(8);
+  if (GetDistance(True,AAPTR_TARGET) < 80.0) { return state("Melee");}
+    ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+    return state("");
+    }
+    TNT1 A 0 A_PlaySound("AFMOVE")
+    TNT1 A 0 A_SetScale(1.5,1.5)
+    ASMV KLMNOPQRST 1
+    {
+    A_FaceTarget(8);
+  if (GetDistance(True,AAPTR_TARGET) < 80.0) { return state("Melee");}
+    ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck")> 0) { return state("SeeLeft");}
+    return state("");
+    }
+    TNT1 A 0 A_PlaySound("AFMOVE")
+    GOTO SEE
+    
+  SeeLeft:
+        TNT1 A 0 A_SetScale(-1.5,1.5)
+    ASMV ABCDEFGHIJ 1 
+    {
+    A_FaceTarget(8);
+  if (GetDistance(True,AAPTR_TARGET) < 80.0) { return state("Melee");}
+    ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck")== 0) { return state("SeeRight");}
+    return state("");
+    }
+        TNT1 A 0 A_PlaySound("AFMOVE")
+        TNT1 A 0 A_SetScale(-1.5,1.5)
+    ASMV KLMNOPQRST 1 
+    {
+    A_FaceTarget(8);
+  if (GetDistance(True,AAPTR_TARGET) < 80.0) { return state("Melee");}
+    ACS_NamedExecutealways("BackwardsCheck2",0,0,0,0);
+    ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    if (CountInv("BackwardsCheck")== 0) { return state("SeeRight");}
+    return state("");
+    }
+    TNT1 A 0 A_PlaySound("AFMOVE")
+    GOTO SEE
+
+  Pain:
+  TNT1 A 0 A_GiveToTarget("Score_count",1)
+  TNT1 A 0 A_FaceTarget
+  TNT1 A 0 A_Jump(128,"Defence")
+    TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+    TNT1 A 0 A_Pain
+    
+    TNT1 A 0 ACS_NamedExecutealways("flashTime",0,3,0,0)
+    GOTO SEE
+  Charge:
+    TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"ChargeLeft")
+  ChargeRight:
+    TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+    TNT1 A 0 A_SetScale(1.5,1.5)
+    ASA3 ABCDE 1
+    ASA3 F 2 //ACS_NamedExecutealways("DamageFactorcontrol",0,0,0,0)
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,0,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,0,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,0,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+  ASA3 PONMLKJIHG 1
+    ASA3 E 2
+    ASA3 DCBA 2 //ACS_NamedExecutealways("DamageFactorcontrol",0,1,0,0)
+    TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+  ChargeLeft:
+    TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+    TNT1 A 0 A_SetScale(-1.5,1.5)
+    ASA3 ABCDE 1
+    ASA3 F 2 //ACS_NamedExecutealways("DamageFactorcontrol",0,0,0,0)
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,1,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,1,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+    ASA3 GHIJKLMNOP 1 
+  {
+  A_CustomBulletAttack(0,0,4,5,"NewPuff",64,CBAF_NORANDOM|CBAF_NOPITCH);
+  ACS_NamedExecuteAlways("DashSpeed",0,1,10,0);
+  }
+  TNT1 A 0 
+  {
+  A_QuakeEx( 1, 0, 1, 10, 0, 3000 );
+  A_PlaySound("AFMOVE");
+  }
+  ASA3 PONMLKJIHG 1
+    ASA3 E 2
+    ASA3 DCBA 2 //ACS_NamedExecutealways("DamageFactorcontrol",0,1,0,0)
+    TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+  Death:
+  TNT1 A 0 A_GiveToTarget("Score_count",300)
+TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("GreenDebris_BloodTrail_Worm", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+TNT1 AAAAAAAAAAAA 0 Bright A_CustomMissile("GreenDebris_BloodTrail_Worm2", random(-16,16), random(-16,16), random(0,360), 2, random(-90,90))
+    TNT1 A 0 A_QuakeEx(0,0,0,20,0,512,"",QF_SCALEDOWN|QF_SCALEUP,0,0,0,1,0,5.0,5.0)
+     TNT1 A 0   A_Die
+     TNT1 A 0 A_PlaySound("AFDTH", 7,1.0,0,ATTN_NONE)
+    TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+    TNT1 A 0 A_FaceTarget
+    TNT1 A 0 A_JumpIfInventory("BackwardsCheck",1,"DeathLeft")
+  DeathRight:
+    TNT1 A 0 A_SetScale(1.5,1.5)
+    ASDT ABCDEFGHIJKL 2
+    ASDT M 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
+    STOP
+  DeathLeft:
+    TNT1 A 0 A_SetScale(-1.5,1.5)
+    ASDT ABCDEFGHIJKL 2
+    ASDT M 40 ACS_NamedExecutealways("InvulTime",0,40,0,0)
+STOP
+  Raise:
+    SARG N 5
+    SARG MLKJI 5
+    Goto See
+  Melee:
+      TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+  TNT1 A 0 A_Jump(128,"Melee2")
+    TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"MeleeLeft")
+  MeleeRight:
+    TNT1 A 0 A_SetScale(1.5,1.5)
+        TNT1 A 0 A_PlaySound("AFATK1")
+    ASA1 AAABBBCCCDD 1
+    ASA1 E 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
+    ASA1 FFGGHH 1
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+  MeleeLeft:
+    TNT1 A 0 A_SetScale(-1.5,1.5)
+    TNT1 A 0 A_PlaySound("AFATK1")
+    ASA1 AAABBBCCCDD 1
+    ASA1 E 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
+    ASA1 FFGGHH 1
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+  Melee2:
+    TNT1 A 0 A_FaceTarget
+  TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+  TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"Melee2Left")
+  Melee2Right:
+  
+    TNT1 A 0 A_SetScale(1.5,1.5)
+    TNT1 A 0 A_PlaySound("AFATK2")
+    ASA2 AABBCDE 2
+    ASA2 F 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
+    ASA2 GA 2
+    TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+  Melee2Left:
+    TNT1 A 0 A_SetScale(-1.5,1.5)
+    TNT1 A 0 A_PlaySound("AFATK2")
+    ASA2 AABBCDE 2
+    ASA2 F 2 A_CustomBulletAttack(0,0,4,5,"NewPuff",100,CBAF_NORANDOM)
+    ASA2 GA 2
+    TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+    GOTO See
+Spawn2:
+        TNT1 A 0 ACS_NamedExecutealways("BackwardsCheck",0,0,0,0)
+    TNT1 A 0 A_JumpIfinventory("BackwardsCheck",1,"Spawn2Left")
+  Spawn2Right:
+        TNT1 A 0 A_SetScale(1.5,1.5)
+        ASFS ABCDEFEDCBA 1 
+        {
+    A_FaceTarget(8);
+    
+        ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+    
+        if (CountInv("BackwardsCheck") > 0) { return state("Spawn2Left");}
+        ELSE
+        {
+        }
+    if (GetDistance(True,AAPTR_TARGET) < 400.0) { return state("Charge");}
+        return state("");
+        }
+    GOTO SEE
+    
+  Spawn2Left:
+        TNT1 A 0 A_SetScale(-1.5,1.5)
+        ASFS ABCDEFEDCBA 1 
+        {
+    A_FaceTarget(8);
+        ACS_NamedExecutealways("BackwardsCheck",0,0,0,0);
+        if (CountInv("BackwardsCheck") == 0) { return state("Spawn2Right");}
+        ELSE
+        {
+        }
+    if (GetDistance(True,AAPTR_TARGET) < 400.0) { return state("Charge");}
         return state("");
         }
     GOTO SEE

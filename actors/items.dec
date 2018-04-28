@@ -1288,7 +1288,7 @@ ACTOR CheckPointer_BlackCat : CustomInventory replaces MegaSphere
   Inventory.PickupMessage ""
     Inventory.MaxAmount 1
   Scale 0.8
-  HEIGHT 200
+  HEIGHT 180
   +FLOORCLIP
   +NOGRAVITY
   +BRIGHT
@@ -1301,6 +1301,8 @@ ACTOR CheckPointer_BlackCat : CustomInventory replaces MegaSphere
   Pickup:
   BATT A 0 A_JumpIfInventory("AutoSaveCount",1,"Nothing")
   BLCT A 0 A_GiveInventory("AutoSaveCount",1)
+   BLCT A 0 HealThing(100,100)
+   APBX D 0 A_SpawnItemEx("NAMETAG_HP4",0,0,0,0,0,6,0,SXF_NOCHECKPOSITION )
   BLCT A 1 Acs_NamedExecute("AutoSaving",0,0,0,0)
   TNT1 A 0 A_PlaySound("MEOW", 7,1.0,0,ATTN_NONE)
   Fail

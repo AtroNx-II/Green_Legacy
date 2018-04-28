@@ -2671,6 +2671,17 @@ ACTOR NAMETAG_HP3 :  NAMETAG
     Stop
   }
 }
+ACTOR NAMETAG_HP4 :  NAMETAG
+{
+  States
+  {
+  Spawn:
+    HPBB D 10 Bright
+    HPBB D 40 Bright A_STOP
+    HPBB DDDDDDDDDD 1 Bright A_FADEOUT(0.1)
+    Stop
+  }
+}
 ACTOR EMPTYARM_SG :  NAMETAG
 {
 -BRIGHT
